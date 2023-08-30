@@ -413,7 +413,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>define and compute various statistics</li>
 <li>begin to gain familiarity with making data visualizations with <code>ggplot()</code></li>
 </ul>
-<p>We will do this using water lead content data from Flint, MI.</p>
+<p>We will do this using water lead content data from Flint, MI. The following paragraph will be useful in evaluating the lead amount values we’ll see in the dataset.</p>
+<blockquote class="blockquote">
+<p>While there is no completely safe amount of lead consumption, the limit allowed by the Lead and Copper Rule (LCR) of 1991 is 15 parts per billion (ppb). If this is exceeded in more than 10% of homes tested (or if the 90th percentile value of the total sample is above 15 ppb), action is required. And to make sure problems are caught, sampling for lead in water is supposed to target the “worst-case” homes – those in areas served by lead pipes.</p>
+</blockquote>
 </section>
 <section id="meet-the-toolkit" class="level1">
 <h1>Meet the toolkit</h1>
@@ -505,7 +508,7 @@ dbl (4): id, zip, ward, lead
 <li><code>zip</code>: ZIP code in Flint of the sample’s location</li>
 <li><code>ward</code>: ward in Flint of the sample’s location</li>
 <li><code>draw</code>: which time point the water was sampled from</li>
-<li><code>lead</code>: lead content in parts per billion</li>
+<li><code>lead</code>: lead content in parts per billion (ppb)</li>
 </ul>
 </section>
 <section id="populations-and-samples" class="level2">
@@ -705,8 +708,8 @@ dbl (4): id, zip, ward, lead
 <section id="references" class="level1">
 <h1>References</h1>
 <ol type="1">
-<li><p>Langkjaer-Bain, R. (2017). The murky tale of Flint’s deceptive water data. Significance, 14: 16-21.</p></li>
-<li><p>Kelsey J. Pieper, Rebekah Martin, Min Tang, LeeAnne Walters, Jeffrey Parks, Siddhartha Roy, Christina Devine, and Marc A. Edwards Environmental Science &amp; Technology 2018 52 (15), 8124-8132 DOI: 10.1021/acs.est.8b00791</p></li>
+<li><p>Langkjaer-Bain, R. (2017). The murky tale of Flint’s deceptive water data. Significance, 14: 16-21. doi: <a href="https://doi.org/10.1111/j.1740-9713.2017.01016.x" class="uri">https://doi.org/10.1111/j.1740-9713.2017.01016.x</a>.</p></li>
+<li><p>Kelsey J. Pieper, et. al.&nbsp;Evaluating Water Lead Levels During the Flint Water Crisis. Edwards Environmental Science &amp; Technology 2018 52 (15), 8124-8132 doi: <a href="https://doi.org/10.1021/acs.est.8b00791" class="uri">https://doi.org/10.1021/acs.est.8b00791</a>.</p></li>
 </ol>
 
 
