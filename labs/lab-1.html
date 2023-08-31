@@ -349,12 +349,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting started</a></li>
-  <li><a href="#warm-up" id="toc-warm-up" class="nav-link" data-scroll-target="#warm-up">Warm up</a>
+  <li><a href="#r-rstudio-quarto-review" id="toc-r-rstudio-quarto-review" class="nav-link" data-scroll-target="#r-rstudio-quarto-review">R, RStudio, Quarto review</a>
   <ul class="collapse">
   <li><a href="#yaml" id="toc-yaml" class="nav-link" data-scroll-target="#yaml">YAML</a></li>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <li><a href="#code-style" id="toc-code-style" class="nav-link" data-scroll-target="#code-style">Code style</a></li>
+  <li><a href="#part-1-datasaurus" id="toc-part-1-datasaurus" class="nav-link" data-scroll-target="#part-1-datasaurus">Part 1: datasauRus</a>
   <ul class="collapse">
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
   <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
@@ -364,10 +365,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#exercise-6" id="toc-exercise-6" class="nav-link" data-scroll-target="#exercise-6">Exercise 6</a></li>
   <li><a href="#exercise-7" id="toc-exercise-7" class="nav-link" data-scroll-target="#exercise-7">Exercise 7</a></li>
   </ul></li>
-  <li><a href="#formatting" id="toc-formatting" class="nav-link" data-scroll-target="#formatting">Formatting</a></li>
+  <li><a href="#part-2-ims-exercises" id="toc-part-2-ims-exercises" class="nav-link" data-scroll-target="#part-2-ims-exercises">Part 2: IMS Exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-8" id="toc-exercise-8" class="nav-link" data-scroll-target="#exercise-8">Exercise 8</a></li>
+  <li><a href="#exercise-9" id="toc-exercise-9" class="nav-link" data-scroll-target="#exercise-9">Exercise 9</a></li>
+  <li><a href="#exercise-10" id="toc-exercise-10" class="nav-link" data-scroll-target="#exercise-10">Exercise 10</a></li>
+  </ul></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap up</a>
+  <ul class="collapse">
   <li><a href="#submitting" id="toc-submitting" class="nav-link" data-scroll-target="#submitting">Submitting</a></li>
   <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
   <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/labs/lab-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -393,8 +402,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>The goal of this lab is to acquaint you with R (the computing language), RStudio (the IDE, integrated development environment), and Posit Cloud (the browser based service we will use to access RStudio).</p>
-<section id="getting-started" class="level2">
-<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+<section id="getting-started" class="level1">
+<h1>Getting started</h1>
 <ol type="1">
 <li><p>Go to <a href="https://posit.cloud/spaces/405361">Posit Cloud</a> and start the project titled <strong>lab-1 - Hello R!</strong>.</p></li>
 <li><p>Under the <em>Files</em> tab on the lower right, click on <code>lab-1.qmd</code> to open the lab template.</p></li>
@@ -404,10 +413,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Complete the exercises in this document.</li>
 </ol>
 </section>
-<section id="warm-up" class="level2">
-<h2 class="anchored" data-anchor-id="warm-up">Warm up</h2>
-<section id="yaml" class="level3">
-<h3 class="anchored" data-anchor-id="yaml">YAML</h3>
+<section id="r-rstudio-quarto-review" class="level1">
+<h1>R, RStudio, Quarto review</h1>
+<section id="yaml" class="level2">
+<h2 class="anchored" data-anchor-id="yaml">YAML</h2>
 <p>The top portion of your Quarto Markdown file (aka <code>.qmd</code>), you’ll find three dashed lines. Between the dashed lines is called YAML. YAML stands for “YAML Ain’t Markup Language”. It is a human friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.</p>
 <p>Change the <code>author</code> name to your name and update the <code>date</code> with today’s date. Click the <code>render button</code> to render the document. What do you notice?</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -420,13 +429,13 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To avoid issues that can occur while rendering, it is a good idea to render frequently. <strong>At least after every exercise</strong>.</p>
+<p>To avoid issues that can occur while rendering, it is a good idea to render early and often. <strong>At least after every exercise</strong>.</p>
 </div>
 </div>
 </section>
-<section id="packages" class="level3">
-<h3 class="anchored" data-anchor-id="packages">Packages</h3>
-<p>In this lab we will work with two packages: the <code>tidyverse</code> package which is a collection of packages for doing data analysis in a “tidy” way and the <code>datasauRus</code> package which contains the data set for today.</p>
+<section id="packages" class="level2">
+<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<p>In this lab we will work with three packages: the <strong>tidyverse</strong> package which is a collection of packages for doing data analysis in a “tidy” way, the <strong>datasauRus</strong> package which contains the data set for the first part of your lab.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasauRus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -441,24 +450,38 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you are using <code>R</code> on the container, packages we use should already be installed and only need to be <strong>loaded</strong> with the function <code>library()</code>. If you are using a local version of <code>R</code> you probably have to run the following code in the <strong>console</strong> to install the packages (one time only!)</p>
+<p>If you are using <code>R</code> on Posit Cloud, packages we use should already be installed and only need to be <strong>loaded</strong> with the function <code>library()</code>. If you are using a local version of <code>R</code> you probably have to run the following code in the <strong>console</strong> to install the packages (one time only!)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"datasauRus"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"datasauRus"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"openintro"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="exercises" class="level2">
-<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
-<p>The data frame we will be working with today is called <code>datasaurus_dozen</code> and it’s in the <code>datasauRus</code> package. Actually, this single data frame contains 13 data sets (a “baker’s dozen”), designed to show us why data visualization is important and how summary statistics alone can be misleading. The different data sets are marked by the data set variable.</p>
+<section id="code-style" class="level1">
+<h1>Code style</h1>
+<p>For all assignments in this course there is a “code style and formatting” component to the grade. To receive full points for this component, you must:</p>
+<ol type="1">
+<li><p>There is a line break after each <code>|&gt;</code> in a pipeline or <code>+</code> in a ggplot.</p></li>
+<li><p>There are spaces around <code>=</code> signs.</p></li>
+<li><p>There is a space after each <code>,</code>.</p></li>
+<li><p>Code is properly indented.</p></li>
+<li><p>Code doesn’t exceed 80 characters in each line, longer lines of code are spread across multiple lines with appropriately placed line breaks. (In the rendered document, you shouldn’t have to scroll to see all your code.)</p></li>
+<li><p>Code chunks are labeled, informatively and without spaces.</p></li>
+</ol>
+<p>These guidelines follow the <a href="https://style.tidyverse.org/">tidyverse style guide</a>. This style guide is commonly used and will help make your code more legible.</p>
+</section>
+<section id="part-1-datasaurus" class="level1">
+<h1>Part 1: datasauRus</h1>
+<p>The data frame we will be working with for the first part of the lab is called <code>datasaurus_dozen</code> and it’s in the <code>datasauRus</code> package. Actually, this single data frame contains 13 data sets (a “baker’s dozen”), designed to show us why data visualization is important and how summary statistics alone can be misleading. The different data sets are marked by the data set variable.</p>
 <p>To find out more about the data set, type the following in your console (this will bring up the help file).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>?datasaurus_dozen</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="exercise-1" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
+<section id="exercise-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
 <div class="exercise">
 <p>Based on the help file, how many rows and how many columns does the <code>datasaurus_dozen</code> file have? What are the <strong>variables</strong> included in the data frame? Add your responses to your lab report under “Exercise 1”.</p>
 </div>
@@ -500,10 +523,10 @@ Note
 </div>
 </div>
 </section>
-<section id="exercise-2" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
+<section id="exercise-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
 <div class="exercise">
-<p>Plot y vs.&nbsp;x for the dino data set. Then, calculate the correlation coefficient between x and y for this data set.</p>
+<p>Plot y vs.&nbsp;x for the dino data set. Then, calculate the correlation coefficient between x and y for this data set. Make sure that this value is printed in your document.</p>
 </div>
 <p>Below is the code you will need to complete this exercise. Basically, the answer is already given, but you need to include relevant bits in your <code>qmd</code> document and successfully render it and view the results.</p>
 <p>Start with the <code>datasaurus_dozen</code> and pipe it into the filter function to filter for observations where <code>dataset == "dino"</code>. Store the resulting filtered data frame as a new data frame called <code>dino_data</code>.</p>
@@ -513,13 +536,26 @@ Note
 </div>
 <p>There is a lot going on here, so let’s slow down and unpack it a bit.</p>
 <p>First, the pipe operator: <code>|&gt;</code>, takes what comes before it and sends it as the first argument to what comes after it. So here, we’re saying filter the <code>datasaurus_dozen</code> data frame for observations where <code>dataset == "dino"</code>.</p>
-<p>Second, the assignment operator: <code>&lt;-</code>, assigns the name <code>dino_data</code> to the filtered data frame. Note in <code>R</code> you may use either <code>&lt;-</code> or <code>=</code> for an assignment operator.</p>
+<p>Second, the assignment operator: <code>&lt;-</code>, assigns the name <code>dino_data</code> to the filtered data frame.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note in <code>R</code> you may use either <code>&lt;-</code> or <code>=</code> for an assignment operator. We’ll use <code>&lt;-</code> in this class as it’s the more commonly used assignment operator, but when you look for R help online, you might see <code>=</code> being used as well.</p>
+</div>
+</div>
 <p>Next, we need to visualize these data. We will use the <code>ggplot</code> function for this. Its first argument is the data you’re visualizing. Next we define the aesthetic mappings. In other words, the columns of the data that get mapped to certain aesthetic features of the plot, e.g.&nbsp;the x axis will represent the variable called x and the y axis will represent the variable called y. Then, we add another layer to this plot where we define which geometric shapes we want to use to represent each observation in the data. In this case we want these to be points, hence <code>geom_point</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dino_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="lab-1_files/figure-html/ggplot-dino-x-y-1.png" class="img-fluid" width="672"></p>
+<p><img src="lab-1_files/figure-html/plot-dino-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>For the second part of this exercise, we need to calculate a summary statistic: the correlation coefficient. The correlation coefficient (<em>r</em>) measures the strength and direction of the linear association between two variables. You will see that some of the pairs of variables we plot do not have a linear relationship between them. This is exactly why we want to visualize first: visualize to assess the form of the relationship, and calculate <em>r</em> only if relevant.</p>
@@ -536,20 +572,20 @@ Note
 </div>
 </div>
 </section>
-<section id="exercise-3" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-3">Exercise 3</h3>
+<section id="exercise-3" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3">Exercise 3</h2>
 <div class="exercise">
 <p>Plot y vs.&nbsp;x for the star dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between x and y for this dataset. How does this value compare to the <em>r</em> of dino?</p>
 </div>
-<p>To begin, edit the name of the code chunks from <code>ex-3-1</code> and <code>ex-3-2</code> to something more meaningful, e.g: <code>plot-star</code> and <code>star-correlation</code> respectively.</p>
+<p>To begin, edit the name of the code chunks from <code>ex-3-1</code> and <code>ex-3-2</code> to something more meaningful, e.g: <code>plot-star</code> and <code>r-star</code> respectively.</p>
 </section>
-<section id="exercise-4" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-4">Exercise 4</h3>
+<section id="exercise-4" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4">Exercise 4</h2>
 <div class="exercise">
 <p>Finally, let’s plot all datasets at once. In order to do this we will make use of faceting, given by the code below:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datasaurus_dozen, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> dataset)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> dataset, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And we can use the <code>group_by</code> function to generate all the summary correlation coefficients. We’ll see these functions again and again.</p>
@@ -560,22 +596,24 @@ Note
 </div>
 </div>
 </section>
-<section id="exercise-5" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-5">Exercise 5</h3>
+<section id="exercise-5" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5">Exercise 5</h2>
 <div class="exercise">
 <p>Describe what <code>|&gt;</code> does. Hint: run the following two code chunks. What do you notice?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dino_data <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mu_x =</span> <span class="fu">mean</span>(x),</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">mu_y =</span> <span class="fu">mean</span>(y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu_x =</span> <span class="fu">mean</span>(x),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu_y =</span> <span class="fu">mean</span>(y)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(dino_data, <span class="at">mu_x =</span> <span class="fu">mean</span>(x), <span class="at">mu_y =</span> <span class="fu">mean</span>(y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
-<section id="exercise-6" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-6">Exercise 6</h3>
+<section id="exercise-6" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-6">Exercise 6</h2>
 <div class="exercise">
 <p>In the above code chunk, identify each of the following as an argument or a function:</p>
 <ul>
@@ -588,54 +626,130 @@ Note
 </ul>
 </div>
 </section>
-<section id="exercise-7" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-7">Exercise 7</h3>
+<section id="exercise-7" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-7">Exercise 7</h2>
 <div class="exercise">
-<p>Combine the code from exercises 4 and 5 to compute the <code>mean(x)</code> and <code>mean(y)</code> for each data set. Print your result to the screen. What do you notice?</p>
+<p>Combine the code from exercises 4 and 5 to compute the <code>mean(x)</code> and <code>mean(y)</code> for each data set. Print your result to the screen. What do you notice? What does this say about the importance of visualizing your data as opposed to only looking at summary statistics?</p>
 </div>
 </section>
 </section>
-<section id="formatting" class="level2">
-<h2 class="anchored" data-anchor-id="formatting">Formatting</h2>
-<p>For all assignments in this course there is a “formatting” component to the grade. To receive full points for “formatting”, you must:</p>
-<ol type="1">
-<li><p>Have your name (and team name if appropriate) at the top of the rendered document</p></li>
-<li><p>Pipes <code>|&gt;</code> and ggplot layers <code>+</code> should be followed by a newline (see formatting in code chunks above)</p></li>
-<li><p>Your code should be under the 80 character code limit. (You shouldn’t have to scroll to see all your code on the rendered document).</p></li>
-<li><p>All exercises and corresponding pages should be linked on Gradescope.</p></li>
-</ol>
-<p>Adding new lines after pipes and layers is a “tidyverse” styling. Tidyverse styling is good, general practice and will help make your code more legible. For a more extensive list of recommended guidelines, <a href="https://style.tidyverse.org/">click here</a>.</p>
+<section id="part-2-ims-exercises" class="level1">
+<h1>Part 2: IMS Exercises</h1>
+<p>The exercises in this section do not require code. Make sure to answer the questions in full sentences.</p>
+<section id="exercise-8" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-8">Exercise 8</h2>
+<p>IMS - <a href="https://openintro-ims2.netlify.app/data-hello#chp1-exercises">Chapter 1 exercises</a>, #4.</p>
 </section>
+<section id="exercise-9" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-9">Exercise 9</h2>
+<p>IMS - <a href="https://openintro-ims2.netlify.app/data-hello#chp1-exercises">Chapter 1 exercises</a>, #14.</p>
+</section>
+<section id="exercise-10" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-10">Exercise 10</h2>
+<p>IMS - <a href="https://openintro-ims2.netlify.app/data-hello#chp1-exercises">Chapter 1 exercises</a>, #16.</p>
+</section>
+</section>
+<section id="wrap-up" class="level1">
+<h1>Wrap up</h1>
 <section id="submitting" class="level2">
 <h2 class="anchored" data-anchor-id="submitting">Submitting</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before you proceed, first, make sure that you have updated the document YAML with your name! Then, render your document one last time, for good measure.</p>
+</div>
+</div>
 <p>To submit your assignment to Gradescope:</p>
 <ul>
-<li><p>Export your PDF. (TO DO: Add instructions.)</p></li>
-<li><p>Go to <a href="http://www.gradescope.com" class="uri">http://www.gradescope.com</a> and click Log in in the top right corner. - Click <code>School Credentials</code>, <code>Duke NetID</code> and log in using your NetID credentials.</p></li>
-<li><p>Click on your STA 101 course.</p></li>
-<li><p>Click on the assignment, and you’ll be prompted to submit it.</p></li>
-<li><p>Mark the pages associated with each exercise, 1 - 7. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”). - Select all pages of your .pdf submission to be associated with the “Formatting” section.</p></li>
+<li><p>Go to your Files pane and check the box next to the PDF output of your document (<code>lab-1.pdf</code>).</p></li>
+<li><p>Then, in the Files pane, go to More &gt; Export. This will download the PDF file to your computer. Save it somewhere you can easily locate, e.g., your Downloads folder or your Desktop.</p></li>
+<li><p>Go to the course Canvas page and click on Gradescope and then click on the assignment. You’ll be prompted to submit it.</p></li>
+<li><p>Mark the pages associated with each exercise. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”).</p></li>
 </ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you fail to mark the pages associated with an exercise, that exercise won’t be graded. This means, if you fail to mark the pages for all exercises, you will receive a 0 on the assignment. The TAs can’t mark your pages for you, and for them to be able to grade, you must mark them.</p>
+</div>
+</div>
 </section>
 <section id="grading" class="level2">
 <h2 class="anchored" data-anchor-id="grading">Grading</h2>
-<p>Total: 50 pts.</p>
-<ul>
-<li>Exercise 1: 7 pts</li>
-<li>Exercise 2: 6 pts</li>
-<li>Exercise 3: 6 pts</li>
-<li>Exercise 4: 6 pts</li>
-<li>Exercise 5: 3 pts</li>
-<li>Exercise 6: 6 pts</li>
-<li>Exercise 7: 8 pts</li>
-<li>Workflow and formatting: 8 pts</li>
-</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Exercise</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exercise 1</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Exercise 2</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>Exercise 3</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>Exercise 4</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>Exercise 5</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>Exercise 6</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>Exercise 7</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>Exercise 8</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>Exercise 9</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Exercise 10</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td>50</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="acknowledgements" class="level2">
 <h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
 <p>This assignment was adapted from a lab in <a href="https://datasciencebox.org/">Data Science in a Box</a>.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
