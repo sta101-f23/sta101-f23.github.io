@@ -418,7 +418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="yaml" class="level2">
 <h2 class="anchored" data-anchor-id="yaml">YAML</h2>
 <p>The top portion of your Quarto Markdown file (aka <code>.qmd</code>), you’ll find three dashed lines. Between the dashed lines is called YAML. YAML stands for “YAML Ain’t Markup Language”. It is a human friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.</p>
-<p>Change the <code>author</code> name to your name and update the <code>date</code> with today’s date. Click the <code>render button</code> to render the document. What do you notice?</p>
+<p>Change the <code>author</code> name to your name and update the <code>date</code> with today’s date. Click the <strong>Render</strong> to render the document. What do you notice?</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -453,8 +453,7 @@ Warning
 <p>If you are using <code>R</code> on Posit Cloud, packages we use should already be installed and only need to be <strong>loaded</strong> with the function <code>library()</code>. If you are using a local version of <code>R</code> you probably have to run the following code in the <strong>console</strong> to install the packages (one time only!)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"datasauRus"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"openintro"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"datasauRus"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -528,7 +527,7 @@ Note
 <div class="exercise">
 <p>Plot y vs.&nbsp;x for the dino data set. Then, calculate the correlation coefficient between x and y for this data set. Make sure that this value is printed in your document.</p>
 </div>
-<p>Below is the code you will need to complete this exercise. Basically, the answer is already given, but you need to include relevant bits in your <code>qmd</code> document and successfully render it and view the results.</p>
+<p>Below is the code you will need to complete this exercise. Basically, the answer is already given, but you need to include relevant bits in your <code>.qmd</code> document and successfully render it and view the results.</p>
 <p>Start with the <code>datasaurus_dozen</code> and pipe it into the filter function to filter for observations where <code>dataset == "dino"</code>. Store the resulting filtered data frame as a new data frame called <code>dino_data</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dino_data <span class="ot">&lt;-</span> datasaurus_dozen <span class="sc">|&gt;</span></span>
@@ -550,9 +549,9 @@ Note
 <p>Note in <code>R</code> you may use either <code>&lt;-</code> or <code>=</code> for an assignment operator. We’ll use <code>&lt;-</code> in this class as it’s the more commonly used assignment operator, but when you look for R help online, you might see <code>=</code> being used as well.</p>
 </div>
 </div>
-<p>Next, we need to visualize these data. We will use the <code>ggplot</code> function for this. Its first argument is the data you’re visualizing. Next we define the aesthetic mappings. In other words, the columns of the data that get mapped to certain aesthetic features of the plot, e.g.&nbsp;the x axis will represent the variable called x and the y axis will represent the variable called y. Then, we add another layer to this plot where we define which geometric shapes we want to use to represent each observation in the data. In this case we want these to be points, hence <code>geom_point</code>.</p>
+<p>Next, we need to visualize these data. We will use the <code>ggplot</code> function for this. Its first argument is the data you’re visualizing. Next we define the <code>aes</code>thetic mappings. In other words, the columns of the data that get mapped to certain aesthetic features of the plot, e.g.&nbsp;the x axis will represent the variable called x and the y axis will represent the variable called y. Then, we add another layer to this plot where we define which geometric shapes we want to use to represent each observation in the data. In this case we want these to be points, hence <code>geom_point</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dino_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dino_data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="lab-1_files/figure-html/plot-dino-1.png" class="img-fluid" width="672"></p>
@@ -638,15 +637,15 @@ Note
 <p>The exercises in this section do not require code. Make sure to answer the questions in full sentences.</p>
 <section id="exercise-8" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-8">Exercise 8</h2>
-<p>IMS - <a href="https://openintro-ims2.netlify.app/data-hello#chp1-exercises">Chapter 1 exercises</a>, #4.</p>
+<p>IMS - <a href="https://openintro-ims2.netlify.app/data-hello#chp1-exercises">Chapter 1 exercises</a>, #4: Cheaters, study components.</p>
 </section>
 <section id="exercise-9" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-9">Exercise 9</h2>
-<p>IMS - <a href="https://openintro-ims2.netlify.app/data-hello#chp1-exercises">Chapter 1 exercises</a>, #14.</p>
+<p>IMS - <a href="https://openintro-ims2.netlify.app/data-hello#chp1-exercises">Chapter 1 exercises</a>, #14: UN Votes.</p>
 </section>
 <section id="exercise-10" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-10">Exercise 10</h2>
-<p>IMS - <a href="https://openintro-ims2.netlify.app/data-hello#chp1-exercises">Chapter 1 exercises</a>, #16.</p>
+<p>IMS - <a href="https://openintro-ims2.netlify.app/data-hello#chp1-exercises">Chapter 1 exercises</a>, #16: Shows on Netflix.</p>
 </section>
 </section>
 <section id="wrap-up" class="level1">
