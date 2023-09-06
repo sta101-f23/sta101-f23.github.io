@@ -63,6 +63,69 @@
     "text": "Create a GitHub account at https://github.com, make sure to use your real name in your profile so that I can match your name to you. You can use whatever username you like, but here is some helpful username advice.1\nGo to https://github.com/OpenIntroStat/ims/issues/new/choose and select either “Suggestion” or “Typo”.\n\nIf Suggestion, describe in detail your suggestion, giving as much information and justification as possible.\nIf Typo, fill in the blanks to provide as much information as possible for the typo to be fixed.\n\nWhen done, hit Submit.\nLater in the course you will be asked to fill out a form where you let us know if you’ve opened any feedback issues in the GitHub repo. I’ll confirm your answers by referring back to the issues you opened, and you’ll have the opportunity to earn 2 extra points (out of 100) on each of your exams for opening “useful” issues. “Useful” can be based on the number of issues (quantity) or the depth of your feedback (quality).\nBefore opening an issue, you must the existing ones at https://github.com/OpenIntroStat/ims/issues to make sure you’re not reporting something someone else has already reported.\nIssues can refer to the text of the book or the interactive tutorials."
   },
   {
+    "objectID": "ae/ae-03-delta-sa.html",
+    "href": "ae/ae-03-delta-sa.html",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "",
+    "text": "The main question we’ll explore today is “How do deaths from COVID cases compare between vaccinated and unvaccinated?”\nWhat do you think?"
+  },
+  {
+    "objectID": "ae/ae-03-delta-sa.html#exercise-1",
+    "href": "ae/ae-03-delta-sa.html#exercise-1",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nHow many rows and columns are in this dataset? Answer in a full sentence using inline code. What does each row represent and what does each column represent? For each variable, identify its type.\nAdd your answer here."
+  },
+  {
+    "objectID": "ae/ae-03-delta-sa.html#exercise-2",
+    "href": "ae/ae-03-delta-sa.html#exercise-2",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nDo these data come from an observational study or experiment? Why?\nAdd your answer here."
+  },
+  {
+    "objectID": "ae/ae-03-delta-sa.html#exercise-3",
+    "href": "ae/ae-03-delta-sa.html#exercise-3",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 3",
+    "text": "Exercise 3\nCreate a visualization of health outcome by vaccine status that allows you to compare the proportion of deaths across those who are and are not vaccinated. What can you say about death rates in these two groups based on this visualization?\nAdd your answer here.\n\n# add code here"
+  },
+  {
+    "objectID": "ae/ae-03-delta-sa.html#exercise-4",
+    "href": "ae/ae-03-delta-sa.html#exercise-4",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 4",
+    "text": "Exercise 4\nCalculate the proportion of deaths in among those who are vaccinated. Then, calculate the proportion among those who are not vaccinated.\nAdd your answer here.\n\n# add code here"
+  },
+  {
+    "objectID": "ae/ae-03-delta-sa.html#exercise-5",
+    "href": "ae/ae-03-delta-sa.html#exercise-5",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 5",
+    "text": "Exercise 5\nCreate the visualization and calculate proportions from the two previous exercises, this time controlling for age. How do the proportions compare?\nAdd your answer here.\n\n# add code here"
+  },
+  {
+    "objectID": "ae/ae-03-delta-sa.html#exercise-6",
+    "href": "ae/ae-03-delta-sa.html#exercise-6",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 6",
+    "text": "Exercise 6\nBased on your findings so far, fill in the blanks with more, less, or equally: Is there anything surprising about these statements? Speculate on what, if anything, the discrepancy might be due to.\n\nIn 2021, among those in the UK who were COVID Delta cases, the vaccinated were ___ likely to die than the unvaccinated.\nFor those under 50, those who were unvaccinated were ___ likely to die than those who were vaccinated.\nFor those 50 and up, those who were unvaccinated were ___ likely to die than those who were vaccinated.\n\nAdd your answer here."
+  },
+  {
+    "objectID": "ae/ae-03-delta-sa.html#exercise-7",
+    "href": "ae/ae-03-delta-sa.html#exercise-7",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 7",
+    "text": "Exercise 7\nLet’s rephrase the previous question which asked you to speculate on why deaths among vaccinated cases overall is higher while deaths among unvaccinated cases are higher when we split the data into two groups (below 50 and 50 and up). What might be the confounding variable in the relationship between vaccination and deaths?\nAdd your answer here."
+  },
+  {
+    "objectID": "ae/ae-03-delta-sa.html#exercise-8",
+    "href": "ae/ae-03-delta-sa.html#exercise-8",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 8",
+    "text": "Exercise 8\nVisualize and describe the distribution of seniors (50 and up) based on (a.k.a. conditional on) vaccination status. Hint: Your description will benefit from calculating proportions of seniors in each of the vaccination groups and working those values into your narrative.\nAdd your answer here.\n\n# add your code here"
+  },
+  {
     "objectID": "ae/ae-02-flint.html",
     "href": "ae/ae-02-flint.html",
     "title": "Exploring Flint’s water data",
@@ -319,7 +382,7 @@
     "href": "index.html",
     "title": "STA 101: Data Analysis and Statistical Inference",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n  \n    \n    \n    \n    \n    \n    \n  \n  \n    \n    \n      WEEK\n      DATE\n      TOPIC\n      PREPARE\n      MATERIALS\n      DUE\n    \n  \n  \n    1\nMon, Aug 28\nWelcome to STA 101!\n\n\n🖥️ slides \n☁️ ae-01 \n⌨️ ae-01\n\n\n    \nWed, Aug 30\nHello data\n\n📖 ims: Chp 1 \n💻 tutorial: 01-data-01 |&gt; submit\n\n🖥️ slides \n☁️ ae-02 \n⌨️ ae-02\n\n🔘 Survey: Getting to know you\n\n    \nFri, Sep 1\nLab 1: Hello R!\n\n\n⌨️ lab-1\n\n\n    2\nMon, Sep 4\nLabor Day - No lecture\n\n\n\n\n    \nWed, Sep 6\nStudy design\n\n📖 ims: Chp 2 \n💻 tutorial: 01-data-02 |&gt; submit \n💻 tutorial: 01-data-03 |&gt; submit\n\n\n\n    \nThu, Sep 7\n\n\n\nLab 1 at 5 pm\n\n    \nFri, Sep 8\nLab 2: Hello data!\n\n📖 ims: Chp 3 \n💻 tutorial: 01-data-04 |&gt; submit\n\n\n\n    3\nMon, Sep 11\nExploring categorical data\n\n\n\n\n    \nWed, Sep 13\nExploring numerical data\n\n\n\n\n    \nThu, Sep 14\n\n\n\nLab 2 at 5 pm\n\n    \nFri, Sep 15\nLab 3: Exploratory data analysis\n\n\n\n\n    4\nMon, Sep 18\nRegression with a single predictor I \nGuest Lecture: Dr. Alex Fisher\n\n\n\n\n    \nWed, Sep 20\nRegression with a single predictor II \nVirtual class: Zoom link TBA\n\n\n\n\n    \nThu, Sep 21\n\n\n\nLab 3 at 5 pm\n\n    \nFri, Sep 22\nLab 4: Regression\n\n\n\n\n    5\nMon, Sep 25\nRegression with multiple predictors I\n\n\n\n\n    \nWed, Sep 27\nRegression with multiple predictors II\n\n\n\n\n    \nThu, Sep 28\n\n\n\nLab 4 at 5 pm\n\n    \nFri, Sep 29\nExam 1 Review\n\n\n\n\n    6\nMon, Oct 2\nLogistic regression\n\n\n\n\n    \nWed, Oct 4\nExam 1 - In class\n\n\n\n\n    \nFri, Oct 6\nNo lab: Work on Exam 1 - Take home\n\n\n\nExam 1 - Take home at 5 pm\n\n    7\nMon, Oct 9\nHypothesis testing with randomization I\n\n\n\n\n    \nWed, Oct 11\nHypothesis testing with randomization II\n\n\n\n\n    \nFri, Oct 13\nProject 1 workday\n\n\n\nProject 1 at 5 pm\n\n    8\nMon, Oct 16\nFall Break - No lecture\n\n\n\n\n    \nWed, Oct 18\nConfidence intervals with bootstrapping\n\n\n\n\n    \nFri, Oct 20\nLab 5: Inference with simulation\n\n\n\n\n    9\nMon, Oct 23\nInference with mathematical models\n\n\n\n\n    \nWed, Oct 25\nDecision errors \nGuest Lecture: Dr. Yue Jiang\n\n\n\n\n    \nThu, Oct 26\n\n\n\nLab 5 at 5 pm\n\n    \nFri, Oct 27\nLab 6: Foundations of inference\n\n\n\n\n    10\nMon, Oct 30\nInference for a single proportion\n\n\n\n\n    \nWed, Nov 1\nInference for comparing two proportions\n\n\n\n\n    \nThu, Nov 2\n\n\n\nLab 6 at 5 pm\n\n    \nFri, Nov 3\nLab 7: Inference for proportions\n\n\n\n\n    11\nMon, Nov 6\nInference for a single mean\n\n\n\n\n    \nWed, Nov 8\nInference for comparing two means\n\n\n\n\n    \nThu, Nov 9\n\n\n\nLab 7 at 5 pm\n\n    \nFri, Nov 10\nExam 2 Review\n\n\n\n\n    12\nMon, Nov 13\nInference for two-way tables\n\n\n\n\n    \nWed, Nov 15\nExam 2 - In class\n\n\n\n\n    \nFri, Nov 17\nNo lab: Work on Exam 2 - Take home\n\n\n\nExam 2 - Take home at 5 pm\n\n    13\nMon, Nov 20\nInference for comparing many means\n\n\n\n\n    \nWed, Nov 22\nThanksgiving Break - No lecture\n\n\n\n\n    \nFri, Nov 24\nThanksgiving Break - No lecture\n\n\n\n\n    14\nMon, Nov 27\nInference for regression with a single predictor\n\n\n\n\n    \nWed, Nov 29\nInference for regression with multiple predictors\n\n\n\n\n    \nFri, Dec 1\nLab 8: Inference\n\n\n\n\n    15\nMon, Dec 4\nLooking forward: TBA\n\n\n\n\n    \nWed, Dec 6\nLooking forward: TBA\n\n\n\n\n    \nThu, Dec 7\n\n\n\nLab 8 at 5 pm\n\n    \nFri, Dec 8\nProject 2 peer review\n\n\n\n\n    16\nThu, Dec 14\nProject 2 presentations (2 - 5 pm)\n\n\n\nProject 2 at 2 pm"
+    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n  \n    \n    \n    \n    \n    \n    \n  \n  \n    \n    \n      WEEK\n      DATE\n      TOPIC\n      PREPARE\n      MATERIALS\n      DUE\n    \n  \n  \n    1\nMon, Aug 28\nWelcome to STA 101!\n\n\n🖥️ slides \n☁️ ae-01 \n⌨️ ae-01\n\n\n    \nWed, Aug 30\nHello data\n\n📖 ims: Chp 1 \n💻 tutorial: 01-data-01 |&gt; submit\n\n🖥️ slides \n☁️ ae-02 \n⌨️ ae-02\n\n🔘 Survey: Getting to know you\n\n    \nFri, Sep 1\nLab 1: Hello R!\n\n\n⌨️ lab-1\n\n\n    2\nMon, Sep 4\nLabor Day - No lecture\n\n\n\n\n    \nWed, Sep 6\nStudy design\n\n📖 ims: Chp 2 \n💻 tutorial: 01-data-02 |&gt; submit \n💻 tutorial: 01-data-03 |&gt; submit\n\n🖥️ slides \n☁️ ae-03 \n⌨️ ae-03\n\n\n    \nThu, Sep 7\n\n\n\nLab 1 at 5 pm\n\n    \nFri, Sep 8\nLab 2: Hello data!\n\n📖 ims: Chp 3 \n💻 tutorial: 01-data-04 |&gt; submit\n\n\n\n    3\nMon, Sep 11\nExploring categorical data\n\n\n\n\n    \nWed, Sep 13\nExploring numerical data\n\n\n\n\n    \nThu, Sep 14\n\n\n\nLab 2 at 5 pm\n\n    \nFri, Sep 15\nLab 3: Exploratory data analysis\n\n\n\n\n    4\nMon, Sep 18\nRegression with a single predictor I \nGuest Lecture: Dr. Alex Fisher\n\n\n\n\n    \nWed, Sep 20\nRegression with a single predictor II \nVirtual class: Zoom link TBA\n\n\n\n\n    \nThu, Sep 21\n\n\n\nLab 3 at 5 pm\n\n    \nFri, Sep 22\nLab 4: Regression\n\n\n\n\n    5\nMon, Sep 25\nRegression with multiple predictors I\n\n\n\n\n    \nWed, Sep 27\nRegression with multiple predictors II\n\n\n\n\n    \nThu, Sep 28\n\n\n\nLab 4 at 5 pm\n\n    \nFri, Sep 29\nExam 1 Review\n\n\n\n\n    6\nMon, Oct 2\nLogistic regression\n\n\n\n\n    \nWed, Oct 4\nExam 1 - In class\n\n\n\n\n    \nFri, Oct 6\nNo lab: Work on Exam 1 - Take home\n\n\n\nExam 1 - Take home at 5 pm\n\n    7\nMon, Oct 9\nHypothesis testing with randomization I\n\n\n\n\n    \nWed, Oct 11\nHypothesis testing with randomization II\n\n\n\n\n    \nFri, Oct 13\nProject 1 workday\n\n\n\nProject 1 at 5 pm\n\n    8\nMon, Oct 16\nFall Break - No lecture\n\n\n\n\n    \nWed, Oct 18\nConfidence intervals with bootstrapping\n\n\n\n\n    \nFri, Oct 20\nLab 5: Inference with simulation\n\n\n\n\n    9\nMon, Oct 23\nInference with mathematical models\n\n\n\n\n    \nWed, Oct 25\nDecision errors \nGuest Lecture: Dr. Yue Jiang\n\n\n\n\n    \nThu, Oct 26\n\n\n\nLab 5 at 5 pm\n\n    \nFri, Oct 27\nLab 6: Foundations of inference\n\n\n\n\n    10\nMon, Oct 30\nInference for a single proportion\n\n\n\n\n    \nWed, Nov 1\nInference for comparing two proportions\n\n\n\n\n    \nThu, Nov 2\n\n\n\nLab 6 at 5 pm\n\n    \nFri, Nov 3\nLab 7: Inference for proportions\n\n\n\n\n    11\nMon, Nov 6\nInference for a single mean\n\n\n\n\n    \nWed, Nov 8\nInference for comparing two means\n\n\n\n\n    \nThu, Nov 9\n\n\n\nLab 7 at 5 pm\n\n    \nFri, Nov 10\nExam 2 Review\n\n\n\n\n    12\nMon, Nov 13\nInference for two-way tables\n\n\n\n\n    \nWed, Nov 15\nExam 2 - In class\n\n\n\n\n    \nFri, Nov 17\nNo lab: Work on Exam 2 - Take home\n\n\n\nExam 2 - Take home at 5 pm\n\n    13\nMon, Nov 20\nInference for comparing many means\n\n\n\n\n    \nWed, Nov 22\nThanksgiving Break - No lecture\n\n\n\n\n    \nFri, Nov 24\nThanksgiving Break - No lecture\n\n\n\n\n    14\nMon, Nov 27\nInference for regression with a single predictor\n\n\n\n\n    \nWed, Nov 29\nInference for regression with multiple predictors\n\n\n\n\n    \nFri, Dec 1\nLab 8: Inference\n\n\n\n\n    15\nMon, Dec 4\nLooking forward: TBA\n\n\n\n\n    \nWed, Dec 6\nLooking forward: TBA\n\n\n\n\n    \nThu, Dec 7\n\n\n\nLab 8 at 5 pm\n\n    \nFri, Dec 8\nProject 2 peer review\n\n\n\n\n    16\nThu, Dec 14\nProject 2 presentations (2 - 5 pm)\n\n\n\nProject 2 at 2 pm"
   },
   {
     "objectID": "course-faq.html",
@@ -502,6 +565,69 @@
     "title": "Teaching team",
     "section": "Teaching assistants",
     "text": "Teaching assistants\n\n\n\n\nName\nRole\nLab section\nOffice hours\n\n\n\n\n\nShuo Wang\nHead + Lab TA\nFri 8:30 - 9:45 am\nMon 2:45 - 4:45 pm\nOld Chem 203B\n\n\n\nSylvia Vincent\nLab TA\nFri 10:05 - 11:20 am\nWed 3 - 5 pm\nOld Chem 025\n\n\n\nJohn Gillen\nLab TA\nFri 11:45 am - 1:00 pm\nWed 10:30 am - 12:30 pm\nZoom\n\n\n\nChris Oswald\nLab TA\nFri 1:25 - 2:40 pm\nMon 9 - 10 am\nTue 9 - 10 am\nJones Open Lab (Bostock Library, 1st Floor)\n\n\n\nMinh Anh To\nTA\n\nMon 10 am - 12 pm\nOld Chem 203B\n\n\n\nHao Wang\nTA\n\nTue 10 am - 12 pm\nOld Chem 203B\n\n\n\nNoah Obuya\nTA\n\nSun 12 - 2 pm\nZoom\n\n\n\nMeghna Katyal\nTA\n\nMon 7:30 - 8:30 pm\nZoom\n\n\n\nAvery Hodges\nTA\n\nMon 5 - 7 pm\nZoom"
+  },
+  {
+    "objectID": "ae/ae-03-delta.html",
+    "href": "ae/ae-03-delta.html",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "",
+    "text": "The main question we’ll explore today is “How do deaths from COVID cases compare between vaccinated and unvaccinated?”\nWhat do you think?"
+  },
+  {
+    "objectID": "ae/ae-03-delta.html#exercise-1",
+    "href": "ae/ae-03-delta.html#exercise-1",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nHow many rows and columns are in this dataset? Answer in a full sentence using inline code. What does each row represent and what does each column represent? For each variable, identify its type.\nAdd your answer here."
+  },
+  {
+    "objectID": "ae/ae-03-delta.html#exercise-2",
+    "href": "ae/ae-03-delta.html#exercise-2",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nDo these data come from an observational study or experiment? Why?\nAdd your answer here."
+  },
+  {
+    "objectID": "ae/ae-03-delta.html#exercise-3",
+    "href": "ae/ae-03-delta.html#exercise-3",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 3",
+    "text": "Exercise 3\nCreate a visualization of health outcome by vaccine status that allows you to compare the proportion of deaths across those who are and are not vaccinated. What can you say about death rates in these two groups based on this visualization?\nAdd your answer here.\n\n# add code here"
+  },
+  {
+    "objectID": "ae/ae-03-delta.html#exercise-4",
+    "href": "ae/ae-03-delta.html#exercise-4",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 4",
+    "text": "Exercise 4\nCalculate the proportion of deaths in among those who are vaccinated. Then, calculate the proportion among those who are not vaccinated.\nAdd your answer here.\n\n# add code here"
+  },
+  {
+    "objectID": "ae/ae-03-delta.html#exercise-5",
+    "href": "ae/ae-03-delta.html#exercise-5",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 5",
+    "text": "Exercise 5\nCreate the visualization and calculate proportions from the two previous exercises, this time controlling for age. How do the proportions compare?\nAdd your answer here.\n\n# add code here"
+  },
+  {
+    "objectID": "ae/ae-03-delta.html#exercise-6",
+    "href": "ae/ae-03-delta.html#exercise-6",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 6",
+    "text": "Exercise 6\nBased on your findings so far, fill in the blanks with more, less, or equally: Is there anything surprising about these statements? Speculate on what, if anything, the discrepancy might be due to.\n\nIn 2021, among those in the UK who were COVID Delta cases, the vaccinated were ___ likely to die than the unvaccinated.\nFor those under 50, those who were unvaccinated were ___ likely to die than those who were vaccinated.\nFor those 50 and up, those who were unvaccinated were ___ likely to die than those who were vaccinated.\n\nAdd your answer here."
+  },
+  {
+    "objectID": "ae/ae-03-delta.html#exercise-7",
+    "href": "ae/ae-03-delta.html#exercise-7",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 7",
+    "text": "Exercise 7\nLet’s rephrase the previous question which asked you to speculate on why deaths among vaccinated cases overall is higher while deaths among unvaccinated cases are higher when we split the data into two groups (below 50 and 50 and up). What might be the confounding variable in the relationship between vaccination and deaths?\nAdd your answer here."
+  },
+  {
+    "objectID": "ae/ae-03-delta.html#exercise-8",
+    "href": "ae/ae-03-delta.html#exercise-8",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 8",
+    "text": "Exercise 8\nVisualize and describe the distribution of seniors (50 and up) based on (a.k.a. conditional on) vaccination status. Hint: Your description will benefit from calculating proportions of seniors in each of the vaccination groups and working those values into your narrative.\nAdd your answer here.\n\n# add your code here"
   },
   {
     "objectID": "ae/ae-01-unvotes.html",

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>STA 101 - F23 - Exploring Flint’s water data</title>
+<title>STA 101 - F23 - COVID vaccine and deaths from Delta variant</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="STA 101 - F23 - Exploring Flint’s water data">
+<meta property="og:title" content="STA 101 - F23 - COVID vaccine and deaths from Delta variant">
 <meta property="og:description" content="Homepage for STA 101 - Data Analysis and Statistical Inference at Duke University, Fall 2023.">
 <meta property="og:site_name" content="STA 101 - F23">
 </head>
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Exploring Flint’s water data</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">COVID vaccine and deaths from Delta variant</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -353,41 +353,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
-  <li><a href="#meet-the-toolkit" id="toc-meet-the-toolkit" class="nav-link" data-scroll-target="#meet-the-toolkit">Meet the toolkit</a>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#visualizing-and-summarizing-categorical-data" id="toc-visualizing-and-summarizing-categorical-data" class="nav-link" data-scroll-target="#visualizing-and-summarizing-categorical-data">Visualizing and summarizing categorical data</a>
   <ul class="collapse">
-  <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio">RStudio</a></li>
-  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
+  <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
+  <li><a href="#exercise-6" id="toc-exercise-6" class="nav-link" data-scroll-target="#exercise-6">Exercise 6</a></li>
   </ul></li>
-  <li><a href="#back-to-analysis" id="toc-back-to-analysis" class="nav-link" data-scroll-target="#back-to-analysis">Back to analysis</a>
+  <li><a href="#simpsons-paradox" id="toc-simpsons-paradox" class="nav-link" data-scroll-target="#simpsons-paradox">Simpson’s Paradox</a>
   <ul class="collapse">
-  <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages">Load packages</a></li>
-  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">Load data</a></li>
-  <li><a href="#data-dictionary" id="toc-data-dictionary" class="nav-link" data-scroll-target="#data-dictionary">Data dictionary</a></li>
-  <li><a href="#populations-and-samples" id="toc-populations-and-samples" class="nav-link" data-scroll-target="#populations-and-samples">Populations and samples</a></li>
-  <li><a href="#frequencies" id="toc-frequencies" class="nav-link" data-scroll-target="#frequencies">Frequencies</a></li>
+  <li><a href="#exercise-7" id="toc-exercise-7" class="nav-link" data-scroll-target="#exercise-7">Exercise 7</a></li>
+  <li><a href="#exercise-8" id="toc-exercise-8" class="nav-link" data-scroll-target="#exercise-8">Exercise 8</a></li>
   </ul></li>
-  <li><a href="#summarization" id="toc-summarization" class="nav-link" data-scroll-target="#summarization">Summarization</a>
-  <ul class="collapse">
-  <li><a href="#measures-of-central-tendency" id="toc-measures-of-central-tendency" class="nav-link" data-scroll-target="#measures-of-central-tendency">Measures of central tendency</a></li>
-  <li><a href="#measures-of-spread" id="toc-measures-of-spread" class="nav-link" data-scroll-target="#measures-of-spread">Measures of spread</a></li>
-  <li><a href="#order-statistics" id="toc-order-statistics" class="nav-link" data-scroll-target="#order-statistics">Order statistics</a></li>
-  </ul></li>
-  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting">Plotting</a>
-  <ul class="collapse">
-  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms">Histograms</a></li>
-  <li><a href="#box-plots" id="toc-box-plots" class="nav-link" data-scroll-target="#box-plots">Box plots</a></li>
-  </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/ae/ae-02-flint.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/ae/ae-03-delta.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exploring Flint’s water data</h1>
+<h1 class="title">COVID vaccine and deaths from Delta variant</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Application exercise</div>
   </div>
@@ -406,60 +398,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<p>The main question we’ll explore today is “How do deaths from COVID cases compare between vaccinated and unvaccinated?”</p>
+<p>What do you think?</p>
 <section id="goals" class="level1">
 <h1>Goals</h1>
-<p>By the end of this application exercise you will</p>
 <ul>
-<li>meet the computational toolkit for the course</li>
-<li>practice using <code>glimpse()</code>, <code>names()</code>, <code>nrow()</code>, <code>ncol()</code>, <code>count()</code></li>
-<li>define and compute various statistics</li>
-<li>begin to gain familiarity with making data visualizations with <code>ggplot()</code></li>
-</ul>
-<p>We will do this using water lead content data from Flint, MI. The following paragraph will be useful in evaluating the lead amount values we’ll see in the dataset.</p>
-<blockquote class="blockquote">
-<p>While there is no completely safe amount of lead consumption, the limit allowed by the Lead and Copper Rule (LCR) of 1991 is 15 parts per billion (ppb). If this is exceeded in more than 10% of homes tested (or if the 90th percentile value of the total sample is above 15 ppb), action is required. And to make sure problems are caught, sampling for lead in water is supposed to target the “worst-case” homes – those in areas served by lead pipes.</p>
-</blockquote>
-</section>
-<section id="meet-the-toolkit" class="level1">
-<h1>Meet the toolkit</h1>
-<section id="rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="rstudio">RStudio</h2>
-<ul>
-<li><p>Files, plots, viewer, environment, etc. panes</p></li>
-<li><p>Console</p></li>
-<li><p>Editor</p></li>
+<li><p>Creating data visualizations and calculating summary statistics for comparing trends across groups</p></li>
+<li><p>Distinguishing observational studies and experiments</p></li>
+<li><p>Reviewing various sampling methods</p></li>
+<li><p>Identifying confounding variables and Simpson’s paradox</p></li>
 </ul>
 </section>
-<section id="r" class="level2">
-<h2 class="anchored" data-anchor-id="r">R</h2>
-<ul>
-<li><p>Writing code in the console</p></li>
-<li><p>Basic math with R</p></li>
-<li><p>Creating variables in R, the assignment operator (<code>&lt;-</code>), and the Environment pane</p></li>
-<li><p>R functions and packages and the Packages pane</p></li>
-<li><p>Getting help with R and the Help pane</p></li>
-</ul>
-</section>
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<ul>
-<li><p>YAML: Metadata</p></li>
-<li><p>Narrative: Edited with the visual editor (or the source editor)</p></li>
-<li><p>Code: In code chunks</p>
-<ul>
-<li><p>Chunk options (following <code>#|</code>)</p></li>
-<li><p>Comments (following <code>#</code>)</p></li>
-<li><p>Code</p></li>
-</ul></li>
-<li><p>Running individual code chunks vs.&nbsp;rendering a document</p></li>
-</ul>
-</section>
-</section>
-<section id="back-to-analysis" class="level1">
-<h1>Back to analysis</h1>
-<section id="load-packages" class="level2">
-<h2 class="anchored" data-anchor-id="load-packages">Load packages</h2>
-<p>We’ll use the tidyverse package for analysis, which offers functionality for data import, wrangling, visualization, and more.</p>
+<section id="packages" class="level1">
+<h1>Packages</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -475,244 +426,115 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
 </div>
-<p>Loading this package prints out a message. What does this message mean? How can we suppress the message from the output?</p>
 </section>
-<section id="load-data" class="level2">
-<h2 class="anchored" data-anchor-id="load-data">Load data</h2>
-<p>The <code>read_csv()</code> function can be used for reading CSV (comma separated values) files. The file we’re reading is called <code>flint</code> with the suffix (<code>.csv</code>) which indicates its file type. The file is in the <code>data</code> folder.</p>
-<p>Before reading in the file, go to the <code>data</code> folder in the Files pane to confirm that it is, indeed, there. Then, read the file by running the code chunk below by clicking on the green triangle icon on the code chunk.</p>
+<section id="data" class="level1">
+<h1>Data</h1>
+<p>The data for this case study come from a technical briefing published by Public Health England in August 2021 on COVID cases, vaccinations, and deaths from the Delta variant.</p>
+<p>First, let’s load the data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>flint <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/flint.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>delta <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/delta.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Rows: 813 Columns: 5
+<pre><code>Rows: 268166 Columns: 3
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
-chr (1): draw
-dbl (4): id, zip, ward, lead
+chr (3): vaccine, age, outcome
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 </div>
-<p>One of two things may have happened:</p>
-<ol type="1">
-<li>The file was read successfully and you now see a dataset called <code>flint</code> in your Environment pane.</li>
-<li>The file was not read successfully and you see an error <code>Error in read_csv("data/flint.csv") : could not find function "read_csv"</code>.</li>
-</ol>
-<p>If (1) happened, great!</p>
-<p>If (2) happened, let’s troubleshoot first before continuing.</p>
 </section>
-<section id="data-dictionary" class="level2">
-<h2 class="anchored" data-anchor-id="data-dictionary">Data dictionary</h2>
-<p>The following variables are in the <code>flint</code> data frame:</p>
-<ul>
-<li><code>id</code>: sample ID number (identifies the home)</li>
-<li><code>zip</code>: ZIP code in Flint of the sample’s location</li>
-<li><code>ward</code>: ward in Flint of the sample’s location</li>
-<li><code>draw</code>: which time point the water was sampled from</li>
-<li><code>lead</code>: lead content in parts per billion (ppb)</li>
-</ul>
+<section id="visualizing-and-summarizing-categorical-data" class="level1">
+<h1>Visualizing and summarizing categorical data</h1>
+<section id="exercise-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
+<p>How many rows and columns are in this dataset? Answer in a full sentence using <strong>inline code</strong>. What does each row represent and what does each column represent? For each variable, identify its type.</p>
+<p><em>Add your answer here.</em></p>
 </section>
-<section id="populations-and-samples" class="level2">
-<h2 class="anchored" data-anchor-id="populations-and-samples">Populations and samples</h2>
-<p>We want to learn about the <strong>population</strong> using a <strong>sample</strong>.</p>
-<p>In the case we want to learn about the lead content in all of Flint, MI homes but only have available water readings from a sample of homes (our data set).</p>
-<p><strong>Exercise 1:</strong> Look at the data, how many observations are there? How many variables?</p>
+<section id="exercise-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
+<p>Do these data come from an observational study or experiment? Why?</p>
+<p><em>Add your answer here.</em></p>
+</section>
+<section id="exercise-3" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3">Exercise 3</h2>
+<p>Create a visualization of health outcome by vaccine status that allows you to compare the proportion of deaths across those who are and are not vaccinated. What can you say about death rates in these two groups based on this visualization?</p>
+<p><em>Add your answer here.</em></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="frequencies" class="level2">
-<h2 class="anchored" data-anchor-id="frequencies">Frequencies</h2>
-<p>Let’s <code>count()</code> to find the number of different time points water was sampled with the <code>count()</code> function.</p>
+<section id="exercise-4" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4">Exercise 4</h2>
+<p>Calculate the proportion of deaths in among those who are vaccinated. Then, calculate the proportion among those who are not vaccinated.</p>
+<p><em>Add your answer here.</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-5" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5">Exercise 5</h2>
+<p>Create the visualization and calculate proportions from the two previous exercises, this time controlling for age. How do the proportions compare?</p>
+<p><em>Add your answer here.</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-6" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-6">Exercise 6</h2>
+<p>Based on your findings so far, fill in the blanks with <em>more</em>, <em>less</em>, or <em>equally</em>: Is there anything surprising about these statements? Speculate on what, if anything, the discrepancy might be due to.</p>
 <ul>
-<li><p>The first argument is <code>flint</code>: the data frame</p></li>
-<li><p>The second argument is <code>draw</code>: the variable</p></li>
+<li><p>In 2021, among those in the UK who were COVID Delta cases, the vaccinated were ___ likely to die than the unvaccinated.</p></li>
+<li><p>For those under 50, those who were unvaccinated were ___ likely to die than those who were vaccinated.</p></li>
+<li><p>For those 50 and up, those who were unvaccinated were ___ likely to die than those who were vaccinated.</p></li>
 </ul>
+<p><em>Add your answer here.</em></p>
+</section>
+</section>
+<section id="simpsons-paradox" class="level1">
+<h1>Simpson’s Paradox</h1>
+<p><strong>Simpson’s paradox</strong> is a phenomenon in which a trend appears in subsets of the data, but disappears or reverses when the subsets are combined. The paradox can be resolved when <strong>confounding variables</strong> and causal relations are appropriately addressed in the analysis.</p>
+<section id="exercise-7" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-7">Exercise 7</h2>
+<p>Let’s rephrase the previous question which asked you to speculate on why deaths among vaccinated cases overall is higher while deaths among unvaccinated cases are higher when we split the data into two groups (below 50 and 50 and up). What might be the confounding variable in the relationship between vaccination and deaths?</p>
+<p><em>Add your answer here.</em></p>
+</section>
+<section id="exercise-8" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-8">Exercise 8</h2>
+<p>Visualize and describe the distribution of seniors (50 and up) based on (a.k.a. conditional on) vaccination status. Hint: Your description will benefit from calculating proportions of seniors in each of the vaccination groups and working those values into your narrative.</p>
+<p>Add your answer here.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(flint, draw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  draw       n
-  &lt;chr&gt;  &lt;int&gt;
-1 first    271
-2 second   271
-3 third    271</code></pre>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>We can achieve the same result with the following “piped” operation as well.</p>
-<ul>
-<li><p>The first line is <code>flint</code>: the data frame</p></li>
-<li><p>Then the pipe operator, read as “and then”, which places what comes before it as the first argument of what comes after it</p></li>
-<li><p>The second line is <code>count(draw)</code></p></li>
-</ul>
+</section>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<p>The percentages of deaths from COVID across vaccination groups is as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>flint <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(draw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  draw       n
-  &lt;chr&gt;  &lt;int&gt;
-1 first    271
-2 second   271
-3 third    271</code></pre>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>We can use a similar approach to fund out how many unique homes are in the data set:</p>
+<p>Also considering age groups, the death rates are as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>flint <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 269 × 2
-      id     n
-   &lt;dbl&gt; &lt;int&gt;
- 1     1     3
- 2     2     3
- 3     4     3
- 4     5     3
- 5     6     3
- 6     7     3
- 7     8     3
- 8     9     3
- 9    12     3
-10    13     3
-# ℹ 259 more rows</code></pre>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>We can <em>pivot</em> these data for better display; we’ll learn more about these “data moves” soon:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Exercise 2:</strong> How many samples were taken from each zip code?</p>
+<p>We identified age as a potential confounding variable in the relationship between. So let’s take a look at the distribution of age in the data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Exercise 3:</strong> Which ZIP code had the most samples drawn? Hint: See the help for <code>count</code>.</p>
+<p>And then, let’s use these proportions to <em>weigh</em> the percentages of deaths.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Revisiting the question we posed to start with: How do deaths from COVID cases compare between vaccinated and unvaccinated?</p>
 </section>
-</section>
-<section id="summarization" class="level1">
-<h1>Summarization</h1>
-<p>What is a statistic? It’s <strong>any mathematical function of the data</strong>. Sometimes, a statistic is referred to as “sample statistic” or “summary statistic”, since you compute it from a <strong>sample</strong> (the observed data) and not the entire <strong>population</strong>.</p>
-<section id="measures-of-central-tendency" class="level2">
-<h2 class="anchored" data-anchor-id="measures-of-central-tendency">Measures of central tendency</h2>
-<ul>
-<li>mean</li>
-<li>median</li>
-<li>mode</li>
-</ul>
-</section>
-<section id="measures-of-spread" class="level2">
-<h2 class="anchored" data-anchor-id="measures-of-spread">Measures of spread</h2>
-<ul>
-<li>variance</li>
-<li>standard deviation</li>
-<li>range</li>
-<li>quartiles</li>
-<li>inter-quartile range (IQR)</li>
-</ul>
-</section>
-<section id="order-statistics" class="level2">
-<h2 class="anchored" data-anchor-id="order-statistics">Order statistics</h2>
-<ul>
-<li>quantiles</li>
-<li>minimum (0 percentile)</li>
-<li>median (50th percentile)</li>
-<li>maximum (100 percentile)</li>
-</ul>
-<p>… and any other arbitrary function of the data you can come up with!</p>
-<p><strong>Exercise 4:</strong> Compute each of these statistics for <code>lead</code> ppb.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="plotting" class="level1">
-<h1>Plotting</h1>
-<section id="histograms" class="level2">
-<h2 class="anchored" data-anchor-id="histograms">Histograms</h2>
-<p>Let’s take a look at the <strong>distribution</strong> of lead content in homes in Flint, MI.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flint, <span class="fu">aes</span>(<span class="at">x =</span> lead)) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="ae-02-flint_files/figure-html/flint-histogram-1-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>We can make this plot look nicer/more useful by adjusting the number of bins and zooming into the x-axis.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flint, <span class="fu">aes</span>(<span class="at">x =</span> lead)) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="ae-02-flint_files/figure-html/flint-histogram-2-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Let’s visualize some of our summary statistics on the plot.</p>
-<p><strong>Exercise 5:</strong> Add a new layer, <code>geom_vline(xintercept = __, color = "red")</code>, to the histogram below, filling in the blank with the mean.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flint, <span class="fu">aes</span>(<span class="at">x =</span> lead)) <span class="sc">+</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span> </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="ae-02-flint_files/figure-html/overlay-mean-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p><strong>Exercise 6:</strong> Add one more layer which overlays the median, in a different color.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="box-plots" class="level2">
-<h2 class="anchored" data-anchor-id="box-plots">Box plots</h2>
-<p>Next, let’s narrow our focus to the zip codes 48503, 48504, 48505, 48506, and 48507 and observations with lead values less than 1,000 ppb.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>flint_focus <span class="ot">&lt;-</span> flint <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(zip <span class="sc">%in%</span> <span class="dv">48503</span><span class="sc">:</span><span class="dv">48507</span> <span class="sc">&amp;</span> lead <span class="sc">&lt;</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Exercise 7:</strong> Below are side-by-side box plots for the three flushing times in each of the five zip codes we considered. Add <code>x</code> and <code>y</code> labels; add a title by inserting <code>title = "title_name"</code> inside the <code>labs()</code> function.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> flint_focus, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">factor</span>(zip), <span class="at">x =</span> lead)) <span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">factor</span>(draw))) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"___"</span>, <span class="at">y =</span> <span class="st">"___"</span>, <span class="at">fill =</span> <span class="st">"Flushing time"</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"first"</span>, <span class="st">"second"</span>, <span class="st">"third"</span>),</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0 (sec)"</span>, <span class="st">"45 (sec)"</span>, <span class="st">"120 (sec)"</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="ae-02-flint_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p><strong>Exercise 8:</strong> Add labels for <code>x</code>, <code>y</code>, a <code>title</code>, and <code>subtitle</code> to the code below to update the corresponding plot.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> flint_focus, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">factor</span>(zip), <span class="at">x =</span> lead)) <span class="sc">+</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">factor</span>(draw))) <span class="sc">+</span> </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"___"</span>, <span class="at">y =</span> <span class="st">"___"</span>, <span class="at">fill =</span> <span class="st">"Flushing time"</span>,</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"___"</span>,</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"___"</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"first"</span>, <span class="st">"second"</span>, <span class="st">"third"</span>),</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0 (sec)"</span>, <span class="st">"45 (sec)"</span>, <span class="st">"120 (sec)"</span>)</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="ae-02-flint_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p><strong>Exercise 9:</strong> What is the difference between the two plots? What are the advantages and disadvantages to each plot?</p>
-<p><em>[Add your answer here]</em></p>
-</section>
-</section>
-<section id="references" class="level1">
-<h1>References</h1>
-<ol type="1">
-<li><p>Langkjaer-Bain, R. (2017). The murky tale of Flint’s deceptive water data. Significance, 14: 16-21. doi: <a href="https://doi.org/10.1111/j.1740-9713.2017.01016.x" class="uri">https://doi.org/10.1111/j.1740-9713.2017.01016.x</a>.</p></li>
-<li><p>Kelsey J. Pieper, et. al.&nbsp;Evaluating Water Lead Levels During the Flint Water Crisis. Edwards Environmental Science &amp; Technology 2018 52 (15), 8124-8132 doi: <a href="https://doi.org/10.1021/acs.est.8b00791" class="uri">https://doi.org/10.1021/acs.est.8b00791</a>.</p></li>
-</ol>
+<section id="acknowledgements" class="level1">
+<h1>Acknowledgements</h1>
+<p>This case study is inspired by <a href="http://www.statlit.org/pdf/2021-Schield-ASA-BOF.pdf">Statistical Literacy: Simpson’s Paradox and Covid Deaths</a> by Milo Schield.</p>
 
 
 </section>
