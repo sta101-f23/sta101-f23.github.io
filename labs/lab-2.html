@@ -428,23 +428,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>courage <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/courage.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>TO DO:</strong> Add data dictionary.</p>
+<p>The <code>courage</code> dataset has 78 rows and 10 variables. The variables in the dataset are as follows:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Descripton</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>game_id</code></td>
+<td>An unique ID for the game</td>
+</tr>
+<tr class="even">
+<td><code>game_date</code></td>
+<td>Game date</td>
+</tr>
+<tr class="odd">
+<td><code>game_number</code></td>
+<td>Game number</td>
+</tr>
+<tr class="even">
+<td><code>home_team</code></td>
+<td>Name of the home team, abbreviated</td>
+</tr>
+<tr class="odd">
+<td><code>away_team</code></td>
+<td>Name of the away team, abbreviated</td>
+</tr>
+<tr class="even">
+<td><code>opponent</code></td>
+<td>The team NC Courage played against</td>
+</tr>
+<tr class="odd">
+<td><code>home_pts</code></td>
+<td>Number of points by the home team</td>
+</tr>
+<tr class="even">
+<td><code>away_pts</code></td>
+<td>Number of points by the away team</td>
+</tr>
+<tr class="odd">
+<td><code>result</code></td>
+<td>Result of the game for NC Courage (win, loss, tie)</td>
+</tr>
+<tr class="even">
+<td><code>season</code></td>
+<td>Season (2017, 2018, or 2019)</td>
+</tr>
+</tbody>
+</table>
 <section id="exercise-1" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
 <div class="exercise">
-<p>How many observations are there in the courage data frame? How many variables? What does each observation in the <code>courage</code> data frame represent? Write your answer as narrative under "Exercise 1", using inline code chunks.</p>
+<p>Create a bar plot of the <code>result</code>s of games for NC Courage. Additionally, calculate the numbers of wins, losses, and ties. Write a one sentence narrative for your findings.</p>
 </div>
+<p><strong>Hint:</strong> <code>result</code> is a categorical variable, so use a barplot for the visualization and the <code>count()</code> function for calculating the frequencies of <em>levels</em> of this variable.</p>
 </section>
 <section id="exercise-2" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
 <div class="exercise">
-<p>Create a bar plot of Courage wins, losses, and ties (<code>result</code>). Additionally, calculate the numbers of wins, losses, and ties using the <code>count()</code> function. Summarize your findings in a sentence.</p>
-</div>
-</section>
-<section id="exercise-3" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-3">Exercise 3</h2>
-<div class="exercise">
-<p>Create a new variable indicating whether the game way played at home or away for The Courage. This variable should be called <code>home_courage</code> and take the value "home" if Courage is the home team and "away" if Courage is the away team. Then, with <code>count()</code>, determine how many home and how many away games the Courage played, and summarize your findings in a sentence.</p>
+<p>Create a new variable indicating whether the game was played at home or away for NC Courage. This variable should be called <code>home_courage</code> and take the value “home” if NC Courage is the home team and “away” if NC Courage is the away team. (Instructions for how to do this are given below.)</p>
+<p>Then, calculate the number of home and away games, and write a one sentence narrative for your findings.</p>
 </div>
 <p>Use the example code below to get started.</p>
 <div class="cell">
@@ -462,19 +508,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="exercise-4" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-4">Exercise 4</h2>
+<section id="exercise-3" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3">Exercise 3</h2>
 <div class="exercise">
-<ol type="a">
-<li>Create a visualization that displays the relationship between <code>home_courage</code> and <code>result</code>.</li>
-<li>Calculate the proportions of home and away games that the Courage won.</li>
-<li>Do your findings suggest a home-field advantage? Why or why not?</li>
-</ol>
+<p>First, create a visualization that displays the relationship between <code>home_courage</code> and <code>result</code>. Then, calculate the proportions of home and away games that the Courage won. Based on these, do your findings suggest a home-field advantage? Why or why not?</p>
 </div>
 <p>So far we have focused on whether the game was at home or away and whether the Courage won. Next, we dive deeper and focus on the number of points the Courage wins by, at home and away.</p>
 </section>
-<section id="exercise-5" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-5">Exercise 5</h2>
+<section id="exercise-4" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4">Exercise 4</h2>
 <div class="exercise">
 <p>How many points do the Courage typically win by (on average)? Use the example code below to get started. You’ll encounter a new function: <code>abs()</code> is the absolute value function. It takes the absolute value of a number. Why do we want to use this absolute value function here?</p>
 </div>
@@ -486,12 +528,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="exercise-6" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-6">Exercise 6</h2>
+<section id="exercise-5" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5">Exercise 5</h2>
 <div class="exercise">
-<p>How many points do the Courage score when they win (on average)? Note this is <strong>different than how many points</strong> they "win by". How many points do the Courage score when they lose on average?</p>
+<p>How many points do NC Courage score when they win (on average)? Note this is <strong>different than how many points</strong> they “win by”. How many points do the Courage score when they lose on average?</p>
 </div>
-<p>To calculate this we first need to determine how many points The Courage scored in every game. We can use <code>if_else()</code> logic again to find this value for each game, and store it in a new column, <code>courage_pts</code>.</p>
+<p>To calculate this we first need to determine how many points NC Courage scored in every game. We can use <code>if_else()</code> logic again to find this value for each game, and store it in a new column, <code>courage_pts</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>courage <span class="ot">&lt;-</span> courage <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">courage_pts =</span> <span class="fu">if_else</span>(home_team <span class="sc">==</span> <span class="st">"NC"</span>, home_pts, away_pts))</span>
@@ -501,23 +543,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
+<section id="exercise-6" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-6">Exercise 6</h2>
+<div class="exercise">
+<p>Next we'll investigate visually whether or not NC Courage has a home-field advantage. To start, let's build on the courage2 data frame. Add a new column called home_courage that takes the value "home" if Courage is the home team and "away" if Courage is the away team. Hint: use the ifelse logic from exercise 4.</p>
+<p>Mutate the <code>courage</code> data frame to create two new variables:</p>
+<ul>
+<li><p><code>total_pts</code>: Sum of points scored by both teams, i.e.&nbsp;<code>home_pts + away_pts</code>.</p></li>
+<li><p><code>opponent_pts</code>: Points scored by the opposing team, i.e., <code>total_pts - courage_pts</code>.</p></li>
+</ul>
+<p>Save the resulting data frame as <code>courage</code> again and print the three points columns (<code>total_pts</code>, <code>opponent_pts</code>, <code>courage_pts</code>) to screen.</p>
+</div>
+<p><strong>Hint:</strong></p>
+<ul>
+<li>Use the <code>mutate()</code> function to create the columns.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>courage <span class="ot">&lt;-</span> courage <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_pts =</span> ___,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">opponent_pts =</span> ___</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Use the <code>select()</code> function to print them to screen:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>courage <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(total_pts, opponent_pts, courage_pts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="exercise-7" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-7">Exercise 7</h2>
 <div class="exercise">
-<p>Create a scatter plot of <code>opponent_pts</code> (y) vs <code>courage_pts</code> (x). Color the scatter plot by whether the Courage are <code>home</code> or <code>away</code>. Add <code>geom_jitter</code> as well as the line <span class="math inline">\(y = x\)</span> using the code below. Finally, <code>facet_wrap()</code> your plot by season. What does the line represent? What does it mean for a point to fall above the line? Below the line?</p>
+<p>Create a scatter plot:</p>
+<ul>
+<li><p><code>opponent_pts</code> (y) vs.&nbsp;<code>courage_pts</code> (x)</p></li>
+<li><p>Color the scatter plot by whether NC Courage are home or away.</p></li>
+<li><p>Represent the data with “jittered” points wth <code>geom_jitter()</code>.</p></li>
+<li><p>Overlay a <span class="math inline">\(y = x\)</span> line with <code>geom_abline()</code>.</p></li>
+<li><p>Faceted by season.</p></li>
+</ul>
+<p>What does the line represent? What does it mean for a point to fall above the line? Below the line?</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(...code here...) <span class="sc">+</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># insert faceting/labels code here +</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(courage, <span class="fu">aes</span>(<span class="at">x =</span> ___, <span class="at">y =</span> ___, <span class="at">color =</span> ___)) <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> ___) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"___"</span>, </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"___"</span>, </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"___"</span>, </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"___"</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-8" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-8">Exercise 8</h2>
-<p>This exercise is a look at where we're headed…</p>
+<p>This exercise is a look at where we’re headed…</p>
 <div class="exercise">
-<p>If we want to formally test whether the Courage have a home-field advantage, then we must first define what this means! In your own words, what do you think a home-field advantage means? Then, now that you've defined what it means to have a home field advantage, define what it means to <strong>not</strong> have a home-field advantage.</p>
+<p>If we want to formally test whether the Courage have a home-field advantage, then we must first define what this means! In your own words, what do you think a home-field advantage means? Then, now that you’ve defined what it means to have a home field advantage, define what it means to <strong>not</strong> have a home-field advantage.</p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -529,10 +615,10 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>While there is a right answer, this part is graded for completion, so don't worry too much about answering this in <em>exactly</em> the right way. Although graded for completion, your response must make sense to receive full points.</p>
+<p>While there is a right answer, this part is graded for completion, so don’t worry too much about answering this in <em>exactly</em> the right way. Although graded for completion, your response must make sense to receive full points.</p>
 </div>
 </div>
-<p>We'll pick-up here in a future class.</p>
+<p>We’ll pick-up here in a future class.</p>
 </section>
 </section>
 <section id="part-2-ims-exercises" class="level1">
