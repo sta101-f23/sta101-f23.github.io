@@ -277,7 +277,98 @@
     "href": "labs/lab-2.html",
     "title": "Lab 2",
     "section": "",
-    "text": "To be posted…"
+    "text": "The goal of this lab is to effectively visualize numerical and categorical data.\nFor all visualizations you create, b sure to include informative titles for the plot, axes, and legend!"
+  },
+  {
+    "objectID": "labs/lab-2.html#exercise-1",
+    "href": "labs/lab-2.html#exercise-1",
+    "title": "Lab 2",
+    "section": "Exercise 1",
+    "text": "Exercise 1\n\nHow many observations are there in the courage data frame? How many variables? What does each observation in the courage data frame represent? Write your answer as narrative under \"Exercise 1\", using inline code chunks."
+  },
+  {
+    "objectID": "labs/lab-2.html#exercise-2",
+    "href": "labs/lab-2.html#exercise-2",
+    "title": "Lab 2",
+    "section": "Exercise 2",
+    "text": "Exercise 2\n\nCreate a bar plot of Courage wins, losses, and ties (result). Additionally, calculate the numbers of wins, losses, and ties using the count() function. Summarize your findings in a sentence."
+  },
+  {
+    "objectID": "labs/lab-2.html#exercise-3",
+    "href": "labs/lab-2.html#exercise-3",
+    "title": "Lab 2",
+    "section": "Exercise 3",
+    "text": "Exercise 3\n\nCreate a new variable indicating whether the game way played at home or away for The Courage. This variable should be called home_courage and take the value \"home\" if Courage is the home team and \"away\" if Courage is the away team. Then, with count(), determine how many home and how many away games the Courage played, and summarize your findings in a sentence.\n\nUse the example code below to get started.\n\ncourage &lt;- courage |&gt;\n  mutate(home_courage = if_else(home_team == \"NC\", \"home\", \"away\"))\n\nThere are two things of note here:\n\nThe use of the assignment operator (&lt;-) to assign the resulting data frame to courage, thus overwriting the courage dataset to contain this new column. We do this because we will use this new variable, home_courage, in a subsequent exercise.\nThe use of a new function, if_else() to determine whether the game is played at home or away.\n\nhome_team == \"NC\" finds all rows where the home team is NC Courage.\nIf the home team is NC Courage, then we set the value of home_courage to `“home”.\nOtherwise (else) Courage must be the away team and we set the value of home_courage to \"away\"."
+  },
+  {
+    "objectID": "labs/lab-2.html#exercise-4",
+    "href": "labs/lab-2.html#exercise-4",
+    "title": "Lab 2",
+    "section": "Exercise 4",
+    "text": "Exercise 4\n\n\nCreate a visualization that displays the relationship between home_courage and result.\nCalculate the proportions of home and away games that the Courage won.\nDo your findings suggest a home-field advantage? Why or why not?\n\n\nSo far we have focused on whether the game was at home or away and whether the Courage won. Next, we dive deeper and focus on the number of points the Courage wins by, at home and away."
+  },
+  {
+    "objectID": "labs/lab-2.html#exercise-5",
+    "href": "labs/lab-2.html#exercise-5",
+    "title": "Lab 2",
+    "section": "Exercise 5",
+    "text": "Exercise 5\n\nHow many points do the Courage typically win by (on average)? Use the example code below to get started. You’ll encounter a new function: abs() is the absolute value function. It takes the absolute value of a number. Why do we want to use this absolute value function here?\n\nHint: We are only interested in games the Courage wins, therefore we should filter() for those games first.\n\ncourage |&gt;\n  filter(___) |&gt;\n  mutate(win_pts = abs(home_pts - away_pts)) |&gt;\n  summarize(___)"
+  },
+  {
+    "objectID": "labs/lab-2.html#exercise-6",
+    "href": "labs/lab-2.html#exercise-6",
+    "title": "Lab 2",
+    "section": "Exercise 6",
+    "text": "Exercise 6\n\nHow many points do the Courage score when they win (on average)? Note this is different than how many points they \"win by\". How many points do the Courage score when they lose on average?\n\nTo calculate this we first need to determine how many points The Courage scored in every game. We can use if_else() logic again to find this value for each game, and store it in a new column, courage_pts.\n\ncourage &lt;- courage |&gt;\n  mutate(courage_pts = if_else(home_team == \"NC\", home_pts, away_pts))\n\ncourage |&gt;\n  group_by(___) |&gt;\n  summarize(___)"
+  },
+  {
+    "objectID": "labs/lab-2.html#exercise-7",
+    "href": "labs/lab-2.html#exercise-7",
+    "title": "Lab 2",
+    "section": "Exercise 7",
+    "text": "Exercise 7\n\nCreate a scatter plot of opponent_pts (y) vs courage_pts (x). Color the scatter plot by whether the Courage are home or away. Add geom_jitter as well as the line \\(y = x\\) using the code below. Finally, facet_wrap() your plot by season. What does the line represent? What does it mean for a point to fall above the line? Below the line?\n\n\nggplot(...code here...) + \n  # insert faceting/labels code here +\n  geom_jitter(width = 0.1, height = 0.1) +\n  geom_abline(slope = 1, intercept = 0)"
+  },
+  {
+    "objectID": "labs/lab-2.html#exercise-8",
+    "href": "labs/lab-2.html#exercise-8",
+    "title": "Lab 2",
+    "section": "Exercise 8",
+    "text": "Exercise 8\nThis exercise is a look at where we're headed…\n\nIf we want to formally test whether the Courage have a home-field advantage, then we must first define what this means! In your own words, what do you think a home-field advantage means? Then, now that you've defined what it means to have a home field advantage, define what it means to not have a home-field advantage.\n\n\n\n\n\n\n\nNote\n\n\n\nWhile there is a right answer, this part is graded for completion, so don't worry too much about answering this in exactly the right way. Although graded for completion, your response must make sense to receive full points.\n\n\nWe'll pick-up here in a future class."
+  },
+  {
+    "objectID": "labs/lab-2.html#exercise-9",
+    "href": "labs/lab-2.html#exercise-9",
+    "title": "Lab 2",
+    "section": "Exercise 9",
+    "text": "Exercise 9\n\nIMS - Chapter 2 exercises, #20: Vitamin supplements."
+  },
+  {
+    "objectID": "labs/lab-2.html#exercise-10",
+    "href": "labs/lab-2.html#exercise-10",
+    "title": "Lab 2",
+    "section": "Exercise 10",
+    "text": "Exercise 10\n\nIMS - Chapter 2 exercises, #30: Screens, teens, and psychological well-being."
+  },
+  {
+    "objectID": "labs/lab-2.html#submitting",
+    "href": "labs/lab-2.html#submitting",
+    "title": "Lab 2",
+    "section": "Submitting",
+    "text": "Submitting\n\n\n\n\n\n\nImportant\n\n\n\nBefore you proceed, first, make sure that you have updated the document YAML with your name! Then, render your document one last time, for good measure.\n\n\nTo submit your assignment to Gradescope:\n\nGo to your Files pane and check the box next to the PDF output of your document (lab-2.pdf).\nThen, in the Files pane, go to More &gt; Export. This will download the PDF file to your computer. Save it somewhere you can easily locate, e.g., your Downloads folder or your Desktop.\nGo to the course Canvas page and click on Gradescope and then click on the assignment. You’ll be prompted to submit it.\nMark the pages associated with each exercise. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”).\n\n\n\n\n\n\n\nWarning\n\n\n\nIf you fail to mark the pages associated with an exercise, that exercise won’t be graded. This means, if you fail to mark the pages for all exercises, you will receive a 0 on the assignment. The TAs can’t mark your pages for you, and for them to be able to grade, you must mark them."
+  },
+  {
+    "objectID": "labs/lab-2.html#grading",
+    "href": "labs/lab-2.html#grading",
+    "title": "Lab 2",
+    "section": "Grading",
+    "text": "Grading\nTO DO: Add up points to confirm they sum to 50.\n\n\n\nExercise\nPoints\n\n\n\n\nExercise 1\n5\n\n\nExercise 2\n5\n\n\nExercise 3\n5\n\n\nExercise 4\n5\n\n\nExercise 5\n5\n\n\nExercise 6\n5\n\n\nExercise 7\n5\n\n\nExercise 8\n5\n\n\nExercise 9\n5\n\n\nExercise 10\n5\n\n\nTotal\n50\n\n\n\n\nadjust for workflow points"
+  },
+  {
+    "objectID": "labs/lab-2.html#acknowledgements",
+    "href": "labs/lab-2.html#acknowledgements",
+    "title": "Lab 2",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis assignment was adapted from a similar exercise by Dr. Alex Fisher (who will be our guest lecturer soon!)."
   },
   {
     "objectID": "computing/computing-cheatsheets.html",
