@@ -284,7 +284,7 @@
     "href": "labs/lab-2.html#exercise-1",
     "title": "Lab 2",
     "section": "Exercise 1",
-    "text": "Exercise 1\n\nCreate a bar plot of the results of games for NC Courage. Additionally, calculate the numbers of wins, losses, and ties. Write a one sentence narrative for your findings.\n\nHint: result is a categorical variable, so use a barplot for the visualization and the count() function for calculating the frequencies of levels of this variable."
+    "text": "Exercise 1\n\nCreate a bar plot of the results of games for NC Courage. Additionally, calculate the numbers of wins, losses, and ties. Write a one sentence narrative for your findings.\n\nHint: result is a categorical variable, so use a bar plot for the visualization and the count() function for calculating the frequencies of levels of this variable."
   },
   {
     "objectID": "labs/lab-2.html#exercise-2",
@@ -361,7 +361,7 @@
     "href": "labs/lab-2.html#grading",
     "title": "Lab 2",
     "section": "Grading",
-    "text": "Grading\nTO DO: Add up points to confirm they sum to 50.\n\n\n\nExercise\nPoints\n\n\n\n\nExercise 1\n5\n\n\nExercise 2\n5\n\n\nExercise 3\n5\n\n\nExercise 4\n5\n\n\nExercise 5\n5\n\n\nExercise 6\n5\n\n\nExercise 7\n5\n\n\nExercise 8\n5\n\n\nExercise 9\n5\n\n\nExercise 10\n5\n\n\nTotal\n50\n\n\n\n\nadjust for workflow points"
+    "text": "Grading\n\n\n\nExercise\nPoints\n\n\n\n\nExercise 1\n5\n\n\nExercise 2\n5\n\n\nExercise 3\n6\n\n\nExercise 4\n6\n\n\nExercise 5\n6\n\n\nExercise 6\n4\n\n\nExercise 7\n6\n\n\nExercise 8\n2\n\n\nExercise 9\n5\n\n\nExercise 10\n5\n\n\nTotal\n50"
   },
   {
     "objectID": "labs/lab-2.html#acknowledgements",
