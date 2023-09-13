@@ -907,7 +907,98 @@
     "href": "labs/lab-3.html",
     "title": "Lab 3",
     "section": "",
-    "text": "To be posted…"
+    "text": "The goal of this lab is to effectively visualize numerical and categorical data.\nFor all visualizations you create, b sure to include informative titles for the plot, axes, and legend!"
+  },
+  {
+    "objectID": "labs/lab-3.html#exercise-1",
+    "href": "labs/lab-3.html#exercise-1",
+    "title": "Lab 3",
+    "section": "Exercise 1",
+    "text": "Exercise 1\n\nHow many observations and how many variables are in the dataset? Use inline code to answer this question. What does each row represent?"
+  },
+  {
+    "objectID": "labs/lab-3.html#exercise-2",
+    "href": "labs/lab-3.html#exercise-2",
+    "title": "Lab 3",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nThere are some observations in this dataset that we will exclude from our analysis to match the Buzzfeed results.\n\nCreate a new data frame called nobel_living that filters for\n\nlaureates for whom country is available\nlaureates who are people as opposed to organizations (organizations are denoted with \"org\" as their gender)\nlaureates who are still alive (their died_date is NA)\n\nConfirm that once you have filtered for these characteristics you are left with a data frame with 228 observations, once again using inline code.\n\n\n\nMost living Nobel laureates were based in the US when they won their prizes\n\n… says the Buzzfeed article. Let’s see if that’s true.\nFirst, we’ll create a new variable to identify whether the laureate was in the US when they won their prize. We’ll use the mutate() function for this. The following pipeline mutates the nobel_living data frame by adding a new variable called country_us. We use an if statement to create this variable. The first argument in the if_else() function we’re using to write this if statement is the condition we’re testing for. If country is equal to \"USA\", we set country_us to \"USA\". If not, we set the country_us to \"Other\".\n\nnobel_living &lt;- nobel_living |&gt;\n  mutate(\n    country_us = if_else(country == \"USA\", \"USA\", \"Other\")\n  )\n\nNext, we will limit our analysis to only the following categories: Physics, Medicine, Chemistry, and Economics.\n\nnobel_living_science &lt;- nobel_living |&gt;\n  filter(category %in% c(\"Physics\", \"Medicine\", \"Chemistry\", \"Economics\"))\n\nFor the following exercises, work with the nobel_living_science data frame you created above. This means you’ll need to define this data frame in your Quarto document, even though the next exercise doesn’t explicitly ask you to do so."
+  },
+  {
+    "objectID": "labs/lab-3.html#exercise-3",
+    "href": "labs/lab-3.html#exercise-3",
+    "title": "Lab 3",
+    "section": "Exercise 3",
+    "text": "Exercise 3\n\nCreate a faceted bar plot visualizing the relationship between the category of prize and whether the laureate was in the US when they won the nobel prize. Interpret your visualization, and say a few words about whether the Buzzfeed headline is supported by the data.\n\nYour visualization should be faceted by category.\nFor each facet you should have two bars, one for winners in the US and one for Other.\nFlip the coordinates so the bars are horizontal, not vertical."
+  },
+  {
+    "objectID": "labs/lab-3.html#exercise-4",
+    "href": "labs/lab-3.html#exercise-4",
+    "title": "Lab 3",
+    "section": "Exercise 4",
+    "text": "Exercise 4\nNext, let’s investigate, of those US-based Nobel laureates, what proportion were born in other countries.\n\nCreate a new variable called born_country_us in nobel_living_science that has the value \"USA\" if the laureate is born in the US, and \"Other\" otherwise. How many of the winners are born in the US?"
+  },
+  {
+    "objectID": "labs/lab-3.html#exercise-5",
+    "href": "labs/lab-3.html#exercise-5",
+    "title": "Lab 3",
+    "section": "Exercise 5",
+    "text": "Exercise 5\n\nAdd a second variable to your visualization from Exercise 3 based on whether the laureate was born in the US or not.\nCreate two visualizations with this new variable added:\n\nPlot 1: Segmented frequency bar plot\nPlot 2: Segmented relative frequency bar plot (Hint: Add position = \"fill\" to geom_bar().)\n\nHere are some instructions that apply to both of these visualizations:\n\nYour final visualization should contain a facet for each category.\nWithin each facet, there should be two bars for whether the laureate won the award in the US or not.\nEach bar should have segments for whether the laureate was born in the US or not.\n\nWhich of these visualizations is a better fit for answering the following question: “Do the data appear to support Buzzfeed’s claim that of those US-based Nobel laureates, many were born in other countries?” First, state which plot you’re using to answer the question. Then, answer the question, explaining your reasoning in 1-2 sentences."
+  },
+  {
+    "objectID": "labs/lab-3.html#exercise-6",
+    "href": "labs/lab-3.html#exercise-6",
+    "title": "Lab 3",
+    "section": "Exercise 6",
+    "text": "Exercise 6\n\nIn a single pipeline, filter the nobel_living_science data frame for laureates who won their prize in the US, but were born outside of the US, and then create a frequency table (with the count() function) for their birth country (born_country) and arrange the resulting data frame in descending order of number of observations for each country. Which country is the most common?"
+  },
+  {
+    "objectID": "labs/lab-3.html#exercise-7",
+    "href": "labs/lab-3.html#exercise-7",
+    "title": "Lab 3",
+    "section": "Exercise 7",
+    "text": "Exercise 7\n\nIMS - Chapter 4 exercises, #4: Raise taxes."
+  },
+  {
+    "objectID": "labs/lab-3.html#exercise-8",
+    "href": "labs/lab-3.html#exercise-8",
+    "title": "Lab 3",
+    "section": "Exercise 8",
+    "text": "Exercise 8\n\nIMS - Chapter 5 exercises, #4: Office productivity."
+  },
+  {
+    "objectID": "labs/lab-3.html#exercise-9",
+    "href": "labs/lab-3.html#exercise-9",
+    "title": "Lab 3",
+    "section": "Exercise 9",
+    "text": "Exercise 9\n\nIMS - Chapter 5 exercises, #16: Distributions and appropriate statistics."
+  },
+  {
+    "objectID": "labs/lab-3.html#exercise-10",
+    "href": "labs/lab-3.html#exercise-10",
+    "title": "Lab 3",
+    "section": "Exercise 10",
+    "text": "Exercise 10\n\nIMS - Chapter 5 exercises, #26: NYC marathon winners."
+  },
+  {
+    "objectID": "labs/lab-3.html#submitting",
+    "href": "labs/lab-3.html#submitting",
+    "title": "Lab 3",
+    "section": "Submitting",
+    "text": "Submitting\n\n\n\n\n\n\nImportant\n\n\n\nBefore you proceed, first, make sure that you have updated the document YAML with your name! Then, render your document one last time, for good measure.\n\n\nTo submit your assignment to Gradescope:\n\nGo to your Files pane and check the box next to the PDF output of your document (lab-2.pdf).\nThen, in the Files pane, go to More &gt; Export. This will download the PDF file to your computer. Save it somewhere you can easily locate, e.g., your Downloads folder or your Desktop.\nGo to the course Canvas page and click on Gradescope and then click on the assignment. You’ll be prompted to submit it.\nMark the pages associated with each exercise. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”).\n\n\n\n\n\n\n\nWarning\n\n\n\nIf you fail to mark the pages associated with an exercise, that exercise won’t be graded. This means, if you fail to mark the pages for all exercises, you will receive a 0 on the assignment. The TAs can’t mark your pages for you, and for them to be able to grade, you must mark them."
+  },
+  {
+    "objectID": "labs/lab-3.html#grading",
+    "href": "labs/lab-3.html#grading",
+    "title": "Lab 3",
+    "section": "Grading",
+    "text": "Grading\n\n\n\nExercise\nPoints\n\n\n\n\nExercise 1\n5\n\n\nExercise 2\n5\n\n\nExercise 3\n6\n\n\nExercise 4\n6\n\n\nExercise 5\n6\n\n\nExercise 6\n4\n\n\nExercise 7\n6\n\n\nExercise 8\n2\n\n\nExercise 9\n5\n\n\nExercise 10\n5\n\n\nTotal\n50"
+  },
+  {
+    "objectID": "labs/lab-3.html#acknowledgements",
+    "href": "labs/lab-3.html#acknowledgements",
+    "title": "Lab 3",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis assignment was adapted from a similar exercise by Dr. Alex Fisher (who will be our guest lecturer soon!)."
   },
   {
     "objectID": "labs/lab-6.html",
