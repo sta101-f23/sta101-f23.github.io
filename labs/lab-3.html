@@ -377,7 +377,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#submitting" id="toc-submitting" class="nav-link" data-scroll-target="#submitting">Submitting</a></li>
   <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/labs/lab-3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -470,9 +469,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="exercise">
 <p>Create a new data frame called <code>nobel_living</code> that filters for</p>
 <ul>
-<li>laureates for whom <code>country</code> is available</li>
-<li>laureates who are people as opposed to organizations (organizations are denoted with <code>"org"</code> as their <code>gender</code>)</li>
-<li>laureates who are still alive (their <code>died_date</code> is <code>NA</code>)</li>
+<li>laureates for whom <code>country</code> is available: <code>!is.na(country)</code></li>
+<li>laureates who are people as opposed to organizations, i.e., organizations are denoted with <code>"org"</code> as their <code>gender</code>: <code>gender != "org"</code></li>
+<li>laureates who are still alive, i.e., their <code>died_date</code> is <code>NA</code>: <code>is.na(died_date)</code></li>
 </ul>
 <p>Confirm that once you have filtered for these characteristics you are left with a data frame with 228 observations, once again using inline code.</p>
 </div>
@@ -585,7 +584,7 @@ Important
 </div>
 <p>To submit your assignment to Gradescope:</p>
 <ul>
-<li><p>Go to your Files pane and check the box next to the PDF output of your document (<code>lab-2.pdf</code>).</p></li>
+<li><p>Go to your Files pane and check the box next to the PDF output of your document (<code>lab-3.pdf</code>).</p></li>
 <li><p>Then, in the Files pane, go to More &gt; Export. This will download the PDF file to your computer. Save it somewhere you can easily locate, e.g., your Downloads folder or your Desktop.</p></li>
 <li><p>Go to the course Canvas page and click on Gradescope and then click on the assignment. You’ll be prompted to submit it.</p></li>
 <li><p>Mark the pages associated with each exercise. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”).</p></li>
@@ -616,15 +615,15 @@ Warning
 <tbody>
 <tr class="odd">
 <td>Exercise 1</td>
-<td>5</td>
+<td>3</td>
 </tr>
 <tr class="even">
 <td>Exercise 2</td>
-<td>5</td>
+<td>4</td>
 </tr>
 <tr class="odd">
 <td>Exercise 3</td>
-<td>6</td>
+<td>8</td>
 </tr>
 <tr class="even">
 <td>Exercise 4</td>
@@ -632,15 +631,15 @@ Warning
 </tr>
 <tr class="odd">
 <td>Exercise 5</td>
-<td>6</td>
+<td>8</td>
 </tr>
 <tr class="even">
 <td>Exercise 6</td>
-<td>4</td>
+<td>8</td>
 </tr>
 <tr class="odd">
 <td>Exercise 7</td>
-<td>6</td>
+<td>2</td>
 </tr>
 <tr class="even">
 <td>Exercise 8</td>
@@ -652,7 +651,7 @@ Warning
 </tr>
 <tr class="even">
 <td>Exercise 10</td>
-<td>5</td>
+<td>4</td>
 </tr>
 <tr class="odd">
 <td><strong>Total</strong></td>
@@ -660,10 +659,6 @@ Warning
 </tr>
 </tbody>
 </table>
-</section>
-<section id="acknowledgements" class="level2">
-<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
-<p>This assignment was adapted from a similar exercise by <a href="https://stat.duke.edu/alexander-fisher">Dr.&nbsp;Alex Fisher</a> (who will be our guest lecturer soon!).</p>
 
 
 </section>
