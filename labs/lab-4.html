@@ -431,8 +431,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The data dictionary for this dataset from TidyTuesday is reproduced below:</p>
 <table class="table">
 <colgroup>
-<col style="width: 6%">
-<col style="width: 93%">
+<col style="width: 7%">
+<col style="width: 92%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -442,15 +442,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">name</td>
+<td style="text-align: left;"><code>name</code></td>
 <td style="text-align: left;">Individual lifter name</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">sex</td>
+<td style="text-align: left;"><code>sex</code></td>
 <td style="text-align: left;">Binary gender (M/F)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">event</td>
+<td style="text-align: left;"><code>event</code></td>
 <td style="text-align: left;"><p>The type of competition that the lifter entered. Values are as follows:</p>
 <ul>
 <li><p>SBD: Squat-Bench-Deadlift, also commonly called “Full Power”</p></li>
@@ -463,7 +463,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">equipment</td>
+<td style="text-align: left;"><code>equipment</code></td>
 <td style="text-align: left;"><p>The equipment category under which the lifts were performed. Values are as follows:</p>
 <ul>
 <li><p>Raw: Bare knees or knee sleeves</p></li>
@@ -474,43 +474,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">age</td>
+<td style="text-align: left;"><code>age</code></td>
 <td style="text-align: left;">The age of the lifter on the start date of the meet, if known.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">age_class</td>
+<td style="text-align: left;"><code>age_class</code></td>
 <td style="text-align: left;">The age class in which the filter falls, for example <code>40-45</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">division</td>
+<td style="text-align: left;"><code>division</code></td>
 <td style="text-align: left;">Free-form UTF-8 text describing the division of competition, like <code>Open</code> or <code>Juniors 20-23</code> or <code>Professional</code>.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">bodyweight_kg</td>
+<td style="text-align: left;"><code>bodyweight_kg</code></td>
 <td style="text-align: left;">The recorded bodyweight of the lifter at the time of competition, to two decimal places.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">weight_class_kg</td>
+<td style="text-align: left;"><code>weight_class_kg</code></td>
 <td style="text-align: left;"><p>The weight class in which the lifter competed, to two decimal places.</p>
 <p>Weight classes can be specified as a maximum or as a minimum. Maximums are specified by just the number, for example <code>90</code> means “up to (and including) 90kg.” minimums are specified by a <code>+</code> to the right of the number, for example <code>90+</code> means “above (and excluding) 90kg.”</p></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">best3squat_kg</td>
+<td style="text-align: left;"><code>best3squat_kg</code></td>
 <td style="text-align: left;"><p>Maximum of the first three successful attempts for the lift.</p>
 <p>Rarely may be negative: that is used by some federations to report the lowest weight the lifter attempted and failed.</p></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">best3bench_kg</td>
+<td style="text-align: left;"><code>best3bench_kg</code></td>
 <td style="text-align: left;"><p>Maximum of the first three successful attempts for the lift.</p>
 <p>Rarely may be negative: that is used by some federations to report the lowest weight the lifter attempted and failed.</p></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">best3deadlift_kg</td>
+<td style="text-align: left;"><code>best3deadlift_kg</code></td>
 <td style="text-align: left;"><p>Maximum of the first three successful attempts for the lift.</p>
 <p>Rarely may be negative: that is used by some federations to report the lowest weight the lifter attempted and failed.</p></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">place</td>
+<td style="text-align: left;"><code>place</code></td>
 <td style="text-align: left;"><p>The recorded place of the lifter in the given division at the end of the meet. Values are as follows:</p>
 <ul>
 <li><p>Positive number: the place the lifter came in.</p></li>
@@ -521,15 +521,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">date</td>
+<td style="text-align: left;"><code>date</code></td>
 <td style="text-align: left;">ISO 8601 Date of the event</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">federation</td>
+<td style="text-align: left;"><code>federation</code></td>
 <td style="text-align: left;">The federation that hosted the meet. (limited to IPF for this data subset)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">meet_name</td>
+<td style="text-align: left;"><code>meet_name</code></td>
 <td style="text-align: left;">The name of the meet. The name is defined to never include the year or the federation. For example, the meet officially called <code>2019 USAPL Raw National Championships</code> would have the MeetName <code>Raw National Championshps</code>.</td>
 </tr>
 </tbody>
@@ -538,7 +538,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="exercise-1" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
 <div class="exercise">
-<p>Let’s begin by taking a look at the squat powerlifting records. To begin, remove any observations that are negative for squat. Next, create a new column called <code>best3_squat_lbs</code> that converts the record from kg to lbs (you may have to google the conversion). Save your data frame as <code>ipf_squat</code>.</p>
+<p>Let’s begin by taking a look at the <strong>squat lifting</strong> records.</p>
+<p>To begin, remove any observations that are negative for squat. Next, create a new column called <code>best3_squat_lbs</code> that converts the record from kg to lbs (you may have to google the conversion). Save your data frame as <code>ipf_squat</code>. Report the number of rows and columns of this new data frame using inline code.</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -557,7 +558,7 @@ Hint
 <section id="exercise-2" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
 <div class="exercise">
-<p>Using <code>ipf_squat</code> from the previous exercise, create a scatter plot to investigate the relationship between squat (in lbs) and age. Age should be on the x-axis. Add a linear trend-line. Be sure to label all axes and give the plot a title. Comment on what you observe.</p>
+<p>Using <code>ipf_squat</code> from the previous exercise, create a scatter plot to investigate the relationship between squat (in lbs) and age. Age should be on the x-axis. Adjust the <code>alpha</code> level of your points to get a better sense of the density of the data. Add a linear trend-line. Be sure to label all axes and give the plot a title. Comment on what you observe.</p>
 </div>
 </section>
 <section id="exercise-3" class="level2">
@@ -611,27 +612,40 @@ Note
 <section id="exercise-6" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-6">Exercise 6</h2>
 <div class="exercise">
+<p>Next, let’s turn our attention to <strong>dead lifting</strong> records.</p>
 <p>Recreate the plot below. Make sure axes and title labels are exactly matching, including spelling, capitalization, etc. Based on the plot below, which impacts deadlift weight more, age category or sex?</p>
 </div>
-<div class="callout-hint">
-<p>You will need to create a couple new columns. One to classify age appropriately and one to convert deadlift to the plotted units. Notice that there are no negative deadlift values on the x-axis.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You will need to create a couple of new columns. One to classify age appropriately and one to convert <code>best3deadlift_kg</code> to the plotted units (lbs). Notice that there are no negative deadlift values on the x-axis.</p>
+</div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="lab-4_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="576"></p>
+<p><img src="lab-4_files/figure-html/deadlift-age-sex-plot-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 </section>
 <section id="exercise-7" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-7">Exercise 7</h2>
 <div class="exercise">
-<p>Create a scatter plot to investigate the relationship between best bench press (in lbs) and the lifter’s bodyweight (in lbs). Bodyweight should be on the x-axis. Add a linear trend-line. Be sure to label all axes and give the plot a title. Comment on what you observe.</p>
+<p>Finally, let’s turn our attention to <strong>bench press</strong> records.</p>
+<p>To begin, remove any observations that are negative for bench press, create two new columns: <code>best3bench_lbs</code> and <code>bodyweight_lbs</code>. Save the result in a new data frame called <code>ipf_bench</code>.</p>
+<p>Then, create a scatter plot to investigate the relationship between best bench press (in lbs) and the lifter’s bodyweight (in lbs). Bodyweight should be on the x-axis. Add a linear trend-line. Be sure to label all axes and give the plot a title. Comment on what you observe.</p>
 </div>
 </section>
 <section id="exercise-8" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-8">Exercise 8</h2>
 <div class="exercise">
-<p>Fit the linear model displayed in the previous exercise and write down the <strong>fitted model equation</strong> only, replacing <span class="math inline">\(\hat{\beta}\)</span> with the fitted estimate. Interpret the <span class="math inline">\(\hat{\beta}\)</span>. Report <span class="math inline">\(R^2\)</span>. Is body weight an important predictor of bench press ability? Why or why not?</p>
+<p>Fit the linear model displayed in the previous exercise and write down the <strong>fitted model equation</strong> only, replacing <span class="math inline">\(\hat{\beta}\)</span>s with their fitted estimates. Interpret the <span class="math inline">\(\hat{\beta}\)</span>s (intercept and slope). Report <span class="math inline">\(R^2\)</span>. Is body weight an important predictor of bench press ability? Why or why not?</p>
 </div>
 </section>
 </section>
@@ -647,7 +661,7 @@ Note
 <section id="exercise-10" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-10">Exercise 10</h2>
 <div class="exercise">
-<p>IMS - <a href="https://openintro-ims2.netlify.app/07-model-slr#chp7-exercises">Chapter 7 exercises</a>, #22: Body measurements, regression.</p>
+<p>IMS - <a href="https://openintro-ims2.netlify.app/07-model-slr#chp7-exercises">Chapter 7 exercises</a>, #24: Cats weights.</p>
 </div>
 </section>
 </section>
@@ -691,7 +705,60 @@ Warning
 </section>
 <section id="grading" class="level2">
 <h2 class="anchored" data-anchor-id="grading">Grading</h2>
-<p>Exercise breakdown to be posted. Total 50 points as usual.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Exercise</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exercise 1</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>Exercise 2</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>Exercise 3</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Exercise 4</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>Exercise 5</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Exercise 6</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>Exercise 7</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>Exercise 8</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>Exercise 9</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>Exercise 10</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td>50</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
