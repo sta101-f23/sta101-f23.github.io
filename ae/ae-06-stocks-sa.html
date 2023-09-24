@@ -372,9 +372,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
   <li><a href="#exercise-6" id="toc-exercise-6" class="nav-link" data-scroll-target="#exercise-6">Exercise 6</a></li>
   <li><a href="#exercise-7" id="toc-exercise-7" class="nav-link" data-scroll-target="#exercise-7">Exercise 7</a></li>
+  <li><a href="#bonus-exercise" id="toc-bonus-exercise" class="nav-link" data-scroll-target="#bonus-exercise">Bonus exercise</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/ae/ae-06-stocks.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/ae/ae-06-stocks-sa.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -384,6 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 class="title">Apple and Microsoft stock prices</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Application exercise</div>
+    <div class="quarto-category">Suggested answers</div>
   </div>
   </div>
 
@@ -400,6 +402,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These are suggested answers for the application exercise. They’re not necessarily complete or 100% accurate, they’re roughly what we develop in class while going through the exercises.</p>
+</div>
+</div>
 <p>Today we’ll explore the question “How do stock prices of Apple and Microsoft relate to each other?”</p>
 <section id="goals" class="level1">
 <h1>Goals</h1>
@@ -435,7 +450,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="exercise-1" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
 <p>At first, you might be tempted to minimize <span class="math inline">\(\sum_i e_i\)</span>, the sum of all residuals, but this is problematic. Why? Can you come up with a better solution (other than the one listed below)?</p>
-<p><em>Add response here.</em></p>
+<blockquote class="blockquote">
+<ul>
+<li><p>Large positive residuals would cancel with large negative residuals.</p></li>
+<li><p>We could minimize the sum of the absolute value of the residuals.</p></li>
+</ul>
+</blockquote>
 </section>
 <section id="minimize-the-sum-of-squared-residuals" class="level2">
 <h2 class="anchored" data-anchor-id="minimize-the-sum-of-squared-residuals">Minimize the sum of squared residuals</h2>
@@ -445,13 +465,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 \]</span></p>
 <p>Note, this is the same as</p>
 <p><span class="math display">\[
-\sum_i (y_i - \hat{y})^2
+\sum_i (y_i - \hat{y}_i)^2
 \]</span></p>
 </section>
 <section id="exercise-2" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
 <p>Check out an interactive visualization of “least squares regression” <a href="https://seeing-theory.brown.edu/regression-analysis/index.html#section1">here</a>. Click on <code>I</code> and drag the points around to get started. Describe what you see.</p>
-<p><em>Add response here</em></p>
+<blockquote class="blockquote">
+<p>Each square is a “square residual”. The line minimizes the sum of squared residuals, (i.e.&nbsp;it minimizes the total area of squares I see on the screen).</p>
+<p>This is called “Ordinary Least Squares” (OLS) regression.</p>
+</blockquote>
 </section>
 </section>
 <section id="plotting-the-least-squares-regression-line" class="level1">
@@ -469,15 +492,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stocks_jan2020, <span class="fu">aes</span>(<span class="at">x =</span> MSFT.Open, <span class="at">y =</span> AAPL.Open)) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fl">0.5</span>, <span class="at">intercept =</span> <span class="sc">-</span><span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add code here</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"MSFT Open"</span>, </span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"AAPL Open"</span>, </span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Open prices of MSFT and AAPL"</span>,</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"January 2020"</span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
 <div class="cell-output-display">
-<p><img src="ae-06-stocks_files/figure-html/how-close-1.png" class="img-fluid" width="672"></p>
+<p><img src="ae-06-stocks-sa_files/figure-html/how-close-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -499,20 +525,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="exercise-5">Exercise 5</h2>
 <p>Find the least squares line <span class="math inline">\(y = \hat{\beta_0} + \hat{\beta_1} x\)</span> for January 2020, where <span class="math inline">\(x\)</span> is Microsoft’s opening price and <span class="math inline">\(y\)</span> is Apple’s opening price. Display a tidy summary of your model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>stock_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(AAPL.Open <span class="sc">~</span> MSFT.Open, <span class="at">data =</span> stocks_jan2020)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(stock_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic      p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+1 (Intercept)    3.31     8.87       0.373 0.713       
+2 MSFT.Open      0.454    0.0541     8.40  0.0000000808</code></pre>
+</div>
 </div>
 </section>
 <section id="exercise-6" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-6">Exercise 6</h2>
 <p>Re-write the fitted equation replacing <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> with the estimates from the model you fit in the previous exercise.</p>
+<blockquote class="blockquote">
+<p>My fitted model is:</p>
 <p><span class="math display">\[
-\text{[add equation here]}
+\hat{y} = 3.3117408 + 0.4542263 x
 \]</span></p>
+<p>where <span class="math inline">\(\hat{y}\)</span> is the predicted Apple open price and <span class="math inline">\(x\)</span> is the open price of Microsoft.</p>
+</blockquote>
 </section>
 <section id="exercise-7" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-7">Exercise 7</h2>
 <p>Interpret <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> in context of the data.</p>
-<p><em>Add response here</em></p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(\hat{\beta_0} = 3.3117408\)</span></p>
+<p>It’s the price of APPL if MSFT opened at 0.</p>
+<p><span class="math inline">\(\hat{\beta_1} = 0.4542263\)</span>.</p>
+<p>For every dollar increase in MSFT open price, we expect AAPL open price to increase by .45.</p>
+</blockquote>
+</section>
+<section id="bonus-exercise" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-exercise">Bonus exercise</h2>
+<p>Say Microsoft opens at 166 dollars. What do I predict the opening price of AAPL to be?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>yhat <span class="ot">&lt;-</span> <span class="fl">3.3117408</span> <span class="sc">+</span> (<span class="fl">0.4542263</span> <span class="sc">*</span> <span class="dv">166</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>yhat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 78.71331</code></pre>
+</div>
+</div>
 
 
 </section>

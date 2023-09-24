@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>STA 101 - F23 - COVID vaccine and deaths from Delta variant</title>
+<title>STA 101 - F23 - Apple and Microsoft stock prices</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,8 +100,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="STA 101 - F23 - COVID vaccine and deaths from Delta variant">
+<meta property="og:title" content="STA 101 - F23 - Apple and Microsoft stock prices">
 <meta property="og:description" content="Homepage for STA 101 - Data Analysis and Statistical Inference at Duke University, Fall 2023.">
 <meta property="og:site_name" content="STA 101 - F23">
 </head>
@@ -115,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">COVID vaccine and deaths from Delta variant</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Apple and Microsoft stock prices</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -355,34 +357,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
-  <li><a href="#visualizing-and-summarizing-categorical-data" id="toc-visualizing-and-summarizing-categorical-data" class="nav-link" data-scroll-target="#visualizing-and-summarizing-categorical-data">Visualizing and summarizing categorical data</a>
+  <li><a href="#models-and-residuals" id="toc-models-and-residuals" class="nav-link" data-scroll-target="#models-and-residuals">Models and residuals</a>
   <ul class="collapse">
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  <li><a href="#minimize-the-sum-of-squared-residuals" id="toc-minimize-the-sum-of-squared-residuals" class="nav-link" data-scroll-target="#minimize-the-sum-of-squared-residuals">Minimize the sum of squared residuals</a></li>
   <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
-  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  </ul></li>
+  <li><a href="#plotting-the-least-squares-regression-line" id="toc-plotting-the-least-squares-regression-line" class="nav-link" data-scroll-target="#plotting-the-least-squares-regression-line">Plotting the least squares regression line</a>
+  <ul class="collapse">
   <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
+  </ul></li>
+  <li><a href="#finding-hatbeta" id="toc-finding-hatbeta" class="nav-link" data-scroll-target="#finding-hatbeta">Finding <span class="math inline">\(\hat{\beta}\)</span></a>
+  <ul class="collapse">
   <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
   <li><a href="#exercise-6" id="toc-exercise-6" class="nav-link" data-scroll-target="#exercise-6">Exercise 6</a></li>
-  </ul></li>
-  <li><a href="#simpsons-paradox" id="toc-simpsons-paradox" class="nav-link" data-scroll-target="#simpsons-paradox">Simpson’s Paradox</a>
-  <ul class="collapse">
   <li><a href="#exercise-7" id="toc-exercise-7" class="nav-link" data-scroll-target="#exercise-7">Exercise 7</a></li>
-  <li><a href="#exercise-8" id="toc-exercise-8" class="nav-link" data-scroll-target="#exercise-8">Exercise 8</a></li>
+  <li><a href="#bonus-exercise" id="toc-bonus-exercise" class="nav-link" data-scroll-target="#bonus-exercise">Bonus exercise</a></li>
   </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/ae/ae-03-delta-sa.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/ae/ae-06-stock.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">COVID vaccine and deaths from Delta variant</h1>
+<h1 class="title">Apple and Microsoft stock prices</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Application exercise</div>
-    <div class="quarto-category">Suggested answers</div>
   </div>
   </div>
 
@@ -399,189 +401,129 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>These are suggested answers for the application exercise. They’re not necessarily complete or 100% accurate, they’re roughly what we develop in class while going through the exercises.</p>
-</div>
-</div>
-<p>The main question we’ll explore today is “How do deaths from COVID cases compare between vaccinated and unvaccinated?”</p>
-<p>What do you think?</p>
+<p>Today we’ll explore the question “How do stock prices of Apple and Microsoft relate to each other?”</p>
 <section id="goals" class="level1">
 <h1>Goals</h1>
 <ul>
-<li><p>Creating data visualizations and calculating summary statistics for comparing trends across groups</p></li>
-<li><p>Distinguishing observational studies and experiments</p></li>
-<li><p>Reviewing various sampling methods</p></li>
-<li><p>Identifying confounding variables and Simpson’s paradox</p></li>
+<li><p>Understand the grammar of linear modeling, including <span class="math inline">\(y\)</span>, <span class="math inline">\(x\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(e\)</span> fitted estimates and residuals</p></li>
+<li><p>Add linear regression plots to your 2D graphs</p></li>
+<li><p>Write a simple linear regression model mathematically</p></li>
+<li><p>Fit the model to data in R in a <code>tidy</code> way</p></li>
 </ul>
 </section>
 <section id="packages" class="level1">
 <h1>Packages</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.3     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="data" class="level1">
 <h1>Data</h1>
-<p>The data for this case study come from a technical briefing published by Public Health England in August 2021 on COVID cases, vaccinations, and deaths from the Delta variant.</p>
+<p>The data for this application exercise was originally gathered using the <a href="https://business-science.github.io/tidyquant/"><strong>tidyquant</strong></a> R package. It features Apple and Microsoft stock prices from January 1st 2020 to December 31st 2021.</p>
 <p>First, let’s load the data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>delta <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/delta.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 268166 Columns: 3
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (3): vaccine, age, outcome
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>stocks <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/stocks.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>To keep things simple, we’ll work with a subset of the data, stock prices in January 2020.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>stocks_jan2020 <span class="ot">&lt;-</span> stocks <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">month</span>(date) <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> <span class="fu">year</span>(date) <span class="sc">==</span> <span class="dv">2020</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="visualizing-and-summarizing-categorical-data" class="level1">
-<h1>Visualizing and summarizing categorical data</h1>
+<section id="models-and-residuals" class="level1">
+<h1>Models and residuals</h1>
 <section id="exercise-1" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
-<p>How many rows and columns are in this dataset? Answer in a full sentence using <strong>inline code</strong>. What does each row represent and what does each column represent? For each variable, identify its type.</p>
-<p><em>Add your answer here.</em></p>
+<p>At first, you might be tempted to minimize <span class="math inline">\(\sum_i e_i\)</span>, the sum of all residuals, but this is problematic. Why? Can you come up with a better solution (other than the one listed below)?</p>
+<p><em>Add response here.</em></p>
+</section>
+<section id="minimize-the-sum-of-squared-residuals" class="level2">
+<h2 class="anchored" data-anchor-id="minimize-the-sum-of-squared-residuals">Minimize the sum of squared residuals</h2>
+<p>In practice, we minimize the <strong>sum of squared residuals</strong>:</p>
+<p><span class="math display">\[
+\sum_i e_i^2
+\]</span></p>
+<p>Note, this is the same as</p>
+<p><span class="math display">\[
+\sum_i (y_i - \hat{y}_i)^2
+\]</span></p>
 </section>
 <section id="exercise-2" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
-<p>Do these data come from an observational study or experiment? Why?</p>
-<p><em>Add your answer here.</em></p>
+<p>Check out an interactive visualization of “least squares regression” <a href="https://seeing-theory.brown.edu/regression-analysis/index.html#section1">here</a>. Click on <code>I</code> and drag the points around to get started. Describe what you see.</p>
+<p><em>Add response here</em></p>
 </section>
-<section id="exercise-3" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-3">Exercise 3</h2>
-<p>Create a visualization of health outcome by vaccine status that allows you to compare the proportion of deaths across those who are and are not vaccinated. What can you say about death rates in these two groups based on this visualization?</p>
-<p><em>Add your answer here.</em></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
+<section id="plotting-the-least-squares-regression-line" class="level1">
+<h1>Plotting the least squares regression line</h1>
+<p>Plotting the OLS regression line, that is, the line that minimizes the sum of square residuals takes one new geom. Simply add</p>
+<pre><code>geom_smooth(method = "lm", se = FALSE)</code></pre>
+<p>to your plot.</p>
+<p><code>method = "lm"</code> says to draw a line according to a “linear model” and <code>se = FALSE</code> turns off standard error bars. You can try without these options for comparison.</p>
+<p>Optionally, you can change the color of the line, e.g.</p>
+<pre><code>geom_smooth(method = '"lm", se = FALSE, color = "red")</code></pre>
 <section id="exercise-4" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-4">Exercise 4</h2>
-<p>Calculate the proportion of deaths in among those who are vaccinated. Then, calculate the proportion among those who are not vaccinated.</p>
-<p><em>Add your answer here.</em></p>
+<p>In the slides we fit a model with slope 0.5 and intercept -5. The code for layering the line that represents the model over your data is given below. Add <code>geom_smooth()</code> as described above with <code>color = "steelblue"</code> to see how close your line is.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stocks_jan2020, <span class="fu">aes</span>(<span class="at">x =</span> MSFT.Open, <span class="at">y =</span> AAPL.Open)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fl">0.5</span>, <span class="at">intercept =</span> <span class="sc">-</span><span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add code here</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"MSFT Open"</span>, </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"AAPL Open"</span>, </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Open prices of MSFT and AAPL"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"January 2020"</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ae-06-stock_files/figure-html/how-close-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 </section>
+</section>
+<section id="finding-hatbeta" class="level1">
+<h1>Finding <span class="math inline">\(\hat{\beta}\)</span></h1>
+<p>To <strong>fit the model</strong> in R, i.e.&nbsp;to “find <span class="math inline">\(\hat{\beta}\)</span>”, use the code below as a template:</p>
+<pre><code>model_fit &lt;- linear_reg() |&gt;
+  fit(y ~ x, data = dataframe)</code></pre>
+<ul>
+<li><code>linear_reg</code> tells <code>R</code> we will perform linear regression</li>
+<li><code>fit</code> defines the outcome <span class="math inline">\(y\)</span>, predictor <span class="math inline">\(x\)</span> and the data set</li>
+</ul>
+<p>Running the code above, but replacing the arguments of the <code>fit</code> command appropriately will create a new object called <code>model_fit</code> that stores all information about your fitted model.</p>
+<p>To access the information, you can run, e.g.</p>
+<pre><code>tidy(model_fit)</code></pre>
+<p>Let’s try it out.</p>
 <section id="exercise-5" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-5">Exercise 5</h2>
-<p>Create the visualization and calculate proportions from the two previous exercises, this time controlling for age. How do the proportions compare?</p>
-<p><em>Add your answer here.</em></p>
+<p>Find the least squares line <span class="math inline">\(y = \hat{\beta_0} + \hat{\beta_1} x\)</span> for January 2020, where <span class="math inline">\(x\)</span> is Microsoft’s opening price and <span class="math inline">\(y\)</span> is Apple’s opening price. Display a tidy summary of your model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-6" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-6">Exercise 6</h2>
-<p>Based on your findings so far, fill in the blanks with <em>more</em>, <em>less</em>, or <em>equally</em>: Is there anything surprising about these statements? Speculate on what, if anything, the discrepancy might be due to.</p>
-<ul>
-<li><p>In 2021, among those in the UK who were COVID Delta cases, the vaccinated were ___ likely to die than the unvaccinated.</p></li>
-<li><p>For those under 50, those who were unvaccinated were ___ likely to die than those who were vaccinated.</p></li>
-<li><p>For those 50 and up, those who were unvaccinated were ___ likely to die than those who were vaccinated.</p></li>
-</ul>
-<p><em>Add your answer here.</em></p>
+<p>Re-write the fitted equation replacing <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> with the estimates from the model you fit in the previous exercise.</p>
+<p><span class="math display">\[
+\text{[add equation here]}
+\]</span></p>
 </section>
-</section>
-<section id="simpsons-paradox" class="level1">
-<h1>Simpson’s Paradox</h1>
-<p><strong>Simpson’s paradox</strong> is a phenomenon in which a trend appears in subsets of the data, but disappears or reverses when the subsets are combined. The paradox can be resolved when <strong>confounding variables</strong> and causal relations are appropriately addressed in the analysis.</p>
 <section id="exercise-7" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-7">Exercise 7</h2>
-<p>Let’s rephrase the previous question which asked you to speculate on why deaths among vaccinated cases overall is higher while deaths among unvaccinated cases are higher when we split the data into two groups (below 50 and 50 and up). What might be the confounding variable in the relationship between vaccination and deaths?</p>
-<p><em>Add your answer here.</em></p>
+<p>Interpret <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> in context of the data.</p>
+<p><em>Add response here</em></p>
 </section>
-<section id="exercise-8" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-8">Exercise 8</h2>
-<p>Visualize and describe the distribution of seniors (50 and up) based on (a.k.a. conditional on) vaccination status. Hint: Your description will benefit from calculating proportions of seniors in each of the vaccination groups and working those values into your narrative.</p>
-<p>Add your answer here.</p>
+<section id="bonus-exercise" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-exercise">Bonus exercise</h2>
+<p>Say Microsoft opens at 166 dollars. What do I predict the opening price of AAPL to be?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-</section>
-<section id="summary" class="level1">
-<h1>Summary</h1>
-<p>The percentages of deaths from COVID across vaccination groups is as follows:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>vaccine_outcome_perc <span class="ot">&lt;-</span> delta <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(vaccine, outcome) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(vaccine) <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(outcome <span class="sc">==</span> <span class="st">"died"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>outcome, <span class="sc">-</span>n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Also considering age groups, the death rates are as follows:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>vaccine_age_outcome_perc <span class="ot">&lt;-</span> delta <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(vaccine, age, outcome) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(vaccine, age) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(outcome <span class="sc">==</span> <span class="st">"died"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>outcome, <span class="sc">-</span>n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We can <em>pivot</em> these data for better display; we’ll learn more about these “data moves” soon:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>vaccine_age_outcome_perc <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> age, <span class="at">values_from =</span> perc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 3
-# Groups:   vaccine [2]
-  vaccine      `50+` `&lt;50`
-  &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;
-1 Unvaccinated  5.96  0.03
-2 Vaccinated    1.68  0.02</code></pre>
-</div>
-</div>
-<p>We identified age as a potential confounding variable in the relationship between. So let’s take a look at the distribution of age in the data:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>age_props <span class="ot">&lt;-</span> delta <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(age) <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>And then, let’s use these proportions to <em>weigh</em> the percentages of deaths.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>vaccine_age_outcome_perc <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc_wt =</span> <span class="fu">if_else</span>(age <span class="sc">==</span> <span class="st">"50+"</span>, perc <span class="sc">*</span> <span class="fl">0.115</span>, perc <span class="sc">*</span> <span class="fl">0.885</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(vaccine) <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">perc =</span> <span class="fu">sum</span>(perc_wt))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  vaccine       perc
-  &lt;chr&gt;        &lt;dbl&gt;
-1 Unvaccinated 0.712
-2 Vaccinated   0.211</code></pre>
-</div>
-</div>
-<p>Revisiting the question we posed to start with: How do deaths from COVID cases compare between vaccinated and unvaccinated?</p>
-</section>
-<section id="acknowledgements" class="level1">
-<h1>Acknowledgements</h1>
-<p>This case study is inspired by <a href="http://www.statlit.org/pdf/2021-Schield-ASA-BOF.pdf">Statistical Literacy: Simpson’s Paradox and Covid Deaths</a> by Milo Schield.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
