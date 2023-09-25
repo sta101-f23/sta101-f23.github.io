@@ -425,9 +425,15 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>“Graded” for completion</li>
 </ul>
 </section>
-<section id="announcements" class="slide level2">
+<section id="announcements" class="slide level2 smaller">
 <h2>Announcements</h2>
 <ul>
+<li><em>Suggested answers</em> for application exercises posted</li>
+<li>My office hours this week:
+<ul>
+<li>Tuesday 4:45-5:45 in Old Chem 213 (instead of the usual 3:30 - 5:30)</li>
+<li>Wednesday 5-6 on Zoom</li>
+</ul></li>
 <li>Lab 4 is due Thu, Sep 28 at 5 pm on Gradescope</li>
 <li>Lab this week: Exam 1 review</li>
 <li>Exam 1:
@@ -455,20 +461,36 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <h2><span class="math inline">\(R^2\)</span></h2>
 <p><span class="math inline">\(R^2\)</span>, aka “the coefficient of determination” or “correlation squared” is a way to see how well a given model fits the data.</p>
 <p><span class="math display">\[
-R^2 = 1 - \frac{\sum_i r_i^2}{\sum_i (y_i - \bar{y})^2}
+R^2 = r_i^2
 \]</span></p>
-<p>where <span class="math inline">\(\bar{y}\)</span> is the <strong>mean</strong> of all <em>y</em> values.</p>
 </section>
-<section id="r2-in-words" class="slide level2">
-<h2><span class="math inline">\(R^2\)</span>, in words</h2>
+<section id="sum-of-squares-total-sst" class="slide level2">
+<h2>Sum of squares total, SST</h2>
+<p>The sum of squares total is a measure of the total variability in the outcome variable:</p>
 <p><span class="math display">\[
-R^2 = 1 - \frac{\text{sum of squared residuals}}{\text{sum of outcome squared distance from the mean}}
+SST = (y_1 - \bar{y})^2 + (y_2 - \bar{y})^2 + \cdots + (y_n - \bar{y})^2
 \]</span></p>
-<div>
+</section>
+<section id="sum-of-squares-residuals-sse" class="slide level2">
+<h2>Sum of squares residuals, SSE</h2>
+<p>The sum of squares residuals (error) is a measure of the variability in the residuals, i.e., variability left unexplained in the outcome variable after the model is fit:</p>
+<p><span class="math display">\[
+SSE = (y_1 - \hat{y}_1)^2 + (y_2 - \hat{y}_2)^2 + \cdots + (y_n - \hat{y}_n)^2
+\]</span></p>
+</section>
+<section id="r2-another-look" class="slide level2">
+<h2><span class="math inline">\(R^2\)</span>, another look</h2>
+<p><span class="math display">\[
+R^2 = \frac{SST - SSE}{SST} = 1 - \frac{SSE}{SST}
+\]</span></p>
+<div class="fragment">
 <ul>
-<li class="fragment">The sum of squared residuals is a measure of how wrong our model is (how much our model <strong>doesn’t</strong> explain)</li>
-<li class="fragment">The denominator is proportional to the average square distance from the mean, i.e.&nbsp;the variance, i.e.&nbsp;the amount of variability in the data.</li>
-<li class="fragment">Together, the fraction represents the proportion of variability that is not explained by the model.</li>
+<li>This can be summarized as “<span class="math inline">\(R^2\)</span> is 1 minus the sum of squared residuals divided by the sum of squared total”.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>In other words, <span class="math inline">\(R^2\)</span> is the proportion of variability in the outcome that is unexplained by the model.</li>
 </ul>
 </div>
 </section>
@@ -508,7 +530,7 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon
 <li class="fragment"><span class="math inline">\(x_i\)</span>: the <span class="math inline">\(i^{th}\)</span> <strong>predictor</strong>. Also commonly referred to as “regressor”, “independent variable”, “covariate”, “feature”, “the data”.</li>
 <li class="fragment"><span class="math inline">\(\beta_i\)</span>: “constants” or <strong>coefficients</strong> i.e.&nbsp;fixed numbers. These are <strong>population parameters</strong>. <span class="math inline">\(\beta_0\)</span> has another special name, “the intercept”.</li>
 <li class="fragment"><span class="math inline">\(\epsilon\)</span>: the <strong>error</strong>. This quantity represents observational error, i.e.&nbsp;the difference between our observation and the true population-level expected value: <span class="math inline">\(\beta_0 + \beta_1 x\)</span>.</li>
-<li class="fragment">Effectively this model says our data <span class="math inline">\(y\)</span> is linearly related to the <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> but is not perfectly observed due to some error.</li>
+<li class="fragment">Effectively this model says our data <span class="math inline">\(y\)</span> is linearly related to the <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> but is not perfectly observed due to unexplained errors.</li>
 </ul>
 </div>
 </section>
@@ -527,10 +549,7 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon
 </section>
 <section id="predictors-1-outcome-3-dimensions" class="slide level2">
 <h2>2 predictors + 1 outcome = 3 dimensions</h2>
-<ul>
-<li><p>Our fitted linear model no longer looks like a line, but instead looks like a <strong>plane</strong>.</p></li>
-<li><p>This plane shows our prediction of AAPL price (<span class="math inline">\(y\)</span>) given both MSFT price (<span class="math inline">\(x_1\)</span>) and IBM price (<span class="math inline">\(x_2\)</span>).</p></li>
-</ul>
+<p>The fitted linear model no longer looks like a line, but instead looks like a <strong>plane</strong>. It shows our prediction of AAPL price (<span class="math inline">\(y\)</span>) given both MSFT price (<span class="math inline">\(x_1\)</span>) and IBM price (<span class="math inline">\(x_2\)</span>).</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img data-src="07-regression-multiple-predictors-1_files/figure-revealjs/simple-example-plane-1.png" width="960"></p>
@@ -542,7 +561,7 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon
 <p>Find the <strong>equation of the plane</strong> by adding in new predictors:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>my_model_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">fit</span>(outcome <span class="sc">~</span> predictor1 <span class="sc">+</span> predictor2 <span class="sc">+</span> predictor3 <span class="sc">+</span> ..., <span class="at">data =</span> data<span class="sc">-</span>set<span class="sc">-</span>here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">fit</span>(outcome <span class="sc">~</span> predictor1 <span class="sc">+</span> predictor2 <span class="sc">+</span> predictor3 <span class="sc">+</span> ..., <span class="at">data =</span> data_frame)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <ul>
