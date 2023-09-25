@@ -1019,7 +1019,7 @@
     "href": "lectures/07/07-regression-multiple-predictors-1.html#check-in",
     "title": "Regression with multiple predictors",
     "section": "Check-in",
-    "text": "Check-in\n\nDaily check-ins for getting you thinking at the beginning of the class and reviewing recent/important concepts\nGo to Canvas and open today’s “quiz” titled 2023-09-25 Check-in\nAccess code: influential point (released in class) \n“Graded” for completion"
+    "text": "Check-in\n\nDaily check-ins for getting you thinking at the beginning of the class and reviewing recent/important concepts\nGo to Canvas and open today’s “quiz” titled 2023-09-25 Check-in\nAccess code: ___ (released in class) \n“Graded” for completion"
   },
   {
     "objectID": "lectures/07/07-regression-multiple-predictors-1.html#announcements",
@@ -1061,7 +1061,7 @@
     "href": "lectures/07/07-regression-multiple-predictors-1.html#r2-another-look",
     "title": "Regression with multiple predictors",
     "section": "\\(R^2\\), another look",
-    "text": "\\(R^2\\), another look\n\\[\nR^2 = \\frac{SST - SSE}{SST} = 1 - \\frac{SSE}{SST}\n\\]\n\n\nThis can be summarized as “\\(R^2\\) is 1 minus the sum of squared residuals divided by the sum of squared total”.\n\n\n\n\nIn other words, \\(R^2\\) is the proportion of variability in the outcome that is unexplained by the model."
+    "text": "\\(R^2\\), another look\n\\[\nR^2 = \\frac{SST - SSE}{SST} = 1 - \\frac{SSE}{SST}\n\\]\n\n\nThis can be summarized as “\\(R^2\\) is 1 minus the sum of squared residuals divided by the sum of squared total”.\n\n\n\n\nIn other words, \\(R^2\\) is the proportion of variability in the outcome that is explained by the model."
   },
   {
     "objectID": "lectures/07/07-regression-multiple-predictors-1.html#r2-1",
@@ -1075,7 +1075,7 @@
     "href": "lectures/07/07-regression-multiple-predictors-1.html#finding-r2",
     "title": "Regression with multiple predictors",
     "section": "Finding \\(R^2\\)",
-    "text": "Finding \\(R^2\\)\nTo find \\(R^2\\) simply call the function glance() on your model_fit, e.g.\n\nmodel_fit = linear_reg() |&gt;\n  fit(outcome ~ predictor, data = data_set)\n  \nglance(model_fit)"
+    "text": "Finding \\(R^2\\)\nTo find \\(R^2\\) simply call the function glance() on your model_fit, e.g.\n\nmodel_fit &lt;- linear_reg() |&gt;\n  fit(outcome ~ predictor, data = data_set)\n  \nglance(model_fit)"
   },
   {
     "objectID": "lectures/07/07-regression-multiple-predictors-1.html#two-predictors",
@@ -1110,7 +1110,7 @@
     "href": "lectures/07/07-regression-multiple-predictors-1.html#application-exercise",
     "title": "Regression with multiple predictors",
     "section": "Application exercise",
-    "text": "Application exercise\nGo to Posit Cloud and start the project titled ae-07-Books.\n\n\n\n\n\n\nICYMI\n\n\nToday’s daily check-in access code: influential point (released in class)\n\n\n\n\n\n\n🔗 sta101-f23.github.io"
+    "text": "Application exercise\nGo to Posit Cloud and start the project titled ae-07-Books.\n\n\n\n\n\n\nICYMI\n\n\nToday’s daily check-in access code: ___ (released in class)\n\n\n\n\n\n\n🔗 sta101-f23.github.io"
   },
   {
     "objectID": "lectures/04/04-explore-categorical.html#check-in",
