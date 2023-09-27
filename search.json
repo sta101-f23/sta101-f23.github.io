@@ -672,151 +672,284 @@
     "text": "Box plots\nNext, let’s narrow our focus to the zip codes 48503, 48504, 48505, 48506, and 48507 and observations with lead values less than 1,000 ppb.\n\nflint_focus &lt;- flint |&gt;\n  filter(zip %in% 48503:48507 & lead &lt; 1000)\n\nExercise 7: Below are side-by-side box plots for the three flushing times in each of the five zip codes we considered. Add x and y labels; add a title by inserting title = \"title_name\" inside the labs() function.\n\nggplot(data = flint_focus, aes(y = factor(zip), x = lead)) +\n  geom_boxplot(aes(fill = factor(draw))) +\n  labs(x = \"___\", y = \"___\", fill = \"Flushing time\") +\n  scale_fill_discrete(\n    breaks = c(\"first\", \"second\", \"third\"),\n    labels = c(\"0 (sec)\", \"45 (sec)\", \"120 (sec)\")\n  )\n\n\n\n\nExercise 8: Add labels for x, y, a title, and subtitle to the code below to update the corresponding plot.\n\nggplot(data = flint_focus, aes(y = factor(zip), x = lead)) +\n  geom_boxplot(aes(fill = factor(draw))) + \n  labs(\n    x = \"___\", y = \"___\", fill = \"Flushing time\",\n    title = \"___\",\n    subtitle = \"___\"\n    ) +\n  scale_fill_discrete(\n    breaks = c(\"first\", \"second\", \"third\"),\n    labels = c(\"0 (sec)\", \"45 (sec)\", \"120 (sec)\")\n  ) +\n  coord_cartesian(xlim = c(0, 50)) +\n  theme_bw()\n\n\n\n\nExercise 9: What is the difference between the two plots? What are the advantages and disadvantages to each plot?\n[Add your answer here]"
   },
   {
-    "objectID": "ae/ae-03-delta.html",
-    "href": "ae/ae-03-delta.html",
-    "title": "COVID vaccine and deaths from Delta variant",
+    "objectID": "ae/ae-08-tips-sa.html",
+    "href": "ae/ae-08-tips-sa.html",
+    "title": "Tips",
     "section": "",
-    "text": "The main question we’ll explore today is “How do deaths from COVID cases compare between vaccinated and unvaccinated?”\nWhat do you think?"
+    "text": "Important\n\n\n\nThese are suggested answers for the application exercise. They’re not necessarily complete or 100% accurate, they’re roughly what we develop in class while going through the exercises.\nToday we’ll explore the question “What best predicts what percent of the bill amount people tip at restaurants?”"
   },
   {
-    "objectID": "ae/ae-03-delta.html#exercise-1",
-    "href": "ae/ae-03-delta.html#exercise-1",
-    "title": "COVID vaccine and deaths from Delta variant",
+    "objectID": "ae/ae-08-tips-sa.html#exercise-1",
+    "href": "ae/ae-08-tips-sa.html#exercise-1",
+    "title": "Tips",
     "section": "Exercise 1",
-    "text": "Exercise 1\nHow many rows and columns are in this dataset? Answer in a full sentence using inline code. What does each row represent and what does each column represent? For each variable, identify its type.\nAdd your answer here."
+    "text": "Exercise 1\nVisualize the relationship between these variables.\n\ntips &lt;- tips |&gt;\n  mutate(meal = fct_relevel(meal, \"Lunch\", \"Dinner\", \"Late Night\"))\n\nggplot(tips, aes(x = bill, y = tip_percentage, color = party)) +\n  geom_point(alpha = 0.7) +\n  facet_grid(alcohol ~ meal) +\n  scale_colour_continuous(breaks = c(1:9)) +\n  scale_y_continuous(labels = label_percent()) +\n  labs(\n    x = \"Bill amount (USD)\",\n    y = \"Tip percentage\",\n    color = \"Party\\nsize\"\n  )"
   },
   {
-    "objectID": "ae/ae-03-delta.html#exercise-2",
-    "href": "ae/ae-03-delta.html#exercise-2",
-    "title": "COVID vaccine and deaths from Delta variant",
+    "objectID": "ae/ae-08-tips-sa.html#exercise-2",
+    "href": "ae/ae-08-tips-sa.html#exercise-2",
+    "title": "Tips",
     "section": "Exercise 2",
-    "text": "Exercise 2\nDo these data come from an observational study or experiment? Why?\nAdd your answer here."
+    "text": "Exercise 2\nIn a couple of sentences, describe any apparent patterns.\n\nAdd response here."
   },
   {
-    "objectID": "ae/ae-03-delta.html#exercise-3",
-    "href": "ae/ae-03-delta.html#exercise-3",
-    "title": "COVID vaccine and deaths from Delta variant",
+    "objectID": "ae/ae-08-tips-sa.html#exercise-3",
+    "href": "ae/ae-08-tips-sa.html#exercise-3",
+    "title": "Tips",
     "section": "Exercise 3",
-    "text": "Exercise 3\nCreate a visualization of health outcome by vaccine status that allows you to compare the proportion of deaths across those who are and are not vaccinated. What can you say about death rates in these two groups based on this visualization?\nAdd your answer here.\n\n# add code here"
+    "text": "Exercise 3\nFit a model predicting tip percentage from bill amount. Display and interpret the model coefficients. Additionally, calculate and interpret the \\(R^2\\) of this model.\n\ntip_1_fit &lt;- linear_reg() |&gt;\n  fit(tip_percentage ~ bill, data = tips)\n\ntidy(tip_1_fit)\n\n# A tibble: 2 × 5\n  term         estimate std.error statistic  p.value\n  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)  0.198     0.0134       14.8  2.16e-29\n2 bill        -0.000748  0.000390     -1.92 5.70e- 2\n\n\n\n\nFor each additional dollar the bill is higher, we expect the tip percentage to be lower, on average, by 0.0748%.\n\n\n\nFor bills that are 0 dollars, the model predicts the tip percentage to be 19.8%. This doesn’t make sense in context of the data and the intercept is only there the adjust the height of the line.\n\n\n\nglance(tip_1_fit)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared  sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0282        0.0206 0.0819      3.69  0.0570     1   141. -275. -267.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\nRoughly 2.6% of the variability in tip percentages can be explained by bill amount."
   },
   {
-    "objectID": "ae/ae-03-delta.html#exercise-4",
-    "href": "ae/ae-03-delta.html#exercise-4",
-    "title": "COVID vaccine and deaths from Delta variant",
+    "objectID": "ae/ae-08-tips-sa.html#exercise-4",
+    "href": "ae/ae-08-tips-sa.html#exercise-4",
+    "title": "Tips",
     "section": "Exercise 4",
-    "text": "Exercise 4\nCalculate the proportion of deaths in among those who are vaccinated. Then, calculate the proportion among those who are not vaccinated.\nAdd your answer here.\n\n# add code here"
+    "text": "Exercise 4\nSuppose we next add meal as a predictor and interpret the model coefficients again.\n\ntip_2_fit &lt;- linear_reg() |&gt;\n  fit(tip_percentage ~ bill + meal, data = tips)\n\ntidy(tip_2_fit)\n\n# A tibble: 4 × 5\n  term            estimate std.error statistic  p.value\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)     0.185     0.0237       7.80  2.07e-12\n2 bill           -0.000561  0.000446    -1.26  2.10e- 1\n3 mealDinner      0.00471   0.0191       0.247 8.05e- 1\n4 mealLate Night  0.0203    0.0250       0.814 4.17e- 1\n\n\n\n\nAll else held constant, for each additional dollar the bill is higher, we expect the tip percentage to be lower, on average, by 0.0561%.\nAll else held constant, we would expect the the tip percentage for dinners to be higher, on average, by 0.471% compared to lunches.\nAll else held constant, we would expect the the tip percentage for late night meals to be higher, on average, by 2.03% compared to lunches."
   },
   {
-    "objectID": "ae/ae-03-delta.html#exercise-5",
-    "href": "ae/ae-03-delta.html#exercise-5",
-    "title": "COVID vaccine and deaths from Delta variant",
+    "objectID": "ae/ae-08-tips-sa.html#exercise-5",
+    "href": "ae/ae-08-tips-sa.html#exercise-5",
+    "title": "Tips",
     "section": "Exercise 5",
-    "text": "Exercise 5\nCreate the visualization and calculate proportions from the two previous exercises, this time controlling for age. How do the proportions compare?\nAdd your answer here.\n\n# add code here"
+    "text": "Exercise 5\nWould you expect the \\(R^2\\) of the second model (with bill and meal as predictors) to be higher, lower, or the same as the \\(R^2\\) for the first model (with only bill as the predictor)? Explain your reasoning.\n\nHigher, adding a predictor always increases \\(R^2\\)."
   },
   {
-    "objectID": "ae/ae-03-delta.html#exercise-6",
-    "href": "ae/ae-03-delta.html#exercise-6",
-    "title": "COVID vaccine and deaths from Delta variant",
+    "objectID": "ae/ae-08-tips-sa.html#exercise-6",
+    "href": "ae/ae-08-tips-sa.html#exercise-6",
+    "title": "Tips",
     "section": "Exercise 6",
-    "text": "Exercise 6\nBased on your findings so far, fill in the blanks with more, less, or equally: Is there anything surprising about these statements? Speculate on what, if anything, the discrepancy might be due to.\n\nIn 2021, among those in the UK who were COVID Delta cases, the vaccinated were ___ likely to die than the unvaccinated.\nFor those under 50, those who were unvaccinated were ___ likely to die than those who were vaccinated.\nFor those 50 and up, those who were unvaccinated were ___ likely to die than those who were vaccinated.\n\nAdd your answer here."
+    "text": "Exercise 6\nFit a model predicting tip percentage from bill amount and meal, calculate its \\(R^2\\), and comment on your guess from the previous exercise.\n\nglance(tip_2_fit)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared  sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0342        0.0110 0.0823      1.48   0.224     3   141. -272. -258.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\nIndeed, \\(R^2\\) is higher."
   },
   {
-    "objectID": "ae/ae-03-delta.html#exercise-7",
-    "href": "ae/ae-03-delta.html#exercise-7",
-    "title": "COVID vaccine and deaths from Delta variant",
+    "objectID": "ae/ae-08-tips-sa.html#exercise-7",
+    "href": "ae/ae-08-tips-sa.html#exercise-7",
+    "title": "Tips",
     "section": "Exercise 7",
-    "text": "Exercise 7\nLet’s rephrase the previous question which asked you to speculate on why deaths among vaccinated cases overall is higher while deaths among unvaccinated cases are higher when we split the data into two groups (below 50 and 50 and up). What might be the confounding variable in the relationship between vaccination and deaths?\nAdd your answer here."
+    "text": "Exercise 7\nCalculate adjusted \\(R^2\\) for the two models. Is adding meal to a model predicting tip_percentage from bill useful?\n\nglance(tip_1_fit)$adj.r.squared\n\n[1] 0.02056839\n\nglance(tip_2_fit)$adj.r.squared\n\n[1] 0.01103831\n\n\n\nNo, adjusted \\(R^2\\) goes down."
   },
   {
-    "objectID": "ae/ae-03-delta.html#exercise-8",
-    "href": "ae/ae-03-delta.html#exercise-8",
-    "title": "COVID vaccine and deaths from Delta variant",
+    "objectID": "ae/ae-08-tips-sa.html#backward-elimination",
+    "href": "ae/ae-08-tips-sa.html#backward-elimination",
+    "title": "Tips",
+    "section": "Backward elimination",
+    "text": "Backward elimination\nBackward elimination starts with the full model (the model that includes all potential predictor variables). Variables are eliminated one-at-a-time from the model until we cannot improve the model any further.\nProcedure:\n\nStart with a model that has all predictors we consider and compute the adjusted \\(R^2\\).\nNext fit every possible model with 1 fewer predictor.\nCompare adjusted \\(R^2\\)s to select the best model (highest adjusted \\(R^2\\)) with 1 fewer predictor.\nRepeat steps 2 and 3 until adjusted \\(R^2\\) no longer increases."
+  },
+  {
+    "objectID": "ae/ae-08-tips-sa.html#forward-selection",
+    "href": "ae/ae-08-tips-sa.html#forward-selection",
+    "title": "Tips",
+    "section": "Forward selection",
+    "text": "Forward selection\nForward selection is the reverse of the backward elimination technique. Instead, of eliminating variables one-at-a-time, we add variables one-at-a-time until we cannot find any variables that improve the model any further.\nProcedure:\n\nStart with a model that has no predictors.\nNext fit every possible model with 1 additional predictor and calculate adjusted \\(R^2\\) of each model.\nCompare adjusted \\(R^2\\) values to select the best model (highest adjusted \\(R^2\\)) with 1 additional predictor.\nRepeat steps 2 and 3 until adjusted \\(R^2\\) no longer increases."
+  },
+  {
+    "objectID": "ae/ae-08-tips-sa.html#exercise-8",
+    "href": "ae/ae-08-tips-sa.html#exercise-8",
+    "title": "Tips",
     "section": "Exercise 8",
-    "text": "Exercise 8\nVisualize and describe the distribution of seniors (50 and up) based on (a.k.a. conditional on) vaccination status. Hint: Your description will benefit from calculating proportions of seniors in each of the vaccination groups and working those values into your narrative.\nAdd your answer here.\n\n# add your code here"
+    "text": "Exercise 8\nPerform backward elimination to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\n\ntip_full_fit &lt;- linear_reg() |&gt; fit(tip_percentage ~ meal + party + alcohol + bill, data = tips)\nglance(tip_full_fit)$adj.r.squared\n\n[1] 0.0003858485\n\n# step 1\nlinear_reg() |&gt; fit(tip_percentage ~ meal + party + alcohol, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] -0.001215283\n\nlinear_reg() |&gt; fit(tip_percentage ~ meal + party + bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.007718966\n\nlinear_reg() |&gt; fit(tip_percentage ~ meal + alcohol + bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.004761466\n\nlinear_reg() |&gt; fit(tip_percentage ~ party + alcohol + bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared) # highest adj R-sq: 0.021\n\n[1] 0.01225785\n\n# step 2\nlinear_reg() |&gt; fit(tip_percentage ~ party + alcohol, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] -0.0003317171\n\nlinear_reg() |&gt; fit(tip_percentage ~ party + bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared) # highest adj R-sq:  0.027\n\n[1] 0.01989357\n\nlinear_reg() |&gt; fit(tip_percentage ~ alcohol + bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.01374295\n\n# step 3 - no increase in adj R-sq\nlinear_reg() |&gt; fit(tip_percentage ~ bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.02056839\n\nlinear_reg() |&gt; fit(tip_percentage ~ party, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.00420045\n\n\n\nThe “best” model attained with backwards elimination predicts tip_percentage from party and bill."
   },
   {
-    "objectID": "ae/ae-07-books.html",
-    "href": "ae/ae-07-books.html",
-    "title": "Weights of books",
-    "section": "",
-    "text": "Today we’ll explore the question “How do volume and weights books relate?” and “How, if at all, does that change when we take whether the book is hardback or paperback into consideration?”"
-  },
-  {
-    "objectID": "ae/ae-07-books.html#exercise-1",
-    "href": "ae/ae-07-books.html#exercise-1",
-    "title": "Weights of books",
-    "section": "Exercise 1",
-    "text": "Exercise 1\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis). Overlay the line of best fit. Describe the relationship between these variables.\n\n# add code here\n\n\nAdd response here."
-  },
-  {
-    "objectID": "ae/ae-07-books.html#exercise-2",
-    "href": "ae/ae-07-books.html#exercise-2",
-    "title": "Weights of books",
-    "section": "Exercise 2",
-    "text": "Exercise 2\nFit a model predicting weight from volume for these books and save it as weight_fit. Display a tidy output of the model.\n\n# add code here"
-  },
-  {
-    "objectID": "ae/ae-07-books.html#exercise-3",
-    "href": "ae/ae-07-books.html#exercise-3",
-    "title": "Weights of books",
-    "section": "Exercise 3",
-    "text": "Exercise 3\nInterpret the slope and the intercept in context of the data.\n\nAdd response here."
-  },
-  {
-    "objectID": "ae/ae-07-books.html#exercise-4",
-    "href": "ae/ae-07-books.html#exercise-4",
-    "title": "Weights of books",
-    "section": "Exercise 4",
-    "text": "Exercise 4\nCalculate the \\(R^2\\) of this model and interpret it in context of the data.\n\n# add code here\n\n\nAdd response here."
-  },
-  {
-    "objectID": "ae/ae-07-books.html#exercise-5",
-    "href": "ae/ae-07-books.html#exercise-5",
-    "title": "Weights of books",
-    "section": "Exercise 5",
-    "text": "Exercise 5\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis), taking into consideration the cover type of the book. Use different colors and shapes for hardback and paperback books. Also use different colors for lines of best fit for the two types of books. In addition, add the overall line of best fit (from Exercise 1) as a gray dashed line so that you can see the difference between the lines when considering and not considering cover type.\n\n# add code here"
-  },
-  {
-    "objectID": "ae/ae-07-books.html#exercise-6",
-    "href": "ae/ae-07-books.html#exercise-6",
-    "title": "Weights of books",
-    "section": "Exercise 6",
-    "text": "Exercise 6\nFit a model predicting weight from volume for these books and save it as weight_cover_fit. Display a tidy output of the model.\n\n# add code here"
-  },
-  {
-    "objectID": "ae/ae-07-books.html#exercise-7",
-    "href": "ae/ae-07-books.html#exercise-7",
-    "title": "Weights of books",
-    "section": "Exercise 7",
-    "text": "Exercise 7\nIn the model output we have a variable coverpb. Why is only the pb (paperback) level of the cover variable shown? What happened to the hb (hardback) level?\n\nAdd response here."
-  },
-  {
-    "objectID": "ae/ae-07-books.html#exercise-8",
-    "href": "ae/ae-07-books.html#exercise-8",
-    "title": "Weights of books",
-    "section": "Exercise 8",
-    "text": "Exercise 8\nInterpret the slopes and the intercept in context of the data.\n\nAdd response here."
-  },
-  {
-    "objectID": "ae/ae-07-books.html#exercise-9",
-    "href": "ae/ae-07-books.html#exercise-9",
-    "title": "Weights of books",
+    "objectID": "ae/ae-08-tips-sa.html#exercise-9",
+    "href": "ae/ae-08-tips-sa.html#exercise-9",
+    "title": "Tips",
     "section": "Exercise 9",
-    "text": "Exercise 9\nFirst, guess whether the \\(R^2\\) of this model will be greater than, less than, or the same as the previous model, or whether we can’t tell. Then, calculate the \\(R^2\\) of this model to confirm your guess, and then interpret it in context of the data.\n\n# add code here\n\n\nAdd response here."
+    "text": "Exercise 9\nPerform backward elimination to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\n\n# step 1\nlinear_reg() |&gt; fit(tip_percentage ~ meal, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.006434878\n\nlinear_reg() |&gt; fit(tip_percentage ~ party, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.00420045\n\nlinear_reg() |&gt; fit(tip_percentage ~ alcohol, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] -0.002762376\n\nlinear_reg() |&gt; fit(tip_percentage ~ bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared) # highest adj R-sq: 0.02\n\n[1] 0.02056839\n\n# step 2\nlinear_reg() |&gt; fit(tip_percentage ~ bill + meal, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.01103831\n\nlinear_reg() |&gt; fit(tip_percentage ~ bill + party, data = tips) |&gt; glance() |&gt; pull(adj.r.squared) # highest adj R-sq:  0.027\n\n[1] 0.01989357\n\nlinear_reg() |&gt; fit(tip_percentage ~ bill + alcohol, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.01374295\n\n# step 3 - no increase in adj R-sq\nlinear_reg() |&gt; fit(tip_percentage ~ bill + party + meal, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.007718966\n\nlinear_reg() |&gt; fit(tip_percentage ~ bill + party + alcohol, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.01225785\n\n\n\nThe “best” model attained with forward selection also predicts tip_percentage from party and bill."
   },
   {
-    "objectID": "ae/ae-07-books.html#exercise-10",
-    "href": "ae/ae-07-books.html#exercise-10",
-    "title": "Weights of books",
+    "objectID": "ae/ae-08-tips-sa.html#exercise-10",
+    "href": "ae/ae-08-tips-sa.html#exercise-10",
+    "title": "Tips",
     "section": "Exercise 10",
-    "text": "Exercise 10\nWhich model is preferred for predicting book weights and why?\n\nAdd response here."
+    "text": "Exercise 10\nFit the “best” model and interpret it.\n\ntip_fit &lt;- linear_reg() |&gt; \n  fit(tip_percentage ~ bill + party, data = tips)\n\ntidy(tip_fit)\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)  0.193    0.0142      13.6   1.44e-26\n2 bill        -0.00145  0.000834    -1.74  8.40e- 2\n3 party        0.0113   0.0118       0.955 3.41e- 1\n\n\n\nAdd response here."
   },
   {
-    "objectID": "ae/ae-07-books.html#exercise-11",
-    "href": "ae/ae-07-books.html#exercise-11",
-    "title": "Weights of books",
-    "section": "Exercise 11",
-    "text": "Exercise 11\nUsing the model you chose, predict the weight of a hardcover book that is 1000 cubic centimeters (that is, roughly 25 centimeters in length, 20 centimeters in width, and 2 centimeters in height/thickness).\n\n# add code here"
+    "objectID": "ae/ae-04-durham-sa.html",
+    "href": "ae/ae-04-durham-sa.html",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "",
+    "text": "Important\n\n\n\nThese are suggested answers for the application exercise. They’re not necessarily complete or 100% accurate, they’re roughly what we develop in class while going through the exercises.\nThe main question we’ll explore today is “What are the demographics and priorities of City of Durham residents?”"
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html#exercise-1",
+    "href": "ae/ae-04-durham-sa.html#exercise-1",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nHow many rows and columns are in this dataset? Answer in a full sentence using inline code. What does each row represent and what does each column represent?\nAdd your answer here."
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html#exercise-2",
+    "href": "ae/ae-04-durham-sa.html#exercise-2",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nThe variables we’ll use in this analysis are as follows. Rename the variables to the updated names shown below.\n\n\n\nOriginal name\nUpdated name\n\n\n\n\nprimary_language\nprimary_language\n\n\ndo_you_own_or_rent_your_current_resi_31\nown_rent\n\n\nwould_you_say_your_total_annual_hous_35\nincome\n\n\n\n\ndurham &lt;- durham |&gt;\n  rename(\n    own_rent = do_you_own_or_rent_your_current_resi_31,\n    income = would_you_say_your_total_annual_hous_35\n  )"
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html#exercise-3",
+    "href": "ae/ae-04-durham-sa.html#exercise-3",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "Exercise 3",
+    "text": "Exercise 3\nWhat language do Durham residents speak: primary_language?\n\nWhat is the primary language used in your household?\n\nAdd your answer here.\n\nggplot(durham, aes(x = primary_language)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html#exercise-4",
+    "href": "ae/ae-04-durham-sa.html#exercise-4",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "Exercise 4",
+    "text": "Exercise 4\nMake similar bar plots of own_rent and income. What distinct values do these variables take?\n\nggplot(durham, aes(x = own_rent)) +\n  geom_bar()\n\nWarning: Removed 2 rows containing non-finite values (`stat_count()`).\n\n\n\n\nggplot(durham, aes(x = income)) +\n  geom_bar()\n\nWarning: Removed 110 rows containing non-finite values (`stat_count()`)."
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html#exercise-5",
+    "href": "ae/ae-04-durham-sa.html#exercise-5",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "Exercise 5",
+    "text": "Exercise 5\nThe variables own_rent and income are both categorical, but they’re stored as numbers. In R, categorical data are called factors. Recode these variables as factors with the as_factor() function.\n\ndurham &lt;- durham |&gt;\n  mutate(\n    income = as_factor(income),\n    own_rent = as_factor(own_rent)\n    )"
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html#exercise-6",
+    "href": "ae/ae-04-durham-sa.html#exercise-6",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "Exercise 6",
+    "text": "Exercise 6\nRecreate the visualization from the previous exerciseincome` barplot, improving it for both visual appeal and better communication of findings.\nAdd your answer here.\n\ndurham |&gt;\n  ggplot(aes(y = income, fill = income)) +\n  geom_bar(show.legend = FALSE) +\n  scale_fill_viridis_d(na.value = \"darkgray\") +\n  scale_y_discrete(\n    labels = c(\n      \"1\" = \"Under $30,000\",\n      \"2\" = \"$30,000-$59,999\",\n      \"3\" = \"$60,000-$99,999\",\n      \"4\" = \"$100,000 or more\"\n    )\n  ) +\n  labs(\n    x = \"Count\",\n    y = NULL,\n    title = \"Would you say your total annual household income is...\"\n  )"
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html#exercise-7",
+    "href": "ae/ae-04-durham-sa.html#exercise-7",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "Exercise 7",
+    "text": "Exercise 7\nRecreate the visualization from the previous exercise, but first calculate relative frequencies (proportions) of income (the marginal distribution) and plot the proportions instead of counts.\n\ndurham |&gt;\n  count(income) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  ggplot(aes(y = income, x = prop, fill = income)) +\n  geom_col(show.legend = FALSE) +\n  scale_fill_viridis_d(na.value = \"gray\") +\n  scale_y_discrete(\n    labels = c(\n      \"1\" = \"Under $30,000\",\n      \"2\" = \"$30,000-$59,999\",\n      \"3\" = \"$60,000-$99,999\",\n      \"4\" = \"$100,000 or more\"\n    )\n  ) +\n  labs(\n    x = \"Proportion\",\n    y = NULL,\n    title = \"Would you say your total annual household income is...\"\n  )"
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html#exercise-8",
+    "href": "ae/ae-04-durham-sa.html#exercise-8",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "Exercise 8",
+    "text": "Exercise 8\nVisualize and describe the relationship between income and home ownership of Durham residents.\nStretch goal: Customize the colors using named colors from http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf.\nAdd your answer here.\n\ndurham |&gt;\n  select(income, own_rent) |&gt;\n  drop_na() |&gt;\n  ggplot(aes(y = income, fill = own_rent)) +\n  geom_bar(position = \"fill\") +\n  scale_y_discrete(\n    labels = c(\n      \"1\" = \"Under $30,000\",\n      \"2\" = \"$30,000-$59,999\",\n      \"3\" = \"$60,000-$99,999\",\n      \"4\" = \"$100,000 or more\"\n    )\n  ) +\n  scale_fill_manual(\n    values = c(\"1\" = \"cadetblue\", \"2\" = \"coral\"),\n    labels = c(\"1\" = \"Own\", \"2\" = \"Rent\")\n  ) +\n  labs(\n    x = \"Proportion\",\n    y = \"Would you say your total\\nannual household income is...\",\n    fill = \"Do you own\\nor rent\\nyour current\\nresidence?\",\n    title = \"Income vs. home ownership of Durham residents\"\n  )"
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html#exercise-9",
+    "href": "ae/ae-04-durham-sa.html#exercise-9",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "Exercise 9",
+    "text": "Exercise 9\nCalculate the proportions of home owners for each category of Durham residents. Describe the relationship between these two variables, this time with the actual values from the conditional distribution of home ownership based on income level.\nAdd your answer here.\n\ndurham |&gt;\n  select(income, own_rent) |&gt;\n  drop_na() |&gt;\n  count(income, own_rent) |&gt;\n  group_by(income) |&gt;\n  mutate(prop = n / sum(n))\n\n# A tibble: 8 × 4\n# Groups:   income [4]\n  income own_rent     n   prop\n  &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;  &lt;dbl&gt;\n1 1      1           51 0.362 \n2 1      2           90 0.638 \n3 2      1          105 0.565 \n4 2      2           81 0.435 \n5 3      1          107 0.552 \n6 3      2           87 0.448 \n7 4      1          160 0.930 \n8 4      2           12 0.0698"
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html#exercise-10",
+    "href": "ae/ae-04-durham-sa.html#exercise-10",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "Exercise 10",
+    "text": "Exercise 10\nStretch goal: Recode the levels of these two variables to be more informatively labeled.\n\ndurham &lt;- durham |&gt;\n  mutate(\n    income = case_when(\n      income == \"1\" ~ \"Under $30,000\",\n      income == \"2\" ~ \"$30,000-$59,999\",\n      income == \"3\" ~ \"$60,000-$99,999\",\n      income == \"4\" ~ \"$100,000 or more\"      \n    ),\n    own_rent = if_else(own_rent == 1, \"Own\", \"Rent\")\n  )\n\ndurham |&gt;\n  select(income, own_rent) |&gt;\n  drop_na() |&gt;\n  count(income, own_rent) |&gt;\n  group_by(income) |&gt;\n  mutate(prop = n / sum(n))\n\n# A tibble: 8 × 4\n# Groups:   income [4]\n  income           own_rent     n   prop\n  &lt;chr&gt;            &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;\n1 $100,000 or more Own        160 0.930 \n2 $100,000 or more Rent        12 0.0698\n3 $30,000-$59,999  Own        105 0.565 \n4 $30,000-$59,999  Rent        81 0.435 \n5 $60,000-$99,999  Own        107 0.552 \n6 $60,000-$99,999  Rent        87 0.448 \n7 Under $30,000    Own         51 0.362 \n8 Under $30,000    Rent        90 0.638"
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html#conceptual",
+    "href": "ae/ae-04-durham-sa.html#conceptual",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "Conceptual",
+    "text": "Conceptual\nSome of the terms we introduced are:\n\nMarginal distribution: Distribution of a single variable.\nConditional distribution: Distribution of a variable conditioned on the values (or levels, in the context of categorical data) of another."
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html#r",
+    "href": "ae/ae-04-durham-sa.html#r",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "R",
+    "text": "R\nIn this application exercise we:\n\nDefined factors – the data type that R uses for categorical variables, i.e., variables that can take on values from a finite set of levels.\n\n\n\nReviewed data imports, visualization, and wrangling functions encountered before:\n\nImport: read_csv(): Read data from a CSV (comma separated values) file\nVisualization:\n\nggplot(): Create a plot using the ggplot2 package\naes(): Map variables from the data to aesthetic elements of the plot, generally passed as an argument to ggplot() or to geom_*() functions (define only x or y aesthetic)\ngeom_bar(): Represent data with bars, after calculating heights of bars under the hood\nlabs(): Label x axis, y axis, legend for color of plot, title` of plot, etc.\n\nWrangling:\n\nmutate(): Mutate the data frame by creating a new column or overwriting one of the existing columns\ncount(): Count the number of observations for each level of a categorical variable (factor) or each distinct value of any other type of variable\ngroup_by(): Perform each subsequent action once per each group of the variable, where groups can be defined based on the levels of one or more variables\n\n\nIntroduced new data wrangling functions:\n\nrename(): Rename columns in a data frame\nas_factor(): Convert a variable to a factor\ndrop_na(): Drop rows that have NA in one ore more specified variables\nif_else(): Write logic for what happens if a condition is true and what happens if it’s not\ncase_when(): Write a generalized if_else() logic for more than one codition\n\nIntroduced new data visualization functions:\n\ngeom_col(): Represent data with bars (columns), for heights that have already been calculated (must define x and y aesthetics)\nscale_fill_viridis_d(): Customize the discrete fill scale, using a color-blind friendly, ordinal discrete color scale\nscale_y_discrete(): Customize the discrete y scale\nscale_fill_manual(): Customize the fill scale by manually adjusting values for colors"
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html#quarto",
+    "href": "ae/ae-04-durham-sa.html#quarto",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "Quarto",
+    "text": "Quarto\nWe also introduced chunk options for managing figure sizes:\n\nfig-width: Width of figure\nfig-asp: Aspect ratio of figure (height / width)\nfig-height: Height of figure – but I recommend using fig-width and fig-asp, instead of fig-width and fig-height"
+  },
+  {
+    "objectID": "ae/ae-08-tips.html",
+    "href": "ae/ae-08-tips.html",
+    "title": "Tips",
+    "section": "",
+    "text": "Today we’ll explore the question “What best predicts what percent of the bill amount people tip at restaurants?”"
+  },
+  {
+    "objectID": "ae/ae-08-tips.html#exercise-1",
+    "href": "ae/ae-08-tips.html#exercise-1",
+    "title": "Tips",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nVisualize the relationship between these variables.\n\n# add code here"
+  },
+  {
+    "objectID": "ae/ae-08-tips.html#exercise-2",
+    "href": "ae/ae-08-tips.html#exercise-2",
+    "title": "Tips",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nIn a couple of sentences, describe any apparent patterns.\n\nAdd response here."
+  },
+  {
+    "objectID": "ae/ae-08-tips.html#exercise-3",
+    "href": "ae/ae-08-tips.html#exercise-3",
+    "title": "Tips",
+    "section": "Exercise 3",
+    "text": "Exercise 3\nFit a model predicting tip percentage from bill amount. Display and interpret the model coefficients. Additionally, calculate and interpret the \\(R^2\\) of this model.\n\n# add code here\n\n\nAdd response here.\n\n\n# add code here\n\n\nAdd response here."
+  },
+  {
+    "objectID": "ae/ae-08-tips.html#exercise-4",
+    "href": "ae/ae-08-tips.html#exercise-4",
+    "title": "Tips",
+    "section": "Exercise 4",
+    "text": "Exercise 4\nSuppose we next add meal as a predictor and interpret the model coefficients again.\n\n# add code here\n\n\nAdd response here."
+  },
+  {
+    "objectID": "ae/ae-08-tips.html#exercise-5",
+    "href": "ae/ae-08-tips.html#exercise-5",
+    "title": "Tips",
+    "section": "Exercise 5",
+    "text": "Exercise 5\nWould you expect the \\(R^2\\) of the second model (with bill and meal as predictors) to be higher, lower, or the same as the \\(R^2\\) for the first model (with only bill as the predictor)? Explain your reasoning.\n\nAdd response here."
+  },
+  {
+    "objectID": "ae/ae-08-tips.html#exercise-6",
+    "href": "ae/ae-08-tips.html#exercise-6",
+    "title": "Tips",
+    "section": "Exercise 6",
+    "text": "Exercise 6\nFit a model predicting tip percentage from bill amount and meal, calculate its \\(R^2\\), and comment on your guess from the previous exercise.\n\n# add code here\n\n\nAdd response here."
+  },
+  {
+    "objectID": "ae/ae-08-tips.html#exercise-7",
+    "href": "ae/ae-08-tips.html#exercise-7",
+    "title": "Tips",
+    "section": "Exercise 7",
+    "text": "Exercise 7\nCalculate adjusted \\(R^2\\) for the two models. Is adding meal to a model predicting tip_percentage from bill useful?\n\n# add code here\n\n\nAdd response here."
+  },
+  {
+    "objectID": "ae/ae-08-tips.html#backward-elimination",
+    "href": "ae/ae-08-tips.html#backward-elimination",
+    "title": "Tips",
+    "section": "Backward elimination",
+    "text": "Backward elimination\nBackward elimination starts with the full model (the model that includes all potential predictor variables). Variables are eliminated one-at-a-time from the model until we cannot improve the model any further.\nProcedure:\n\nStart with a model that has all predictors we consider and compute the adjusted \\(R^2\\).\nNext fit every possible model with 1 fewer predictor.\nCompare adjusted \\(R^2\\)s to select the best model (highest adjusted \\(R^2\\)) with 1 fewer predictor.\nRepeat steps 2 and 3 until adjusted \\(R^2\\) no longer increases."
+  },
+  {
+    "objectID": "ae/ae-08-tips.html#forward-selection",
+    "href": "ae/ae-08-tips.html#forward-selection",
+    "title": "Tips",
+    "section": "Forward selection",
+    "text": "Forward selection\nForward selection is the reverse of the backward elimination technique. Instead, of eliminating variables one-at-a-time, we add variables one-at-a-time until we cannot find any variables that improve the model any further.\nProcedure:\n\nStart with a model that has no predictors.\nNext fit every possible model with 1 additional predictor and calculate adjusted \\(R^2\\) of each model.\nCompare adjusted \\(R^2\\) values to select the best model (highest adjusted \\(R^2\\)) with 1 additional predictor.\nRepeat steps 2 and 3 until adjusted \\(R^2\\) no longer increases."
+  },
+  {
+    "objectID": "ae/ae-08-tips.html#exercise-8",
+    "href": "ae/ae-08-tips.html#exercise-8",
+    "title": "Tips",
+    "section": "Exercise 8",
+    "text": "Exercise 8\nPerform backward elimination to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\n\n# add code here\n\n\nAdd response here."
+  },
+  {
+    "objectID": "ae/ae-08-tips.html#exercise-9",
+    "href": "ae/ae-08-tips.html#exercise-9",
+    "title": "Tips",
+    "section": "Exercise 9",
+    "text": "Exercise 9\nPerform backward elimination to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\n\n# add code here\n\n\nAdd response here."
+  },
+  {
+    "objectID": "ae/ae-08-tips.html#exercise-10",
+    "href": "ae/ae-08-tips.html#exercise-10",
+    "title": "Tips",
+    "section": "Exercise 10",
+    "text": "Exercise 10\nFit the “best” model and interpret it.\n\n# add code here\n\n\nAdd response here."
   },
   {
     "objectID": "lectures/01/01-welcome.html#teaching-team",
@@ -1015,99 +1148,99 @@
     "text": "Application exercise: UN Votes\n\nGo to Posit Cloud and start the project called UN Votes. Render the document titled unvotes.qmd. Review the narrative and the data visualization you just created. Then, change “Turkey” to another country of your choice. Re-render the document. Show the plot you created to your neighbor and discuss (1) why you chose that country and (2) how this new visualization is different than the original (and what that says about country politics, if anything).\nTime permitting: How were these data collected?\n\n\n\n\n🔗 sta101-f23.github.io"
   },
   {
-    "objectID": "lectures/07/07-regression-multiple-predictors-1.html#check-in",
-    "href": "lectures/07/07-regression-multiple-predictors-1.html#check-in",
+    "objectID": "lectures/07/07-regression-multiple-predictors.html#check-in",
+    "href": "lectures/07/07-regression-multiple-predictors.html#check-in",
     "title": "Regression with multiple predictors",
     "section": "Check-in",
     "text": "Check-in\n\nDaily check-ins for getting you thinking at the beginning of the class and reviewing recent/important concepts\nGo to Canvas and open today’s “quiz” titled 2023-09-25 Check-in\nAccess code: ___ (released in class) \n“Graded” for completion"
   },
   {
-    "objectID": "lectures/07/07-regression-multiple-predictors-1.html#announcements",
-    "href": "lectures/07/07-regression-multiple-predictors-1.html#announcements",
+    "objectID": "lectures/07/07-regression-multiple-predictors.html#announcements",
+    "href": "lectures/07/07-regression-multiple-predictors.html#announcements",
     "title": "Regression with multiple predictors",
     "section": "Announcements",
     "text": "Announcements\n\nSuggested answers for application exercises posted\nMy office hours this week:\n\nTuesday 4:45-5:45 in Old Chem 213 (instead of the usual 3:30 - 5:30)\nWednesday 5-6 on Zoom\n\nLab 4 is due Thu, Sep 28 at 5 pm on Gradescope\nLab this week: Exam 1 review\nExam 1:\n\nIn class - Wed, Oct 4\nTake home - Starts after in-class exam, ends Fri, Oct 6 at 5pm\nNo lab on Fri, Oct 6"
   },
   {
-    "objectID": "lectures/07/07-regression-multiple-predictors-1.html#load-packages-and-data",
-    "href": "lectures/07/07-regression-multiple-predictors-1.html#load-packages-and-data",
+    "objectID": "lectures/07/07-regression-multiple-predictors.html#load-packages-and-data",
+    "href": "lectures/07/07-regression-multiple-predictors.html#load-packages-and-data",
     "title": "Regression with multiple predictors",
     "section": "Load packages and data",
     "text": "Load packages and data\n\nlibrary(tidyverse)\nlibrary(tidymodels)\nlibrary(scatterplot3d)"
   },
   {
-    "objectID": "lectures/07/07-regression-multiple-predictors-1.html#r2",
-    "href": "lectures/07/07-regression-multiple-predictors-1.html#r2",
+    "objectID": "lectures/07/07-regression-multiple-predictors.html#r2",
+    "href": "lectures/07/07-regression-multiple-predictors.html#r2",
     "title": "Regression with multiple predictors",
     "section": "\\(R^2\\)",
     "text": "\\(R^2\\)\n\\(R^2\\), aka “the coefficient of determination” or “correlation squared” is a way to see how well a given model fits the data.\n\\[\nR^2 = r_i^2\n\\]"
   },
   {
-    "objectID": "lectures/07/07-regression-multiple-predictors-1.html#sum-of-squares-total-sst",
-    "href": "lectures/07/07-regression-multiple-predictors-1.html#sum-of-squares-total-sst",
+    "objectID": "lectures/07/07-regression-multiple-predictors.html#sum-of-squares-total-sst",
+    "href": "lectures/07/07-regression-multiple-predictors.html#sum-of-squares-total-sst",
     "title": "Regression with multiple predictors",
     "section": "Sum of squares total, SST",
     "text": "Sum of squares total, SST\nThe sum of squares total is a measure of the total variability in the outcome variable:\n\\[\nSST = (y_1 - \\bar{y})^2 + (y_2 - \\bar{y})^2 + \\cdots + (y_n - \\bar{y})^2\n\\]"
   },
   {
-    "objectID": "lectures/07/07-regression-multiple-predictors-1.html#sum-of-squares-residuals-sse",
-    "href": "lectures/07/07-regression-multiple-predictors-1.html#sum-of-squares-residuals-sse",
+    "objectID": "lectures/07/07-regression-multiple-predictors.html#sum-of-squares-residuals-sse",
+    "href": "lectures/07/07-regression-multiple-predictors.html#sum-of-squares-residuals-sse",
     "title": "Regression with multiple predictors",
     "section": "Sum of squares residuals, SSE",
     "text": "Sum of squares residuals, SSE\nThe sum of squares residuals (error) is a measure of the variability in the residuals, i.e., variability left unexplained in the outcome variable after the model is fit:\n\\[\nSSE = (y_1 - \\hat{y}_1)^2 + (y_2 - \\hat{y}_2)^2 + \\cdots + (y_n - \\hat{y}_n)^2\n\\]"
   },
   {
-    "objectID": "lectures/07/07-regression-multiple-predictors-1.html#r2-another-look",
-    "href": "lectures/07/07-regression-multiple-predictors-1.html#r2-another-look",
+    "objectID": "lectures/07/07-regression-multiple-predictors.html#r2-another-look",
+    "href": "lectures/07/07-regression-multiple-predictors.html#r2-another-look",
     "title": "Regression with multiple predictors",
     "section": "\\(R^2\\), another look",
     "text": "\\(R^2\\), another look\n\\[\nR^2 = \\frac{SST - SSE}{SST} = 1 - \\frac{SSE}{SST}\n\\]\n\n\nThis can be summarized as “\\(R^2\\) is 1 minus the sum of squared residuals divided by the sum of squared total”.\n\n\n\n\nIn other words, \\(R^2\\) is the proportion of variability in the outcome that is explained by the model."
   },
   {
-    "objectID": "lectures/07/07-regression-multiple-predictors-1.html#r2-1",
-    "href": "lectures/07/07-regression-multiple-predictors-1.html#r2-1",
+    "objectID": "lectures/07/07-regression-multiple-predictors.html#r2-1",
+    "href": "lectures/07/07-regression-multiple-predictors.html#r2-1",
     "title": "Regression with multiple predictors",
     "section": "\\(R^2\\)",
     "text": "\\(R^2\\)\n\n\nIf the sum of squared residuals is 0, then the model explains all variability and \\(R^2 = 1 - 0 = 1\\).\nIf the sum of squared residuals is the same as all the variability in the data, then model does not explain any variability and \\(R^2 = 1 - 1 = 0\\).\n\\(R^2\\) is a measure of the proportion of variability the model explains. An \\(R^2\\) of 0 is a poor fit and \\(R^2\\) of 1 is a perfect fit."
   },
   {
-    "objectID": "lectures/07/07-regression-multiple-predictors-1.html#finding-r2",
-    "href": "lectures/07/07-regression-multiple-predictors-1.html#finding-r2",
+    "objectID": "lectures/07/07-regression-multiple-predictors.html#finding-r2",
+    "href": "lectures/07/07-regression-multiple-predictors.html#finding-r2",
     "title": "Regression with multiple predictors",
     "section": "Finding \\(R^2\\)",
     "text": "Finding \\(R^2\\)\nTo find \\(R^2\\) simply call the function glance() on your model_fit, e.g.\n\nmodel_fit &lt;- linear_reg() |&gt;\n  fit(outcome ~ predictor, data = data_set)\n  \nglance(model_fit)"
   },
   {
-    "objectID": "lectures/07/07-regression-multiple-predictors-1.html#two-predictors",
-    "href": "lectures/07/07-regression-multiple-predictors-1.html#two-predictors",
+    "objectID": "lectures/07/07-regression-multiple-predictors.html#two-predictors",
+    "href": "lectures/07/07-regression-multiple-predictors.html#two-predictors",
     "title": "Regression with multiple predictors",
     "section": "Two predictors",
     "text": "Two predictors\n\\[\ny = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\epsilon\n\\]\n\n\n\\(y\\): the outcome variable. Also called the “response” or “dependent variable”. In prediction problems, this is what we are interested in predicting.\n\\(x_i\\): the \\(i^{th}\\) predictor. Also commonly referred to as “regressor”, “independent variable”, “covariate”, “feature”, “the data”.\n\\(\\beta_i\\): “constants” or coefficients i.e. fixed numbers. These are population parameters. \\(\\beta_0\\) has another special name, “the intercept”.\n\\(\\epsilon\\): the error. This quantity represents observational error, i.e. the difference between our observation and the true population-level expected value: \\(\\beta_0 + \\beta_1 x\\).\nEffectively this model says our data \\(y\\) is linearly related to the \\(x_1\\) and \\(x_2\\) but is not perfectly observed due to unexplained errors."
   },
   {
-    "objectID": "lectures/07/07-regression-multiple-predictors-1.html#a-simple-example",
-    "href": "lectures/07/07-regression-multiple-predictors-1.html#a-simple-example",
+    "objectID": "lectures/07/07-regression-multiple-predictors.html#a-simple-example",
+    "href": "lectures/07/07-regression-multiple-predictors.html#a-simple-example",
     "title": "Regression with multiple predictors",
     "section": "A simple example",
     "text": "A simple example\nLet’s examine the first quarter of 2020 high prices of Microsoft, IBM, and Apple stocks to illustrate some ideas.\n\n\n\n\n\n\nIf we have three measurements (variables) then each observation is a point in three-dimensional space. In this example, we can choose one of our measurements to be the outcome variable (e.g. Apple stock price) and use our other two measurements (MSFT and IBM price) as predictors.\nIn general, the total number of measurements, i.e. variables (columns) in our linear model represents the spatial dimension of our model."
   },
   {
-    "objectID": "lectures/07/07-regression-multiple-predictors-1.html#predictors-1-outcome-3-dimensions",
-    "href": "lectures/07/07-regression-multiple-predictors-1.html#predictors-1-outcome-3-dimensions",
+    "objectID": "lectures/07/07-regression-multiple-predictors.html#predictors-1-outcome-3-dimensions",
+    "href": "lectures/07/07-regression-multiple-predictors.html#predictors-1-outcome-3-dimensions",
     "title": "Regression with multiple predictors",
     "section": "2 predictors + 1 outcome = 3 dimensions",
     "text": "2 predictors + 1 outcome = 3 dimensions\nThe fitted linear model no longer looks like a line, but instead looks like a plane. It shows our prediction of AAPL price (\\(y\\)) given both MSFT price (\\(x_1\\)) and IBM price (\\(x_2\\))."
   },
   {
-    "objectID": "lectures/07/07-regression-multiple-predictors-1.html#fitting-a-multiple-regression-model-in-r",
-    "href": "lectures/07/07-regression-multiple-predictors-1.html#fitting-a-multiple-regression-model-in-r",
+    "objectID": "lectures/07/07-regression-multiple-predictors.html#fitting-a-multiple-regression-model-in-r",
+    "href": "lectures/07/07-regression-multiple-predictors.html#fitting-a-multiple-regression-model-in-r",
     "title": "Regression with multiple predictors",
     "section": "Fitting a multiple regression model in R",
     "text": "Fitting a multiple regression model in R\nFind the equation of the plane by adding in new predictors:\n\nmy_model_fit &lt;- linear_reg() |&gt;\n  fit(outcome ~ predictor1 + predictor2 + predictor3 + ..., data = data_frame)\n\n\n\nThis code template will fit the model according to the ordinary least squares (OLS) objective function, i.e., we are finding the equation of the hyperplane that minimizes the sum of squared residuals\n\n\n\n\nYou can then display a tidy output of the model with the tidy() function on your fitted model: tidy(my_model_fit)"
   },
   {
-    "objectID": "lectures/07/07-regression-multiple-predictors-1.html#application-exercise",
-    "href": "lectures/07/07-regression-multiple-predictors-1.html#application-exercise",
+    "objectID": "lectures/07/07-regression-multiple-predictors.html#application-exercise",
+    "href": "lectures/07/07-regression-multiple-predictors.html#application-exercise",
     "title": "Regression with multiple predictors",
     "section": "Application exercise",
     "text": "Application exercise\nGo to Posit Cloud and start the project titled ae-07-Books.\n\n\n\n\n\n\nICYMI\n\n\nToday’s daily check-in access code: ___ (released in class)\n\n\n\n\n\n\n🔗 sta101-f23.github.io"
@@ -1211,34 +1344,6 @@
     "text": "Application exercise\nGo to Posit Cloud and start the project titled ae-03-Delta.\n\n\n\n🔗 sta101-f23.github.io"
   },
   {
-    "objectID": "project/project-tips-resources.html",
-    "href": "project/project-tips-resources.html",
-    "title": "Project tips + resources",
-    "section": "",
-    "text": "To be posted."
-  },
-  {
-    "objectID": "project/project-1.html",
-    "href": "project/project-1.html",
-    "title": "Project 1",
-    "section": "",
-    "text": "More info to be posted."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "STA 101: Data Analysis and Statistical Inference",
-    "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n  \n    \n    \n    \n    \n    \n    \n  \n  \n    \n    \n      WEEK\n      DATE\n      TOPIC\n      PREPARE\n      MATERIALS\n      DUE\n    \n  \n  \n    1\nMon, Aug 28\nWelcome to STA 101!\n\n\n🖥️ slides \n☁️ ae-01 \n⌨️ ae-01\n\n\n    \nWed, Aug 30\nHello data\n\n📖 ims: Chp 1 \n💻 tutorial: 01-data-01 |&gt; submit\n\n🖥️ slides \n☁️ ae-02 \n⌨️ ae-02 \n🗝️ ae-02-sa\n\n🔘 Survey: Getting to know you\n\n    \nFri, Sep 1\nLab 1: Hello R!\n\n\n⌨️ lab-1\n\n\n    2\nMon, Sep 4\nLabor Day - No lecture\n\n\n\n\n    \nWed, Sep 6\nStudy design\n\n📖 ims: Chp 2 \n💻 tutorial: 01-data-02 |&gt; submit \n💻 tutorial: 01-data-03 |&gt; submit\n\n🖥️ slides \n☁️ ae-03 \n⌨️ ae-03 \n🗝️ ae-03-sa\n\n\n    \nThu, Sep 7\n\n\n\n✅ Lab 1 at 5 pm\n\n    \nFri, Sep 8\nLab 2: Hello data!\n\n📖 ims: Chp 3 \n💻 tutorial: 01-data-04 |&gt; submit\n\n⌨️ lab-2\n\n\n    3\nMon, Sep 11\nExploring categorical data\n\n📖 ims: Chp 4 \n💻 tutorial: 02-explore-01 |&gt; submit\n\n🖥️ slides \n☁️ ae-04 \n⌨️ ae-04 \n🗝️ ae-04-sa\n\n\n    \nWed, Sep 13\nExploring numerical data\n\n📖 ims: Chp 5 \n💻 tutorial: 02-explore-02 |&gt; submit\n\n🖥️ slides \n☁️ ae-05 \n⌨️ ae-05 \n🗝️ ae-05-sa\n\n\n    \nThu, Sep 14\n\n\n\n✅ Lab 2 at 5 pm\n\n    \nFri, Sep 15\nLab 3: Exploratory data analysis\n\n📖 ims: Chp 6 \n💻 tutorial: 02-explore-03 |&gt; submit\n\n⌨️ lab-3\n\n\n    4\nMon, Sep 18\nRegression with a single predictor I \nGuest Lecture: Dr. Alex Fisher\n\n📖 ims: Chp 7.1 - 7.2 \n💻 tutorial: 03-model-01 |&gt; submit \n💻 tutorial: 03-model-02 |&gt; submit \n\n🖥️ slides \n☁️ ae-06 \n⌨️ ae-06 \n🗝️ ae-06-sa\n\n\n    \nWed, Sep 20\nNo class \nCatch up with readings and interactive tutorials\n\n📖 ims: Chp 7.2 - 7.4 \n💻 tutorial: 03-model-03 |&gt; submit\n\n\n\n    \nThu, Sep 21\n\n\n\n✅ Lab 3 at 5 pm\n\n    \nFri, Sep 22\nLab 4: Regression\n\n\n⌨️ lab-4\n\n\n    5\nMon, Sep 25\nRegression with multiple predictors I\n\n📖 ims: Chp 8.1 - 8.3\n\n🖥️ slides \n☁️ ae-07 \n⌨️ ae-07\n\n\n    \nWed, Sep 27\nRegression with multiple predictors II\n\n📖 ims: Chp 8.4 - 8.5\n\n\n\n    \nThu, Sep 28\n\n\n\n✅ Lab 4 at 5 pm\n\n    \nFri, Sep 29\nExam 1 Review\n\n\n\n\n    6\nMon, Oct 2\nLogistic regression\n\n\n\n\n    \nWed, Oct 4\nExam 1 - In class\n\n\n\n\n    \nFri, Oct 6\nNo lab: Work on Exam 1 - Take home\n\n\n\nExam 1 - Take home at 5 pm\n\n    7\nMon, Oct 9\nHypothesis testing with randomization I\n\n\n\n\n    \nWed, Oct 11\nHypothesis testing with randomization II\n\n\n\n\n    \nFri, Oct 13\nProject 1 workday\n\n\n\n📄 Project 1 at 5 pm\n\n    8\nMon, Oct 16\nFall Break - No lecture\n\n\n\n\n    \nWed, Oct 18\nConfidence intervals with bootstrapping\n\n\n\n\n    \nFri, Oct 20\nLab 5: Inference with simulation\n\n\n⌨️ lab-5\n\n\n    9\nMon, Oct 23\nInference with mathematical models\n\n\n\n\n    \nWed, Oct 25\nDecision errors \nGuest Lecture: Dr. Yue Jiang\n\n\n\n\n    \nThu, Oct 26\n\n\n\n✅ Lab 5 at 5 pm\n\n    \nFri, Oct 27\nLab 6: Foundations of inference\n\n\n⌨️ lab-6\n\n\n    10\nMon, Oct 30\nInference for a single proportion\n\n\n\n\n    \nWed, Nov 1\nInference for comparing two proportions\n\n\n\n\n    \nThu, Nov 2\n\n\n\n✅ Lab 6 at 5 pm\n\n    \nFri, Nov 3\nLab 7: Inference for proportions\n\n\n⌨️ lab-7\n\n\n    11\nMon, Nov 6\nInference for a single mean\n\n\n\n\n    \nWed, Nov 8\nInference for comparing two means\n\n\n\n\n    \nThu, Nov 9\n\n\n\n✅ Lab 7 at 5 pm\n\n    \nFri, Nov 10\nExam 2 Review\n\n\n\n\n    12\nMon, Nov 13\nInference for two-way tables\n\n\n\n\n    \nWed, Nov 15\nExam 2 - In class\n\n\n\n\n    \nFri, Nov 17\nNo lab: Work on Exam 2 - Take home\n\n\n\nExam 2 - Take home at 5 pm\n\n    13\nMon, Nov 20\nInference for comparing many means\n\n\n\n\n    \nWed, Nov 22\nThanksgiving Break - No lecture\n\n\n\n\n    \nFri, Nov 24\nThanksgiving Break - No lecture\n\n\n\n\n    14\nMon, Nov 27\nInference for regression with a single predictor\n\n\n\n\n    \nWed, Nov 29\nInference for regression with multiple predictors\n\n\n\n\n    \nFri, Dec 1\nLab 8: Inference\n\n\n⌨️ lab-8\n\n\n    15\nMon, Dec 4\nLooking forward: TBA\n\n\n\n\n    \nWed, Dec 6\nLooking forward: TBA\n\n\n\n\n    \nThu, Dec 7\n\n\n\n✅ Lab 8 at 5 pm\n\n    \nFri, Dec 8\nProject 2 peer review\n\n\n\n\n    16\nThu, Dec 14\nProject 2 presentations (2 - 5 pm)\n\n\n\n📄 Project 2 at 2 pm"
-  },
-  {
-    "objectID": "project/project-2.html",
-    "href": "project/project-2.html",
-    "title": "Project 2",
-    "section": "",
-    "text": "More info to be posted."
-  },
-  {
     "objectID": "extra-credit.html",
     "href": "extra-credit.html",
     "title": "Extra credit",
@@ -1251,6 +1356,62 @@
     "title": "Extra credit",
     "section": "",
     "text": "Create a GitHub account at https://github.com, make sure to use your real name in your profile so that I can match your name to you. You can use whatever username you like, but here is some helpful username advice.1\nGo to https://github.com/OpenIntroStat/ims/issues/new/choose and select either “Suggestion” or “Typo”.\n\nIf Suggestion, describe in detail your suggestion, giving as much information and justification as possible.\nIf Typo, fill in the blanks to provide as much information as possible for the typo to be fixed.\n\nWhen done, hit Submit.\nLater in the course you will be asked to fill out a form where you let us know if you’ve opened any feedback issues in the GitHub repo. I’ll confirm your answers by referring back to the issues you opened, and you’ll have the opportunity to earn 2 extra points (out of 100) on each of your exams for opening “useful” issues. “Useful” can be based on the number of issues (quantity) or the depth of your feedback (quality).\nBefore opening an issue, you must the existing ones at https://github.com/OpenIntroStat/ims/issues to make sure you’re not reporting something someone else has already reported.\nIssues can refer to the text of the book or the interactive tutorials."
+  },
+  {
+    "objectID": "project/project-2.html",
+    "href": "project/project-2.html",
+    "title": "Project 2",
+    "section": "",
+    "text": "More info to be posted."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "STA 101: Data Analysis and Statistical Inference",
+    "section": "",
+    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n  \n    \n    \n    \n    \n    \n    \n  \n  \n    \n    \n      WEEK\n      DATE\n      TOPIC\n      PREPARE\n      MATERIALS\n      DUE\n    \n  \n  \n    1\nMon, Aug 28\nWelcome to STA 101!\n\n\n🖥️ slides \n☁️ ae-01 \n⌨️ ae-01\n\n\n    \nWed, Aug 30\nHello data\n\n📖 ims: Chp 1 \n💻 tutorial: 01-data-01 |&gt; submit\n\n🖥️ slides \n☁️ ae-02 \n⌨️ ae-02 \n🗝️ ae-02-sa\n\n🔘 Survey: Getting to know you\n\n    \nFri, Sep 1\nLab 1: Hello R!\n\n\n⌨️ lab-1\n\n\n    2\nMon, Sep 4\nLabor Day - No lecture\n\n\n\n\n    \nWed, Sep 6\nStudy design\n\n📖 ims: Chp 2 \n💻 tutorial: 01-data-02 |&gt; submit \n💻 tutorial: 01-data-03 |&gt; submit\n\n🖥️ slides \n☁️ ae-03 \n⌨️ ae-03 \n🗝️ ae-03-sa\n\n\n    \nThu, Sep 7\n\n\n\n✅ Lab 1 at 5 pm\n\n    \nFri, Sep 8\nLab 2: Hello data!\n\n📖 ims: Chp 3 \n💻 tutorial: 01-data-04 |&gt; submit\n\n⌨️ lab-2\n\n\n    3\nMon, Sep 11\nExploring categorical data\n\n📖 ims: Chp 4 \n💻 tutorial: 02-explore-01 |&gt; submit\n\n🖥️ slides \n☁️ ae-04 \n⌨️ ae-04 \n🗝️ ae-04-sa\n\n\n    \nWed, Sep 13\nExploring numerical data\n\n📖 ims: Chp 5 \n💻 tutorial: 02-explore-02 |&gt; submit\n\n🖥️ slides \n☁️ ae-05 \n⌨️ ae-05 \n🗝️ ae-05-sa\n\n\n    \nThu, Sep 14\n\n\n\n✅ Lab 2 at 5 pm\n\n    \nFri, Sep 15\nLab 3: Exploratory data analysis\n\n📖 ims: Chp 6 \n💻 tutorial: 02-explore-03 |&gt; submit\n\n⌨️ lab-3\n\n\n    4\nMon, Sep 18\nRegression with a single predictor I \nGuest Lecture: Dr. Alex Fisher\n\n📖 ims: Chp 7.1 - 7.2 \n💻 tutorial: 03-model-01 |&gt; submit \n💻 tutorial: 03-model-02 |&gt; submit \n\n🖥️ slides \n☁️ ae-06 \n⌨️ ae-06 \n🗝️ ae-06-sa\n\n\n    \nWed, Sep 20\nNo class \nCatch up with readings and interactive tutorials\n\n📖 ims: Chp 7.2 - 7.4 \n💻 tutorial: 03-model-03 |&gt; submit\n\n\n\n    \nThu, Sep 21\n\n\n\n✅ Lab 3 at 5 pm\n\n    \nFri, Sep 22\nLab 4: Regression\n\n\n⌨️ lab-4\n\n\n    5\nMon, Sep 25\nRegression with multiple predictors I\n\n📖 ims: Chp 8.1 - 8.3\n\n🖥️ slides \n☁️ ae-07 \n⌨️ ae-07 \n🗝️ ae-07\n\n\n    \nWed, Sep 27\nRegression with multiple predictors II\n\n📖 ims: Chp 8.4 - 8.5\n\n🖥️ slides \n☁️ ae-08 \n⌨️ ae-08\n\n\n    \nThu, Sep 28\n\n\n\n✅ Lab 4 at 5 pm\n\n    \nFri, Sep 29\nExam 1 Review\n\n\n\n\n    6\nMon, Oct 2\nLogistic regression\n\n\n\n\n    \nWed, Oct 4\nExam 1 - In class\n\n\n\n\n    \nFri, Oct 6\nNo lab: Work on Exam 1 - Take home\n\n\n\nExam 1 - Take home at 5 pm\n\n    7\nMon, Oct 9\nHypothesis testing with randomization I\n\n\n\n\n    \nWed, Oct 11\nHypothesis testing with randomization II\n\n\n\n\n    \nFri, Oct 13\nProject 1 workday\n\n\n\n📄 Project 1 at 5 pm\n\n    8\nMon, Oct 16\nFall Break - No lecture\n\n\n\n\n    \nWed, Oct 18\nConfidence intervals with bootstrapping\n\n\n\n\n    \nFri, Oct 20\nLab 5: Inference with simulation\n\n\n⌨️ lab-5\n\n\n    9\nMon, Oct 23\nInference with mathematical models\n\n\n\n\n    \nWed, Oct 25\nDecision errors \nGuest Lecture: Dr. Yue Jiang\n\n\n\n\n    \nThu, Oct 26\n\n\n\n✅ Lab 5 at 5 pm\n\n    \nFri, Oct 27\nLab 6: Foundations of inference\n\n\n⌨️ lab-6\n\n\n    10\nMon, Oct 30\nInference for a single proportion\n\n\n\n\n    \nWed, Nov 1\nInference for comparing two proportions\n\n\n\n\n    \nThu, Nov 2\n\n\n\n✅ Lab 6 at 5 pm\n\n    \nFri, Nov 3\nLab 7: Inference for proportions\n\n\n⌨️ lab-7\n\n\n    11\nMon, Nov 6\nInference for a single mean\n\n\n\n\n    \nWed, Nov 8\nInference for comparing two means\n\n\n\n\n    \nThu, Nov 9\n\n\n\n✅ Lab 7 at 5 pm\n\n    \nFri, Nov 10\nExam 2 Review\n\n\n\n\n    12\nMon, Nov 13\nInference for two-way tables\n\n\n\n\n    \nWed, Nov 15\nExam 2 - In class\n\n\n\n\n    \nFri, Nov 17\nNo lab: Work on Exam 2 - Take home\n\n\n\nExam 2 - Take home at 5 pm\n\n    13\nMon, Nov 20\nInference for comparing many means\n\n\n\n\n    \nWed, Nov 22\nThanksgiving Break - No lecture\n\n\n\n\n    \nFri, Nov 24\nThanksgiving Break - No lecture\n\n\n\n\n    14\nMon, Nov 27\nInference for regression with a single predictor\n\n\n\n\n    \nWed, Nov 29\nInference for regression with multiple predictors\n\n\n\n\n    \nFri, Dec 1\nLab 8: Inference\n\n\n⌨️ lab-8\n\n\n    15\nMon, Dec 4\nLooking forward: TBA\n\n\n\n\n    \nWed, Dec 6\nLooking forward: TBA\n\n\n\n\n    \nThu, Dec 7\n\n\n\n✅ Lab 8 at 5 pm\n\n    \nFri, Dec 8\nProject 2 peer review\n\n\n\n\n    16\nThu, Dec 14\nProject 2 presentations (2 - 5 pm)\n\n\n\n📄 Project 2 at 2 pm"
+  },
+  {
+    "objectID": "project/project-1.html",
+    "href": "project/project-1.html",
+    "title": "Project 1 - Regression",
+    "section": "",
+    "text": "More info to be posted."
+  },
+  {
+    "objectID": "project/project-tips-resources.html",
+    "href": "project/project-tips-resources.html",
+    "title": "Project tips + resources",
+    "section": "",
+    "text": "To be posted."
+  },
+  {
+    "objectID": "lectures/08/08-model-selection.html#check-in",
+    "href": "lectures/08/08-model-selection.html#check-in",
+    "title": "Model selection",
+    "section": "Check-in",
+    "text": "Check-in\n\nDaily check-ins for getting you thinking at the beginning of the class and reviewing recent/important concepts\nGo to Canvas and open today’s “quiz” titled 2023-09-27 Check-in\nAccess code: ___ (released in class) \n“Graded” for completion"
+  },
+  {
+    "objectID": "lectures/08/08-model-selection.html#announcements",
+    "href": "lectures/08/08-model-selection.html#announcements",
+    "title": "Model selection",
+    "section": "Announcements",
+    "text": "Announcements\n\nMy remaining office hours this week:\n\nWednesday 5-6 on Zoom (link emailed)\n\nProject 1 teams + assignment to be posted later today\n\nRead before lab\nSit with your teams in lab"
+  },
+  {
+    "objectID": "lectures/08/08-model-selection.html#two-r2s",
+    "href": "lectures/08/08-model-selection.html#two-r2s",
+    "title": "Model selection",
+    "section": "Two \\(R^2\\)s",
+    "text": "Two \\(R^2\\)s\n\n\\(R^2\\) measures the proportion of variability in the outcome variable that is explained by the model.\n\nAlways goes up with the addition of a predictor.\n\nAdjusted \\(R^2\\) is this value adjusted to penalize for the number of predictors in the model.\n\nGoes up if the added predictor is “useful”, i.e. actually increases the predictive performance of the model.\nTherefore we use this metric for choosing between models."
+  },
+  {
+    "objectID": "lectures/08/08-model-selection.html#application-exercise",
+    "href": "lectures/08/08-model-selection.html#application-exercise",
+    "title": "Model selection",
+    "section": "Application exercise",
+    "text": "Application exercise\nGo to Posit Cloud and start the project titled ae-08-Tips.\n\n\n\n\n\n\nICYMI\n\n\nToday’s daily check-in access code: ___ (released in class)\n\n\n\n\n\n\n🔗 sta101-f23.github.io"
   },
   {
     "objectID": "lectures/02/02-hello-data.html#from-canvas",
@@ -1449,102 +1610,151 @@
     "text": "Teaching assistants\n\n\n\n\nName\nRole\nLab section\nOffice hours\n\n\n\n\n\nShuo Wang\nHead + Lab TA\nFri 8:30 - 9:45 am\nMon 2:45 - 4:45 pm\nOld Chem 203B\n\n\n\nSylvia Vincent\nLab TA\nFri 10:05 - 11:20 am\nWed 3 - 5 pm\nOld Chem 025\n\n\n\nJohn Gillen\nLab TA\nFri 11:45 am - 1:00 pm\nWed 10:30 am - 12:30 pm\nZoom\n\n\n\nChris Oswald\nLab TA\nFri 1:25 - 2:40 pm\nMon 9 - 10 am\nTue 9 - 10 am\nJones Open Lab (Bostock Library, 1st Floor)\n\n\n\nMinh Anh To\nTA\n\nMon 10 am - 12 pm\nOld Chem 203B\n\n\n\nHao Wang\nTA\n\nTue 10 am - 12 pm\nOld Chem 203B\n\n\n\nNoah Obuya\nTA\n\nSun 12 - 2 pm\nZoom\n\n\n\nMeghna Katyal\nTA\n\nMon 7:30 - 8:30 pm\nZoom\n\n\n\nAvery Hodges\nTA\n\nMon 5 - 7 pm\nZoom"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html",
-    "href": "ae/ae-04-durham-sa.html",
-    "title": "2020 Durham City and County Resident Survey",
+    "objectID": "ae/ae-07-books.html",
+    "href": "ae/ae-07-books.html",
+    "title": "Weights of books",
     "section": "",
-    "text": "Important\n\n\n\nThese are suggested answers for the application exercise. They’re not necessarily complete or 100% accurate, they’re roughly what we develop in class while going through the exercises.\nThe main question we’ll explore today is “What are the demographics and priorities of City of Durham residents?”"
+    "text": "Today we’ll explore the question “How do volume and weights books relate?” and “How, if at all, does that change when we take whether the book is hardback or paperback into consideration?”"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-1",
-    "href": "ae/ae-04-durham-sa.html#exercise-1",
-    "title": "2020 Durham City and County Resident Survey",
+    "objectID": "ae/ae-07-books.html#exercise-1",
+    "href": "ae/ae-07-books.html#exercise-1",
+    "title": "Weights of books",
     "section": "Exercise 1",
-    "text": "Exercise 1\nHow many rows and columns are in this dataset? Answer in a full sentence using inline code. What does each row represent and what does each column represent?\nAdd your answer here."
+    "text": "Exercise 1\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis). Overlay the line of best fit. Describe the relationship between these variables.\n\n# add code here\n\n\nAdd response here."
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-2",
-    "href": "ae/ae-04-durham-sa.html#exercise-2",
-    "title": "2020 Durham City and County Resident Survey",
+    "objectID": "ae/ae-07-books.html#exercise-2",
+    "href": "ae/ae-07-books.html#exercise-2",
+    "title": "Weights of books",
     "section": "Exercise 2",
-    "text": "Exercise 2\nThe variables we’ll use in this analysis are as follows. Rename the variables to the updated names shown below.\n\n\n\nOriginal name\nUpdated name\n\n\n\n\nprimary_language\nprimary_language\n\n\ndo_you_own_or_rent_your_current_resi_31\nown_rent\n\n\nwould_you_say_your_total_annual_hous_35\nincome\n\n\n\n\ndurham &lt;- durham |&gt;\n  rename(\n    own_rent = do_you_own_or_rent_your_current_resi_31,\n    income = would_you_say_your_total_annual_hous_35\n  )"
+    "text": "Exercise 2\nFit a model predicting weight from volume for these books and save it as weight_fit. Display a tidy output of the model.\n\n# add code here"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-3",
-    "href": "ae/ae-04-durham-sa.html#exercise-3",
-    "title": "2020 Durham City and County Resident Survey",
+    "objectID": "ae/ae-07-books.html#exercise-3",
+    "href": "ae/ae-07-books.html#exercise-3",
+    "title": "Weights of books",
     "section": "Exercise 3",
-    "text": "Exercise 3\nWhat language do Durham residents speak: primary_language?\n\nWhat is the primary language used in your household?\n\nAdd your answer here.\n\nggplot(durham, aes(x = primary_language)) +\n  geom_bar()"
+    "text": "Exercise 3\nInterpret the slope and the intercept in context of the data.\n\nAdd response here."
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-4",
-    "href": "ae/ae-04-durham-sa.html#exercise-4",
-    "title": "2020 Durham City and County Resident Survey",
+    "objectID": "ae/ae-07-books.html#exercise-4",
+    "href": "ae/ae-07-books.html#exercise-4",
+    "title": "Weights of books",
     "section": "Exercise 4",
-    "text": "Exercise 4\nMake similar bar plots of own_rent and income. What distinct values do these variables take?\n\nggplot(durham, aes(x = own_rent)) +\n  geom_bar()\n\nWarning: Removed 2 rows containing non-finite values (`stat_count()`).\n\n\n\n\nggplot(durham, aes(x = income)) +\n  geom_bar()\n\nWarning: Removed 110 rows containing non-finite values (`stat_count()`)."
+    "text": "Exercise 4\nCalculate the \\(R^2\\) of this model and interpret it in context of the data.\n\n# add code here\n\n\nAdd response here."
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-5",
-    "href": "ae/ae-04-durham-sa.html#exercise-5",
-    "title": "2020 Durham City and County Resident Survey",
+    "objectID": "ae/ae-07-books.html#exercise-5",
+    "href": "ae/ae-07-books.html#exercise-5",
+    "title": "Weights of books",
     "section": "Exercise 5",
-    "text": "Exercise 5\nThe variables own_rent and income are both categorical, but they’re stored as numbers. In R, categorical data are called factors. Recode these variables as factors with the as_factor() function.\n\ndurham &lt;- durham |&gt;\n  mutate(\n    income = as_factor(income),\n    own_rent = as_factor(own_rent)\n    )"
+    "text": "Exercise 5\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis), taking into consideration the cover type of the book. Use different colors and shapes for hardback and paperback books. Also use different colors for lines of best fit for the two types of books. In addition, add the overall line of best fit (from Exercise 1) as a gray dashed line so that you can see the difference between the lines when considering and not considering cover type.\n\n# add code here"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-6",
-    "href": "ae/ae-04-durham-sa.html#exercise-6",
-    "title": "2020 Durham City and County Resident Survey",
+    "objectID": "ae/ae-07-books.html#exercise-6",
+    "href": "ae/ae-07-books.html#exercise-6",
+    "title": "Weights of books",
     "section": "Exercise 6",
-    "text": "Exercise 6\nRecreate the visualization from the previous exerciseincome` barplot, improving it for both visual appeal and better communication of findings.\nAdd your answer here.\n\ndurham |&gt;\n  ggplot(aes(y = income, fill = income)) +\n  geom_bar(show.legend = FALSE) +\n  scale_fill_viridis_d(na.value = \"darkgray\") +\n  scale_y_discrete(\n    labels = c(\n      \"1\" = \"Under $30,000\",\n      \"2\" = \"$30,000-$59,999\",\n      \"3\" = \"$60,000-$99,999\",\n      \"4\" = \"$100,000 or more\"\n    )\n  ) +\n  labs(\n    x = \"Count\",\n    y = NULL,\n    title = \"Would you say your total annual household income is...\"\n  )"
+    "text": "Exercise 6\nFit a model predicting weight from volume for these books and save it as weight_cover_fit. Display a tidy output of the model.\n\n# add code here"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-7",
-    "href": "ae/ae-04-durham-sa.html#exercise-7",
-    "title": "2020 Durham City and County Resident Survey",
+    "objectID": "ae/ae-07-books.html#exercise-7",
+    "href": "ae/ae-07-books.html#exercise-7",
+    "title": "Weights of books",
     "section": "Exercise 7",
-    "text": "Exercise 7\nRecreate the visualization from the previous exercise, but first calculate relative frequencies (proportions) of income (the marginal distribution) and plot the proportions instead of counts.\n\ndurham |&gt;\n  count(income) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  ggplot(aes(y = income, x = prop, fill = income)) +\n  geom_col(show.legend = FALSE) +\n  scale_fill_viridis_d(na.value = \"gray\") +\n  scale_y_discrete(\n    labels = c(\n      \"1\" = \"Under $30,000\",\n      \"2\" = \"$30,000-$59,999\",\n      \"3\" = \"$60,000-$99,999\",\n      \"4\" = \"$100,000 or more\"\n    )\n  ) +\n  labs(\n    x = \"Proportion\",\n    y = NULL,\n    title = \"Would you say your total annual household income is...\"\n  )"
+    "text": "Exercise 7\nIn the model output we have a variable coverpb. Why is only the pb (paperback) level of the cover variable shown? What happened to the hb (hardback) level?\n\nAdd response here."
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-8",
-    "href": "ae/ae-04-durham-sa.html#exercise-8",
-    "title": "2020 Durham City and County Resident Survey",
+    "objectID": "ae/ae-07-books.html#exercise-8",
+    "href": "ae/ae-07-books.html#exercise-8",
+    "title": "Weights of books",
     "section": "Exercise 8",
-    "text": "Exercise 8\nVisualize and describe the relationship between income and home ownership of Durham residents.\nStretch goal: Customize the colors using named colors from http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf.\nAdd your answer here.\n\ndurham |&gt;\n  select(income, own_rent) |&gt;\n  drop_na() |&gt;\n  ggplot(aes(y = income, fill = own_rent)) +\n  geom_bar(position = \"fill\") +\n  scale_y_discrete(\n    labels = c(\n      \"1\" = \"Under $30,000\",\n      \"2\" = \"$30,000-$59,999\",\n      \"3\" = \"$60,000-$99,999\",\n      \"4\" = \"$100,000 or more\"\n    )\n  ) +\n  scale_fill_manual(\n    values = c(\"1\" = \"cadetblue\", \"2\" = \"coral\"),\n    labels = c(\"1\" = \"Own\", \"2\" = \"Rent\")\n  ) +\n  labs(\n    x = \"Proportion\",\n    y = \"Would you say your total\\nannual household income is...\",\n    fill = \"Do you own\\nor rent\\nyour current\\nresidence?\",\n    title = \"Income vs. home ownership of Durham residents\"\n  )"
+    "text": "Exercise 8\nInterpret the slopes and the intercept in context of the data.\n\nAdd response here."
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-9",
-    "href": "ae/ae-04-durham-sa.html#exercise-9",
-    "title": "2020 Durham City and County Resident Survey",
+    "objectID": "ae/ae-07-books.html#exercise-9",
+    "href": "ae/ae-07-books.html#exercise-9",
+    "title": "Weights of books",
     "section": "Exercise 9",
-    "text": "Exercise 9\nCalculate the proportions of home owners for each category of Durham residents. Describe the relationship between these two variables, this time with the actual values from the conditional distribution of home ownership based on income level.\nAdd your answer here.\n\ndurham |&gt;\n  select(income, own_rent) |&gt;\n  drop_na() |&gt;\n  count(income, own_rent) |&gt;\n  group_by(income) |&gt;\n  mutate(prop = n / sum(n))\n\n# A tibble: 8 × 4\n# Groups:   income [4]\n  income own_rent     n   prop\n  &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;  &lt;dbl&gt;\n1 1      1           51 0.362 \n2 1      2           90 0.638 \n3 2      1          105 0.565 \n4 2      2           81 0.435 \n5 3      1          107 0.552 \n6 3      2           87 0.448 \n7 4      1          160 0.930 \n8 4      2           12 0.0698"
+    "text": "Exercise 9\nFirst, guess whether the \\(R^2\\) of this model will be greater than, less than, or the same as the previous model, or whether we can’t tell. Then, calculate the \\(R^2\\) of this model to confirm your guess, and then interpret it in context of the data.\n\n# add code here\n\n\nAdd response here."
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-10",
-    "href": "ae/ae-04-durham-sa.html#exercise-10",
-    "title": "2020 Durham City and County Resident Survey",
+    "objectID": "ae/ae-07-books.html#exercise-10",
+    "href": "ae/ae-07-books.html#exercise-10",
+    "title": "Weights of books",
     "section": "Exercise 10",
-    "text": "Exercise 10\nStretch goal: Recode the levels of these two variables to be more informatively labeled.\n\ndurham &lt;- durham |&gt;\n  mutate(\n    income = case_when(\n      income == \"1\" ~ \"Under $30,000\",\n      income == \"2\" ~ \"$30,000-$59,999\",\n      income == \"3\" ~ \"$60,000-$99,999\",\n      income == \"4\" ~ \"$100,000 or more\"      \n    ),\n    own_rent = if_else(own_rent == 1, \"Own\", \"Rent\")\n  )\n\ndurham |&gt;\n  select(income, own_rent) |&gt;\n  drop_na() |&gt;\n  count(income, own_rent) |&gt;\n  group_by(income) |&gt;\n  mutate(prop = n / sum(n))\n\n# A tibble: 8 × 4\n# Groups:   income [4]\n  income           own_rent     n   prop\n  &lt;chr&gt;            &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;\n1 $100,000 or more Own        160 0.930 \n2 $100,000 or more Rent        12 0.0698\n3 $30,000-$59,999  Own        105 0.565 \n4 $30,000-$59,999  Rent        81 0.435 \n5 $60,000-$99,999  Own        107 0.552 \n6 $60,000-$99,999  Rent        87 0.448 \n7 Under $30,000    Own         51 0.362 \n8 Under $30,000    Rent        90 0.638"
+    "text": "Exercise 10\nWhich model is preferred for predicting book weights and why?\n\nAdd response here."
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#conceptual",
-    "href": "ae/ae-04-durham-sa.html#conceptual",
-    "title": "2020 Durham City and County Resident Survey",
-    "section": "Conceptual",
-    "text": "Conceptual\nSome of the terms we introduced are:\n\nMarginal distribution: Distribution of a single variable.\nConditional distribution: Distribution of a variable conditioned on the values (or levels, in the context of categorical data) of another."
+    "objectID": "ae/ae-07-books.html#exercise-11",
+    "href": "ae/ae-07-books.html#exercise-11",
+    "title": "Weights of books",
+    "section": "Exercise 11",
+    "text": "Exercise 11\nUsing the model you chose, predict the weight of a hardcover book that is 1000 cubic centimeters (that is, roughly 25 centimeters in length, 20 centimeters in width, and 2 centimeters in height/thickness).\n\n# add code here"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#r",
-    "href": "ae/ae-04-durham-sa.html#r",
-    "title": "2020 Durham City and County Resident Survey",
-    "section": "R",
-    "text": "R\nIn this application exercise we:\n\nDefined factors – the data type that R uses for categorical variables, i.e., variables that can take on values from a finite set of levels.\n\n\n\nReviewed data imports, visualization, and wrangling functions encountered before:\n\nImport: read_csv(): Read data from a CSV (comma separated values) file\nVisualization:\n\nggplot(): Create a plot using the ggplot2 package\naes(): Map variables from the data to aesthetic elements of the plot, generally passed as an argument to ggplot() or to geom_*() functions (define only x or y aesthetic)\ngeom_bar(): Represent data with bars, after calculating heights of bars under the hood\nlabs(): Label x axis, y axis, legend for color of plot, title` of plot, etc.\n\nWrangling:\n\nmutate(): Mutate the data frame by creating a new column or overwriting one of the existing columns\ncount(): Count the number of observations for each level of a categorical variable (factor) or each distinct value of any other type of variable\ngroup_by(): Perform each subsequent action once per each group of the variable, where groups can be defined based on the levels of one or more variables\n\n\nIntroduced new data wrangling functions:\n\nrename(): Rename columns in a data frame\nas_factor(): Convert a variable to a factor\ndrop_na(): Drop rows that have NA in one ore more specified variables\nif_else(): Write logic for what happens if a condition is true and what happens if it’s not\ncase_when(): Write a generalized if_else() logic for more than one codition\n\nIntroduced new data visualization functions:\n\ngeom_col(): Represent data with bars (columns), for heights that have already been calculated (must define x and y aesthetics)\nscale_fill_viridis_d(): Customize the discrete fill scale, using a color-blind friendly, ordinal discrete color scale\nscale_y_discrete(): Customize the discrete y scale\nscale_fill_manual(): Customize the fill scale by manually adjusting values for colors"
+    "objectID": "ae/ae-03-delta.html",
+    "href": "ae/ae-03-delta.html",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "",
+    "text": "The main question we’ll explore today is “How do deaths from COVID cases compare between vaccinated and unvaccinated?”\nWhat do you think?"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#quarto",
-    "href": "ae/ae-04-durham-sa.html#quarto",
-    "title": "2020 Durham City and County Resident Survey",
-    "section": "Quarto",
-    "text": "Quarto\nWe also introduced chunk options for managing figure sizes:\n\nfig-width: Width of figure\nfig-asp: Aspect ratio of figure (height / width)\nfig-height: Height of figure – but I recommend using fig-width and fig-asp, instead of fig-width and fig-height"
+    "objectID": "ae/ae-03-delta.html#exercise-1",
+    "href": "ae/ae-03-delta.html#exercise-1",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nHow many rows and columns are in this dataset? Answer in a full sentence using inline code. What does each row represent and what does each column represent? For each variable, identify its type.\nAdd your answer here."
+  },
+  {
+    "objectID": "ae/ae-03-delta.html#exercise-2",
+    "href": "ae/ae-03-delta.html#exercise-2",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nDo these data come from an observational study or experiment? Why?\nAdd your answer here."
+  },
+  {
+    "objectID": "ae/ae-03-delta.html#exercise-3",
+    "href": "ae/ae-03-delta.html#exercise-3",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 3",
+    "text": "Exercise 3\nCreate a visualization of health outcome by vaccine status that allows you to compare the proportion of deaths across those who are and are not vaccinated. What can you say about death rates in these two groups based on this visualization?\nAdd your answer here.\n\n# add code here"
+  },
+  {
+    "objectID": "ae/ae-03-delta.html#exercise-4",
+    "href": "ae/ae-03-delta.html#exercise-4",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 4",
+    "text": "Exercise 4\nCalculate the proportion of deaths in among those who are vaccinated. Then, calculate the proportion among those who are not vaccinated.\nAdd your answer here.\n\n# add code here"
+  },
+  {
+    "objectID": "ae/ae-03-delta.html#exercise-5",
+    "href": "ae/ae-03-delta.html#exercise-5",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 5",
+    "text": "Exercise 5\nCreate the visualization and calculate proportions from the two previous exercises, this time controlling for age. How do the proportions compare?\nAdd your answer here.\n\n# add code here"
+  },
+  {
+    "objectID": "ae/ae-03-delta.html#exercise-6",
+    "href": "ae/ae-03-delta.html#exercise-6",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 6",
+    "text": "Exercise 6\nBased on your findings so far, fill in the blanks with more, less, or equally: Is there anything surprising about these statements? Speculate on what, if anything, the discrepancy might be due to.\n\nIn 2021, among those in the UK who were COVID Delta cases, the vaccinated were ___ likely to die than the unvaccinated.\nFor those under 50, those who were unvaccinated were ___ likely to die than those who were vaccinated.\nFor those 50 and up, those who were unvaccinated were ___ likely to die than those who were vaccinated.\n\nAdd your answer here."
+  },
+  {
+    "objectID": "ae/ae-03-delta.html#exercise-7",
+    "href": "ae/ae-03-delta.html#exercise-7",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 7",
+    "text": "Exercise 7\nLet’s rephrase the previous question which asked you to speculate on why deaths among vaccinated cases overall is higher while deaths among unvaccinated cases are higher when we split the data into two groups (below 50 and 50 and up). What might be the confounding variable in the relationship between vaccination and deaths?\nAdd your answer here."
+  },
+  {
+    "objectID": "ae/ae-03-delta.html#exercise-8",
+    "href": "ae/ae-03-delta.html#exercise-8",
+    "title": "COVID vaccine and deaths from Delta variant",
+    "section": "Exercise 8",
+    "text": "Exercise 8\nVisualize and describe the distribution of seniors (50 and up) based on (a.k.a. conditional on) vaccination status. Hint: Your description will benefit from calculating proportions of seniors in each of the vaccination groups and working those values into your narrative.\nAdd your answer here.\n\n# add your code here"
   },
   {
     "objectID": "ae/ae-04-durham.html",
