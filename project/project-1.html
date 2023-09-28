@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -68,6 +102,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta property="og:title" content="STA 101 - F23 - Project 1 - Regression">
 <meta property="og:description" content="Due Friday, October 13 at 5 pm">
@@ -83,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../project/project-1.html">Projects</a></li><li class="breadcrumb-item"><a href="../project/project-1.html">Project 1 - Regression</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../project/project-1.html">Projects</a></li><li class="breadcrumb-item"><a href="../project/project-1.html">Project 1</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -258,19 +294,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../project/project-1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Project 1 - Regression</span></a>
+ <span class="menu-text">Project 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../project/project-2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project 2</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../project/project-tips-resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tips + resources</span></a>
   </div>
 </li>
       </ul>
@@ -316,12 +346,33 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description">Description</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
+  <ul class="collapse">
+  <li><a href="#codebook" id="toc-codebook" class="nav-link" data-scroll-target="#codebook">Codebook</a></li>
+  <li><a href="#testing-data" id="toc-testing-data" class="nav-link" data-scroll-target="#testing-data">Testing data</a></li>
+  </ul></li>
+  <li><a href="#report" id="toc-report" class="nav-link" data-scroll-target="#report">Report</a>
+  <ul class="collapse">
+  <li><a href="#introduction-7-pts" id="toc-introduction-7-pts" class="nav-link" data-scroll-target="#introduction-7-pts">Introduction (7 pts)</a></li>
+  <li><a href="#methodology-15-pts" id="toc-methodology-15-pts" class="nav-link" data-scroll-target="#methodology-15-pts">Methodology (15 pts)</a></li>
+  <li><a href="#results-15-pts" id="toc-results-15-pts" class="nav-link" data-scroll-target="#results-15-pts">Results (15 pts)</a></li>
+  <li><a href="#discussion-6-pts" id="toc-discussion-6-pts" class="nav-link" data-scroll-target="#discussion-6-pts">Discussion (6 pts)</a></li>
+  <li><a href="#appendix-2-pts" id="toc-appendix-2-pts" class="nav-link" data-scroll-target="#appendix-2-pts">Appendix (2 pts)</a></li>
+  <li><a href="#formatting-5-pts" id="toc-formatting-5-pts" class="nav-link" data-scroll-target="#formatting-5-pts">Formatting (5 pts)</a></li>
+  </ul></li>
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/project/project-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../project/project-1.html">Projects</a></li><li class="breadcrumb-item"><a href="../project/project-1.html">Project 1 - Regression</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../project/project-1.html">Projects</a></li><li class="breadcrumb-item"><a href="../project/project-1.html">Project 1</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Project 1 - Regression</h1>
 <p class="subtitle lead">Due Friday, October 13 at 5 pm</p>
@@ -340,9 +391,124 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>More info to be posted.</p>
+<p>Team assignments are posted at <a href="https://canvas.duke.edu/courses/4625/files?preview=338995" class="uri">https://canvas.duke.edu/courses/4625/files?preview=338995</a>.</p>
+<p>The deliverable for this project (what you will turn in) is a written report. See below for more details.</p>
+<section id="description" class="level1">
+<h1>Description</h1>
+<p>For this project you will create a linear model (of your choosing) to predict newborn birth weights (or some transformation of the variable) using a sample of observations from 2020 US birth data originally sourced from <a href="https://www.cdc.gov/nchs/data_access/vitalstatsonline.htm">the Centers for Disease Control (CDC)</a>.</p>
+</section>
+<section id="data" class="level1">
+<h1>Data</h1>
+<p>You will use the data set <code>us_births.csv</code> to fit your model. You can load it using the code below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>births <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/us_births.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This data set contains 3000 observations of 16 variables. The variables are described in the codebook below.</p>
+<section id="codebook" class="level2">
+<h2 class="anchored" data-anchor-id="codebook">Codebook</h2>
+<ul>
+<li><code>newborn_birth_weight</code>: newborn birth weight in grams (response)</li>
+<li><code>month</code>: birth month (1: January, …, 12: December)</li>
+<li><code>mother_age</code>: age of the mother in years</li>
+<li><code>prenatal_care_starting_month</code>: month in which prenatal care began; if 0, there was no prenatal care</li>
+<li><code>daily_cigarette_prepregnancy</code>: daily number of cigarettes smoked before the pregnancy</li>
+<li><code>daily_cigarette_trimester_1</code>: daily number of cigarettes smoked during the 1st trimester of the pregnancy</li>
+<li><code>daily_cigarette_trimester_2</code>: daily number of cigarettes smoked during the 2nd trimester of the pregnancy</li>
+<li><code>daily_cigarette_trimester_3</code>: daily number of cigarettes smoked during the 3rd trimester of the pregnancy</li>
+<li><code>mother_height</code>: height of the mother in inches</li>
+<li><code>mother_bmi</code>: body mass index of the mother</li>
+<li><code>mother_weight_prepregnancy</code>: weight of the mother before the pregnancy in pounds</li>
+<li><code>mother_weight_delivery</code>: weight of the mother at delivery in pounds</li>
+<li><code>mother_diabetes_gestational</code>: whether the mother had diabetes during the pregnancy</li>
+<li><code>newborn_sex</code>: sex of the newborn</li>
+<li><code>gestation_week</code>: number of gestational weeks</li>
+<li><code>mother_risk_factors</code>: whether the mother had any risk factor (diabetes, hypertension, previous preterm birth, previous cesarean, infertility treatment used, etc)</li>
+</ul>
+</section>
+<section id="testing-data" class="level2">
+<h2 class="anchored" data-anchor-id="testing-data">Testing data</h2>
+<p>You are additionally provided testing data to evaluate the predictive ability of your model, using 1,000 observations contained in the test data set below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>births_test <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/us_births_test.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="report" class="level1">
+<h1>Report</h1>
+<p>Your report must be written using Quarto. Your written report should not exceed five pages inclusive of all tables and figures. You can access a template for that report in <a href="https://posit.cloud/spaces/405361">Posit Cloud</a> in the project titled <code>project-1</code>.</p>
+<p>To begin, edit the YAML at the top to specify a project title, your team name (get creative!), and the names of each group member, e.g.,</p>
+<pre><code>---
+title: "Predicting baby weights"
+author: "The Last Rbenders: Aang, Katara, Sokka, Momo"
+---</code></pre>
+<p>All team members must contribute to the report.</p>
+<p>Before you finalize your report, make sure the printing of code chunks is turned off by setting <code>echo</code> to <code>false</code> in your document YAML.</p>
+<p>You should include, at a minimum, the following sections in your report. The report will be scored out of 50 points.</p>
+<section id="introduction-7-pts" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-7-pts">Introduction (7 pts)</h2>
+<p>The introduction provides motivation and context for your research.</p>
+<p>To begin, introduce the data set in a few short sentences. Next, create a code book (aka a “data dictionary”) of the variables in the data set. Although a code book is provided above, you should include one in your report as well so that your report is self-contained. Specifically, only include in your report a code book of the variables that you use.</p>
+<p>Complete the introduction by providing a concise, clear statement of your research question and hypotheses. Be sure to motivate why the research question is interesting/useful.</p>
+<p>Example research question and hypotheses (if we were predicting penguin weights instead of baby weights):</p>
+<p><em>Can we predict body mass with bill depth? We hypothesize that penguins with deeper bills will also have more mass.</em></p>
+</section>
+<section id="methodology-15-pts" class="level2">
+<h2 class="anchored" data-anchor-id="methodology-15-pts">Methodology (15 pts)</h2>
+<p>In this section, you should introduce your regression model. Specifically, do you use regular linear regression or logistic regression? Why? What’s the <strong>full model equation</strong>?</p>
+<p>Did you choose to leave out some predictors but include others? Why or why not? You can also include summary statistics or create plots to explore the data and help inform your model choices.</p>
+<p>Do you fit multiple models? If so, why?</p>
+<p>Do you compare them using <span class="math inline">\(R^2\)</span>, another metric, why?</p>
+</section>
+<section id="results-15-pts" class="level2">
+<h2 class="anchored" data-anchor-id="results-15-pts">Results (15 pts)</h2>
+<p>Report and interpret your final fitted model equation(s).</p>
+<p>Report any relevant metrics you use to select between models.</p>
+<p>Place figure(s) here to illustrate the main results from your analysis. One elegant visualization is worth more than several poorly formatted figures. You must have at least one visualization.</p>
+<p>Provide only the main results from your analysis. The goal is not to do an exhaustive data analysis (calculate every possible statistic and create every possible model for all variables). Rather, you should demonstrate that you are proficient at asking meaningful questions and answering them using data, that you are skilled in writing about and interpreting results, and that you can accomplish these tasks using R. More is not better.</p>
+<p>How well does your model predict new data? Use the testing data to calculate a measure of the predictive performance of your model and interpret that in the context of your data.</p>
+</section>
+<section id="discussion-6-pts" class="level2">
+<h2 class="anchored" data-anchor-id="discussion-6-pts">Discussion (6 pts)</h2>
+<p>This section is a conclusion and discussion. You should</p>
+<ol type="1">
+<li><p>Summarize your main finding in a sentence or two.</p></li>
+<li><p>Discuss your finding and why it is useful (put in the context of your motivation from the introduction).</p></li>
+<li><p>Critique your own analyses and include a brief paragraph on what you would do differently if you were able to start the project over.</p></li>
+</ol>
+</section>
+<section id="appendix-2-pts" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-2-pts">Appendix (2 pts)</h2>
+<p>List a brief (1 or 2 sentence) summary of the relative contributions of each team member, e.g., “Aang built the models, Katara implemented them in R, and Sokka wrote the introduction and discussion.”</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>All team members should be comfortable describing all aspects of the project and understanding all code.</p>
+</div>
+</div>
+</section>
+<section id="formatting-5-pts" class="level2">
+<h2 class="anchored" data-anchor-id="formatting-5-pts">Formatting (5 pts)</h2>
+<p>Your project should be professionally formatted. For example, this means labeling graphs and figures, turning off code chunks, using proper citations and cross-references, and following typical style guidelines.</p>
+</section>
+</section>
+<section id="submission" class="level1">
+<h1>Submission</h1>
+<ul>
+<li><p>Select <strong>one</strong> team member to upload the team’s PDF submission to Gradescope.</p></li>
+<li><p>Be sure to select every team member’s name in Gradescope.</p></li>
+<li><p>Associate all pages with “Full report”.</p></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -853,7 +1019,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/project/project-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    </div>
     <div class="nav-footer-right">
 <p>This page is built with 🤍 and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
