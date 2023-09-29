@@ -56,7 +56,6 @@ The top six rows of `blizzard_salary` are shown below:
 
 ```{r}
 blizzard_salary |>
-  slice_head(n = 6) |>
   select(percent_incr, salary_type, annual_salary, performance_rating)
 ```
 
@@ -65,9 +64,7 @@ blizzard_salary |>
 How rows observations are there in the `blizzard_salary` dataset and what does each row represent?
 
 ::: {.content-visible when-format="pdf"}
-
 $\vspace{2cm}$
-
 :::
 
 ## Question 2
@@ -75,7 +72,6 @@ $\vspace{2cm}$
 @fig-blizzard-hist-1 and @fig-blizzard-hist-2 show the distributions of annual salaries of hourly and salaried workers. The two figures show the same data, with the facets organized across rows and across columns. Which of the two figures is better for comparing the median annual salaries of hourly and salaried workers. Explain your reasoning.
 
 ::: {#fig-blizzard-hist}
-
 ```{r}
 #| label: fig-blizzard-hist-1
 #| fig-cap: Option 1
@@ -109,15 +105,12 @@ ggplot(blizzard_salary, aes(x = annual_salary)) +
 ```
 
 Distribution of annual salaries of Blizzard employees
-
 :::
 
 ::: {.content-visible when-format="pdf"}
-
 $\vspace{2cm}$
 
 {{< pagebreak >}}
-
 :::
 
 ## Question 3
@@ -154,11 +147,9 @@ c.  80,000
 d.  100,000
 
 ::: {.content-visible when-format="pdf"}
-
 $\vspace{2cm}$
 
 {{< pagebreak >}}
-
 :::
 
 ## Question 4
@@ -206,9 +197,7 @@ c.  For every additional \$1,000 of annual salary, the model predicts the raise 
 d.  For every additional \$1,000 of annual salary, the model predicts the raise to be higher, on average, by 1.87%.
 
 ::: {.content-visible when-format="pdf"}
-
 {{< pagebreak >}}
-
 :::
 
 ## Question 7
@@ -236,11 +225,9 @@ tidy(raise_2_fit)
 When your teammate sees this model output, they remark "The coefficient for `performance_ratingSuccessful` is negative, that's weird. I guess it means that people who get successful performance ratings get lower raises." How would you respond to your teammate?
 
 ::: {.content-visible when-format="pdf"}
-
 $\vspace{2cm}$
 
 {{< pagebreak >}}
-
 :::
 
 ## Question 9
@@ -268,15 +255,13 @@ blizzard_salary <- blizzard_salary |>
 
 What should they put in the blanks to get the same model output as above?
 
-a. "Poor", "Successful", "High", "Top"
-b. "Successful", "High", "Top"
-c. "Top", "High", "Successful", "Poor"
-d. Poor, Successful, High, Top
+a.  "Poor", "Successful", "High", "Top"
+b.  "Successful", "High", "Top"
+c.  "Top", "High", "Successful", "Poor"
+d.  Poor, Successful, High, Top
 
 ::: {.content-visible when-format="pdf"}
-
 {{< pagebreak >}}
-
 :::
 
 ## Question 10
@@ -315,9 +300,7 @@ blizzard_salary |>
 ```
 
 ::: {.content-visible when-format="pdf"}
-
 $\vspace{2cm}$
-
 :::
 
 ## Question 11
@@ -325,9 +308,7 @@ $\vspace{2cm}$
 A friend with a keen eye points out that the number of observations in @fig-salary-performance-rating-1 seems lower than the total number of observations in `blizzard_salary`. What might be going on here? Explain your reasoning.
 
 ::: {.content-visible when-format="pdf"}
-
 {{< pagebreak >}}
-
 :::
 
 ## Question 12
@@ -367,11 +348,9 @@ blizzard_salary |>
 ```
 
 ::: {.content-visible when-format="pdf"}
-
 $\vspace{2cm}$
 
 {{< pagebreak >}}
-
 :::
 
 ## Question 14
@@ -451,9 +430,7 @@ ggplot(blizzard_salary, aes(x = annual_salary, y = percent_incr, color = salary_
 ```
 
 ::: {.content-visible when-format="pdf"}
-
 {{< pagebreak >}}
-
 :::
 
 ## Question 15
@@ -461,9 +438,7 @@ ggplot(blizzard_salary, aes(x = annual_salary, y = percent_incr, color = salary_
 Define the term parsimonious model.
 
 ::: {.content-visible when-format="pdf"}
-
 $\vspace{2cm}$
-
 :::
 
 ## Bonus
@@ -471,7 +446,5 @@ $\vspace{2cm}$
 Pick a concept we introduced in class so far that you've been struggling with and explain it in your own words.
 
 ::: {.content-visible when-format="pdf"}
-
 $\vspace{2cm}$
-
 :::
