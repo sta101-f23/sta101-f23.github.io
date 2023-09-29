@@ -3,6 +3,12 @@ title: "Exploring Flint's water data"
 categories: 
   - Application exercise
 editor: visual
+format: html
+webr: 
+  show-startup-message: true
+  packages: ['ggplot2', 'dplyr']
+filters:
+  - webr
 ---
 
 # Goals
@@ -62,10 +68,10 @@ We will do this using water lead content data from Flint, MI. The following para
 
 We'll use the tidyverse package for analysis, which offers functionality for data import, wrangling, visualization, and more.
 
-```{r}
+```{webr-r}
 #| label: load-packages
-
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
 ```
 
 Loading this package prints out a message. What does this message mean? How can we suppress the message from the output?
@@ -76,10 +82,17 @@ The `read_csv()` function can be used for reading CSV (comma separated values) f
 
 Before reading in the file, go to the `data` folder in the Files pane to confirm that it is, indeed, there. Then, read the file by running the code chunk below by clicking on the green triangle icon on the code chunk.
 
-```{r}
-#| label: load-data
+```{webr-r}
+#| context: setup
+download.file(
+  "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/flint.csv",
+  "flint.csv"
+)
+```
 
-flint <- read_csv("data/flint.csv")
+```{webr-r}
+#| label: load-data
+flint <- read.csv("flint.csv")
 ```
 
 One of two things may have happened:
@@ -109,9 +122,8 @@ In the case we want to learn about the lead content in all of Flint, MI homes bu
 
 **Exercise 1:** Look at the data, how many observations are there? How many variables?
 
-```{r}
+```{webr-r}
 #| label: obs-vars
-
 # add code here
 ```
 
@@ -123,9 +135,8 @@ Let's `count()` to find the number of different time points water was sampled wi
 
 -   The second argument is `draw`: the variable
 
-```{r}
+```{webr-r}
 #| label: count-draws
-
 count(flint, draw)
 ```
 
@@ -137,35 +148,31 @@ We can achieve the same result with the following "piped" operation as well.
 
 -   The second line is `count(draw)`
 
-```{r}
+```{webr-r}
 #| label: count-draws-piped
-
 flint |>
   count(draw)
 ```
 
 We can use a similar approach to fund out how many unique homes are in the data set:
 
-```{r}
+```{webr-r}
 #| label: count-homes
-
 flint |>
   count(id)
 ```
 
 **Exercise 2:** How many samples were taken from each zip code?
 
-```{r}
+```{webr-r}
 #| label: count-by-zip
-
 # add code here
 ```
 
 **Exercise 3:** Which ZIP code had the most samples drawn? Hint: See the help for `count`.
 
-```{r}
+```{webr-r}
 #| label: count-by-zip-ordered
-
 # add code here
 ```
 
@@ -198,9 +205,8 @@ What is a statistic? It's **any mathematical function of the data**. Sometimes, 
 
 **Exercise 4:** Compute each of these statistics for `lead` ppb.
 
-```{r}
+```{webr-r}
 #| label: statistics
-
 # add code here
 ```
 
@@ -210,18 +216,16 @@ What is a statistic? It's **any mathematical function of the data**. Sometimes, 
 
 Let's take a look at the **distribution** of lead content in homes in Flint, MI.
 
-```{r}
+```{webr-r}
 #| label: flint-histogram-1
-
 ggplot(flint, aes(x = lead)) +
   geom_histogram()
 ```
 
 We can make this plot look nicer/more useful by adjusting the number of bins and zooming into the x-axis.
 
-```{r}
+```{webr-r}
 #| label: flint-histogram-2
-
 ggplot(flint, aes(x = lead)) +
   geom_histogram(bins = 50) +
   coord_cartesian(xlim = c(0, 100))
@@ -231,9 +235,8 @@ Let's visualize some of our summary statistics on the plot.
 
 **Exercise 5:** Add a new layer, `geom_vline(xintercept = __, color = "red")`, to the histogram below, filling in the blank with the mean.
 
-```{r}
+```{webr-r}
 #| label: overlay-mean
-
 ggplot(flint, aes(x = lead)) + 
   geom_histogram(bins = 50) + 
   coord_cartesian(xlim = c(0, 100))
@@ -241,9 +244,8 @@ ggplot(flint, aes(x = lead)) +
 
 **Exercise 6:** Add one more layer which overlays the median, in a different color.
 
-```{r}
+```{webr-r}
 #| label: overlay-median
-
 # add code here
 ```
 
@@ -251,16 +253,15 @@ ggplot(flint, aes(x = lead)) +
 
 Next, let's narrow our focus to the zip codes 48503, 48504, 48505, 48506, and 48507 and observations with lead values less than 1,000 ppb.
 
-```{r}
+```{webr-r}
 #| label: focus
-
 flint_focus <- flint |>
   filter(zip %in% 48503:48507 & lead < 1000)
 ```
 
 **Exercise 7:** Below are side-by-side box plots for the three flushing times in each of the five zip codes we considered. Add `x` and `y` labels; add a title by inserting `title = "title_name"` inside the `labs()` function.
 
-```{r}
+```{webr-r}
 ggplot(data = flint_focus, aes(y = factor(zip), x = lead)) +
   geom_boxplot(aes(fill = factor(draw))) +
   labs(x = "___", y = "___", fill = "Flushing time") +
@@ -272,7 +273,7 @@ ggplot(data = flint_focus, aes(y = factor(zip), x = lead)) +
 
 **Exercise 8:** Add labels for `x`, `y`, a `title`, and `subtitle` to the code below to update the corresponding plot.
 
-```{r}
+```{webr-r}
 ggplot(data = flint_focus, aes(y = factor(zip), x = lead)) +
   geom_boxplot(aes(fill = factor(draw))) + 
   labs(

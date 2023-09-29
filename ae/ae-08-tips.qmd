@@ -3,6 +3,12 @@ title: "Tips"
 categories: 
   - Application exercise
 editor: visual
+format: html
+webr: 
+  show-startup-message: true
+  packages: ['ggplot2', 'dplyr', 'forcats', 'tidymodels', 'scales']
+filters:
+  - webr
 ---
 
 Today we'll explore the question "What best predicts what percent of the bill amount people tip at restaurants?"
@@ -19,13 +25,13 @@ Today we'll explore the question "What best predicts what percent of the bill am
 
 # Packages
 
-```{r}
+```{webr-r}
 #| label: load-packages
-#| message: false
-
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
 library(tidymodels)
 library(scales)
+library(forcats)
 ```
 
 # Data
@@ -34,10 +40,17 @@ The data for this application exercise was collected in 2011 by a student at St.
 
 [^1]: Dahlquist, Samantha, and Jin Dong. 2011. "The Effects of Credit Cards on Tipping." Project for Statistics 212-Statistics for the Sciences, St. Olaf College.
 
-```{r}
-#| label: load-data
+```{webr-r}
+#| context: setup
+download.file(
+  "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/tips.csv",
+  "tips.csv"
+)
+```
 
-tips <- read_csv("data/tips.csv")
+```{webr-r}
+#| label: load-data
+tips <- read.csv("tips.csv")
 ```
 
 The dataset has `r nrow(tips)` observations and `r ncol(tips)` columns. Each observation represents a meal by a party at the restaurant, and for each meal we know the bill amount, the tip amount, and a variety of other features like whether the payment was made on credit card or by cash, whether any alcohol was ordered, etc.
@@ -60,11 +73,10 @@ We will aim to predict `tip_percentage` from these variables.
 
 Visualize the relationship between these variables.
 
-```{r}
+```{webr-r}
 #| label: eda
 #| fig-width: 10
 #| fig-asp: 0.618
-
 # add code here
 ```
 
@@ -80,17 +92,15 @@ In a couple of sentences, describe any apparent patterns.
 
 Fit a model predicting tip percentage from bill amount. Display and interpret the model coefficients. Additionally, calculate and interpret the $R^2$ of this model.
 
-```{r}
+```{webr-r}
 #| label: tip-bill
-
 # add code here
 ```
 
 > Add response here.
 
-```{r}
+```{webr-r}
 #| label: tip-bill-glance
-
 # add code here
 ```
 
@@ -100,9 +110,8 @@ Fit a model predicting tip percentage from bill amount. Display and interpret th
 
 Suppose we next add `meal` as a predictor and interpret the model coefficients again.
 
-```{r}
+```{webr-r}
 #| label: tip-bill-meal
-
 # add code here
 ```
 
@@ -118,9 +127,8 @@ Would you expect the $R^2$ of the second model (with `bill` and `meal` as predic
 
 Fit a model predicting tip percentage from bill amount and meal, calculate its $R^2$, and comment on your guess from the previous exercise.
 
-```{r}
+```{webr-r}
 #| label: tip-bill-meal-glance
-
 # add code here
 ```
 
@@ -132,9 +140,8 @@ Fit a model predicting tip percentage from bill amount and meal, calculate its $
 
 Calculate adjusted $R^2$ for the two models. Is adding `meal` to a model predicting `tip_percentage` from `bill` useful?
 
-```{r}
+```{webr-r}
 #| label: compare-adj-rsq
-
 # add code here
 ```
 
@@ -174,9 +181,8 @@ Procedure:
 
 Perform backward elimination to find the best model for predicting `tip_percentage` from `meal`, `party`, `alcohol`, `bill`.
 
-```{r}
+```{webr-r}
 #| label: backwards
-
 # add code here
 ```
 
@@ -186,9 +192,8 @@ Perform backward elimination to find the best model for predicting `tip_percenta
 
 Perform backward elimination to find the best model for predicting `tip_percentage` from `meal`, `party`, `alcohol`, `bill`.
 
-```{r}
+```{webr-r}
 #| label: forward
-
 # add code here
 ```
 
@@ -198,9 +203,8 @@ Perform backward elimination to find the best model for predicting `tip_percenta
 
 Fit the "best" model and interpret it.
 
-```{r}
+```{webr-r}
 #| label: tip-fit
-
 # add code here
 ```
 
@@ -212,37 +216,42 @@ A common way of evaluating the predictive performance of a model is to test it a
 
 Let's first load the new data.
 
-```{r}
-tips_test <- read_csv("data/tips-test.csv")
+```{webr-r}
+#| context: setup
+download.file(
+  "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/tips-test.csv",
+  "tips-test.csv"
+)
 ```
 
-There are `{r} nrow(tips_test)` observations in this new dataset, and it has all the same columns as our existing dataset.
+```{webr-r}
+tips_test <- read.csv("tips-test.csv")
+```
 
-```{r}
+There are `{webr-r} nrow(tips_test)` observations in this new dataset, and it has all the same columns as our existing dataset.
+
+```{webr-r}
 glimpse(tips_test)
 ```
 
 Let's use our model to make predictions for `tip_percentage` for these new data:
 
-```{r}
+```{webr-r}
 #| label: tip-aug-test
-
 # add code here
 ```
 
 We can plot the predicted values of `tip_percentage` against the observed values to see how well we're doing.
 
-```{r}
+```{webr-r}
 #| label: tip-aug-plot
-
 # add code here
 ```
 
 We can also quantify the average error in our predictions with a measure called **root mean square error**, RMSE.
 
-```{r}
+```{webr-r}
 #| label: tip-aug-rmse
-
 # add code here
 ```
 
@@ -250,9 +259,8 @@ What this value tells us is that our predictions are off by, on average, approxi
 
 Let's take a look back at the tip percentage variables in this dataset.
 
-```{r}
+```{webr-r}
 #| label: tip-test-hist
-
 # add code here
 ```
 

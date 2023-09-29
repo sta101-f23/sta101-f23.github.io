@@ -3,6 +3,12 @@ title: "Weights of books"
 categories: 
   - Application exercise
 editor: visual
+format: html
+webr: 
+  show-startup-message: true
+  packages: ['ggplot2', 'dplyr', 'tidymodels']
+filters:
+  - webr
 ---
 
 Today we'll explore the question "How do volume and weights books relate?" and "How, if at all, does that change when we take whether the book is hardback or paperback into consideration?"
@@ -17,21 +23,28 @@ Today we'll explore the question "How do volume and weights books relate?" and "
 
 # Packages
 
-```{r}
+```{webr-r}
 #| label: load-packages
-#| message: false
-
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
 library(tidymodels)
-library(DAAG)
 ```
 
 # Data
 
 The data for this application exercise comes from the `allbacks` dataset in the **DAAG** package. The dataset has `r nrow(allbacks)` observations and `r ncol(allbacks)` columns. Each observation represents a book. Let's take a peek at the data:
 
-```{r}
+```{webr-r}
+#| context: setup
+download.file(
+  "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/allbacks.csv",
+  "allbacks.csv"
+)
+```
+
+```{webr-r}
 #| label: peek-data
+allbacks <- read.csv("allbacks.csv")
 
 allbacks
 ```
@@ -44,9 +57,8 @@ Note that `volume` is measured in cubic centimeters and `weight` is measured in 
 
 Visualize the relationship between volume (on the x-axis) and weight (on the y-axis). Overlay the line of best fit. Describe the relationship between these variables.
 
-```{r}
+```{webr-r}
 #| label: plot-weight-volume
-
 # add code here
 ```
 
@@ -56,9 +68,8 @@ Visualize the relationship between volume (on the x-axis) and weight (on the y-a
 
 Fit a model predicting weight from volume for these books and save it as `weight_fit`. Display a tidy output of the model.
 
-```{r}
+```{webr-r}
 #| label: fit-weight-volume
-
 # add code here
 ```
 
@@ -72,9 +83,8 @@ Interpret the slope and the intercept in context of the data.
 
 Calculate the $R^2$ of this model and interpret it in context of the data.
 
-```{r}
+```{webr-r}
 #| label: glance-weight-volume
-
 # add code here
 ```
 
@@ -86,9 +96,8 @@ Calculate the $R^2$ of this model and interpret it in context of the data.
 
 Visualize the relationship between volume (on the x-axis) and weight (on the y-axis), taking into consideration the cover type of the book. Use different colors and shapes for hardback and paperback books. Also use different colors for lines of best fit for the two types of books. In addition, add the overall line of best fit (from Exercise 1) as a gray dashed line so that you can see the difference between the lines when considering and not considering cover type.
 
-```{r}
+```{webr-r}
 #| label: plot-weight-volume-cover
-
 # add code here
 ```
 
@@ -96,9 +105,8 @@ Visualize the relationship between volume (on the x-axis) and weight (on the y-a
 
 Fit a model predicting weight from volume for these books and save it as `weight_cover_fit`. Display a tidy output of the model.
 
-```{r}
+```{webr-r}
 #| label: fit-weight-volume-cover
-
 # add code here
 ```
 
@@ -118,9 +126,8 @@ Interpret the slopes and the intercept in context of the data.
 
 First, guess whether the $R^2$ of this model will be greater than, less than, or the same as the previous model, or whether we can't tell. Then, calculate the $R^2$ of this model to confirm your guess, and then interpret it in context of the data.
 
-```{r}
+```{webr-r}
 #| label: glance-weight-volume-cover
-
 # add code here
 ```
 
@@ -136,8 +143,7 @@ Which model is preferred for predicting book weights and why?
 
 Using the model you chose, predict the weight of a hardcover book that is 1000 cubic centimeters (that is, roughly 25 centimeters in length, 20 centimeters in width, and 2 centimeters in height/thickness).
 
-```{r}
+```{webr-r}
 #| label: predict
-
 # add code here
 ```

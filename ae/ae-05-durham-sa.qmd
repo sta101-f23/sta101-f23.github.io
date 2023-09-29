@@ -4,6 +4,12 @@ categories:
   - Application exercise
   - Suggested answers
 editor: visual
+format: html
+webr: 
+  show-startup-message: true
+  packages: ['ggplot2', 'dplyr', 'forcats', 'tidyr']
+filters:
+  - webr
 ---
 
 ::: callout-important
@@ -26,11 +32,12 @@ The main questions we'll explore today are:
 
 # Packages
 
-```{r}
+```{webr-r}
 #| label: load-packages
-#| message: false
-
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(forcats)
+library(tidyr)
 ```
 
 # Data
@@ -39,15 +46,22 @@ The data for this case study come from the 2020 Durham City and County Resident 
 
 First, let's load the data:
 
-```{r}
-#| label: load-data
+```{webr-r}
+#| context: setup
+download.file(
+  "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/durham-2020.csv",
+  "durham-2020.csv"
+)
+```
 
-durham <- read_csv("data/durham-2020.csv")
+```{webr-r}
+#| label: load-data
+durham <- read.csv("durham-2020.csv")
 ```
 
 In the last application exercise we manipulated the data a bit.
 
-```{r}
+```{webr-r}
 durham <- durham |>
   rename(
     own_rent = do_you_own_or_rent_your_current_resi_31,
@@ -74,11 +88,10 @@ Visualize and describe the relationship between income and home ownership of Dur
 
 *Add your answer here.*
 
-```{r}
+```{webr-r}
 #| label: income-own-rent-plot
 #| fig-width: 10
 #| fig-asp: 0.4
-
 durham |>
   select(income, own_rent) |>
   drop_na() |>
@@ -110,9 +123,8 @@ Calculate the proportions of home owners for each category of Durham residents. 
 
 *Add your answer here.*
 
-```{r}
+```{webr-r}
 #| label: income-own-rent-props
-
 durham |>
   select(income, own_rent) |>
   drop_na() |>
@@ -125,9 +137,8 @@ durham |>
 
 Recode the **level**s of these two variables to be more informatively labeled and calculate the proportions from the previous exercise again.
 
-```{r}
+```{webr-r}
 #| label: recode-levels
-
 durham <- durham |>
   mutate(
     income = case_when(
@@ -158,10 +169,9 @@ Visualize and describe the distribution of `qos_city`. If you get a warning with
 
 *Add your response here.*
 
-```{r}
+```{webr-r}
 #| label: qos-city-hist
 #| fig-asp: 0.618
-
 ggplot(durham, aes(x = qos_city)) +
   geom_histogram(binwidth = 1) +
   labs(
@@ -175,9 +185,8 @@ Calculate the mean and median of the distribution of `qos_city`. If these values
 
 *Add your response here.*
 
-```{r}
+```{webr-r}
 #| label: qos-city-center
-
 durham |>
   summarize(
     mean_qos_city = mean(qos_city, na.rm = TRUE),
@@ -189,9 +198,8 @@ durham |>
 
 Based on the shape of the distribution of `qos_city`, which measure of spread (variability) is more appropriate? Calculate that value and interpret it in context of the data.
 
-```{r}
+```{webr-r}
 #| label: qos-city-spread
-
 durham |>
   summarize(
     iqr_qos_city = IQR(qos_city, na.rm = TRUE),
@@ -204,10 +212,9 @@ durham |>
 
 Make a box plot of `qos_city` and comment on how the values you calculated map on to the box plot.
 
-```{r}
+```{webr-r}
 #| label: qos-city-box
 #| fig-asp: 0.4
-
 ggplot(durham, aes(x = qos_city)) +
   geom_boxplot() +
   labs(
@@ -223,10 +230,9 @@ How the average level of happiness with quality of services provided by the city
 
 *Add your response here.*
 
-```{r}
+```{webr-r}
 #| label: qos-city-income-mean
 #| fig-asp: 0.618
-
 durham |>
   group_by(income) |>
   summarize(

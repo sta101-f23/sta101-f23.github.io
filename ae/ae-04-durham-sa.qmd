@@ -4,6 +4,12 @@ categories:
   - Application exercise
   - Suggested answers
 editor: visual
+format: html
+webr: 
+  show-startup-message: true
+  packages: ['ggplot2', 'dplyr', 'forcats', 'tidyr']
+filters:
+  - webr
 ---
 
 ::: callout-important
@@ -26,11 +32,12 @@ The main question we'll explore today is "What are the demographics and prioriti
 
 # Packages
 
-```{r}
+```{webr-r}
 #| label: load-packages
-#| message: false
-
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(forcats)
+library(tidyr)
 ```
 
 # Data
@@ -39,10 +46,17 @@ The data for this case study come from the 2020 Durham City and County Resident 
 
 First, let's load the data:
 
-```{r}
-#| label: load-data
+```{webr-r}
+#| context: setup
+download.file(
+  "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/durham-2020.csv",
+  "durham-2020.csv"
+)
+```
 
-durham <- read_csv("data/durham-2020.csv")
+```{webr-r}
+#| label: load-data
+durham <- read.csv("durham-2020.csv")
 ```
 
 # Visualizing and summarizing categorical data
@@ -63,9 +77,8 @@ The variables we'll use in this analysis are as follows. Rename the variables to
 | `do_you_own_or_rent_your_current_resi_31` | `own_rent`         |
 | `would_you_say_your_total_annual_hous_35` | `income`           |
 
-```{r}
+```{webr-r}
 #| label: rename
-
 durham <- durham |>
   rename(
     own_rent = do_you_own_or_rent_your_current_resi_31,
@@ -81,9 +94,8 @@ What language do Durham residents speak: `primary_language`?
 
 *Add your answer here.*
 
-```{r}
+```{webr-r}
 #| label: primary-language
-
 ggplot(durham, aes(x = primary_language)) +
   geom_bar()
 ```
@@ -92,9 +104,8 @@ ggplot(durham, aes(x = primary_language)) +
 
 Make similar bar plots of `own_rent` and `income`. What distinct values do these variables take?
 
-```{r}
+```{webr-r}
 #| label: own-rent-income
-
 ggplot(durham, aes(x = own_rent)) +
   geom_bar()
 ggplot(durham, aes(x = income)) +
@@ -105,11 +116,10 @@ ggplot(durham, aes(x = income)) +
 
 The variables `own_rent` and `income` are both categorical, but they're stored as numbers. In R, categorical data are called **factor**s. *Recode* these variables as factors with the `as_factor()` function.
 
-```{r}
+```{webr-r}
 #| label: recode-types
 #| fig-width: 10
 #| fig-asp: 0.4
-
 durham <- durham |>
   mutate(
     income = as_factor(income),
@@ -123,11 +133,10 @@ Recreate the visualization from the `previous exercise`income\` barplot, improvi
 
 *Add your answer here.*
 
-```{r}
+```{webr-r}
 #| label: income-improve
 #| fig-width: 10
 #| fig-asp: 0.4
-
 durham |>
   ggplot(aes(y = income, fill = income)) +
   geom_bar(show.legend = FALSE) +
@@ -151,9 +160,8 @@ durham |>
 
 Recreate the visualization from the previous exercise, but first calculate relative frequencies (proportions) of income (the **marginal distribution**) and plot the proportions instead of counts.
 
-```{r}
+```{webr-r}
 #| label: income-proportions
-
 durham |>
   count(income) |>
   mutate(prop = n / sum(n)) |>
@@ -185,11 +193,10 @@ Visualize and describe the relationship between income and home ownership of Dur
 
 *Add your answer here.*
 
-```{r}
+```{webr-r}
 #| label: income-own-rent-plot
 #| fig-width: 10
 #| fig-asp: 0.4
-
 durham |>
   select(income, own_rent) |>
   drop_na() |>
@@ -221,9 +228,8 @@ Calculate the proportions of home owners for each category of Durham residents. 
 
 *Add your answer here.*
 
-```{r}
+```{webr-r}
 #| label: income-own-rent-props
-
 durham |>
   select(income, own_rent) |>
   drop_na() |>
@@ -236,9 +242,8 @@ durham |>
 
 *Stretch goal:* Recode the **level**s of these two variables to be more informatively labeled.
 
-```{r}
+```{webr-r}
 #| label: recode-levels
-
 durham <- durham |>
   mutate(
     income = case_when(
