@@ -108,12 +108,12 @@ ul.task-list li input[type="checkbox"] {
   const initializeWebRTimerStart = performance.now();
 
   // Determine if we need to install R packages
-  var installRPackagesList = [''];
+  var installRPackagesList = ['ggplot2', 'dplyr'];
   // Check to see if we have an empty array, if we do set to skip the installation.
   var setupRPackages = !(installRPackagesList.indexOf("") !== -1);
 
   // Display a startup message?
-  var showStartupMessage = false;
+  var showStartupMessage = true;
   var showHeaderMessage = false;
   if (showStartupMessage) {
 
@@ -599,9 +599,7 @@ ul.task-list li input[type="checkbox"] {
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `webr::install("dplyr")
-webr::install("ggplot2")
-library(dplyr)
+      value: `library(dplyr)
 library(ggplot2)`,
       language: 'r',
       theme: 'vs-light',
@@ -793,17 +791,29 @@ library(ggplot2)`,
 <h2 class="anchored" data-anchor-id="load-data">Load data</h2>
 <p>The <code>read_csv()</code> function can be used for reading CSV (comma separated values) files. The file we’re reading is called <code>flint</code> with the suffix (<code>.csv</code>) which indicates its file type. The file is in the <code>data</code> folder.</p>
 <p>Before reading in the file, go to the <code>data</code> folder in the Files pane to confirm that it is, indeed, there. Then, read the file by running the code chunk below by clicking on the green triangle icon on the code chunk.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-2">Loading
+<script type="module">
+// Initialization WebR
+await globalThis.webR.init();
+
+// Run R code without focusing on storing data.
+await globalThis.webR.evalRVoid(`
+download.file(
+  "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/flint.csv",
+  "flint.csv"
+)
+`)
+</script>	
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-3">Loading
   webR...</button>
-<div id="webr-editor-2"></div>
-<div id="webr-code-output-2" aria-live="assertive">
+<div id="webr-editor-3"></div>
+<div id="webr-code-output-3" aria-live="assertive">
   <pre style="visibility: hidden"></pre>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-2");
-  const outputDiv = document.getElementById("webr-code-output-2");
-  const editorDiv = document.getElementById("webr-editor-2");
+  const runButton = document.getElementById("webr-run-button-3");
+  const outputDiv = document.getElementById("webr-code-output-3");
+  const editorDiv = document.getElementById("webr-editor-3");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
@@ -812,11 +822,7 @@ library(ggplot2)`,
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `download.file(
-  "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/flint.csv",
-  "flint.csv"
-)
-flint <- read.csv("flint.csv")`,
+      value: `flint <- read.csv("flint.csv")`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -1025,17 +1031,17 @@ flint <- read.csv("flint.csv")`,
 <p>We want to learn about the <strong>population</strong> using a <strong>sample</strong>.</p>
 <p>In the case we want to learn about the lead content in all of Flint, MI homes but only have available water readings from a sample of homes (our data set).</p>
 <p><strong>Exercise 1:</strong> Look at the data, how many observations are there? How many variables?</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-3">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-4">Loading
   webR...</button>
-<div id="webr-editor-3"></div>
-<div id="webr-code-output-3" aria-live="assertive">
+<div id="webr-editor-4"></div>
+<div id="webr-code-output-4" aria-live="assertive">
   <pre style="visibility: hidden"></pre>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-3");
-  const outputDiv = document.getElementById("webr-code-output-3");
-  const editorDiv = document.getElementById("webr-editor-3");
+  const runButton = document.getElementById("webr-run-button-4");
+  const outputDiv = document.getElementById("webr-code-output-4");
+  const editorDiv = document.getElementById("webr-editor-4");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
@@ -1044,8 +1050,7 @@ flint <- read.csv("flint.csv")`,
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `
-# add code here`,
+      value: `# add code here`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -1238,17 +1243,17 @@ flint <- read.csv("flint.csv")`,
 <li><p>The first argument is <code>flint</code>: the data frame</p></li>
 <li><p>The second argument is <code>draw</code>: the variable</p></li>
 </ul>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-4">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-5">Loading
   webR...</button>
-<div id="webr-editor-4"></div>
-<div id="webr-code-output-4" aria-live="assertive">
+<div id="webr-editor-5"></div>
+<div id="webr-code-output-5" aria-live="assertive">
   <pre style="visibility: hidden"></pre>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-4");
-  const outputDiv = document.getElementById("webr-code-output-4");
-  const editorDiv = document.getElementById("webr-editor-4");
+  const runButton = document.getElementById("webr-run-button-5");
+  const outputDiv = document.getElementById("webr-code-output-5");
+  const editorDiv = document.getElementById("webr-editor-5");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
@@ -1257,8 +1262,7 @@ flint <- read.csv("flint.csv")`,
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `
-count(flint, draw)`,
+      value: `count(flint, draw)`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -1449,17 +1453,17 @@ count(flint, draw)`,
 <li><p>Then the pipe operator, read as “and then”, which places what comes before it as the first argument of what comes after it</p></li>
 <li><p>The second line is <code>count(draw)</code></p></li>
 </ul>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-5">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-6">Loading
   webR...</button>
-<div id="webr-editor-5"></div>
-<div id="webr-code-output-5" aria-live="assertive">
+<div id="webr-editor-6"></div>
+<div id="webr-code-output-6" aria-live="assertive">
   <pre style="visibility: hidden"></pre>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-5");
-  const outputDiv = document.getElementById("webr-code-output-5");
-  const editorDiv = document.getElementById("webr-editor-5");
+  const runButton = document.getElementById("webr-run-button-6");
+  const outputDiv = document.getElementById("webr-code-output-6");
+  const editorDiv = document.getElementById("webr-editor-6");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
@@ -1468,8 +1472,7 @@ count(flint, draw)`,
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `
-flint |>
+      value: `flint |>
   count(draw)`,
       language: 'r',
       theme: 'vs-light',
@@ -1656,17 +1659,17 @@ flint |>
   };
 </script>
 <p>We can use a similar approach to fund out how many unique homes are in the data set:</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-6">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-7">Loading
   webR...</button>
-<div id="webr-editor-6"></div>
-<div id="webr-code-output-6" aria-live="assertive">
+<div id="webr-editor-7"></div>
+<div id="webr-code-output-7" aria-live="assertive">
   <pre style="visibility: hidden"></pre>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-6");
-  const outputDiv = document.getElementById("webr-code-output-6");
-  const editorDiv = document.getElementById("webr-editor-6");
+  const runButton = document.getElementById("webr-run-button-7");
+  const outputDiv = document.getElementById("webr-code-output-7");
+  const editorDiv = document.getElementById("webr-editor-7");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
@@ -1675,8 +1678,7 @@ flint |>
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `
-flint |>
+      value: `flint |>
   count(id)`,
       language: 'r',
       theme: 'vs-light',
@@ -1863,17 +1865,17 @@ flint |>
   };
 </script>
 <p><strong>Exercise 2:</strong> How many samples were taken from each zip code?</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-7">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-8">Loading
   webR...</button>
-<div id="webr-editor-7"></div>
-<div id="webr-code-output-7" aria-live="assertive">
+<div id="webr-editor-8"></div>
+<div id="webr-code-output-8" aria-live="assertive">
   <pre style="visibility: hidden"></pre>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-7");
-  const outputDiv = document.getElementById("webr-code-output-7");
-  const editorDiv = document.getElementById("webr-editor-7");
+  const runButton = document.getElementById("webr-run-button-8");
+  const outputDiv = document.getElementById("webr-code-output-8");
+  const editorDiv = document.getElementById("webr-editor-8");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
@@ -1882,8 +1884,7 @@ flint |>
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `
-# add code here`,
+      value: `# add code here`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -2069,17 +2070,17 @@ flint |>
   };
 </script>
 <p><strong>Exercise 3:</strong> Which ZIP code had the most samples drawn? Hint: See the help for <code>count</code>.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-8">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-9">Loading
   webR...</button>
-<div id="webr-editor-8"></div>
-<div id="webr-code-output-8" aria-live="assertive">
+<div id="webr-editor-9"></div>
+<div id="webr-code-output-9" aria-live="assertive">
   <pre style="visibility: hidden"></pre>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-8");
-  const outputDiv = document.getElementById("webr-code-output-8");
-  const editorDiv = document.getElementById("webr-editor-8");
+  const runButton = document.getElementById("webr-run-button-9");
+  const outputDiv = document.getElementById("webr-code-output-9");
+  const editorDiv = document.getElementById("webr-editor-9");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
@@ -2088,8 +2089,7 @@ flint |>
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `
-# add code here`,
+      value: `# add code here`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -2307,17 +2307,17 @@ flint |>
 </ul>
 <p>… and any other arbitrary function of the data you can come up with!</p>
 <p><strong>Exercise 4:</strong> Compute each of these statistics for <code>lead</code> ppb.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-9">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-10">Loading
   webR...</button>
-<div id="webr-editor-9"></div>
-<div id="webr-code-output-9" aria-live="assertive">
+<div id="webr-editor-10"></div>
+<div id="webr-code-output-10" aria-live="assertive">
   <pre style="visibility: hidden"></pre>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-9");
-  const outputDiv = document.getElementById("webr-code-output-9");
-  const editorDiv = document.getElementById("webr-editor-9");
+  const runButton = document.getElementById("webr-run-button-10");
+  const outputDiv = document.getElementById("webr-code-output-10");
+  const editorDiv = document.getElementById("webr-editor-10");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
@@ -2326,8 +2326,7 @@ flint |>
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `
-# add code here`,
+      value: `# add code here`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -2519,17 +2518,17 @@ flint |>
 <section id="histograms" class="level2">
 <h2 class="anchored" data-anchor-id="histograms">Histograms</h2>
 <p>Let’s take a look at the <strong>distribution</strong> of lead content in homes in Flint, MI.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-10">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-11">Loading
   webR...</button>
-<div id="webr-editor-10"></div>
-<div id="webr-code-output-10" aria-live="assertive">
+<div id="webr-editor-11"></div>
+<div id="webr-code-output-11" aria-live="assertive">
   <pre style="visibility: hidden"></pre>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-10");
-  const outputDiv = document.getElementById("webr-code-output-10");
-  const editorDiv = document.getElementById("webr-editor-10");
+  const runButton = document.getElementById("webr-run-button-11");
+  const outputDiv = document.getElementById("webr-code-output-11");
+  const editorDiv = document.getElementById("webr-editor-11");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
@@ -2538,8 +2537,7 @@ flint |>
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `
-ggplot(flint, aes(x = lead)) +
+      value: `ggplot(flint, aes(x = lead)) +
   geom_histogram()`,
       language: 'r',
       theme: 'vs-light',
@@ -2726,17 +2724,17 @@ ggplot(flint, aes(x = lead)) +
   };
 </script>
 <p>We can make this plot look nicer/more useful by adjusting the number of bins and zooming into the x-axis.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-11">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-12">Loading
   webR...</button>
-<div id="webr-editor-11"></div>
-<div id="webr-code-output-11" aria-live="assertive">
+<div id="webr-editor-12"></div>
+<div id="webr-code-output-12" aria-live="assertive">
   <pre style="visibility: hidden"></pre>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-11");
-  const outputDiv = document.getElementById("webr-code-output-11");
-  const editorDiv = document.getElementById("webr-editor-11");
+  const runButton = document.getElementById("webr-run-button-12");
+  const outputDiv = document.getElementById("webr-code-output-12");
+  const editorDiv = document.getElementById("webr-editor-12");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
@@ -2745,8 +2743,7 @@ ggplot(flint, aes(x = lead)) +
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `
-ggplot(flint, aes(x = lead)) +
+      value: `ggplot(flint, aes(x = lead)) +
   geom_histogram(bins = 50) +
   coord_cartesian(xlim = c(0, 100))`,
       language: 'r',
@@ -2935,17 +2932,17 @@ ggplot(flint, aes(x = lead)) +
 </script>
 <p>Let’s visualize some of our summary statistics on the plot.</p>
 <p><strong>Exercise 5:</strong> Add a new layer, <code>geom_vline(xintercept = __, color = "red")</code>, to the histogram below, filling in the blank with the mean.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-12">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-13">Loading
   webR...</button>
-<div id="webr-editor-12"></div>
-<div id="webr-code-output-12" aria-live="assertive">
+<div id="webr-editor-13"></div>
+<div id="webr-code-output-13" aria-live="assertive">
   <pre style="visibility: hidden"></pre>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-12");
-  const outputDiv = document.getElementById("webr-code-output-12");
-  const editorDiv = document.getElementById("webr-editor-12");
+  const runButton = document.getElementById("webr-run-button-13");
+  const outputDiv = document.getElementById("webr-code-output-13");
+  const editorDiv = document.getElementById("webr-editor-13");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
@@ -2954,8 +2951,7 @@ ggplot(flint, aes(x = lead)) +
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `
-ggplot(flint, aes(x = lead)) + 
+      value: `ggplot(flint, aes(x = lead)) + 
   geom_histogram(bins = 50) + 
   coord_cartesian(xlim = c(0, 100))`,
       language: 'r',
@@ -3143,17 +3139,17 @@ ggplot(flint, aes(x = lead)) +
   };
 </script>
 <p><strong>Exercise 6:</strong> Add one more layer which overlays the median, in a different color.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-13">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-14">Loading
   webR...</button>
-<div id="webr-editor-13"></div>
-<div id="webr-code-output-13" aria-live="assertive">
+<div id="webr-editor-14"></div>
+<div id="webr-code-output-14" aria-live="assertive">
   <pre style="visibility: hidden"></pre>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-13");
-  const outputDiv = document.getElementById("webr-code-output-13");
-  const editorDiv = document.getElementById("webr-editor-13");
+  const runButton = document.getElementById("webr-run-button-14");
+  const outputDiv = document.getElementById("webr-code-output-14");
+  const editorDiv = document.getElementById("webr-editor-14");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
@@ -3162,8 +3158,7 @@ ggplot(flint, aes(x = lead)) +
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `
-# add code here`,
+      value: `# add code here`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -3352,17 +3347,17 @@ ggplot(flint, aes(x = lead)) +
 <section id="box-plots" class="level2">
 <h2 class="anchored" data-anchor-id="box-plots">Box plots</h2>
 <p>Next, let’s narrow our focus to the zip codes 48503, 48504, 48505, 48506, and 48507 and observations with lead values less than 1,000 ppb.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-14">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-15">Loading
   webR...</button>
-<div id="webr-editor-14"></div>
-<div id="webr-code-output-14" aria-live="assertive">
+<div id="webr-editor-15"></div>
+<div id="webr-code-output-15" aria-live="assertive">
   <pre style="visibility: hidden"></pre>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-14");
-  const outputDiv = document.getElementById("webr-code-output-14");
-  const editorDiv = document.getElementById("webr-editor-14");
+  const runButton = document.getElementById("webr-run-button-15");
+  const outputDiv = document.getElementById("webr-code-output-15");
+  const editorDiv = document.getElementById("webr-editor-15");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
@@ -3371,8 +3366,7 @@ ggplot(flint, aes(x = lead)) +
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `
-flint_focus <- flint |>
+      value: `flint_focus <- flint |>
   filter(zip %in% 48503:48507 & lead < 1000)`,
       language: 'r',
       theme: 'vs-light',
@@ -3559,17 +3553,17 @@ flint_focus <- flint |>
   };
 </script>
 <p><strong>Exercise 7:</strong> Below are side-by-side box plots for the three flushing times in each of the five zip codes we considered. Add <code>x</code> and <code>y</code> labels; add a title by inserting <code>title = "title_name"</code> inside the <code>labs()</code> function.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-15">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-16">Loading
   webR...</button>
-<div id="webr-editor-15"></div>
-<div id="webr-code-output-15" aria-live="assertive">
+<div id="webr-editor-16"></div>
+<div id="webr-code-output-16" aria-live="assertive">
   <pre style="visibility: hidden"></pre>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-15");
-  const outputDiv = document.getElementById("webr-code-output-15");
-  const editorDiv = document.getElementById("webr-editor-15");
+  const runButton = document.getElementById("webr-run-button-16");
+  const outputDiv = document.getElementById("webr-code-output-16");
+  const editorDiv = document.getElementById("webr-editor-16");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
@@ -3770,17 +3764,17 @@ flint_focus <- flint |>
   };
 </script>
 <p><strong>Exercise 8:</strong> Add labels for <code>x</code>, <code>y</code>, a <code>title</code>, and <code>subtitle</code> to the code below to update the corresponding plot.</p>
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-16">Loading
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-17">Loading
   webR...</button>
-<div id="webr-editor-16"></div>
-<div id="webr-code-output-16" aria-live="assertive">
+<div id="webr-editor-17"></div>
+<div id="webr-code-output-17" aria-live="assertive">
   <pre style="visibility: hidden"></pre>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-16");
-  const outputDiv = document.getElementById("webr-code-output-16");
-  const editorDiv = document.getElementById("webr-editor-16");
+  const runButton = document.getElementById("webr-run-button-17");
+  const outputDiv = document.getElementById("webr-code-output-17");
+  const editorDiv = document.getElementById("webr-editor-17");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
