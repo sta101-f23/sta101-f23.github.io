@@ -4,6 +4,11 @@ categories:
   - Application exercise
   - Suggested answers
 editor: visual
+format: html
+webr: 
+  show-startup-message: false
+filters:
+  - webr
 ---
 
 ::: callout-important
@@ -24,11 +29,14 @@ Today we'll explore the question "How do stock prices of Apple and Microsoft rel
 
 # Packages
 
-```{r}
+```{webr-r}
 #| label: load-packages
 #| message: false
-
-library(tidyverse)
+webr::install("dplyr")
+webr::install("ggplot2")
+webr::install("tidymodels")
+library(dplyr)
+library(ggplot2)
 library(tidymodels)
 ```
 
@@ -38,16 +46,20 @@ The data for this application exercise was originally gathered using the [**tidy
 
 First, let's load the data:
 
-```{r}
+```{webr-r}
 #| label: load-data
 #| message: false
+download.file(
+  "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/stocks.csv",
+  "stocks.csv"
+)
 
-stocks <- read_csv("data/stocks.csv")
+stocks <- read_csv("stocks.csv")
 ```
 
 To keep things simple, we'll work with a subset of the data, stock prices in January 2020.
 
-```{r}
+```{webr-r}
 stocks_jan2020 <- stocks |>
   filter(month(date) == 1 & year(date) == 2020)
 ```
@@ -106,7 +118,7 @@ geom_smooth(method = '"lm", se = FALSE, color = "red")
 
 In the slides we fit a model with slope 0.5 and intercept -5. The code for layering the line that represents the model over your data is given below. Add `geom_smooth()` as described above with `color = "steelblue"` to see how close your line is.
 
-```{r}
+```{webr-r}
 #| label: how-close
 
 ggplot(stocks_jan2020, aes(x = MSFT.Open, y = AAPL.Open)) +
@@ -147,7 +159,7 @@ Let's try it out.
 
 Find the least squares line $y = \hat{\beta_0} + \hat{\beta_1} x$ for January 2020, where $x$ is Microsoft's opening price and $y$ is Apple's opening price. Display a tidy summary of your model.
 
-```{r}
+```{webr-r}
 #| label: fit-MSFT-AAPL-January
 
 stock_fit <- linear_reg() |>
@@ -184,7 +196,7 @@ Interpret $\hat{\beta}_0$ and $\hat{\beta}_1$ in context of the data.
 
 Say Microsoft opens at 166 dollars. What do I predict the opening price of AAPL to be?
 
-```{r}
+```{webr-r}
 yhat <- 3.3117408 + (0.4542263 * 166)
 yhat
 ```

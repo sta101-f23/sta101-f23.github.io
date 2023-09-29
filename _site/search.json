@@ -921,14 +921,14 @@
     "href": "ae/ae-06-stocks-sa.html#exercise-4",
     "title": "Apple and Microsoft stock prices",
     "section": "Exercise 4",
-    "text": "Exercise 4\nIn the slides we fit a model with slope 0.5 and intercept -5. The code for layering the line that represents the model over your data is given below. Add geom_smooth() as described above with color = \"steelblue\" to see how close your line is.\n\nggplot(stocks_jan2020, aes(x = MSFT.Open, y = AAPL.Open)) +\n  geom_point() + \n  geom_abline(slope = 0.5, intercept = -5) +\n  geom_smooth(method = \"lm\", se = F, color = \"steelblue\") +\n  labs(\n    x = \"MSFT Open\", \n    y = \"AAPL Open\", \n    title = \"Open prices of MSFT and AAPL\",\n    subtitle = \"January 2020\"\n  )\n\n`geom_smooth()` using formula = 'y ~ x'"
+    "text": "Exercise 4\nIn the slides we fit a model with slope 0.5 and intercept -5. The code for layering the line that represents the model over your data is given below. Add geom_smooth() as described above with color = \"steelblue\" to see how close your line is.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-06-stocks-sa.html#exercise-5",
     "href": "ae/ae-06-stocks-sa.html#exercise-5",
     "title": "Apple and Microsoft stock prices",
     "section": "Exercise 5",
-    "text": "Exercise 5\nFind the least squares line \\(y = \\hat{\\beta_0} + \\hat{\\beta_1} x\\) for January 2020, where \\(x\\) is Microsoft’s opening price and \\(y\\) is Apple’s opening price. Display a tidy summary of your model.\n\nstock_fit &lt;- linear_reg() |&gt;\n  fit(AAPL.Open ~ MSFT.Open, data = stocks_jan2020)\n\ntidy(stock_fit)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic      p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;\n1 (Intercept)    3.31     8.87       0.373 0.713       \n2 MSFT.Open      0.454    0.0541     8.40  0.0000000808"
+    "text": "Exercise 5\nFind the least squares line \\(y = \\hat{\\beta_0} + \\hat{\\beta_1} x\\) for January 2020, where \\(x\\) is Microsoft’s opening price and \\(y\\) is Apple’s opening price. Display a tidy summary of your model.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-06-stocks-sa.html#exercise-6",
@@ -949,7 +949,7 @@
     "href": "ae/ae-06-stocks-sa.html#bonus-exercise",
     "title": "Apple and Microsoft stock prices",
     "section": "Bonus exercise",
-    "text": "Bonus exercise\nSay Microsoft opens at 166 dollars. What do I predict the opening price of AAPL to be?\n\nyhat &lt;- 3.3117408 + (0.4542263 * 166)\nyhat\n\n[1] 78.71331"
+    "text": "Bonus exercise\nSay Microsoft opens at 166 dollars. What do I predict the opening price of AAPL to be?\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-04-durham.html",
@@ -1509,14 +1509,14 @@
     "href": "ae/ae-06-stock.html#exercise-4",
     "title": "Apple and Microsoft stock prices",
     "section": "Exercise 4",
-    "text": "Exercise 4\nIn the slides we fit a model with slope 0.5 and intercept -5. The code for layering the line that represents the model over your data is given below. Add geom_smooth() as described above with color = \"steelblue\" to see how close your line is.\n\nggplot(stocks_jan2020, aes(x = MSFT.Open, y = AAPL.Open)) +\n  geom_point() + \n  geom_abline(slope = 0.5, intercept = -5) +\n  # add code here\n  labs(\n    x = \"MSFT Open\", \n    y = \"AAPL Open\", \n    title = \"Open prices of MSFT and AAPL\",\n    subtitle = \"January 2020\"\n  )"
+    "text": "Exercise 4\nIn the slides we fit a model with slope 0.5 and intercept -5. The code for layering the line that represents the model over your data is given below. Add geom_smooth() as described above with color = \"steelblue\" to see how close your line is.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-06-stock.html#exercise-5",
     "href": "ae/ae-06-stock.html#exercise-5",
     "title": "Apple and Microsoft stock prices",
     "section": "Exercise 5",
-    "text": "Exercise 5\nFind the least squares line \\(y = \\hat{\\beta_0} + \\hat{\\beta_1} x\\) for January 2020, where \\(x\\) is Microsoft’s opening price and \\(y\\) is Apple’s opening price. Display a tidy summary of your model.\n\n# code here"
+    "text": "Exercise 5\nFind the least squares line \\(y = \\hat{\\beta_0} + \\hat{\\beta_1} x\\) for January 2020, where \\(x\\) is Microsoft’s opening price and \\(y\\) is Apple’s opening price. Display a tidy summary of your model.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-06-stock.html#exercise-6",
@@ -1537,7 +1537,7 @@
     "href": "ae/ae-06-stock.html#bonus-exercise",
     "title": "Apple and Microsoft stock prices",
     "section": "Bonus exercise",
-    "text": "Bonus exercise\nSay Microsoft opens at 166 dollars. What do I predict the opening price of AAPL to be?\n\n# add code here"
+    "text": "Bonus exercise\nSay Microsoft opens at 166 dollars. What do I predict the opening price of AAPL to be?\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-08-tips.html",
