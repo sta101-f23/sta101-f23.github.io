@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.330">
+<meta name="generator" content="quarto-1.4.388">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -52,6 +52,7 @@ ul.task-list li input[type="checkbox"] {
     "/",
     "s"
   ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -335,9 +336,10 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+
 <ol type="1">
 <li>There are 409 rows in the <code>blizzard_salary</code> dataset. Each row represents a Blizzard Entertainment worker who filled out the spreadsheet.</li>
-<li>a - A shared x-axis makes it easier to compare summary statistics for the variable on the x-axis.</li>
+<li>a - Figure 1 - A shared x-axis makes it easier to compare summary statistics for the variable on the x-axis.</li>
 <li>c - It’s a value higher than the median for hourly but lower than the mean for salaried.</li>
 <li>b - There is more variability around the mean compared to the hourly distribution.</li>
 <li>b - Pie charts and waffle charts are for categorical data only.</li>
@@ -345,12 +347,12 @@ ul.task-list li input[type="checkbox"] {
 <li>d - <span class="math inline">\(R^2\)</span> of <code>raise_2_fit</code> is higher than <span class="math inline">\(R^2\)</span> of <code>raise_1_fit</code> since <code>raise_2_fit</code> has one more predictor and <span class="math inline">\(R^2\)</span> always goes up with the addition of a predictor.</li>
 <li>The reference level of <code>performance_rating</code> is High, since it’s the first level alphabetically. Therefore, the coefficient -2.40% is the predicted difference in raise comparing High to Successful. In this context a negative coefficient makes sense since we would expect those with High performance rating to get higher raises than those with Successful performance.</li>
 <li>a - “Poor”, “Successful”, “High”, “Top”</li>
-<li>Choose Option 2 since it shows the proportions of employees with top, high, successful, and poor performance within each salary type, and is not affected by there being much fewer hourly paid employees.</li>
-<li>There are probably some <code>NA</code>s that are not being represented in the plot.</li>
-<li>Mosaic plot. It shows the marginal distribution of salary type (proportion of hourly and salaried employees).</li>
+<li>Choose Option 2 since it shows the proportions of employees with top, high, successful, and poor performance within each salary type, and is not affected by there being much fewer hourly paid employees. Proportions of employees with top and successful performance ratings are higher for employees paid hourly than salaried.</li>
+<li>There may be some <code>NA</code>s in these two variables that are not visible in the plot.</li>
+<li>The proportions under Hourly would go in the Hourly bar, and those under Salaried would go in the Salaried bar.</li>
+<li>This is a mosaic plot. It shows the marginal distribution of salary type (proportion of hourly and salaried employees), which is not displayed in the previous plot.</li>
 <li>c - Option 3. Parallel lines and salaried line has a higher intercept since Hourly is the reference level in <code>raise_3_fit</code> and the slope for <code>salary_typeSalaried</code> is positive.</li>
 <li>A parsimonious model is the simplest model with the best predictive performance.</li>
-<li>Answers may vary.</li>
 </ol>
 
 
@@ -628,15 +630,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
         for (let i = 0; i < 2; i++) {
           container.appendChild(note.children[i].cloneNode(true));
         }
+        typesetMath(container);
         return container.innerHTML
       } else {
+        typesetMath(note);
         return note.innerHTML;
       }
     } else {
@@ -645,6 +670,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
+      typesetMath(note);
       return note.innerHTML;
     }
   }
@@ -687,6 +713,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -762,7 +811,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener(
       "resize",
       throttle(() => {
-        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);

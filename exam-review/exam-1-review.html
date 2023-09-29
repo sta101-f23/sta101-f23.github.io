@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.330">
+<meta name="generator" content="quarto-1.4.388">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -52,6 +52,7 @@ ul.task-list li input[type="checkbox"] {
     "/",
     "s"
   ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -317,7 +318,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1">Question 1</a></li>
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
-  <li><a href="#question-2-1" id="toc-question-2-1" class="nav-link" data-scroll-target="#question-2-1">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
   <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
   <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
   <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
@@ -326,11 +327,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
   <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a></li>
   <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11">Question 11</a></li>
-  <li><a href="#question-11-1" id="toc-question-11-1" class="nav-link" data-scroll-target="#question-11-1">Question 11</a></li>
   <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12">Question 12</a></li>
   <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13">Question 13</a></li>
   <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14">Question 14</a></li>
   <li><a href="#question-15" id="toc-question-15" class="nav-link" data-scroll-target="#question-15">Question 15</a></li>
+  <li><a href="#bonus" id="toc-bonus" class="nav-link" data-scroll-target="#bonus">Bonus</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/exam-review/exam-1-review.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="exam-1-review.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -355,6 +356,7 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+
 <p>In 2020, employees of Blizzard Entertainment circulated a spreadsheet to anonymously share salaries and recent pay increases amidst rising tension in the video game industry over wage disparities and executive compensation. (Source: <a href="https://www.bloomberg.com/news/articles/2020-08-03/blizzard-workers-share-salaries-in-revolt-over-wage-disparities">Blizzard Workers Share Salaries in Revolt Over Pay</a>)</p>
 <p>The name of the data frame used for this analysis is <code>blizzard_salary</code> and the relevant variables are:</p>
 <ul>
@@ -363,23 +365,18 @@ ul.task-list li input[type="checkbox"] {
 <li><p><code>annual_salary</code>: Annual salary, in USD, with values ranging from $50,939 to $216,856.</p></li>
 <li><p><code>performance_rating</code>: Most recent review performance rating, with levels <code>Poor</code>, <code>Successful</code>, <code>High</code>, and <code>Top</code>. The <code>Poor</code> level is the lowest rating and the <code>Top</code> level is the highest rating.</p></li>
 </ul>
-<p>The top ten rows of <code>blizzard_salary</code> are shown below:</p>
+<p>The top six rows of <code>blizzard_salary</code> are shown below:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 409 × 4
-   percent_incr salary_type annual_salary performance_rating
-          &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;             
- 1          1   Salaried               1  High              
- 2          1   Salaried               1  Successful        
- 3          1   Salaried               1  High              
- 4          1   Hourly             33987. Successful        
- 5         NA   Hourly             34798. High              
- 6         NA   Hourly             35360  &lt;NA&gt;              
- 7         NA   Hourly             37440  &lt;NA&gt;              
- 8          0   Hourly             37814. &lt;NA&gt;              
- 9          4   Hourly             41101. Top               
-10          1.2 Hourly             42328  &lt;NA&gt;              
-# ℹ 399 more rows</code></pre>
+<pre><code># A tibble: 6 × 4
+  percent_incr salary_type annual_salary performance_rating
+         &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;             
+1            1 Salaried               1  High              
+2            1 Salaried               1  Successful        
+3            1 Salaried               1  High              
+4            1 Hourly             33987. Successful        
+5           NA Hourly             34798. High              
+6           NA Hourly             35360  &lt;NA&gt;              </code></pre>
 </div>
 </div>
 <section id="question-1" class="level2">
@@ -388,35 +385,47 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="question-2" class="level2">
 <h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
-<p><a href="#fig-blizzard-hist-1" class="quarto-xref">Figure&nbsp;1</a> and <a href="#fig-blizzard-hist-2" class="quarto-xref">Figure&nbsp;2</a> show the distributions of annual salaries of hourly and salaried workers. The two figures show the same data, with the facets organized across rows and across columns.</p>
+<p><a href="#fig-blizzard-hist-1" class="quarto-xref">Figure&nbsp;1 (a)</a> and <a href="#fig-blizzard-hist-2" class="quarto-xref">Figure&nbsp;1 (b)</a> show the distributions of annual salaries of hourly and salaried workers. The two figures show the same data, with the facets organized across rows and across columns. Which of the two figures is better for comparing the median annual salaries of hourly and salaried workers. Explain your reasoning.</p>
+<div id="fig-blizzard-hist" class="quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-blizzard-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-blizzard-hist-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="exam-1-review_files/figure-html/fig-blizzard-hist-1-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Distribution of annual salaries of Blizzard employees, Option 1</figcaption>
+<div id="fig-blizzard-hist-1" class="quarto-figure quarto-figure-center anchored" width="960">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-blizzard-hist-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="exam-1-review_files/figure-html/fig-blizzard-hist-1-1.png" class="img-fluid figure-img" data-ref-parent="fig-blizzard-hist" width="960">
+</div>
+<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-blizzard-hist-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Option 1
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-blizzard-hist-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="exam-1-review_files/figure-html/fig-blizzard-hist-2-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Distribution of annual salaries of Blizzard employees, Option 2</figcaption>
+<div id="fig-blizzard-hist-2" class="quarto-figure quarto-figure-center anchored" width="960">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-blizzard-hist-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="exam-1-review_files/figure-html/fig-blizzard-hist-2-1.png" class="img-fluid figure-img" data-ref-parent="fig-blizzard-hist" width="960">
+</div>
+<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-blizzard-hist-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Option 2
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Which of the two figures is better for comparing the median annual salaries of hourly and salaried workers.</p>
-<ol type="a">
-<li><a href="#fig-blizzard-hist-1" class="quarto-xref">Figure&nbsp;1</a></li>
-<li><a href="#fig-blizzard-hist-2" class="quarto-xref">Figure&nbsp;2</a></li>
-</ol>
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-blizzard-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Distribution of annual salaries of Blizzard employees
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="question-2-1" class="level2">
-<h2 class="anchored" data-anchor-id="question-2-1">Question 2</h2>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
 <p>Suppose your teammate wrote the following code as part of their analysis of the data.</p>
 <p>They then printed out the results shown below. Unfortunately one of the number got erased from the printout, it’s indicated with <code>_____</code> below.</p>
 <pre><code># A tibble: 2 × 3
@@ -482,7 +491,7 @@ IV. Waffle chart</code></pre>
 <li>Intercept of <code>raise_2_fit</code> is higher than intercept of <code>raise_1_fit</code>.</li>
 <li>RMSE of <code>raise_2_fit</code> is higher than RMSE of <code>raise_1_fit</code>.</li>
 <li>Adjusted <span class="math inline">\(R^2\)</span> of <code>raise_2_fit</code> is higher than adjusted <span class="math inline">\(R^2\)</span> of <code>raise_1_fit</code>.</li>
-<li>Slope of <span class="math inline">\(R^2\)</span> of <code>raise_2_fit</code> is higher than slope of <code>raise_1_fit</code>.</li>
+<li><span class="math inline">\(R^2\)</span> of <code>raise_2_fit</code> is higher <span class="math inline">\(R^2\)</span> of <code>raise_1_fit</code>.</li>
 </ol>
 </section>
 <section id="question-8" class="level2">
@@ -528,38 +537,50 @@ IV. Waffle chart</code></pre>
 </section>
 <section id="question-10" class="level2">
 <h2 class="anchored" data-anchor-id="question-10">Question 10</h2>
-<p>Finally, create the following two plots and ask you for help deciding which one to use in the final report for visualizing the relationship between performance rating and salary type. In 1-3 sentences, can you help them make a decision, justify your choice, and write the narrative that should go with the plot?</p>
-<div id="fig-salary-performance-rating" class="cell quarto-layout-panel">
-<figure class="figure">
+<p>Finally, your teammate creates the following two plots and ask you for help deciding which one to use in the final report for visualizing the relationship between performance rating and salary type. In 1-3 sentences, can you help them make a decision, justify your choice, and write the narrative that should go with the plot?</p>
+<div id="fig-salary-performance-rating" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-salary-performance-rating-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-salary-performance-rating-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="exam-1-review_files/figure-html/fig-salary-performance-rating-1.png" class="img-fluid figure-img" data-ref-parent="fig-salary-performance-rating" width="672"></p>
-<figcaption class="figure-caption">(a) Option 1</figcaption>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-salary-performance-rating" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-salary-performance-rating-1" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-salary-performance-rating-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="exam-1-review_files/figure-html/fig-salary-performance-rating-1.png" class="img-fluid figure-img" data-ref-parent="fig-salary-performance-rating" width="672">
+</div>
+<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-salary-performance-rating-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Option 1
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-salary-performance-rating-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="exam-1-review_files/figure-html/fig-salary-performance-rating-2.png" class="img-fluid figure-img" data-ref-parent="fig-salary-performance-rating" width="672"></p>
-<figcaption class="figure-caption">(b) Option 2</figcaption>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-salary-performance-rating" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-salary-performance-rating-2" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-salary-performance-rating-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="exam-1-review_files/figure-html/fig-salary-performance-rating-2.png" class="img-fluid figure-img" data-ref-parent="fig-salary-performance-rating" width="672">
+</div>
+<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-salary-performance-rating-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Option 2
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3: Distribution of salary type by performance rating</figcaption><p></p>
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-salary-performance-rating-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Distribution of salary type by performance rating
+</figcaption>
 </figure>
 </div>
 </section>
 <section id="question-11" class="level2">
 <h2 class="anchored" data-anchor-id="question-11">Question 11</h2>
-<p>A friend with a keen eye points out that the number of observations in <a href="#fig-salary-performance-rating-1" class="quarto-xref">Figure&nbsp;3 (a)</a> seems lower than the total number of observations in <code>blizzard_salary</code>. What might be going on here? Explain your reasoning.</p>
+<p>A friend with a keen eye points out that the number of observations in <a href="#fig-salary-performance-rating-1" class="quarto-xref">Figure&nbsp;2 (a)</a> seems lower than the total number of observations in <code>blizzard_salary</code>. What might be going on here? Explain your reasoning.</p>
 </section>
-<section id="question-11-1" class="level2">
-<h2 class="anchored" data-anchor-id="question-11-1">Question 11</h2>
-<p>Show the proportions of performance ratings for hourly and salaried workers in a table and ask students to place those numbers on the segments of the plot.</p>
+<section id="question-12" class="level2">
+<h2 class="anchored" data-anchor-id="question-12">Question 12</h2>
+<p>Show the proportions of performance ratings for hourly and salaried workers in a table and ask students to place those numbers on the segments of <a href="#fig-salary-performance-rating-2" class="quarto-xref">Figure&nbsp;2 (b)</a>.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
@@ -572,22 +593,26 @@ IV. Waffle chart</code></pre>
 </div>
 </div>
 </section>
-<section id="question-12" class="level2">
-<h2 class="anchored" data-anchor-id="question-12">Question 12</h2>
-<p><a href="#fig-salary-performance-rating-mosaic" class="quarto-xref">Figure&nbsp;4</a> is yet another visualization of the relationship between salary type and performance rating. What type of plot is ths, and what does it display that <a href="#fig-salary-performance-rating-2" class="quarto-xref">Figure&nbsp;3 (b)</a> doesn’t?</p>
+<section id="question-13" class="level2">
+<h2 class="anchored" data-anchor-id="question-13">Question 13</h2>
+<p><a href="#fig-salary-performance-rating-mosaic" class="quarto-xref">Figure&nbsp;3</a> is yet another visualization of the relationship between salary type and performance rating. What type of plot is ths, and what does it display that <a href="#fig-salary-performance-rating-2" class="quarto-xref">Figure&nbsp;2 (b)</a> doesn’t?</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-salary-performance-rating-mosaic" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="exam-1-review_files/figure-html/fig-salary-performance-rating-mosaic-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: Another visualization of salary type by performance rating</figcaption>
+<div id="fig-salary-performance-rating-mosaic" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-salary-performance-rating-mosaic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="exam-1-review_files/figure-html/fig-salary-performance-rating-mosaic-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-salary-performance-rating-mosaic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Another visualization of salary type by performance rating
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="question-13" class="level2">
-<h2 class="anchored" data-anchor-id="question-13">Question 13</h2>
+<section id="question-14" class="level2">
+<h2 class="anchored" data-anchor-id="question-14">Question 14</h2>
 <p>Suppose we fit a model to predict <code>percent_incr</code> from <code>annual_salary</code> and <code>salary_type</code>. A tidy output of the model is shown below.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -600,54 +625,74 @@ IV. Waffle chart</code></pre>
 </div>
 </div>
 <p>Which of the following visualizations represent this model? Explain your reasoning.</p>
-<div id="fig-raise-salary-type" class="cell quarto-layout-panel">
-<figure class="figure">
+<div id="fig-raise-salary-type" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-raise-salary-type-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-raise-salary-type-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="exam-1-review_files/figure-html/fig-raise-salary-type-1.png" class="img-fluid figure-img" data-ref-parent="fig-raise-salary-type" width="672"></p>
-<figcaption class="figure-caption">(a) Option 1</figcaption>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-raise-salary-type" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-raise-salary-type-1" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-raise-salary-type-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="exam-1-review_files/figure-html/fig-raise-salary-type-1.png" class="img-fluid figure-img" data-ref-parent="fig-raise-salary-type" width="672">
+</div>
+<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-raise-salary-type-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Option 1
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-raise-salary-type-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="exam-1-review_files/figure-html/fig-raise-salary-type-2.png" class="img-fluid figure-img" data-ref-parent="fig-raise-salary-type" width="672"></p>
-<figcaption class="figure-caption">(b) Option 2</figcaption>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-raise-salary-type" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-raise-salary-type-2" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-raise-salary-type-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="exam-1-review_files/figure-html/fig-raise-salary-type-2.png" class="img-fluid figure-img" data-ref-parent="fig-raise-salary-type" width="672">
+</div>
+<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-raise-salary-type-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Option 2
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-raise-salary-type-3" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="exam-1-review_files/figure-html/fig-raise-salary-type-3.png" class="img-fluid figure-img" data-ref-parent="fig-raise-salary-type" width="672"></p>
-<figcaption class="figure-caption">(c) Option 3</figcaption>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-raise-salary-type" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-raise-salary-type-3" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-raise-salary-type-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="exam-1-review_files/figure-html/fig-raise-salary-type-3.png" class="img-fluid figure-img" data-ref-parent="fig-raise-salary-type" width="672">
+</div>
+<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-raise-salary-type-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Option 3
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-raise-salary-type-4" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="exam-1-review_files/figure-html/fig-raise-salary-type-4.png" class="img-fluid figure-img" data-ref-parent="fig-raise-salary-type" width="672"></p>
-<figcaption class="figure-caption">(d) Option 4</figcaption>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-raise-salary-type" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-raise-salary-type-4" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-raise-salary-type-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="exam-1-review_files/figure-html/fig-raise-salary-type-4.png" class="img-fluid figure-img" data-ref-parent="fig-raise-salary-type" width="672">
+</div>
+<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-raise-salary-type-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) Option 4
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;5: Visualizations of the relationship between percent increase, annual salary, and salary type</figcaption><p></p>
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-raise-salary-type-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Visualizations of the relationship between percent increase, annual salary, and salary type
+</figcaption>
 </figure>
 </div>
-</section>
-<section id="question-14" class="level2">
-<h2 class="anchored" data-anchor-id="question-14">Question 14</h2>
-<p>Define the term parsimonious model.</p>
 </section>
 <section id="question-15" class="level2">
 <h2 class="anchored" data-anchor-id="question-15">Question 15</h2>
+<p>Define the term parsimonious model.</p>
+</section>
+<section id="bonus" class="level2">
+<h2 class="anchored" data-anchor-id="bonus">Bonus</h2>
 <p>Pick a concept we introduced in class so far that you’ve been struggling with and explain it in your own words.</p>
 
 
@@ -926,15 +971,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
         for (let i = 0; i < 2; i++) {
           container.appendChild(note.children[i].cloneNode(true));
         }
+        typesetMath(container);
         return container.innerHTML
       } else {
+        typesetMath(note);
         return note.innerHTML;
       }
     } else {
@@ -943,6 +1011,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
+      typesetMath(note);
       return note.innerHTML;
     }
   }
@@ -985,6 +1054,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -1060,7 +1152,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener(
       "resize",
       throttle(() => {
-        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
