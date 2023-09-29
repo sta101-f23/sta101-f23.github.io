@@ -6,7 +6,8 @@ editor: visual
 editor_options: 
   chunk_output_type: console
 webr: 
-  show-startup-message: false
+  show-startup-message: true
+  packages: ['ggplot2', 'dplyr', 'tidyr']
 filters:
   - webr
 ---
@@ -29,9 +30,6 @@ What do you think?
 
 ```{webr-r}
 #| label: load-packages
-webr::install("dplyr")
-webr::install("ggplot2")
-webr::install("tidyr")
 library(dplyr)
 library(ggplot2)
 library(tidyr)
@@ -44,12 +42,15 @@ The data for this case study come from a technical briefing published by Public 
 First, let's load the data:
 
 ```{webr-r}
-#| label: load-data
+#| context: setup
 download.file(
   "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/delta.csv",
   "delta.csv"
 )
+```
 
+```{webr-r}
+#| label: load-data
 delta <- read.csv("delta.csv")
 ```
 

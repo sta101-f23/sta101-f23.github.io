@@ -109,12 +109,12 @@ ul.task-list li input[type="checkbox"] {
   const initializeWebRTimerStart = performance.now();
 
   // Determine if we need to install R packages
-  var installRPackagesList = [''];
+  var installRPackagesList = ['ggplot2', 'dplyr', 'scales', 'unvotes', 'ggthemes', 'lubridate'];
   // Check to see if we have an empty array, if we do set to skip the installation.
   var setupRPackages = !(installRPackagesList.indexOf("") !== -1);
 
   // Display a startup message?
-  var showStartupMessage = false;
+  var showStartupMessage = true;
   var showHeaderMessage = false;
   if (showStartupMessage) {
 
@@ -539,14 +539,7 @@ ul.task-list li input[type="checkbox"] {
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `webr::install("dplyr")
-webr::install("ggplot2")
-webr::install("scales")
-webr::install("unvotes")
-webr::install("ggthemes")
-webr::install("lubridate")
-
-library(dplyr)
+      value: `library(dplyr)
 library(ggplot2)
 library(scales)
 library(unvotes)

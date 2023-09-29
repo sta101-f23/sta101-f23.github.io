@@ -6,7 +6,8 @@ categories:
 editor: visual
 format: html
 webr: 
-  show-startup-message: false
+  show-startup-message: true
+  packages: ['ggplot2', 'dplyr', 'forcats', 'tidyr']
 filters:
   - webr
 ---
@@ -33,11 +34,6 @@ The main questions we'll explore today are:
 
 ```{webr-r}
 #| label: load-packages
-#| message: false
-webr::install("dplyr")
-webr::install("ggplot2")
-webr::install("forcats")
-webr::install("tidyr")
 library(dplyr)
 library(ggplot2)
 library(forcats)
@@ -51,12 +47,15 @@ The data for this case study come from the 2020 Durham City and County Resident 
 First, let's load the data:
 
 ```{webr-r}
-#| label: load-data
+#| context: setup
 download.file(
   "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/durham-2020.csv",
   "durham-2020.csv"
 )
+```
 
+```{webr-r}
+#| label: load-data
 durham <- read.csv("durham-2020.csv")
 ```
 
@@ -93,7 +92,6 @@ Visualize and describe the relationship between income and home ownership of Dur
 #| label: income-own-rent-plot
 #| fig-width: 10
 #| fig-asp: 0.4
-
 durham |>
   select(income, own_rent) |>
   drop_na() |>
@@ -127,7 +125,6 @@ Calculate the proportions of home owners for each category of Durham residents. 
 
 ```{webr-r}
 #| label: income-own-rent-props
-
 durham |>
   select(income, own_rent) |>
   drop_na() |>
@@ -142,7 +139,6 @@ Recode the **level**s of these two variables to be more informatively labeled an
 
 ```{webr-r}
 #| label: recode-levels
-
 durham <- durham |>
   mutate(
     income = case_when(
@@ -176,7 +172,6 @@ Visualize and describe the distribution of `qos_city`. If you get a warning with
 ```{webr-r}
 #| label: qos-city-hist
 #| fig-asp: 0.618
-
 ggplot(durham, aes(x = qos_city)) +
   geom_histogram(binwidth = 1) +
   labs(
@@ -192,7 +187,6 @@ Calculate the mean and median of the distribution of `qos_city`. If these values
 
 ```{webr-r}
 #| label: qos-city-center
-
 durham |>
   summarize(
     mean_qos_city = mean(qos_city, na.rm = TRUE),
@@ -206,7 +200,6 @@ Based on the shape of the distribution of `qos_city`, which measure of spread (v
 
 ```{webr-r}
 #| label: qos-city-spread
-
 durham |>
   summarize(
     iqr_qos_city = IQR(qos_city, na.rm = TRUE),
@@ -222,7 +215,6 @@ Make a box plot of `qos_city` and comment on how the values you calculated map o
 ```{webr-r}
 #| label: qos-city-box
 #| fig-asp: 0.4
-
 ggplot(durham, aes(x = qos_city)) +
   geom_boxplot() +
   labs(
@@ -241,7 +233,6 @@ How the average level of happiness with quality of services provided by the city
 ```{webr-r}
 #| label: qos-city-income-mean
 #| fig-asp: 0.618
-
 durham |>
   group_by(income) |>
   summarize(

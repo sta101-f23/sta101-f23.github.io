@@ -8,7 +8,8 @@ editor_options:
   chunk_output_type: console
 format: html
 webr: 
-  show-startup-message: false
+  show-startup-message: true
+  packages: ['ggplot2', 'dplyr', 'tidyr']
 filters:
   - webr
 ---
@@ -35,9 +36,6 @@ What do you think?
 
 ```{webr-r}
 #| label: load-packages
-webr::install("dplyr")
-webr::install("ggplot2")
-webr::install("tidyr")
 library(dplyr)
 library(ggplot2)
 library(tidyr)
@@ -50,12 +48,15 @@ The data for this case study come from a technical briefing published by Public 
 First, let's load the data:
 
 ```{webr-r}
-#| label: load-data
+#| context: setup
 download.file(
   "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/delta.csv",
   "delta.csv"
 )
+```
 
+```{webr-r}
+#| label: load-data
 delta <- read.csv("delta.csv")
 ```
 
@@ -81,7 +82,6 @@ Create a visualization of health outcome by vaccine status that allows you to co
 
 ```{webr-r}
 #| label: plot-deaths-vaccine
-
 # add code here
 ```
 
@@ -93,7 +93,6 @@ Calculate the proportion of deaths in among those who are vaccinated. Then, calc
 
 ```{webr-r}
 #| label: prop-deaths-vaccine
-
 # add code here
 ```
 
@@ -105,7 +104,6 @@ Create the visualization and calculate proportions from the two previous exercis
 
 ```{webr-r}
 #| label: deaths-vaccine-age
-
 # add code here
 ```
 
@@ -139,7 +137,6 @@ Add your answer here.
 
 ```{webr-r}
 #| label: vaccine-age
-
 # add your code here
 ```
 
@@ -149,7 +146,6 @@ The percentages of deaths from COVID across vaccination groups is as follows:
 
 ```{webr-r}
 #| label: vaccine-outcome-perc
-
 vaccine_outcome_perc <- delta |>
   count(vaccine, outcome) |>
   group_by(vaccine) |>
@@ -162,7 +158,6 @@ Also considering age groups, the death rates are as follows:
 
 ```{webr-r}
 #| label: vaccine-age-outcome-perc
-
 vaccine_age_outcome_perc <- delta |>
   count(vaccine, age, outcome) |>
   group_by(vaccine, age) |>
@@ -175,7 +170,6 @@ We can *pivot* these data for better display; we'll learn more about these "data
 
 ```{webr-r}
 #| label: vaccine-age-outcome-perc-table
-
 vaccine_age_outcome_perc |>
   pivot_wider(names_from = age, values_from = perc)
 ```
@@ -184,7 +178,6 @@ We identified age as a potential confounding variable in the relationship betwee
 
 ```{webr-r}
 #| label: age-props
-
 age_props <- delta |>
   count(age) |>
   mutate(p = n / sum(n))
@@ -194,7 +187,6 @@ And then, let's use these proportions to *weigh* the percentages of deaths.
 
 ```{webr-r}
 #| label: vaccine-age-outcome-perc-wt
-
 vaccine_age_outcome_perc |>
   mutate(perc_wt = if_else(age == "50+", perc * 0.115, perc * 0.885)) |>
   group_by(vaccine) |>

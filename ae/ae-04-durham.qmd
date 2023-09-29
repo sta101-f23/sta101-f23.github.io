@@ -5,7 +5,8 @@ categories:
 editor: visual
 format: html
 webr: 
-  show-startup-message: false
+  show-startup-message: true
+  packages: ['ggplot2', 'dplyr', 'forcats', 'tidyr']
 filters:
   - webr
 ---
@@ -28,11 +29,6 @@ The main question we'll explore today is "What are the demographics and prioriti
 
 ```{webr-r}
 #| label: load-packages
-#| message: false
-webr::install("dplyr")
-webr::install("ggplot2")
-webr::install("forcats")
-webr::install("tidyr")
 library(dplyr)
 library(ggplot2)
 library(forcats)
@@ -46,12 +42,15 @@ The data for this case study come from the 2020 Durham City and County Resident 
 First, let's load the data:
 
 ```{webr-r}
-#| label: load-data
+#| context: setup
 download.file(
   "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/durham-2020.csv",
   "durham-2020.csv"
 )
+```
 
+```{webr-r}
+#| label: load-data
 durham <- read.csv("durham-2020.csv")
 ```
 
@@ -75,7 +74,6 @@ The variables we'll use in this analysis are as follows. Rename the variables to
 
 ```{webr-r}
 #| label: rename
-
 # add code here
 ```
 
@@ -89,7 +87,6 @@ What language do Durham residents speak: `primary_language`?
 
 ```{webr-r}
 #| label: primary-language
-
 # add code here
 ```
 
@@ -99,7 +96,6 @@ Make similar bar plots of `own_rent` and `income`. What distinct values do these
 
 ```{webr-r}
 #| label: own-rent-income
-
 # add code here
 ```
 
@@ -111,7 +107,6 @@ The variables `own_rent` and `income` are both categorical, but they're stored a
 #| label: recode-types
 #| fig-width: 10
 #| fig-asp: 0.4
-
 # add code here
 ```
 
@@ -125,7 +120,6 @@ Recreate the visualization from the `previous exercise`income\` barplot, improvi
 #| label: income-improve
 #| fig-width: 10
 #| fig-asp: 0.4
-
 # add code here
 ```
 
@@ -135,7 +129,6 @@ Recreate the visualization from the previous exercise, but first calculate relat
 
 ```{webr-r}
 #| label: income-proportions
-
 # add code here
 ```
 
@@ -153,7 +146,6 @@ Visualize and describe the relationship between income and home ownership of Dur
 #| label: income-own-rent-plot
 #| fig-width: 10
 #| fig-asp: 0.4
-
 # add code here
 ```
 
@@ -165,7 +157,6 @@ Calculate the proportions of home owners for each category of Durham residents. 
 
 ```{webr-r}
 #| label: income-own-rent-props
-
 # add code here
 ```
 
@@ -175,7 +166,6 @@ Calculate the proportions of home owners for each category of Durham residents. 
 
 ```{webr-r}
 #| label: recode-levels
-
 # add code here
 ```
 

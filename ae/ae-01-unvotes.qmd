@@ -7,7 +7,8 @@ format: html
 editor: visual
 engine: knitr
 webr: 
-  show-startup-message: false
+  show-startup-message: true
+  packages: ['ggplot2', 'dplyr', 'scales', 'unvotes', 'ggthemes', 'lubridate']
 filters:
   - webr
 ---
@@ -21,13 +22,6 @@ How do various countries vote in the United Nations General Assembly, how have t
 We will use the **dplyr**, **ggplot2**, **ggthemes** **lubridate**, and **scales** packages for data wrangling and visualization, and the **unvotes** package for the data.
 
 ```{webr-r}
-webr::install("dplyr")
-webr::install("ggplot2")
-webr::install("scales")
-webr::install("unvotes")
-webr::install("ggthemes")
-webr::install("lubridate")
-
 library(dplyr)
 library(ggplot2)
 library(scales)

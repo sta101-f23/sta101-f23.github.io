@@ -6,7 +6,8 @@ categories:
 editor: visual
 format: html
 webr: 
-  show-startup-message: false
+  show-startup-message: true
+  packages: ['ggplot2', 'dplyr', 'tidymodels', 'lubridate']
 filters:
   - webr
 ---
@@ -31,11 +32,6 @@ Today we'll explore the question "How do stock prices of Apple and Microsoft rel
 
 ```{webr-r}
 #| label: load-packages
-#| message: false
-webr::install("dplyr")
-webr::install("ggplot2")
-webr::install("tidymodels")
-webr::install("lubridate")
 library(dplyr)
 library(ggplot2)
 library(tidymodels)
@@ -49,13 +45,15 @@ The data for this application exercise was originally gathered using the [**tidy
 First, let's load the data:
 
 ```{webr-r}
-#| label: load-data
-#| message: false
+#| context: setup
 download.file(
   "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/stocks.csv",
   "stocks.csv"
 )
+```
 
+```{webr-r}
+#| label: load-data
 stocks <- read.csv("stocks.csv")
 ```
 
@@ -122,7 +120,6 @@ In the slides we fit a model with slope 0.5 and intercept -5. The code for layer
 
 ```{webr-r}
 #| label: how-close
-
 ggplot(stocks_jan2020, aes(x = MSFT.Open, y = AAPL.Open)) +
   geom_point() + 
   geom_abline(slope = 0.5, intercept = -5) +
@@ -163,7 +160,6 @@ Find the least squares line $y = \hat{\beta_0} + \hat{\beta_1} x$ for January 20
 
 ```{webr-r}
 #| label: fit-MSFT-AAPL-January
-
 stock_fit <- linear_reg() |>
   fit(AAPL.Open ~ MSFT.Open, data = stocks_jan2020)
 

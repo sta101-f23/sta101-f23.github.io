@@ -6,7 +6,8 @@ categories:
 editor: visual
 format: html
 webr: 
-  show-startup-message: false
+  show-startup-message: true
+  packages: ['ggplot2', 'dplyr']
 filters:
   - webr
 ---
@@ -74,8 +75,6 @@ We'll use the tidyverse package for analysis, which offers functionality for dat
 
 ```{webr-r}
 #| label: load-packages
-webr::install("dplyr")
-webr::install("ggplot2")
 library(dplyr)
 library(ggplot2)
 ```
@@ -89,11 +88,15 @@ The `read_csv()` function can be used for reading CSV (comma separated values) f
 Before reading in the file, go to the `data` folder in the Files pane to confirm that it is, indeed, there. Then, read the file by running the code chunk below by clicking on the green triangle icon on the code chunk.
 
 ```{webr-r}
-#| label: load-data
+#| context: setup
 download.file(
-  "https://gist.githubusercontent.com/michaelt918/acc17315538199769c6c6b9ab7e45551/raw/bb0f18f9f271cd81de6e56747df3f3c81c0eee3d/flint.csv",
+  "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/flint.csv",
   "flint.csv"
 )
+```
+
+```{webr-r}
+#| label: load-data
 flint <- read.csv("flint.csv")
 ```
 
@@ -128,7 +131,6 @@ In the case we want to learn about the lead content in all of Flint, MI homes bu
 
 ```{webr-r}
 #| label: obs-vars
-
 nrow(flint)
 ncol(flint)
 ```
@@ -143,7 +145,6 @@ Let's `count()` to find the number of different time points water was sampled wi
 
 ```{webr-r}
 #| label: count-draws
-
 count(flint, draw)
 ```
 
@@ -157,7 +158,6 @@ We can achieve the same result with the following "piped" operation as well.
 
 ```{webr-r}
 #| label: count-draws-piped
-
 flint |>
   count(draw)
 ```
@@ -166,7 +166,6 @@ We can use a similar approach to fund out how many unique homes are in the data 
 
 ```{webr-r}
 #| label: count-homes
-
 flint |>
   count(id)
 ```
@@ -175,7 +174,6 @@ flint |>
 
 ```{webr-r}
 #| label: count-by-zip
-
 flint |>
   count(zip)
 ```
@@ -186,7 +184,6 @@ flint |>
 
 ```{webr-r}
 #| label: count-by-zip-ordered
-
 flint |>
   count(zip, sort = TRUE)
 ```
@@ -222,7 +219,6 @@ What is a statistic? It's **any mathematical function of the data**. Sometimes, 
 
 ```{webr-r}
 #| label: statistics
-
 flint |>
   summarize(
     mean_lead = mean(lead),
@@ -241,7 +237,6 @@ Let's take a look at the **distribution** of lead content in homes in Flint, MI.
 
 ```{webr-r}
 #| label: flint-histogram-1
-
 ggplot(flint, aes(x = lead)) +
   geom_histogram()
 ```
@@ -250,7 +245,6 @@ We can make this plot look nicer/more useful by adjusting the number of bins and
 
 ```{webr-r}
 #| label: flint-histogram-2
-
 ggplot(flint, aes(x = lead)) +
   geom_histogram(bins = 50) +
   coord_cartesian(xlim = c(0, 100))
@@ -262,7 +256,6 @@ Let's visualize some of our summary statistics on the plot.
 
 ```{webr-r}
 #| label: overlay-mean
-
 ggplot(flint, aes(x = lead)) + 
   geom_histogram(bins = 50) + 
   coord_cartesian(xlim = c(0, 100)) +
@@ -273,7 +266,6 @@ ggplot(flint, aes(x = lead)) +
 
 ```{webr-r}
 #| label: overlay-median
-
 ggplot(flint, aes(x = lead)) + 
   geom_histogram(bins = 50) + 
   coord_cartesian(xlim = c(0, 100)) +
@@ -287,7 +279,6 @@ Next, let's narrow our focus to the zip codes 48503, 48504, 48505, 48506, and 48
 
 ```{webr-r}
 #| label: focus
-
 flint_focus <- flint |>
   filter(zip %in% 48503:48507 & lead < 1000)
 ```

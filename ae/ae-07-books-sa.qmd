@@ -6,7 +6,8 @@ categories:
 editor: visual
 format: html
 webr: 
-  show-startup-message: false
+  show-startup-message: true
+  packages: ['ggplot2', 'dplyr', 'tidymodels']
 filters:
   - webr
 ---
@@ -28,9 +29,7 @@ Today we'll explore the question "How do volume and weights books relate?" and "
 # Packages
 
 ```{webr-r}
-webr::install("dplyr")
-webr::install("ggplot2")
-webr::install("tidymodels")
+#| label: load-packages
 library(dplyr)
 library(ggplot2)
 library(tidymodels)
@@ -41,12 +40,15 @@ library(tidymodels)
 The data for this application exercise comes from the `allbacks` dataset in the **DAAG** package. The dataset has `r nrow(allbacks)` observations and `r ncol(allbacks)` columns. Each observation represents a book. Let's take a peek at the data:
 
 ```{webr-r}
-#| label: peek-data
+#| context: setup
 download.file(
-  "https://gist.githubusercontent.com/michaelt918/14041adc992e0d2c10e1482e2681b5eb/raw/f8ffe441a8e16fcaf9e667c9b74aa8597bcfe615/allbacks.csv",
+  "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/allbacks.csv",
   "allbacks.csv"
 )
+```
 
+```{webr-r}
+#| label: peek-data
 allbacks <- read.csv("allbacks.csv")
 
 allbacks
@@ -62,7 +64,6 @@ Visualize the relationship between volume (on the x-axis) and weight (on the y-a
 
 ```{webr-r}
 #| label: plot-weight-volume
-
 ggplot(allbacks, aes(x = volume, y = weight)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
@@ -78,7 +79,6 @@ Fit a model predicting weight from volume for these books and save it as `weight
 
 ```{webr-r}
 #| label: fit-weight-volume
-
 weight_fit <- linear_reg() |>
   fit(weight ~ volume, data = allbacks)
 
@@ -99,7 +99,6 @@ Calculate the $R^2$ of this model and interpret it in context of the data.
 
 ```{webr-r}
 #| label: glance-weight-volume
-
 glance(weight_fit)
 ```
 
@@ -113,7 +112,6 @@ Visualize the relationship between volume (on the x-axis) and weight (on the y-a
 
 ```{webr-r}
 #| label: plot-weight-volume-cover
-
 ggplot(allbacks, aes(x = volume, y = weight)) +
   geom_smooth(method = "lm", se = FALSE, color = "gray", linetype = "dashed") +
   geom_point(aes(color = cover, shape = cover)) +
@@ -131,7 +129,6 @@ Fit a model predicting weight from volume for these books and save it as `weight
 
 ```{webr-r}
 #| label: fit-weight-volume-cover
-
 weight_cover_fit <- linear_reg() |>
   fit(weight ~ volume + cover, data = allbacks)
 
@@ -160,7 +157,6 @@ First, guess whether the $R^2$ of this model will be greater than, less than, or
 
 ```{webr-r}
 #| label: glance-weight-volume-cover
-
 glance(weight_cover_fit)
 ```
 
@@ -180,7 +176,6 @@ Using the model you chose, predict the weight of a hardcover book that is 1000 c
 
 ```{webr-r}
 #| label: predict
-
 new_book <- tibble(
   cover = "hb",
   volume = 1000

@@ -5,7 +5,8 @@ categories:
 editor: visual
 format: html
 webr: 
-  show-startup-message: false
+  show-startup-message: true
+  packages: ['ggplot2', 'dplyr', 'forcats', 'tidymodels', 'scales']
 filters:
   - webr
 ---
@@ -26,12 +27,6 @@ Today we'll explore the question "What best predicts what percent of the bill am
 
 ```{webr-r}
 #| label: load-packages
-#| message: false
-webr::install("dplyr")
-webr::install("ggplot2")
-webr::install("tidymodels")
-webr::install("scales")
-webr::install("forcats")
 library(dplyr)
 library(ggplot2)
 library(tidymodels)
@@ -46,12 +41,15 @@ The data for this application exercise was collected in 2011 by a student at St.
 [^1]: Dahlquist, Samantha, and Jin Dong. 2011. "The Effects of Credit Cards on Tipping." Project for Statistics 212-Statistics for the Sciences, St. Olaf College.
 
 ```{webr-r}
-#| label: load-data
+#| context: setup
 download.file(
   "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/tips.csv",
   "tips.csv"
 )
+```
 
+```{webr-r}
+#| label: load-data
 tips <- read.csv("tips.csv")
 ```
 
@@ -79,7 +77,6 @@ Visualize the relationship between these variables.
 #| label: eda
 #| fig-width: 10
 #| fig-asp: 0.618
-
 # add code here
 ```
 
@@ -97,7 +94,6 @@ Fit a model predicting tip percentage from bill amount. Display and interpret th
 
 ```{webr-r}
 #| label: tip-bill
-
 # add code here
 ```
 
@@ -105,7 +101,6 @@ Fit a model predicting tip percentage from bill amount. Display and interpret th
 
 ```{webr-r}
 #| label: tip-bill-glance
-
 # add code here
 ```
 
@@ -117,7 +112,6 @@ Suppose we next add `meal` as a predictor and interpret the model coefficients a
 
 ```{webr-r}
 #| label: tip-bill-meal
-
 # add code here
 ```
 
@@ -135,7 +129,6 @@ Fit a model predicting tip percentage from bill amount and meal, calculate its $
 
 ```{webr-r}
 #| label: tip-bill-meal-glance
-
 # add code here
 ```
 
@@ -149,7 +142,6 @@ Calculate adjusted $R^2$ for the two models. Is adding `meal` to a model predict
 
 ```{webr-r}
 #| label: compare-adj-rsq
-
 # add code here
 ```
 
@@ -191,7 +183,6 @@ Perform backward elimination to find the best model for predicting `tip_percenta
 
 ```{webr-r}
 #| label: backwards
-
 # add code here
 ```
 
@@ -203,7 +194,6 @@ Perform backward elimination to find the best model for predicting `tip_percenta
 
 ```{webr-r}
 #| label: forward
-
 # add code here
 ```
 
@@ -215,7 +205,6 @@ Fit the "best" model and interpret it.
 
 ```{webr-r}
 #| label: tip-fit
-
 # add code here
 ```
 
@@ -228,11 +217,14 @@ A common way of evaluating the predictive performance of a model is to test it a
 Let's first load the new data.
 
 ```{webr-r}
+#| context: setup
 download.file(
   "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/tips-test.csv",
   "tips-test.csv"
 )
+```
 
+```{webr-r}
 tips_test <- read.csv("tips-test.csv")
 ```
 
@@ -246,7 +238,6 @@ Let's use our model to make predictions for `tip_percentage` for these new data:
 
 ```{webr-r}
 #| label: tip-aug-test
-
 # add code here
 ```
 
@@ -254,7 +245,6 @@ We can plot the predicted values of `tip_percentage` against the observed values
 
 ```{webr-r}
 #| label: tip-aug-plot
-
 # add code here
 ```
 
@@ -262,7 +252,6 @@ We can also quantify the average error in our predictions with a measure called 
 
 ```{webr-r}
 #| label: tip-aug-rmse
-
 # add code here
 ```
 
@@ -272,7 +261,6 @@ Let's take a look back at the tip percentage variables in this dataset.
 
 ```{webr-r}
 #| label: tip-test-hist
-
 # add code here
 ```
 

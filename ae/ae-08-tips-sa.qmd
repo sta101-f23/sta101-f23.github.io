@@ -6,7 +6,8 @@ categories:
 editor: visual
 format: html
 webr: 
-  show-startup-message: false
+  show-startup-message: true
+  packages: ['ggplot2', 'dplyr', 'forcats', 'tidymodels', 'scales']
 filters:
   - webr
 ---
@@ -31,12 +32,6 @@ Today we'll explore the question "What best predicts what percent of the bill am
 
 ```{webr-r}
 #| label: load-packages
-#| message: false
-webr::install("dplyr")
-webr::install("ggplot2")
-webr::install("tidymodels")
-webr::install("scales")
-webr::install("forcats")
 library(dplyr)
 library(ggplot2)
 library(tidymodels)
@@ -51,12 +46,15 @@ The data for this application exercise was collected in 2011 by a student at St.
 [^1]: Dahlquist, Samantha, and Jin Dong. 2011. "The Effects of Credit Cards on Tipping." Project for Statistics 212-Statistics for the Sciences, St. Olaf College.
 
 ```{webr-r}
-#| label: load-data
+#| context: setup
 download.file(
   "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/tips.csv",
   "tips.csv"
 )
+```
 
+```{webr-r}
+#| label: load-data
 tips <- read.csv("tips.csv")
 ```
 
@@ -84,7 +82,6 @@ Visualize the relationship between these variables.
 #| label: eda
 #| fig-width: 10
 #| fig-asp: 0.618
-
 tips <- tips |>
   mutate(meal = fct_relevel(meal, "Lunch", "Dinner", "Late Night"))
 
@@ -114,7 +111,6 @@ Fit a model predicting tip percentage from bill amount. Display and interpret th
 
 ```{webr-r}
 #| label: tip-bill
-
 tip_1_fit <- linear_reg() |>
   fit(tip_percentage ~ bill, data = tips)
 
@@ -139,7 +135,6 @@ Suppose we next add `meal` as a predictor and interpret the model coefficients a
 
 ```{webr-r}
 #| label: tip-bill-meal
-
 tip_2_fit <- linear_reg() |>
   fit(tip_percentage ~ bill + meal, data = tips)
 
@@ -164,7 +159,6 @@ Fit a model predicting tip percentage from bill amount and meal, calculate its $
 
 ```{webr-r}
 #| label: tip-bill-party
-
 glance(tip_2_fit)
 ```
 
@@ -282,11 +276,14 @@ A common way of evaluating the predictive performance of a model is to test it a
 Let's first load the new data.
 
 ```{webr-r}
+#| context: setup
 download.file(
   "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/tips-test.csv",
   "tips-test.csv"
 )
+```
 
+```{webr-r}
 tips_test <- read.csv("tips-test.csv")
 ```
 
