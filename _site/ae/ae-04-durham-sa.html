@@ -573,8 +573,12 @@ Important
     editor = monaco.editor.create(editorDiv, {
       value: `webr::install("dplyr")
 webr::install("ggplot2")
+webr::install("forcats")
+webr::install("tidyr")
 library(dplyr)
-library(ggplot2)`,
+library(ggplot2)
+library(forcats)
+library(tidyr)`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
