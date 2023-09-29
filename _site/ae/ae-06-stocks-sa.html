@@ -569,9 +569,11 @@ Important
       value: `webr::install("dplyr")
 webr::install("ggplot2")
 webr::install("tidymodels")
+webr::install("lubridate")
 library(dplyr)
 library(ggplot2)
-library(tidymodels)`,
+library(tidymodels)
+library(lubridate)`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -785,7 +787,7 @@ library(tidymodels)`,
   "stocks.csv"
 )
 
-stocks <- read_csv("stocks.csv")`,
+stocks <- read.csv("stocks.csv")`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks

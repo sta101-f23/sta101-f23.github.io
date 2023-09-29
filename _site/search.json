@@ -1341,14 +1341,14 @@
     "href": "ae/ae-07-books-sa.html#exercise-1",
     "title": "Weights of books",
     "section": "Exercise 1",
-    "text": "Exercise 1\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis). Overlay the line of best fit. Describe the relationship between these variables.\n\nggplot(allbacks, aes(x = volume, y = weight)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(\n    x = \"Volume (cubic centimeters)\",\n    y = \"Weight (grams)\"\n  )\n\n`geom_smooth()` using formula = 'y ~ x'"
+    "text": "Exercise 1\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis). Overlay the line of best fit. Describe the relationship between these variables.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-07-books-sa.html#exercise-2",
     "href": "ae/ae-07-books-sa.html#exercise-2",
     "title": "Weights of books",
     "section": "Exercise 2",
-    "text": "Exercise 2\nFit a model predicting weight from volume for these books and save it as weight_fit. Display a tidy output of the model.\n\nweight_fit &lt;- linear_reg() |&gt;\n  fit(weight ~ volume, data = allbacks)\n\ntidy(weight_fit)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic    p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;\n1 (Intercept)  108.      88.4         1.22 0.245     \n2 volume         0.709    0.0975      7.27 0.00000626"
+    "text": "Exercise 2\nFit a model predicting weight from volume for these books and save it as weight_fit. Display a tidy output of the model.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-07-books-sa.html#exercise-3",
@@ -1362,21 +1362,21 @@
     "href": "ae/ae-07-books-sa.html#exercise-4",
     "title": "Weights of books",
     "section": "Exercise 4",
-    "text": "Exercise 4\nCalculate the \\(R^2\\) of this model and interpret it in context of the data.\n\nglance(weight_fit)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic    p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     0.803         0.787  124.      52.9 0.00000626     1  -92.5  191.  193.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\nVolume explains approximately 80% of the variability in book weights."
+    "text": "Exercise 4\nCalculate the \\(R^2\\) of this model and interpret it in context of the data.\nLoading\n  webR...\n\n\n  \n\n\n\nVolume explains approximately 80% of the variability in book weights."
   },
   {
     "objectID": "ae/ae-07-books-sa.html#exercise-5",
     "href": "ae/ae-07-books-sa.html#exercise-5",
     "title": "Weights of books",
     "section": "Exercise 5",
-    "text": "Exercise 5\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis), taking into consideration the cover type of the book. Use different colors and shapes for hardback and paperback books. Also use different colors for lines of best fit for the two types of books. In addition, add the overall line of best fit (from Exercise 1) as a gray dashed line so that you can see the difference between the lines when considering and not considering cover type.\n\nggplot(allbacks, aes(x = volume, y = weight)) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"gray\", linetype = \"dashed\") +\n  geom_point(aes(color = cover, shape = cover)) +\n  geom_smooth(aes(color = cover), method = \"lm\", se = FALSE) +\n  labs(\n    x = \"Volume (cubic centimeters)\",\n    y = \"Weight (grams)\",\n    shape = \"Cover\", color = \"Cover\"\n  )\n\n`geom_smooth()` using formula = 'y ~ x'\n`geom_smooth()` using formula = 'y ~ x'"
+    "text": "Exercise 5\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis), taking into consideration the cover type of the book. Use different colors and shapes for hardback and paperback books. Also use different colors for lines of best fit for the two types of books. In addition, add the overall line of best fit (from Exercise 1) as a gray dashed line so that you can see the difference between the lines when considering and not considering cover type.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-07-books-sa.html#exercise-6",
     "href": "ae/ae-07-books-sa.html#exercise-6",
     "title": "Weights of books",
     "section": "Exercise 6",
-    "text": "Exercise 6\nFit a model predicting weight from volume for these books and save it as weight_cover_fit. Display a tidy output of the model.\n\nweight_cover_fit &lt;- linear_reg() |&gt;\n  fit(weight ~ volume + cover, data = allbacks)\n\ntidy(weight_cover_fit)\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic      p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;\n1 (Intercept)  198.      59.2         3.34 0.00584     \n2 volume         0.718    0.0615     11.7  0.0000000660\n3 coverpb     -184.      40.5        -4.55 0.000672"
+    "text": "Exercise 6\nFit a model predicting weight from volume for these books and save it as weight_cover_fit. Display a tidy output of the model.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-07-books-sa.html#exercise-7",
@@ -1397,7 +1397,7 @@
     "href": "ae/ae-07-books-sa.html#exercise-9",
     "title": "Weights of books",
     "section": "Exercise 9",
-    "text": "Exercise 9\nFirst, guess whether the \\(R^2\\) of this model will be greater than, less than, or the same as the previous model, or whether we can’t tell. Then, calculate the \\(R^2\\) of this model to confirm your guess, and then interpret it in context of the data.\n\nglance(weight_cover_fit)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic     p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     0.927         0.915  78.2      76.7 0.000000145     2  -85.0  178.  181.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\n\\(R^2\\) of this model will be higher since it has an additional predictor.\nVolume and cover type explain approximately 93% of the variability in book weights."
+    "text": "Exercise 9\nFirst, guess whether the \\(R^2\\) of this model will be greater than, less than, or the same as the previous model, or whether we can’t tell. Then, calculate the \\(R^2\\) of this model to confirm your guess, and then interpret it in context of the data.\nLoading\n  webR...\n\n\n  \n\n\n\n\\(R^2\\) of this model will be higher since it has an additional predictor.\nVolume and cover type explain approximately 93% of the variability in book weights."
   },
   {
     "objectID": "ae/ae-07-books-sa.html#exercise-10",
@@ -1411,7 +1411,7 @@
     "href": "ae/ae-07-books-sa.html#exercise-11",
     "title": "Weights of books",
     "section": "Exercise 11",
-    "text": "Exercise 11\nUsing the model you chose, predict the weight of a hardcover book that is 1000 cubic centimeters (that is, roughly 25 centimeters in length, 20 centimeters in width, and 2 centimeters in height/thickness).\n\nnew_book &lt;- tibble(\n  cover = \"hb\",\n  volume = 1000\n)\n\npredict(weight_cover_fit, new_data = new_book)\n\n# A tibble: 1 × 1\n  .pred\n  &lt;dbl&gt;\n1  916."
+    "text": "Exercise 11\nUsing the model you chose, predict the weight of a hardcover book that is 1000 cubic centimeters (that is, roughly 25 centimeters in length, 20 centimeters in width, and 2 centimeters in height/thickness).\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-03-delta.html",

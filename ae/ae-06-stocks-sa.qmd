@@ -35,9 +35,11 @@ Today we'll explore the question "How do stock prices of Apple and Microsoft rel
 webr::install("dplyr")
 webr::install("ggplot2")
 webr::install("tidymodels")
+webr::install("lubridate")
 library(dplyr)
 library(ggplot2)
 library(tidymodels)
+library(lubridate)
 ```
 
 # Data
@@ -54,7 +56,7 @@ download.file(
   "stocks.csv"
 )
 
-stocks <- read_csv("stocks.csv")
+stocks <- read.csv("stocks.csv")
 ```
 
 To keep things simple, we'll work with a subset of the data, stock prices in January 2020.
