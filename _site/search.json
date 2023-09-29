@@ -557,7 +557,7 @@
     "href": "ae/ae-08-tips-sa.html#exercise-1",
     "title": "Tips",
     "section": "Exercise 1",
-    "text": "Exercise 1\nVisualize the relationship between these variables.\n\ntips &lt;- tips |&gt;\n  mutate(meal = fct_relevel(meal, \"Lunch\", \"Dinner\", \"Late Night\"))\n\nggplot(tips, aes(x = bill, y = tip_percentage, color = party)) +\n  geom_point(alpha = 0.7) +\n  facet_grid(alcohol ~ meal) +\n  scale_colour_continuous(breaks = c(1:9)) +\n  scale_y_continuous(labels = label_percent()) +\n  labs(\n    x = \"Bill amount (USD)\",\n    y = \"Tip percentage\",\n    color = \"Party\\nsize\"\n  )"
+    "text": "Exercise 1\nVisualize the relationship between these variables.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-08-tips-sa.html#exercise-2",
@@ -571,14 +571,14 @@
     "href": "ae/ae-08-tips-sa.html#exercise-3",
     "title": "Tips",
     "section": "Exercise 3",
-    "text": "Exercise 3\nFit a model predicting tip percentage from bill amount. Display and interpret the model coefficients. Additionally, calculate and interpret the \\(R^2\\) of this model.\n\ntip_1_fit &lt;- linear_reg() |&gt;\n  fit(tip_percentage ~ bill, data = tips)\n\ntidy(tip_1_fit)\n\n# A tibble: 2 × 5\n  term         estimate std.error statistic  p.value\n  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)  0.198     0.0134       14.8  2.16e-29\n2 bill        -0.000748  0.000390     -1.92 5.70e- 2\n\n\n\n\nFor each additional dollar the bill is higher, we expect the tip percentage to be lower, on average, by 0.0748%.\n\n\n\nFor bills that are 0 dollars, the model predicts the tip percentage to be 19.8%. This doesn’t make sense in context of the data and the intercept is only there the adjust the height of the line.\n\n\n\nglance(tip_1_fit)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared  sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0282        0.0206 0.0819      3.69  0.0570     1   141. -275. -267.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\nRoughly 2.6% of the variability in tip percentages can be explained by bill amount."
+    "text": "Exercise 3\nFit a model predicting tip percentage from bill amount. Display and interpret the model coefficients. Additionally, calculate and interpret the \\(R^2\\) of this model.\nLoading\n  webR...\n\n\n  \n\n\n\n\nFor each additional dollar the bill is higher, we expect the tip percentage to be lower, on average, by 0.0748%.\n\n\n\nFor bills that are 0 dollars, the model predicts the tip percentage to be 19.8%. This doesn’t make sense in context of the data and the intercept is only there the adjust the height of the line.\n\n\nLoading\n  webR...\n\n\n  \n\n\n\nRoughly 2.6% of the variability in tip percentages can be explained by bill amount."
   },
   {
     "objectID": "ae/ae-08-tips-sa.html#exercise-4",
     "href": "ae/ae-08-tips-sa.html#exercise-4",
     "title": "Tips",
     "section": "Exercise 4",
-    "text": "Exercise 4\nSuppose we next add meal as a predictor and interpret the model coefficients again.\n\ntip_2_fit &lt;- linear_reg() |&gt;\n  fit(tip_percentage ~ bill + meal, data = tips)\n\ntidy(tip_2_fit)\n\n# A tibble: 4 × 5\n  term            estimate std.error statistic  p.value\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)     0.185     0.0237       7.80  2.07e-12\n2 bill           -0.000561  0.000446    -1.26  2.10e- 1\n3 mealDinner      0.00471   0.0191       0.247 8.05e- 1\n4 mealLate Night  0.0203    0.0250       0.814 4.17e- 1\n\n\n\n\nAll else held constant, for each additional dollar the bill is higher, we expect the tip percentage to be lower, on average, by 0.0561%.\nAll else held constant, we would expect the the tip percentage for dinners to be higher, on average, by 0.471% compared to lunches.\nAll else held constant, we would expect the the tip percentage for late night meals to be higher, on average, by 2.03% compared to lunches."
+    "text": "Exercise 4\nSuppose we next add meal as a predictor and interpret the model coefficients again.\nLoading\n  webR...\n\n\n  \n\n\n\n\nAll else held constant, for each additional dollar the bill is higher, we expect the tip percentage to be lower, on average, by 0.0561%.\nAll else held constant, we would expect the the tip percentage for dinners to be higher, on average, by 0.471% compared to lunches.\nAll else held constant, we would expect the the tip percentage for late night meals to be higher, on average, by 2.03% compared to lunches."
   },
   {
     "objectID": "ae/ae-08-tips-sa.html#exercise-5",
@@ -592,14 +592,14 @@
     "href": "ae/ae-08-tips-sa.html#exercise-6",
     "title": "Tips",
     "section": "Exercise 6",
-    "text": "Exercise 6\nFit a model predicting tip percentage from bill amount and meal, calculate its \\(R^2\\), and comment on your guess from the previous exercise.\n\nglance(tip_2_fit)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared  sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0342        0.0110 0.0823      1.48   0.224     3   141. -272. -258.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\nIndeed, \\(R^2\\) is higher."
+    "text": "Exercise 6\nFit a model predicting tip percentage from bill amount and meal, calculate its \\(R^2\\), and comment on your guess from the previous exercise.\nLoading\n  webR...\n\n\n  \n\n\n\nIndeed, \\(R^2\\) is higher."
   },
   {
     "objectID": "ae/ae-08-tips-sa.html#exercise-7",
     "href": "ae/ae-08-tips-sa.html#exercise-7",
     "title": "Tips",
     "section": "Exercise 7",
-    "text": "Exercise 7\nCalculate adjusted \\(R^2\\) for the two models. Is adding meal to a model predicting tip_percentage from bill useful?\n\nglance(tip_1_fit)$adj.r.squared\n\n[1] 0.02056839\n\nglance(tip_2_fit)$adj.r.squared\n\n[1] 0.01103831\n\n\n\nNo, adjusted \\(R^2\\) goes down."
+    "text": "Exercise 7\nCalculate adjusted \\(R^2\\) for the two models. Is adding meal to a model predicting tip_percentage from bill useful?\nLoading\n  webR...\n\n\n  \n\n\n\nNo, adjusted \\(R^2\\) goes down."
   },
   {
     "objectID": "ae/ae-08-tips-sa.html#backward-elimination",
@@ -620,21 +620,21 @@
     "href": "ae/ae-08-tips-sa.html#exercise-8",
     "title": "Tips",
     "section": "Exercise 8",
-    "text": "Exercise 8\nPerform backward elimination to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\n\ntip_full_fit &lt;- linear_reg() |&gt; fit(tip_percentage ~ meal + party + alcohol + bill, data = tips)\nglance(tip_full_fit)$adj.r.squared\n\n[1] 0.0003858485\n\n# step 1\nlinear_reg() |&gt; fit(tip_percentage ~ meal + party + alcohol, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] -0.001215283\n\nlinear_reg() |&gt; fit(tip_percentage ~ meal + party + bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.007718966\n\nlinear_reg() |&gt; fit(tip_percentage ~ meal + alcohol + bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.004761466\n\nlinear_reg() |&gt; fit(tip_percentage ~ party + alcohol + bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared) # highest adj R-sq: 0.021\n\n[1] 0.01225785\n\n# step 2\nlinear_reg() |&gt; fit(tip_percentage ~ party + alcohol, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] -0.0003317171\n\nlinear_reg() |&gt; fit(tip_percentage ~ party + bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared) # highest adj R-sq:  0.027\n\n[1] 0.01989357\n\nlinear_reg() |&gt; fit(tip_percentage ~ alcohol + bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.01374295\n\n# step 3 - no increase in adj R-sq\nlinear_reg() |&gt; fit(tip_percentage ~ bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.02056839\n\nlinear_reg() |&gt; fit(tip_percentage ~ party, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.00420045\n\n\n\nThe “best” model attained with backwards elimination predicts tip_percentage from party and bill."
+    "text": "Exercise 8\nPerform backward elimination to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\nLoading\n  webR...\n\n\n  \n\n\n\nThe “best” model attained with backwards elimination predicts tip_percentage from party and bill."
   },
   {
     "objectID": "ae/ae-08-tips-sa.html#exercise-9",
     "href": "ae/ae-08-tips-sa.html#exercise-9",
     "title": "Tips",
     "section": "Exercise 9",
-    "text": "Exercise 9\nPerform backward elimination to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\n\n# step 1\nlinear_reg() |&gt; fit(tip_percentage ~ meal, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.006434878\n\nlinear_reg() |&gt; fit(tip_percentage ~ party, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.00420045\n\nlinear_reg() |&gt; fit(tip_percentage ~ alcohol, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] -0.002762376\n\nlinear_reg() |&gt; fit(tip_percentage ~ bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared) # highest adj R-sq: 0.02\n\n[1] 0.02056839\n\n# step 2\nlinear_reg() |&gt; fit(tip_percentage ~ bill + meal, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.01103831\n\nlinear_reg() |&gt; fit(tip_percentage ~ bill + party, data = tips) |&gt; glance() |&gt; pull(adj.r.squared) # highest adj R-sq:  0.027\n\n[1] 0.01989357\n\nlinear_reg() |&gt; fit(tip_percentage ~ bill + alcohol, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.01374295\n\n# step 3 - no increase in adj R-sq\nlinear_reg() |&gt; fit(tip_percentage ~ bill + party + meal, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.007718966\n\nlinear_reg() |&gt; fit(tip_percentage ~ bill + party + alcohol, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.01225785\n\n\n\nThe “best” model attained with forward selection also predicts tip_percentage from party and bill."
+    "text": "Exercise 9\nPerform backward elimination to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\nLoading\n  webR...\n\n\n  \n\n\n\nThe “best” model attained with forward selection also predicts tip_percentage from party and bill."
   },
   {
     "objectID": "ae/ae-08-tips-sa.html#exercise-10",
     "href": "ae/ae-08-tips-sa.html#exercise-10",
     "title": "Tips",
     "section": "Exercise 10",
-    "text": "Exercise 10\nFit the “best” model and interpret it.\n\ntip_fit &lt;- linear_reg() |&gt; \n  fit(tip_percentage ~ bill + party, data = tips)\n\ntidy(tip_fit)\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)  0.193    0.0142      13.6   1.44e-26\n2 bill        -0.00145  0.000834    -1.74  8.40e- 2\n3 party        0.0113   0.0118       0.955 3.41e- 1\n\n\n\nAdd response here."
+    "text": "Exercise 10\nFit the “best” model and interpret it.\nLoading\n  webR...\n\n\n  \n\n\n\nAdd response here."
   },
   {
     "objectID": "ae/ae-08-tips-sa.html#footnotes",
@@ -1257,14 +1257,14 @@
     "href": "ae/ae-07-books.html#exercise-1",
     "title": "Weights of books",
     "section": "Exercise 1",
-    "text": "Exercise 1\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis). Overlay the line of best fit. Describe the relationship between these variables.\n\n# add code here\n\n\nAdd response here."
+    "text": "Exercise 1\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis). Overlay the line of best fit. Describe the relationship between these variables.\nLoading\n  webR...\n\n\n  \n\n\n\nAdd response here."
   },
   {
     "objectID": "ae/ae-07-books.html#exercise-2",
     "href": "ae/ae-07-books.html#exercise-2",
     "title": "Weights of books",
     "section": "Exercise 2",
-    "text": "Exercise 2\nFit a model predicting weight from volume for these books and save it as weight_fit. Display a tidy output of the model.\n\n# add code here"
+    "text": "Exercise 2\nFit a model predicting weight from volume for these books and save it as weight_fit. Display a tidy output of the model.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-07-books.html#exercise-3",
@@ -1278,21 +1278,21 @@
     "href": "ae/ae-07-books.html#exercise-4",
     "title": "Weights of books",
     "section": "Exercise 4",
-    "text": "Exercise 4\nCalculate the \\(R^2\\) of this model and interpret it in context of the data.\n\n# add code here\n\n\nAdd response here."
+    "text": "Exercise 4\nCalculate the \\(R^2\\) of this model and interpret it in context of the data.\nLoading\n  webR...\n\n\n  \n\n\n\nAdd response here."
   },
   {
     "objectID": "ae/ae-07-books.html#exercise-5",
     "href": "ae/ae-07-books.html#exercise-5",
     "title": "Weights of books",
     "section": "Exercise 5",
-    "text": "Exercise 5\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis), taking into consideration the cover type of the book. Use different colors and shapes for hardback and paperback books. Also use different colors for lines of best fit for the two types of books. In addition, add the overall line of best fit (from Exercise 1) as a gray dashed line so that you can see the difference between the lines when considering and not considering cover type.\n\n# add code here"
+    "text": "Exercise 5\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis), taking into consideration the cover type of the book. Use different colors and shapes for hardback and paperback books. Also use different colors for lines of best fit for the two types of books. In addition, add the overall line of best fit (from Exercise 1) as a gray dashed line so that you can see the difference between the lines when considering and not considering cover type.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-07-books.html#exercise-6",
     "href": "ae/ae-07-books.html#exercise-6",
     "title": "Weights of books",
     "section": "Exercise 6",
-    "text": "Exercise 6\nFit a model predicting weight from volume for these books and save it as weight_cover_fit. Display a tidy output of the model.\n\n# add code here"
+    "text": "Exercise 6\nFit a model predicting weight from volume for these books and save it as weight_cover_fit. Display a tidy output of the model.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-07-books.html#exercise-7",
@@ -1313,7 +1313,7 @@
     "href": "ae/ae-07-books.html#exercise-9",
     "title": "Weights of books",
     "section": "Exercise 9",
-    "text": "Exercise 9\nFirst, guess whether the \\(R^2\\) of this model will be greater than, less than, or the same as the previous model, or whether we can’t tell. Then, calculate the \\(R^2\\) of this model to confirm your guess, and then interpret it in context of the data.\n\n# add code here\n\n\nAdd response here."
+    "text": "Exercise 9\nFirst, guess whether the \\(R^2\\) of this model will be greater than, less than, or the same as the previous model, or whether we can’t tell. Then, calculate the \\(R^2\\) of this model to confirm your guess, and then interpret it in context of the data.\nLoading\n  webR...\n\n\n  \n\n\n\nAdd response here."
   },
   {
     "objectID": "ae/ae-07-books.html#exercise-10",
@@ -1327,7 +1327,7 @@
     "href": "ae/ae-07-books.html#exercise-11",
     "title": "Weights of books",
     "section": "Exercise 11",
-    "text": "Exercise 11\nUsing the model you chose, predict the weight of a hardcover book that is 1000 cubic centimeters (that is, roughly 25 centimeters in length, 20 centimeters in width, and 2 centimeters in height/thickness).\n\n# add code here"
+    "text": "Exercise 11\nUsing the model you chose, predict the weight of a hardcover book that is 1000 cubic centimeters (that is, roughly 25 centimeters in length, 20 centimeters in width, and 2 centimeters in height/thickness).\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-07-books-sa.html",
@@ -1551,7 +1551,7 @@
     "href": "ae/ae-08-tips.html#exercise-1",
     "title": "Tips",
     "section": "Exercise 1",
-    "text": "Exercise 1\nVisualize the relationship between these variables.\n\n# add code here"
+    "text": "Exercise 1\nVisualize the relationship between these variables.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-08-tips.html#exercise-2",
@@ -1565,14 +1565,14 @@
     "href": "ae/ae-08-tips.html#exercise-3",
     "title": "Tips",
     "section": "Exercise 3",
-    "text": "Exercise 3\nFit a model predicting tip percentage from bill amount. Display and interpret the model coefficients. Additionally, calculate and interpret the \\(R^2\\) of this model.\n\n# add code here\n\n\nAdd response here.\n\n\n# add code here\n\n\nAdd response here."
+    "text": "Exercise 3\nFit a model predicting tip percentage from bill amount. Display and interpret the model coefficients. Additionally, calculate and interpret the \\(R^2\\) of this model.\nLoading\n  webR...\n\n\n  \n\n\n\nAdd response here.\n\nLoading\n  webR...\n\n\n  \n\n\n\nAdd response here."
   },
   {
     "objectID": "ae/ae-08-tips.html#exercise-4",
     "href": "ae/ae-08-tips.html#exercise-4",
     "title": "Tips",
     "section": "Exercise 4",
-    "text": "Exercise 4\nSuppose we next add meal as a predictor and interpret the model coefficients again.\n\n# add code here\n\n\nAdd response here."
+    "text": "Exercise 4\nSuppose we next add meal as a predictor and interpret the model coefficients again.\nLoading\n  webR...\n\n\n  \n\n\n\nAdd response here."
   },
   {
     "objectID": "ae/ae-08-tips.html#exercise-5",
@@ -1586,14 +1586,14 @@
     "href": "ae/ae-08-tips.html#exercise-6",
     "title": "Tips",
     "section": "Exercise 6",
-    "text": "Exercise 6\nFit a model predicting tip percentage from bill amount and meal, calculate its \\(R^2\\), and comment on your guess from the previous exercise.\n\n# add code here\n\n\nAdd response here."
+    "text": "Exercise 6\nFit a model predicting tip percentage from bill amount and meal, calculate its \\(R^2\\), and comment on your guess from the previous exercise.\nLoading\n  webR...\n\n\n  \n\n\n\nAdd response here."
   },
   {
     "objectID": "ae/ae-08-tips.html#exercise-7",
     "href": "ae/ae-08-tips.html#exercise-7",
     "title": "Tips",
     "section": "Exercise 7",
-    "text": "Exercise 7\nCalculate adjusted \\(R^2\\) for the two models. Is adding meal to a model predicting tip_percentage from bill useful?\n\n# add code here\n\n\nAdd response here."
+    "text": "Exercise 7\nCalculate adjusted \\(R^2\\) for the two models. Is adding meal to a model predicting tip_percentage from bill useful?\nLoading\n  webR...\n\n\n  \n\n\n\nAdd response here."
   },
   {
     "objectID": "ae/ae-08-tips.html#backward-elimination",
@@ -1614,21 +1614,21 @@
     "href": "ae/ae-08-tips.html#exercise-8",
     "title": "Tips",
     "section": "Exercise 8",
-    "text": "Exercise 8\nPerform backward elimination to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\n\n# add code here\n\n\nAdd response here."
+    "text": "Exercise 8\nPerform backward elimination to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\nLoading\n  webR...\n\n\n  \n\n\n\nAdd response here."
   },
   {
     "objectID": "ae/ae-08-tips.html#exercise-9",
     "href": "ae/ae-08-tips.html#exercise-9",
     "title": "Tips",
     "section": "Exercise 9",
-    "text": "Exercise 9\nPerform backward elimination to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\n\n# add code here\n\n\nAdd response here."
+    "text": "Exercise 9\nPerform backward elimination to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\nLoading\n  webR...\n\n\n  \n\n\n\nAdd response here."
   },
   {
     "objectID": "ae/ae-08-tips.html#exercise-10",
     "href": "ae/ae-08-tips.html#exercise-10",
     "title": "Tips",
     "section": "Exercise 10",
-    "text": "Exercise 10\nFit the “best” model and interpret it.\n\n# add code here\n\n\nAdd response here."
+    "text": "Exercise 10\nFit the “best” model and interpret it.\nLoading\n  webR...\n\n\n  \n\n\n\nAdd response here."
   },
   {
     "objectID": "ae/ae-08-tips.html#footnotes",
