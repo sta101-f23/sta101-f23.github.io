@@ -613,10 +613,7 @@ Important
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `#webr::install("tidyverse")
-#library(tidyverse)
-
-webr::install("dplyr")
+      value: `webr::install("dplyr")
 webr::install("ggplot2")
 library(dplyr)
 library(ggplot2)`,

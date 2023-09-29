@@ -851,21 +851,21 @@
     "href": "ae/ae-03-delta-sa.html#exercise-3",
     "title": "COVID vaccine and deaths from Delta variant",
     "section": "Exercise 3",
-    "text": "Exercise 3\nCreate a visualization of health outcome by vaccine status that allows you to compare the proportion of deaths across those who are and are not vaccinated. What can you say about death rates in these two groups based on this visualization?\nAdd your answer here.\n\n# add code here"
+    "text": "Exercise 3\nCreate a visualization of health outcome by vaccine status that allows you to compare the proportion of deaths across those who are and are not vaccinated. What can you say about death rates in these two groups based on this visualization?\nAdd your answer here.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-03-delta-sa.html#exercise-4",
     "href": "ae/ae-03-delta-sa.html#exercise-4",
     "title": "COVID vaccine and deaths from Delta variant",
     "section": "Exercise 4",
-    "text": "Exercise 4\nCalculate the proportion of deaths in among those who are vaccinated. Then, calculate the proportion among those who are not vaccinated.\nAdd your answer here.\n\n# add code here"
+    "text": "Exercise 4\nCalculate the proportion of deaths in among those who are vaccinated. Then, calculate the proportion among those who are not vaccinated.\nAdd your answer here.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-03-delta-sa.html#exercise-5",
     "href": "ae/ae-03-delta-sa.html#exercise-5",
     "title": "COVID vaccine and deaths from Delta variant",
     "section": "Exercise 5",
-    "text": "Exercise 5\nCreate the visualization and calculate proportions from the two previous exercises, this time controlling for age. How do the proportions compare?\nAdd your answer here.\n\n# add code here"
+    "text": "Exercise 5\nCreate the visualization and calculate proportions from the two previous exercises, this time controlling for age. How do the proportions compare?\nAdd your answer here.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-03-delta-sa.html#exercise-6",
@@ -886,7 +886,7 @@
     "href": "ae/ae-03-delta-sa.html#exercise-8",
     "title": "COVID vaccine and deaths from Delta variant",
     "section": "Exercise 8",
-    "text": "Exercise 8\nVisualize and describe the distribution of seniors (50 and up) based on (a.k.a. conditional on) vaccination status. Hint: Your description will benefit from calculating proportions of seniors in each of the vaccination groups and working those values into your narrative.\nAdd your answer here.\n\n# add your code here"
+    "text": "Exercise 8\nVisualize and describe the distribution of seniors (50 and up) based on (a.k.a. conditional on) vaccination status. Hint: Your description will benefit from calculating proportions of seniors in each of the vaccination groups and working those values into your narrative.\nAdd your answer here.\nLoading\n  webR..."
   },
   {
     "objectID": "ae/ae-06-stocks-sa.html",

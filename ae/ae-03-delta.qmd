@@ -5,6 +5,10 @@ categories:
 editor: visual
 editor_options: 
   chunk_output_type: console
+webr: 
+  show-startup-message: false
+filters:
+  - webr
 ---
 
 The main question we'll explore today is "How do deaths from COVID cases compare between vaccinated and unvaccinated?"
@@ -23,10 +27,14 @@ What do you think?
 
 # Packages
 
-```{r}
+```{webr-r}
 #| label: load-packages
-
-library(tidyverse)
+webr::install("dplyr")
+webr::install("ggplot2")
+webr::install("tidyr")
+library(dplyr)
+library(ggplot2)
+library(tidyr)
 ```
 
 # Data
@@ -35,10 +43,14 @@ The data for this case study come from a technical briefing published by Public 
 
 First, let's load the data:
 
-```{r}
+```{webr-r}
 #| label: load-data
+download.file(
+  "https://raw.githubusercontent.com/sta101-f23/sta101-f23.github.io/main/ae/data/delta.csv",
+  "delta.csv"
+)
 
-delta <- read_csv("data/delta.csv")
+delta <- read.csv("delta.csv")
 ```
 
 # Visualizing and summarizing categorical data
@@ -61,7 +73,7 @@ Create a visualization of health outcome by vaccine status that allows you to co
 
 *Add your answer here.*
 
-```{r}
+```{webr-r}
 #| label: plot-deaths-vaccine
 
 # add code here
@@ -73,7 +85,7 @@ Calculate the proportion of deaths in among those who are vaccinated. Then, calc
 
 *Add your answer here.*
 
-```{r}
+```{webr-r}
 #| label: prop-deaths-vaccine
 
 # add code here
@@ -85,7 +97,7 @@ Create the visualization and calculate proportions from the two previous exercis
 
 *Add your answer here.*
 
-```{r}
+```{webr-r}
 #| label: deaths-vaccine-age
 
 # add code here
@@ -119,7 +131,7 @@ Visualize and describe the distribution of seniors (50 and up) based on (a.k.a. 
 
 Add your answer here.
 
-```{r}
+```{webr-r}
 #| label: vaccine-age
 
 # add your code here
@@ -129,7 +141,7 @@ Add your answer here.
 
 The percentages of deaths from COVID across vaccination groups is as follows:
 
-```{r}
+```{webr-r}
 #| label: vaccine-outcome-perc
 
 # add code here
@@ -137,7 +149,7 @@ The percentages of deaths from COVID across vaccination groups is as follows:
 
 Also considering age groups, the death rates are as follows:
 
-```{r}
+```{webr-r}
 #| label: vaccine-age-outcome-perc
 
 # add code here
@@ -145,7 +157,7 @@ Also considering age groups, the death rates are as follows:
 
 We can *pivot* these data for better display; we'll learn more about these "data moves" soon:
 
-```{r}
+```{webr-r}
 #| label: vaccine-age-outcome-perc-table
 
 # add code here
@@ -153,7 +165,7 @@ We can *pivot* these data for better display; we'll learn more about these "data
 
 We identified age as a potential confounding variable in the relationship between. So let's take a look at the distribution of age in the data:
 
-```{r}
+```{webr-r}
 #| label: age-props
 
 # add code here
@@ -161,7 +173,7 @@ We identified age as a potential confounding variable in the relationship betwee
 
 And then, let's use these proportions to *weigh* the percentages of deaths.
 
-```{r}
+```{webr-r}
 #| label: vaccine-age-outcome-perc-wt
 
 # add code here
