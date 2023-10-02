@@ -660,7 +660,7 @@ dbl (5): party, bill, w_tip, tip, tip_percentage
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.004761466</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">fit</span>(tip_percentage <span class="sc">~</span> party <span class="sc">+</span> alcohol <span class="sc">+</span> bill, <span class="at">data =</span> tips) <span class="sc">|&gt;</span> <span class="fu">glance</span>() <span class="sc">|&gt;</span> <span class="fu">pull</span>(adj.r.squared) <span class="co"># highest adj R-sq: 0.021</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">fit</span>(tip_percentage <span class="sc">~</span> party <span class="sc">+</span> alcohol <span class="sc">+</span> bill, <span class="at">data =</span> tips) <span class="sc">|&gt;</span> <span class="fu">glance</span>() <span class="sc">|&gt;</span> <span class="fu">pull</span>(adj.r.squared) <span class="co"># highest adj R-sq: 0.012</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.01225785</code></pre>
 </div>
@@ -669,7 +669,7 @@ dbl (5): party, bill, w_tip, tip, tip_percentage
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.0003317171</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">fit</span>(tip_percentage <span class="sc">~</span> party <span class="sc">+</span> bill, <span class="at">data =</span> tips) <span class="sc">|&gt;</span> <span class="fu">glance</span>() <span class="sc">|&gt;</span> <span class="fu">pull</span>(adj.r.squared) <span class="co"># highest adj R-sq:  0.027</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">fit</span>(tip_percentage <span class="sc">~</span> party <span class="sc">+</span> bill, <span class="at">data =</span> tips) <span class="sc">|&gt;</span> <span class="fu">glance</span>() <span class="sc">|&gt;</span> <span class="fu">pull</span>(adj.r.squared) <span class="co"># highest adj R-sq:  0.019</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.01989357</code></pre>
 </div>
@@ -677,8 +677,8 @@ dbl (5): party, bill, w_tip, tip, tip_percentage
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.01374295</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 3 - no increase in adj R-sq</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">fit</span>(tip_percentage <span class="sc">~</span> bill, <span class="at">data =</span> tips) <span class="sc">|&gt;</span> <span class="fu">glance</span>() <span class="sc">|&gt;</span> <span class="fu">pull</span>(adj.r.squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 3</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">fit</span>(tip_percentage <span class="sc">~</span> bill, <span class="at">data =</span> tips) <span class="sc">|&gt;</span> <span class="fu">glance</span>() <span class="sc">|&gt;</span> <span class="fu">pull</span>(adj.r.squared) <span class="co"># highest adj R-sq:  0.02</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.02056839</code></pre>
 </div>
@@ -688,7 +688,7 @@ dbl (5): party, bill, w_tip, tip, tip_percentage
 </div>
 </div>
 <blockquote class="blockquote">
-<p>The “best” model attained with backwards elimination predicts <code>tip_percentage</code> from <code>party</code> and <code>bill</code>.</p>
+<p>The “best” model attained with backwards elimination predicts <code>tip_percentage</code> from <code>bill</code>.</p>
 </blockquote>
 </section>
 <section id="exercise-9" class="level2">
@@ -708,16 +708,16 @@ dbl (5): party, bill, w_tip, tip, tip_percentage
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.002762376</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">fit</span>(tip_percentage <span class="sc">~</span> bill, <span class="at">data =</span> tips) <span class="sc">|&gt;</span> <span class="fu">glance</span>() <span class="sc">|&gt;</span> <span class="fu">pull</span>(adj.r.squared) <span class="co"># highest adj R-sq: 0.02</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">fit</span>(tip_percentage <span class="sc">~</span> bill, <span class="at">data =</span> tips) <span class="sc">|&gt;</span> <span class="fu">glance</span>() <span class="sc">|&gt;</span> <span class="fu">pull</span>(adj.r.squared) <span class="co"># highest adj R-sq: 0.021</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.02056839</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 2</span></span>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 2 - no increase in adj R-sq</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">fit</span>(tip_percentage <span class="sc">~</span> bill <span class="sc">+</span> meal, <span class="at">data =</span> tips) <span class="sc">|&gt;</span> <span class="fu">glance</span>() <span class="sc">|&gt;</span> <span class="fu">pull</span>(adj.r.squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.01103831</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">fit</span>(tip_percentage <span class="sc">~</span> bill <span class="sc">+</span> party, <span class="at">data =</span> tips) <span class="sc">|&gt;</span> <span class="fu">glance</span>() <span class="sc">|&gt;</span> <span class="fu">pull</span>(adj.r.squared) <span class="co"># highest adj R-sq:  0.027</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">fit</span>(tip_percentage <span class="sc">~</span> bill <span class="sc">+</span> party, <span class="at">data =</span> tips) <span class="sc">|&gt;</span> <span class="fu">glance</span>() <span class="sc">|&gt;</span> <span class="fu">pull</span>(adj.r.squared) <span class="co"># highest adj R-sq:  0.02</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.01989357</code></pre>
 </div>
@@ -725,35 +725,25 @@ dbl (5): party, bill, w_tip, tip, tip_percentage
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.01374295</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 3 - no increase in adj R-sq</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">fit</span>(tip_percentage <span class="sc">~</span> bill <span class="sc">+</span> party <span class="sc">+</span> meal, <span class="at">data =</span> tips) <span class="sc">|&gt;</span> <span class="fu">glance</span>() <span class="sc">|&gt;</span> <span class="fu">pull</span>(adj.r.squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.007718966</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">fit</span>(tip_percentage <span class="sc">~</span> bill <span class="sc">+</span> party <span class="sc">+</span> alcohol, <span class="at">data =</span> tips) <span class="sc">|&gt;</span> <span class="fu">glance</span>() <span class="sc">|&gt;</span> <span class="fu">pull</span>(adj.r.squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.01225785</code></pre>
-</div>
 </div>
 <blockquote class="blockquote">
-<p>The “best” model attained with forward selection also predicts <code>tip_percentage</code> from <code>party</code> and <code>bill</code>.</p>
+<p>The “best” model attained with forward selection also predicts <code>tip_percentage</code> from <code>bill</code>.</p>
 </blockquote>
 </section>
 <section id="exercise-10" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-10">Exercise 10</h2>
 <p>Fit the “best” model and interpret it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>tip_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(tip_percentage <span class="sc">~</span> bill <span class="sc">+</span> party, <span class="at">data =</span> tips)</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(tip_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>tip_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(tip_percentage <span class="sc">~</span> bill, <span class="at">data =</span> tips)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(tip_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 5
-  term        estimate std.error statistic  p.value
-  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-1 (Intercept)  0.193    0.0142      13.6   1.44e-26
-2 bill        -0.00145  0.000834    -1.74  8.40e- 2
-3 party        0.0113   0.0118       0.955 3.41e- 1</code></pre>
+<pre><code># A tibble: 2 × 5
+  term         estimate std.error statistic  p.value
+  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)  0.198     0.0134       14.8  2.16e-29
+2 bill        -0.000748  0.000390     -1.92 5.70e- 2</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -766,7 +756,7 @@ dbl (5): party, bill, w_tip, tip, tip_percentage
 <p>A common way of evaluating the predictive performance of a model is to test it against new data that was not used to build the model in the first place. In machine learning, this new dataset is commonly referred to as <strong>testing data</strong>, and the dataset that was used to build and select the model is commonly referred to as <strong>training data</strong>.</p>
 <p>Let’s first load the new data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>tips_test <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/tips-test.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>tips_test <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/tips-test.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 40 Columns: 13
 ── Column specification ────────────────────────────────────────────────────────
@@ -780,7 +770,7 @@ dbl (5): party, bill, w_tip, tip, tip_percentage
 </div>
 <p>There are 40 observations in this new dataset, and it has all the same columns as our existing dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(tips_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(tips_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 40
 Columns: 13
@@ -801,34 +791,34 @@ $ tip_percentage &lt;dbl&gt; 0.267379679, 0.168048229, 0.168224299, 0.004016064,
 </div>
 <p>Let’s use our model to make predictions for <code>tip_percentage</code> for these new data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>tip_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(tip_fit, <span class="at">new_data =</span> tips_test)</span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>tip_aug</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>tip_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(tip_fit, <span class="at">new_data =</span> tips_test)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>tip_aug</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 40 × 15
-   .pred    .resid day   meal  payment party age   gift_card comps alcohol bday 
-   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;
- 1 0.199  0.0683   Tues… Late… Credit      1 Yadu… No        No    No      No   
- 2 0.177 -0.00918  Tues… Dinn… Cash        2 Midd… No        No    No      No   
- 3 0.178 -0.0103   Sund… Lunch Cash        2 SenC… No        No    No      No   
- 4 0.197 -0.193    Frid… Late… Cash        1 Yadu… No        No    No      No   
- 5 0.190 -0.0327   Frid… Late… Credit      3 Midd… No        No    Yes     No   
- 6 0.156 -0.000670 Satu… Dinn… Credit      5 Midd… No        No    No      No   
- 7 0.154  0.0185   Satu… Dinn… Credit      4 Midd… No        No    Yes     No   
- 8 0.183 -0.0183   Sund… Lunch Credit…     3 SenC… No        No    No      No   
- 9 0.180 -0.0728   Satu… Dinn… Cash        3 Midd… No        No    No      No   
-10 0.174  0.0202   Thur… Dinn… Credit      2 Midd… No        No    No      No   
+   .pred   .resid day    meal  payment party age   gift_card comps alcohol bday 
+   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;
+ 1 0.195  0.0725  Tuesd… Late… Credit      1 Yadu… No        No    No      No   
+ 2 0.178 -0.00979 Tuesd… Dinn… Cash        2 Midd… No        No    No      No   
+ 3 0.178 -0.0103  Sunday Lunch Cash        2 SenC… No        No    No      No   
+ 4 0.194 -0.190   Friday Late… Cash        1 Yadu… No        No    No      No   
+ 5 0.179 -0.0212  Friday Late… Credit      3 Midd… No        No    Yes     No   
+ 6 0.150  0.00597 Satur… Dinn… Credit      5 Midd… No        No    No      No   
+ 7 0.154  0.0184  Satur… Dinn… Credit      4 Midd… No        No    Yes     No   
+ 8 0.175 -0.0104  Sunday Lunch Credit…     3 SenC… No        No    No      No   
+ 9 0.173 -0.0664  Satur… Dinn… Cash        3 Midd… No        No    No      No   
+10 0.176  0.0183  Thurs… Dinn… Credit      2 Midd… No        No    No      No   
 # ℹ 30 more rows
 # ℹ 4 more variables: bill &lt;dbl&gt;, w_tip &lt;dbl&gt;, tip &lt;dbl&gt;, tip_percentage &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>We can plot the predicted values of <code>tip_percentage</code> against the observed values to see how well we’re doing.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tip_aug, <span class="fu">aes</span>(<span class="at">x =</span> tip_percentage, <span class="at">y =</span> .pred)) <span class="sc">+</span></span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>()) <span class="sc">+</span></span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>()) <span class="sc">+</span></span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tip_aug, <span class="fu">aes</span>(<span class="at">x =</span> tip_percentage, <span class="at">y =</span> .pred)) <span class="sc">+</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>()) <span class="sc">+</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>()) <span class="sc">+</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center anchored" width="672">
 <figure class="quarto-float quarto-float-fig figure">
@@ -841,20 +831,20 @@ $ tip_percentage &lt;dbl&gt; 0.267379679, 0.168048229, 0.168224299, 0.004016064,
 </div>
 <p>We can also quantify the average error in our predictions with a measure called <strong>root mean square error</strong>, RMSE.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse</span>(tip_aug, <span class="at">truth =</span> tip_percentage, <span class="at">estimate =</span> .pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse</span>(tip_aug, <span class="at">truth =</span> tip_percentage, <span class="at">estimate =</span> .pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 rmse    standard      0.0591</code></pre>
+1 rmse    standard      0.0603</code></pre>
 </div>
 </div>
 <p>What this value tells us is that our predictions are off by, on average, approximately 6%.</p>
 <p>Let’s take a look back at the tip percentage variables in this dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tips_test, <span class="fu">aes</span>(<span class="at">x =</span> tip_percentage)) <span class="sc">+</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tips_test, <span class="fu">aes</span>(<span class="at">x =</span> tip_percentage)) <span class="sc">+</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center anchored" width="672">
 <figure class="quarto-float quarto-float-fig figure">
