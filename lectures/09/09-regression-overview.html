@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.388">
 
   <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
-  <title>STA 101 - F23 - Exploring numerical data</title>
+  <title>STA 101 - F23 - Regression overview</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -387,8 +387,8 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="STA 101 - F23 - Exploring numerical data">
-<meta property="og:description" content="Lecture 5">
+<meta property="og:title" content="STA 101 - F23 - Regression overview">
+<meta property="og:description" content="Lecture 9">
 <meta property="og:site_name" content="STA 101 - F23">
 </head>
 <body class="quarto-light">
@@ -396,8 +396,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Exploring numerical data</h1>
-  <p class="subtitle">Lecture 5</p>
+  <h1 class="title">Regression overview</h1>
+  <p class="subtitle">Lecture 9</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -420,80 +420,203 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <h2>Check-in</h2>
 <ul>
 <li>Daily check-ins for getting you thinking at the beginning of the class and reviewing recent/important concepts</li>
-<li>Go to Canvas and open today’s “quiz” titled <code>2023-09-13 Check-in</code></li>
-<li>Access code: <code>___</code> (released in class)</li>
+<li>Go to Canvas and open today’s “quiz” titled <code>2023-10-02 Check-in</code></li>
+<li>Access code: <code>___</code> (released in class) <!-- multicollinearity --></li>
 <li>“Graded” for completion</li>
 </ul>
 </section>
-<section id="announcements" class="slide level2">
-<h2>Announcements</h2>
+<section id="exam-1" class="slide level2">
+<h2>Exam 1</h2>
 <ul>
-<li>Lab 2 is due Thu, Sep 14 at 5 pm on Gradescope</li>
+<li>Classroom: You should have received your exam location assignment this morning. Reach out to me ASAP if you haven’t received it.</li>
+<li>In-class: On Wednesday
+<ul>
+<li>1 page, both sides notes (“cheat sheet”)</li>
+<li>Nothing else</li>
+</ul></li>
+<li>Take-home: Wednesday - Friday
+<ul>
+<li>Open everything except for other humans, except for me :)</li>
+</ul></li>
 </ul>
 </section>
-<section id="recap-from-last-time" class="slide level2">
-<h2>Recap from last time</h2>
-<div class="task">
-<p>Suppose you have a data frame called <code>df</code> and a single variable in it called <code>x</code>. How many variables will <code>df</code> have after running the following code?</p>
+<section id="class-check-ins-so-far" class="slide level2">
+<h2>Class check-ins so far</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> x <span class="sc">+</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># load packages</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(wordcloud)</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># set a seed for reproducible random number generation</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># used in placement of words in word clouds</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">set.seed</span>(<span class="dv">102</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="confounding-variable" class="slide level2">
+<h2>Confounding variable</h2>
+<blockquote>
+<p>A <strong>confounding variable</strong> is a third variable that influences both the independent and dependent variables.</p>
+</blockquote>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>checkin_9_11 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2023-09-11 Check-in Survey Student Analysis Report.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"Define"</span>))</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">names</span>(checkin_9_11) <span class="ot">&lt;-</span> <span class="st">"definition"</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>checkin_9_11 <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">unnest_tokens</span>(word, definition) <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(word <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"confounding"</span>, <span class="st">"variable"</span>, <span class="st">"variables"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">count</span>(word) <span class="sc">|&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="fu">with</span>(<span class="fu">wordcloud</span>(word, n, <span class="at">max.words =</span> <span class="dv">100</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" width="768">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="09-regression-overview_files/figure-revealjs/checkin-9-11-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" width="768">
+</div>
+</figure>
 </div>
 </div>
-<div class="fragment">
-<div class="task">
-<p>Suppose you have a data frame called <code>df</code> and a single variable in it called <code>x</code>. How many variables will <code>df</code> have after running the following code?</p>
+</div>
+</div>
+</section>
+<section id="ridge-plot" class="slide level2 smaller">
+<h2>Ridge plot</h2>
+<blockquote>
+<p>A <strong>ridge plot</strong> is type of data visualization that plots density curves for various groups on the same scale in a single plot. It’s used for comparing the distribution of a numerical variable across the levels of a categorical variable, as an alternative to side-by-side box plots.</p>
+</blockquote>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>checkin_9_13 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2023-09-13 Check-in Survey Student Analysis Report.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"Define"</span>))</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">names</span>(checkin_9_13) <span class="ot">&lt;-</span> <span class="st">"definition"</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a>checkin_9_13 <span class="sc">|&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">unnest_tokens</span>(word, definition) <span class="sc">|&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(word <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"ridge"</span>, <span class="st">"plot"</span>, <span class="st">"plots"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="fu">count</span>(word) <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="fu">with</span>(<span class="fu">wordcloud</span>(word, n, <span class="at">max.words =</span> <span class="dv">100</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" width="768">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="09-regression-overview_files/figure-revealjs/checkin-9-13-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" width="768">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="influential-point" class="slide level2 smaller">
+<h2>Influential point</h2>
+<blockquote>
+<p>An <strong>influential point</strong> is a point with high leverage (away from the rest of the points in the x-direction) that influences the slope of the least squares line, i.e., if this point is removed, the slope of the line would change discernebly.</p>
+</blockquote>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>checkin_9_25 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2023-09-25 Check-in Survey Student Analysis Report.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"Define"</span>))</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">names</span>(checkin_9_25) <span class="ot">&lt;-</span> <span class="st">"definition"</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a>checkin_9_25 <span class="sc">|&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">unnest_tokens</span>(word, definition) <span class="sc">|&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(word <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"influential"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>  <span class="fu">count</span>(word) <span class="sc">|&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>  <span class="fu">with</span>(<span class="fu">wordcloud</span>(word, n, <span class="at">max.words =</span> <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" width="768">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="09-regression-overview_files/figure-revealjs/checkin-9-25-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" width="768">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="parsimonious" class="slide level2 smaller">
+<h2>Parsimonious</h2>
+<blockquote>
+<p>A <strong>parsimonious model</strong> is one that omits predictors that are found to be less important according to various model selection criteria, e.g., adjusted <span class="math inline">\(R^2\)</span>. It’s the simplest, most predictive model.</p>
+</blockquote>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>checkin_9_27 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2023-09-27 Check-in Survey Student Analysis Report.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"Define"</span>))</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">names</span>(checkin_9_27) <span class="ot">&lt;-</span> <span class="st">"definition"</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a>checkin_9_27 <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">unnest_tokens</span>(word, definition) <span class="sc">|&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(word <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"parsimonious"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>  <span class="fu">count</span>(word) <span class="sc">|&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>  <span class="fu">with</span>(<span class="fu">wordcloud</span>(word, n, <span class="at">max.words =</span> <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" width="768">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="09-regression-overview_files/figure-revealjs/checkin-9-27-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" width="768">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="parsimonious-money" class="slide level2">
+<h2>Parsimonious / money?!</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> x <span class="sc">+</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="task">
-<p>What is the <code>&lt;-</code> operator called and what does it do?</p>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>checkin_9_27 <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(definition, <span class="st">"money"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">pull</span>(definition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "It means unwilling to spend money or resources."                                                                                                                                                                                                            
+[2] "unwilling to spend money, stingy"                                                                                                                                                                                                                           
+[3] "It means to be unwilling in spending money."                                                                                                                                                                                                                
+[4] "\"Parsimonious\" is an adjective that describes an individual or behavior characterized by extreme frugality, unwillingness to spend unnecessary money or resources, or simplicity in the use of resources. It implies being economical and avoiding waste."
+[5] "unwilling to spend money"                                                                                                                                                                                                                                   </code></pre>
 </div>
 </div>
 </section></section>
 <section>
-<section id="exploring-categorical-and-numerical-data" class="title-slide slide level1 center">
-<h1>Exploring (categorical and) numerical data</h1>
+<section id="from-last-time" class="title-slide slide level1 center">
+<h1>From last time</h1>
 
-</section>
-<section id="durham-city-and-county-resident-survey" class="slide level2">
-<h2>2020 Durham City and County Resident Survey</h2>
-<p>We’ll continue working with this dataset.</p>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" data-fig-align="center" width="400">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/durham-survey.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure-center" width="400">
-</div>
-</figure>
-</div>
-</section>
-<section id="services" class="slide level2">
-<h2>Services</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" data-fig-align="center" width="800">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/quality-annotated.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure-center" width="800">
-</div>
-</figure>
-</div>
-</section>
-<section id="demographics" class="slide level2">
-<h2>Demographics</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" data-fig-align="center" width="800">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/demographics-annotated.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure-center" width="800">
-</div>
-</figure>
-</div>
 </section>
 <section id="application-exercise" class="slide level2">
 <h2>Application exercise</h2>
-<p>Go to Posit Cloud and start the project titled <strong>ae-05-Durham</strong>.</p>
+<p>Go to Posit Cloud and continue the project titled ae-08-Tips.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>ICYMI</strong></p>
+</div>
+<div class="callout-content">
+<p>Today’s daily check-in access code: <code>___</code> (released in class) <!-- multicollinearity --></p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="qa" class="title-slide slide level1 center">
+<h1>Q&amp;A</h1>
+
+</section>
+<section id="questions-from-anything-so-far" class="slide level2 center">
+<h2>Questions from anything so far?</h2>
 
 <p><img src="../logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
