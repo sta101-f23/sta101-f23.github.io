@@ -493,7 +493,7 @@
     "href": "ae/ae-08-tips.html#exercise-9",
     "title": "Tips",
     "section": "Exercise 9",
-    "text": "Exercise 9\nPerform backward elimination to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\n\n# add code here\n\n\nAdd response here."
+    "text": "Exercise 9\nPerform forward selection to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\n\n# add code here\n\n\nAdd response here."
   },
   {
     "objectID": "ae/ae-08-tips.html#exercise-10",
@@ -2682,7 +2682,7 @@
     "href": "ae/ae-08-tips-sa.html#exercise-9",
     "title": "Tips",
     "section": "Exercise 9",
-    "text": "Exercise 9\nPerform backward elimination to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\n\n# step 1\nlinear_reg() |&gt; fit(tip_percentage ~ meal, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.006434878\n\nlinear_reg() |&gt; fit(tip_percentage ~ party, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.00420045\n\nlinear_reg() |&gt; fit(tip_percentage ~ alcohol, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] -0.002762376\n\nlinear_reg() |&gt; fit(tip_percentage ~ bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared) # highest adj R-sq: 0.021\n\n[1] 0.02056839\n\n# step 2 - no increase in adj R-sq\nlinear_reg() |&gt; fit(tip_percentage ~ bill + meal, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.01103831\n\nlinear_reg() |&gt; fit(tip_percentage ~ bill + party, data = tips) |&gt; glance() |&gt; pull(adj.r.squared) # highest adj R-sq:  0.02\n\n[1] 0.01989357\n\nlinear_reg() |&gt; fit(tip_percentage ~ bill + alcohol, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.01374295\n\n\n\nThe “best” model attained with forward selection also predicts tip_percentage from bill."
+    "text": "Exercise 9\nPerform forward selection to find the best model for predicting tip_percentage from meal, party, alcohol, bill.\n\n# step 1\nlinear_reg() |&gt; fit(tip_percentage ~ meal, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.006434878\n\nlinear_reg() |&gt; fit(tip_percentage ~ party, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.00420045\n\nlinear_reg() |&gt; fit(tip_percentage ~ alcohol, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] -0.002762376\n\nlinear_reg() |&gt; fit(tip_percentage ~ bill, data = tips) |&gt; glance() |&gt; pull(adj.r.squared) # highest adj R-sq: 0.021\n\n[1] 0.02056839\n\n# step 2 - no increase in adj R-sq\nlinear_reg() |&gt; fit(tip_percentage ~ bill + meal, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.01103831\n\nlinear_reg() |&gt; fit(tip_percentage ~ bill + party, data = tips) |&gt; glance() |&gt; pull(adj.r.squared) # highest adj R-sq:  0.02\n\n[1] 0.01989357\n\nlinear_reg() |&gt; fit(tip_percentage ~ bill + alcohol, data = tips) |&gt; glance() |&gt; pull(adj.r.squared)\n\n[1] 0.01374295\n\n\n\nThe “best” model attained with forward selection also predicts tip_percentage from bill."
   },
   {
     "objectID": "ae/ae-08-tips-sa.html#exercise-10",
