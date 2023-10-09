@@ -499,7 +499,7 @@ $ type              &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 <section id="exercise-1" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
 <p>One predictor model: Visualize a <strong>linear model</strong> where the outcome is <code>type</code> (spam or not) and <code>george</code> is the only predictor. Then, discuss your visualization with your neighbor. Is this a good model? Why or why not?</p>
-<p><em>Doesn’t make sense to draw a line and predict values between 0 and 1.</em></p>
+<p><em>Add response here.</em></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -523,12 +523,7 @@ $ type              &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 <section id="exercise-3" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-3">Exercise 3</h2>
 <p>Write the model equation.</p>
-<p><span class="math display">\[
-logit(\hat{p}) = -1.50 + 0.361 \times you + 0.00173 \times capitalTotal
-\]</span></p>
-<p><span class="math display">\[
-log(\frac{\hat{p}}{1 - \hat{p}}) = -1.50 + 0.361 \times you + 0.00173 \times capitalTotal
-\]</span></p>
+<p><em>Add response here.</em></p>
 </section>
 <section id="exercise-4" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-4">Exercise 4</h2>
@@ -566,13 +561,12 @@ log(\frac{\hat{p}}{1 - \hat{p}}) = -1.50 + 0.361 \times you + 0.00173 \times cap
 <li><p>What would you set your decision boundary to and why?</p></li>
 <li><p>Change <code>decision_boundary</code> in the code above to 0.01 and 0.999999. Do the results surprise you? Why or why not?</p></li>
 </ul>
-<p><em>Answers may vary.</em></p>
+<p><em>Add response here.</em></p>
 </section>
 <section id="exercise-6" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-6">Exercise 6</h2>
 <p>If you set a lower decision boundary, do you label fewer or more emails as spam? What happens if you set 0 as your boundary? What about 1 as your boundary? If you very much dislike spam, should you set a high or low boundary?</p>
-<p><em>Lower boundary means that we label more emails as spam, high boundary means fewer emails as spam. We can adjust the boundary depending on how much we value receiving important emails vs how much we dislike spam.</em></p>
-<p><em>0 means all emails are spam, 1 means no emails are spam. Note you cannot set decision boundary to 0 or 1 because of logit function (would evaluate to inf or negative inf)</em></p>
+<p><em>Add response here.</em></p>
 </section>
 </section>
 <section id="classify-a-new-email" class="level1">
@@ -605,7 +599,7 @@ log(\frac{\hat{p}}{1 - \hat{p}}) = -1.50 + 0.361 \times you + 0.00173 \times cap
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>The model predicts 0.99 probability that this new email is spam. This seems reasonable based on the new email text.</em></p>
+<p><em>Add response here.</em></p>
 </section>
 </section>
 <section id="assessing-predictive-ability" class="level1">
@@ -620,27 +614,32 @@ log(\frac{\hat{p}}{1 - \hat{p}}) = -1.50 + 0.361 \times you + 0.00173 \times cap
 <section id="exercise-7" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-7">Exercise 7</h2>
 <p>Inspect <code>hp_spam_split</code>. How many emails are in <code>hp_spam_train</code>, how many are in <code>hp_spam_test</code>. Check out the documentation for the <code>initial_split()</code> function, what ratio does it use for splitting the dataset into training and testing samples?</p>
+<p><em>Add response here.</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="exercise-8" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-8">Exercise 8</h2>
 <p>Train your model on the training set. Build a predictive model using any combination of predictors from <code>hp_spam</code> to predict <code>type</code>. Save your fitted model as <code>my_model_fit</code> and display its tidy summary.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-9" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-9">Exercise 9</h2>
 <p>Make predictions for your testing set and augment your testing set with these predictions.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-10" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-10">Exercise 10</h2>
 <p>What are the false positive and false negative rates of this model?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><em>Add response here.</em></p>
 
 
 </section>

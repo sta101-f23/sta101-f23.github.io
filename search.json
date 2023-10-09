@@ -941,7 +941,7 @@
     "href": "ae/ae-09-spam.html#exercise-1",
     "title": "Spam email",
     "section": "Exercise 1",
-    "text": "Exercise 1\nOne predictor model: Visualize a linear model where the outcome is type (spam or not) and george is the only predictor. Then, discuss your visualization with your neighbor. Is this a good model? Why or why not?\nDoesn’t make sense to draw a line and predict values between 0 and 1.\n\n# add code here"
+    "text": "Exercise 1\nOne predictor model: Visualize a linear model where the outcome is type (spam or not) and george is the only predictor. Then, discuss your visualization with your neighbor. Is this a good model? Why or why not?\nAdd response here.\n\n# add code here"
   },
   {
     "objectID": "ae/ae-09-spam.html#exercise-2",
@@ -955,7 +955,7 @@
     "href": "ae/ae-09-spam.html#exercise-3",
     "title": "Spam email",
     "section": "Exercise 3",
-    "text": "Exercise 3\nWrite the model equation.\n\\[\nlogit(\\hat{p}) = -1.50 + 0.361 \\times you + 0.00173 \\times capitalTotal\n\\]\n\\[\nlog(\\frac{\\hat{p}}{1 - \\hat{p}}) = -1.50 + 0.361 \\times you + 0.00173 \\times capitalTotal\n\\]"
+    "text": "Exercise 3\nWrite the model equation.\nAdd response here."
   },
   {
     "objectID": "ae/ae-09-spam.html#exercise-4",
@@ -969,28 +969,28 @@
     "href": "ae/ae-09-spam.html#exercise-5",
     "title": "Spam email",
     "section": "Exercise 5",
-    "text": "Exercise 5\n\nWhat would you set your decision boundary to and why?\nChange decision_boundary in the code above to 0.01 and 0.999999. Do the results surprise you? Why or why not?\n\nAnswers may vary."
+    "text": "Exercise 5\n\nWhat would you set your decision boundary to and why?\nChange decision_boundary in the code above to 0.01 and 0.999999. Do the results surprise you? Why or why not?\n\nAdd response here."
   },
   {
     "objectID": "ae/ae-09-spam.html#exercise-6",
     "href": "ae/ae-09-spam.html#exercise-6",
     "title": "Spam email",
     "section": "Exercise 6",
-    "text": "Exercise 6\nIf you set a lower decision boundary, do you label fewer or more emails as spam? What happens if you set 0 as your boundary? What about 1 as your boundary? If you very much dislike spam, should you set a high or low boundary?\nLower boundary means that we label more emails as spam, high boundary means fewer emails as spam. We can adjust the boundary depending on how much we value receiving important emails vs how much we dislike spam.\n0 means all emails are spam, 1 means no emails are spam. Note you cannot set decision boundary to 0 or 1 because of logit function (would evaluate to inf or negative inf)"
+    "text": "Exercise 6\nIf you set a lower decision boundary, do you label fewer or more emails as spam? What happens if you set 0 as your boundary? What about 1 as your boundary? If you very much dislike spam, should you set a high or low boundary?\nAdd response here."
   },
   {
     "objectID": "ae/ae-09-spam.html#exercise-6-1",
     "href": "ae/ae-09-spam.html#exercise-6-1",
     "title": "Spam email",
     "section": "Exercise 6",
-    "text": "Exercise 6\nUsing your model, predict whether this email will be classified as spam or not. What does the model predict for the probability that this email is spam? With a decision boundary of 0.5, how does the model classify thie email? Do you believe this classification? Why or why not?\n\n# add code here\n\nThe model predicts 0.99 probability that this new email is spam. This seems reasonable based on the new email text."
+    "text": "Exercise 6\nUsing your model, predict whether this email will be classified as spam or not. What does the model predict for the probability that this email is spam? With a decision boundary of 0.5, how does the model classify thie email? Do you believe this classification? Why or why not?\n\n# add code here\n\nAdd response here."
   },
   {
     "objectID": "ae/ae-09-spam.html#exercise-7",
     "href": "ae/ae-09-spam.html#exercise-7",
     "title": "Spam email",
     "section": "Exercise 7",
-    "text": "Exercise 7\nInspect hp_spam_split. How many emails are in hp_spam_train, how many are in hp_spam_test. Check out the documentation for the initial_split() function, what ratio does it use for splitting the dataset into training and testing samples?"
+    "text": "Exercise 7\nInspect hp_spam_split. How many emails are in hp_spam_train, how many are in hp_spam_test. Check out the documentation for the initial_split() function, what ratio does it use for splitting the dataset into training and testing samples?\nAdd response here.\n\n# add code here"
   },
   {
     "objectID": "ae/ae-09-spam.html#exercise-8",
@@ -1011,7 +1011,7 @@
     "href": "ae/ae-09-spam.html#exercise-10",
     "title": "Spam email",
     "section": "Exercise 10",
-    "text": "Exercise 10\nWhat are the false positive and false negative rates of this model?\n\n# add code here"
+    "text": "Exercise 10\nWhat are the false positive and false negative rates of this model?\n\n# add code here\n\nAdd response here."
   },
   {
     "objectID": "ae/ae-03-delta.html",
