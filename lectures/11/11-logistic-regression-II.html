@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.388">
 
   <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
-  <title>STA 101 - F23 - Regression with a single predictor</title>
+  <title>STA 101 - F23 - Logistic regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -387,8 +387,8 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="STA 101 - F23 - Regression with a single predictor">
-<meta property="og:description" content="Lecture 6">
+<meta property="og:title" content="STA 101 - F23 - Logistic regression">
+<meta property="og:description" content="Lecture 10">
 <meta property="og:site_name" content="STA 101 - F23">
 </head>
 <body class="quarto-light">
@@ -396,8 +396,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Regression with a single predictor</h1>
-  <p class="subtitle">Lecture 6</p>
+  <h1 class="title">Logistic regression</h1>
+  <p class="subtitle">Lecture 10</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -416,181 +416,138 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <h1>Warm up</h1>
 
 </section>
-<section id="announcements" class="slide level2">
-<h2>Announcements</h2>
+<section id="check-in" class="slide level2">
+<h2>Check-in</h2>
 <ul>
-<li>Lab 3 is due Thu, Sep 21 at 5 pm on Gradescope</li>
-<li>No class on Wednesday, catch up on readings, interactive tutorials, labs!</li>
+<li>Daily check-ins for getting you thinking at the beginning of the class and reviewing recent/important concepts</li>
+<li>Go to Canvas and open today’s “quiz” titled <code>2023-10-11 Check-in</code></li>
+<li>Access code: <code>___</code> (released in class) <!-- logit --></li>
+<li>“Graded” for completion</li>
 </ul>
+</section>
+<section id="project" class="slide level2">
+<h2>Project</h2>
+<div class="task">
+<p>Any questions about projects?</p>
+</div>
 </section></section>
 <section>
-<section id="regression-with-a-single-predictor" class="title-slide slide level1 center">
-<h1>Regression with a single predictor</h1>
+<section id="from-last-time" class="title-slide slide level1 center">
+<h1>From last time</h1>
 
 </section>
-<section id="data-and-packages" class="slide level2">
-<h2>Data and packages</h2>
-<p>We’ll work with data on Apple and Microsoft stock prices and use the <strong>tidyverse</strong> and <strong>tidymodels</strong> packages.</p>
+<section id="application-exercise" class="slide level2">
+<h2>Application exercise</h2>
+<p>Go to Posit Cloud and continue the project titled ae-09-Spam.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>ICYMI</strong></p>
+</div>
+<div class="callout-content">
+<p>Today’s daily check-in access code: <code>___</code> (released in class) <!-- logit --></p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="logistic-regression" class="title-slide slide level1 center">
+<h1>Logistic regression</h1>
+
+</section>
+<section id="the-model" class="slide level2">
+<h2>The model</h2>
+<p>Logit form:</p>
+<p><span class="math display">\[
+log(\frac{p}{1 - p}) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + ...
+\]</span></p>
+<p>Probability form:</p>
+<p><span class="math display">\[
+p = \frac{e^{\beta_0 + \beta_1 X_1 + \beta_2 X_2 + ...}}{1 + e^{\beta_0 + \beta_1 X_1 + \beta_2 X_2 + ...}}
+\]</span></p>
+</section>
+<section id="data-packages" class="slide level2 smaller">
+<h2>Data + packages</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidymodels)</span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a>stocks <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/stocks.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4"></a>hp_spam <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/hp-spam.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> <span class="fu">as.factor</span>(type))</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>hp_spam <span class="sc">|&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>  <span class="fu">select</span>(type, you, capitalTotal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,601 × 3
+   type    you capitalTotal
+   &lt;fct&gt; &lt;dbl&gt;        &lt;dbl&gt;
+ 1 1      1.93          278
+ 2 1      3.47         1028
+ 3 1      1.36         2259
+ 4 1      3.18          191
+ 5 1      3.18          191
+ 6 1      0              54
+ 7 1      3.85          112
+ 8 1      0              49
+ 9 1      1.23         1257
+10 1      1.67          749
+# ℹ 4,591 more rows</code></pre>
+</div>
 </div>
 </section>
-<section id="simple-regression-model-and-notation" class="slide level2 smaller">
-<h2>Simple regression model and notation</h2>
-<p><span class="math display">\[
-y = \beta_0 + \beta_1 x + \epsilon
-\]</span></p>
-<div>
-<ul>
-<li class="fragment"><p><span class="math inline">\(y\)</span>: the <strong>outcome</strong> variable. Also called the “response” or “dependent variable”. In prediction problems, this is what we are interested in predicting.</p></li>
-<li class="fragment"><p><span class="math inline">\(x\)</span>: the <strong>predictor</strong>. Also commonly referred to as “regressor”, “independent variable”, “covariate”, “feature”, “the data”.</p></li>
-<li class="fragment"><p><span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span> are called “constants” or <strong>coefficients</strong>. They are fixed numbers. These are <strong>population parameters</strong>. <span class="math inline">\(\beta_0\)</span> has another special name, “the intercept”.</p></li>
-<li class="fragment"><p><span class="math inline">\(\epsilon\)</span>: the <strong>error</strong>. This quantity represents observational error, i.e.&nbsp;the difference between our observation and the true population-level expected value: <span class="math inline">\(\beta_0 + \beta_1 x\)</span>.</p></li>
-</ul>
-</div>
-<div class="fragment">
-<p>Effectively this model says our data <span class="math inline">\(y\)</span> is linearly related to <span class="math inline">\(x\)</span> but is not perfectly observed due to some error.</p>
-</div>
-</section>
-<section id="stock-prices-of-microsoft-and-apple" class="slide level2">
-<h2>Stock prices of Microsoft and Apple</h2>
-<p>Let’s examine January 2020 open prices of Microsoft and Apple stocks to illustrate some ideas.</p>
+<section id="fit-model-and-display-output" class="slide level2">
+<h2>Fit model and display output</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>stocks_jan2020 <span class="ot">&lt;-</span> stocks <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">filter</span>(<span class="fu">month</span>(date) <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> <span class="fu">year</span>(date) <span class="sc">==</span> <span class="dv">2020</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">ggplot</span>(stocks_jan2020, <span class="fu">aes</span>(<span class="at">x =</span> MSFT.Open, <span class="at">y =</span> AAPL.Open)) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">labs</span>(</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="at">x =</span> <span class="st">"MSFT Open"</span>, </span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="at">y =</span> <span class="st">"AAPL Open"</span>, </span>
-<span id="cb2-9"><a href="#cb2-9"></a>    <span class="at">title =</span> <span class="st">"Open prices of MSFT and AAPL"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10"></a>    <span class="at">subtitle =</span> <span class="st">"January 2020"</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>spam_fit <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">fit</span>(type <span class="sc">~</span> you <span class="sc">+</span> capitalTotal, <span class="at">data =</span> hp_spam)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  </span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">tidy</span>(spam_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  term         estimate std.error statistic   p.value
+  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)  -1.50     0.0554       -27.1 2.97e-162
+2 you           0.361    0.0198        18.3 1.84e- 74
+3 capitalTotal  0.00173  0.000104      16.6 5.66e- 62</code></pre>
 </div>
+</div>
+</section>
+<section id="the-model-1" class="slide level2">
+<h2>The model</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  term         estimate std.error statistic   p.value
+  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)  -1.50     0.0554       -27.1 2.97e-162
+2 you           0.361    0.0198        18.3 1.84e- 74
+3 capitalTotal  0.00173  0.000104      16.6 5.66e- 62</code></pre>
+</div>
+</div>
+<p><span class="math display">\[
+log(\frac{p}{1 - p}) = -1.50 + 0.361 \times you + 0.00173 \times  capitalTotal + \epsilon
+\]</span></p>
+<p><span class="math display">\[
+log(\frac{\hat{p}}{1 - \hat{p}}) = -1.50 + 0.361 \times you + 0.00173 \times  capitalTotal
+\]</span></p>
+<p>where <span class="math inline">\(p\)</span> is the probability</p>
+</section></section>
+<section>
+<section id="exam-1" class="title-slide slide level1 center">
+<h1>Exam 1</h1>
 
 </section>
-<section id="stock-prices-of-microsoft-and-apple-output" class="slide level2 output-location-slide"><h2>Stock prices of Microsoft and Apple</h2><div class="cell output-location-slide">
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" width="960">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="06-regression-one-predictor_files/figure-revealjs/stocks-jan2020-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" width="960">
-</div>
-</figure>
-</div>
-</div>
-</div></section><section id="fitting-some-model" class="slide level2">
-<h2>Fitting “some” model</h2>
-<p>Before we get to fitting the best model, let’s fit “some” model, say with slope = -5 and intercept = 0.5.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(stocks_jan2020, <span class="fu">aes</span>(<span class="at">x =</span> MSFT.Open, <span class="at">y =</span> AAPL.Open)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fl">0.5</span>, <span class="at">intercept =</span> <span class="sc">-</span><span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">labs</span>(</span>
-<span id="cb3-5"><a href="#cb3-5"></a>    <span class="at">x =</span> <span class="st">"MSFT Open"</span>, </span>
-<span id="cb3-6"><a href="#cb3-6"></a>    <span class="at">y =</span> <span class="st">"AAPL Open"</span>, </span>
-<span id="cb3-7"><a href="#cb3-7"></a>    <span class="at">title =</span> <span class="st">"Open prices of MSFT and AAPL"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8"></a>    <span class="at">subtitle =</span> <span class="st">"January 2020"</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-
-</section>
-<section id="fitting-some-model-output" class="slide level2 output-location-slide"><h2>Fitting “some” model</h2><div class="cell output-location-slide">
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" width="960">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="06-regression-one-predictor_files/figure-revealjs/stocks-jan2020-some-model-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" width="960">
-</div>
-</figure>
-</div>
-</div>
-</div></section><section id="fitting-some-model-1" class="slide level2">
-<h2>Fitting “some” model</h2>
-<p><span class="math display">\[
-\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 ~ x \\
-\hat{y} = -5 + 0.5 ~ x
-\]</span></p>
+<section id="exam-1-1" class="slide level2">
+<h2>Exam 1</h2>
 <ul>
-<li><span class="math inline">\(\hat{y}\)</span> is the <strong>expected outcome</strong></li>
-<li><span class="math inline">\(\hat{\beta}\)</span> is the <strong>estimated</strong> or <strong>fitted</strong> coefficient</li>
-<li>There is no error term here because we do not predict error</li>
+<li><p>Tally your points on your in class exams and confirm my totals or let me know <strong>now</strong> if anything is off</p></li>
+<li><p>Regrade request policy: <a href="https://sta101-f23.github.io/course-syllabus.html#regrade-requests" class="uri">https://sta101-f23.github.io/course-syllabus.html#regrade-requests</a></p></li>
+<li><p>Modeling question <span class="math inline">\(\rightarrow\)</span> extra credit question on Exam 2 addressing the same learning goals</p></li>
+<li><p>Statistics!</p></li>
 </ul>
-</section>
-<section id="populations-vs.-samples" class="slide level2">
-<h2>Populations vs.&nbsp;samples</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>Population:</p>
-<p><span class="math display">\[
-y = \beta_0 + \beta_1 ~ x
-\]</span></p>
-</div><div class="column" style="width:50%;">
-<p>Samples: <span class="math display">\[
-\hat{y} = \hat{\beta_0} +  \hat{\beta_1} ~ x
-\]</span></p>
-</div>
-</div>
-<div>
-<ul>
-<li class="fragment">The central idea is that if we measure every <span class="math inline">\(x\)</span> and every <span class="math inline">\(y\)</span> in existence, (“the entire population”) there is some true “best” <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> that describe the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span></li>
-<li class="fragment">Since we only have a <strong>sample</strong> of the data, we estimate <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span></li>
-<li class="fragment">We call our estimates <span class="math inline">\(\hat{\beta_0}\)</span>, <span class="math inline">\(\hat{\beta_1}\)</span> “beta hat”. We never have all the data, thus we never can really know what the true <span class="math inline">\(\beta\)</span>s are</li>
-</ul>
-</div>
-</section>
-<section id="residuals" class="slide level2">
-<h2>Residuals</h2>
-<ul>
-<li>For any linear equation we write down, there will be some difference between the predicted outcome of our linear model (<span class="math inline">\(\hat{y}\)</span>) and what we observe (<span class="math inline">\(y\)</span>)… (But of course! Otherwise everything would fall on a perfect straight line!)</li>
-</ul>
-<p>This difference between what we observe and what we predict <span class="math inline">\(y - \hat{y}\)</span> is known as a residual, <span class="math inline">\(e\)</span>.</p>
-<p>More concisely,</p>
-<p><span class="math display">\[
-e = y - \hat{y}
-\]</span></p>
-</section>
-<section id="a-residual-visualized" class="slide level2">
-<h2>A residual, visualized</h2>
-<p>Residuals are dependent on the line we draw. Visually, here is a model of the data, <span class="math inline">\(y = -5 + 0.5 ~ x\)</span> and one of the residuals is outlined in red.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" data-fig-align="center" width="768">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="06-regression-one-predictor_files/figure-revealjs/unnamed-chunk-4-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure-center" width="768">
-</div>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="all-residuals-visualized" class="slide level2">
-<h2>All residuals, visualized</h2>
-<p>There is, in fact, a residual associated with every single point in the plot.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" width="960">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="06-regression-one-predictor_files/figure-revealjs/all-residuals-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" width="960">
-</div>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="minimize-residuals" class="slide level2">
-<h2>Minimize residuals</h2>
-<p>We often wish to find a line that fits the data “really well”, but what does this mean? Well, we want small residuals! So we pick an <strong>objective function</strong>. That is, a function we wish to minimize or maximize.</p>
-</section>
-<section id="application-exercise" class="slide level2">
-<h2>Application exercise</h2>
-<p>Go to Posit Cloud and start the project titled <strong>ae-06-Stocks</strong>.</p>
 
 <p><img src="../logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
