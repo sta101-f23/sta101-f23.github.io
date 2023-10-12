@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.388">
 
   <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
-  <title>STA 101 - F23 - Regression with a single predictor</title>
+  <title>STA 101 - F23 - Logistic regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -387,8 +387,8 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="STA 101 - F23 - Regression with a single predictor">
-<meta property="og:description" content="Lecture 6">
+<meta property="og:title" content="STA 101 - F23 - Logistic regression">
+<meta property="og:description" content="Lecture 10">
 <meta property="og:site_name" content="STA 101 - F23">
 </head>
 <body class="quarto-light">
@@ -396,8 +396,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Regression with a single predictor</h1>
-  <p class="subtitle">Lecture 6</p>
+  <h1 class="title">Logistic regression</h1>
+  <p class="subtitle">Lecture 10</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -416,181 +416,205 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <h1>Warm up</h1>
 
 </section>
-<section id="announcements" class="slide level2">
-<h2>Announcements</h2>
+<section id="check-in" class="slide level2">
+<h2>Check-in</h2>
 <ul>
-<li>Lab 3 is due Thu, Sep 21 at 5 pm on Gradescope</li>
-<li>No class on Wednesday, catch up on readings, interactive tutorials, labs!</li>
+<li>Daily check-ins for getting you thinking at the beginning of the class and reviewing recent/important concepts</li>
+<li>Go to Canvas and open today’s “quiz” titled <code>2023-10-09 Check-in</code></li>
+<li>Access code: <code>slopes</code> (released in class) <!-- slopes --></li>
+<li>“Graded” for completion</li>
 </ul>
+</section>
+<section id="project" class="slide level2">
+<h2>Project</h2>
+<ul>
+<li><p>Project workday on Friday in lab – use this time for finalizing and polishing, not getting started</p></li>
+<li><p>Projects due Friday at 5 pm</p></li>
+<li><p>Peer evaluations due Friday at 6 pm:</p>
+<ul>
+<li><p>You’ll receive an email about them later today from TEAMMATES</p></li>
+<li><p>You must turn in a peer evaluation to get the points your teammates awarded you</p></li>
+</ul></li>
+<li><p>Only one person should submit the project on Gradescope and select all team members’ names. See <a href="https://sta101-f23.github.io/project/project-1.html#submission" class="uri">https://sta101-f23.github.io/project/project-1.html#submission</a> for more information.</p></li>
+</ul>
+<div class="task">
+<p>Any questions about projects?</p>
+</div>
 </section></section>
 <section>
-<section id="regression-with-a-single-predictor" class="title-slide slide level1 center">
-<h1>Regression with a single predictor</h1>
+<section id="logistic-regression" class="title-slide slide level1 center">
+<h1>Logistic regression</h1>
 
 </section>
-<section id="data-and-packages" class="slide level2">
-<h2>Data and packages</h2>
-<p>We’ll work with data on Apple and Microsoft stock prices and use the <strong>tidyverse</strong> and <strong>tidymodels</strong> packages.</p>
+<section id="so-far-in-regression" class="slide level2">
+<h2>So far in regression</h2>
+<div>
+<ul>
+<li class="fragment"><p>Outcome: Numerical, Predictor: One numerical or one categorical with only two levels <span class="math inline">\(\rightarrow\)</span> Simple linear regression</p></li>
+<li class="fragment"><p>Outcome: Numerical, Predictors: Any number of numerical or categorical variables with any number of levels <span class="math inline">\(\rightarrow\)</span> Multiple linear regression</p></li>
+<li class="fragment"><p>Outcome: Categorical with only two levels, Predictors: Any number of numerical or categorical variables with any number of levels <span class="math inline">\(\rightarrow\)</span> Logistic regression</p></li>
+<li class="fragment"><p>Outcome: Categorical with any number of levels, Predictors: Any number of numerical or categorical variables with any number of levels <span class="math inline">\(\rightarrow\)</span> Generalized linear models – Not covered in STA 101</p></li>
+</ul>
+</div>
+</section>
+<section id="data-packages" class="slide level2 smaller">
+<h2>Data + packages</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidymodels)</span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a>stocks <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/stocks.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4"></a>hp_spam <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/hp-spam.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="simple-regression-model-and-notation" class="slide level2 smaller">
-<h2>Simple regression model and notation</h2>
-<p><span class="math display">\[
-y = \beta_0 + \beta_1 x + \epsilon
-\]</span></p>
-<div>
 <ul>
-<li class="fragment"><p><span class="math inline">\(y\)</span>: the <strong>outcome</strong> variable. Also called the “response” or “dependent variable”. In prediction problems, this is what we are interested in predicting.</p></li>
-<li class="fragment"><p><span class="math inline">\(x\)</span>: the <strong>predictor</strong>. Also commonly referred to as “regressor”, “independent variable”, “covariate”, “feature”, “the data”.</p></li>
-<li class="fragment"><p><span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span> are called “constants” or <strong>coefficients</strong>. They are fixed numbers. These are <strong>population parameters</strong>. <span class="math inline">\(\beta_0\)</span> has another special name, “the intercept”.</p></li>
-<li class="fragment"><p><span class="math inline">\(\epsilon\)</span>: the <strong>error</strong>. This quantity represents observational error, i.e.&nbsp;the difference between our observation and the true population-level expected value: <span class="math inline">\(\beta_0 + \beta_1 x\)</span>.</p></li>
+<li><p>4601 emails collected at Hewlett-Packard labs and contains 58 variables</p></li>
+<li><p>Outcome: <code>type</code></p>
+<ul>
+<li><p><code>type = 1</code> is spam</p></li>
+<li><p><code>type = 0</code> is non-spam</p></li>
+</ul></li>
+<li><p>Predictors of interest:</p>
+<ul>
+<li><p><code>capitalTotal</code>: Number of capital letters in email</p></li>
+<li><p>Percentages are calculated as (100 * number of times the WORD appears in the e-mail) / total number of words in email</p>
+<ul>
+<li><p><code>george</code>: Percentage of “george”s in email (these were George’s emails)</p></li>
+<li><p><code>you</code>: Percentage of “you”s in email</p></li>
+</ul></li>
+</ul></li>
 </ul>
-</div>
-<div class="fragment">
-<p>Effectively this model says our data <span class="math inline">\(y\)</span> is linearly related to <span class="math inline">\(x\)</span> but is not perfectly observed due to some error.</p>
-</div>
 </section>
-<section id="stock-prices-of-microsoft-and-apple" class="slide level2">
-<h2>Stock prices of Microsoft and Apple</h2>
-<p>Let’s examine January 2020 open prices of Microsoft and Apple stocks to illustrate some ideas.</p>
+<section id="glimpse-at-data" class="slide level2">
+<h2>Glimpse at data</h2>
+<div class="task">
+<p>What type of data is <code>type</code>? What type should it be in order to use logistic regression?</p>
+</div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>stocks_jan2020 <span class="ot">&lt;-</span> stocks <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">filter</span>(<span class="fu">month</span>(date) <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> <span class="fu">year</span>(date) <span class="sc">==</span> <span class="dv">2020</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">ggplot</span>(stocks_jan2020, <span class="fu">aes</span>(<span class="at">x =</span> MSFT.Open, <span class="at">y =</span> AAPL.Open)) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">labs</span>(</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="at">x =</span> <span class="st">"MSFT Open"</span>, </span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="at">y =</span> <span class="st">"AAPL Open"</span>, </span>
-<span id="cb2-9"><a href="#cb2-9"></a>    <span class="at">title =</span> <span class="st">"Open prices of MSFT and AAPL"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10"></a>    <span class="at">subtitle =</span> <span class="st">"January 2020"</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>hp_spam <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">select</span>(type, george, capitalTotal, you)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,601 × 4
+    type george capitalTotal   you
+   &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;
+ 1     1      0          278  1.93
+ 2     1      0         1028  3.47
+ 3     1      0         2259  1.36
+ 4     1      0          191  3.18
+ 5     1      0          191  3.18
+ 6     1      0           54  0   
+ 7     1      0          112  3.85
+ 8     1      0           49  0   
+ 9     1      0         1257  1.23
+10     1      0          749  1.67
+# ℹ 4,591 more rows</code></pre>
 </div>
-
+</div>
 </section>
-<section id="stock-prices-of-microsoft-and-apple-output" class="slide level2 output-location-slide"><h2>Stock prices of Microsoft and Apple</h2><div class="cell output-location-slide">
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" width="960">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="06-regression-one-predictor_files/figure-revealjs/stocks-jan2020-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" width="960">
-</div>
-</figure>
-</div>
-</div>
-</div></section><section id="fitting-some-model" class="slide level2">
-<h2>Fitting “some” model</h2>
-<p>Before we get to fitting the best model, let’s fit “some” model, say with slope = -5 and intercept = 0.5.</p>
+<section id="eda-how-much-spam" class="slide level2">
+<h2>EDA: How much spam?</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(stocks_jan2020, <span class="fu">aes</span>(<span class="at">x =</span> MSFT.Open, <span class="at">y =</span> AAPL.Open)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fl">0.5</span>, <span class="at">intercept =</span> <span class="sc">-</span><span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">labs</span>(</span>
-<span id="cb3-5"><a href="#cb3-5"></a>    <span class="at">x =</span> <span class="st">"MSFT Open"</span>, </span>
-<span id="cb3-6"><a href="#cb3-6"></a>    <span class="at">y =</span> <span class="st">"AAPL Open"</span>, </span>
-<span id="cb3-7"><a href="#cb3-7"></a>    <span class="at">title =</span> <span class="st">"Open prices of MSFT and AAPL"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8"></a>    <span class="at">subtitle =</span> <span class="st">"January 2020"</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>hp_spam <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">count</span>(type) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+   type     n     p
+  &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
+1     0  2788 0.606
+2     1  1813 0.394</code></pre>
 </div>
-
+</div>
 </section>
-<section id="fitting-some-model-output" class="slide level2 output-location-slide"><h2>Fitting “some” model</h2><div class="cell output-location-slide">
+<section id="eda-am-i-screaming-capitaltotal" class="slide level2">
+<h2>EDA: AM I SCREAMING? <code>capitalTotal</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(hp_spam, <span class="fu">aes</span>(<span class="at">x =</span> capitalTotal)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" width="960">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" width="768">
 <figure class="quarto-float quarto-float-fig">
 <div>
-<img data-src="06-regression-one-predictor_files/figure-revealjs/stocks-jan2020-some-model-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" width="960">
-</div>
-</figure>
-</div>
-</div>
-</div></section><section id="fitting-some-model-1" class="slide level2">
-<h2>Fitting “some” model</h2>
-<p><span class="math display">\[
-\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 ~ x \\
-\hat{y} = -5 + 0.5 ~ x
-\]</span></p>
-<ul>
-<li><span class="math inline">\(\hat{y}\)</span> is the <strong>expected outcome</strong></li>
-<li><span class="math inline">\(\hat{\beta}\)</span> is the <strong>estimated</strong> or <strong>fitted</strong> coefficient</li>
-<li>There is no error term here because we do not predict error</li>
-</ul>
-</section>
-<section id="populations-vs.-samples" class="slide level2">
-<h2>Populations vs.&nbsp;samples</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>Population:</p>
-<p><span class="math display">\[
-y = \beta_0 + \beta_1 ~ x
-\]</span></p>
-</div><div class="column" style="width:50%;">
-<p>Samples: <span class="math display">\[
-\hat{y} = \hat{\beta_0} +  \hat{\beta_1} ~ x
-\]</span></p>
-</div>
-</div>
-<div>
-<ul>
-<li class="fragment">The central idea is that if we measure every <span class="math inline">\(x\)</span> and every <span class="math inline">\(y\)</span> in existence, (“the entire population”) there is some true “best” <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> that describe the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span></li>
-<li class="fragment">Since we only have a <strong>sample</strong> of the data, we estimate <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span></li>
-<li class="fragment">We call our estimates <span class="math inline">\(\hat{\beta_0}\)</span>, <span class="math inline">\(\hat{\beta_1}\)</span> “beta hat”. We never have all the data, thus we never can really know what the true <span class="math inline">\(\beta\)</span>s are</li>
-</ul>
-</div>
-</section>
-<section id="residuals" class="slide level2">
-<h2>Residuals</h2>
-<ul>
-<li>For any linear equation we write down, there will be some difference between the predicted outcome of our linear model (<span class="math inline">\(\hat{y}\)</span>) and what we observe (<span class="math inline">\(y\)</span>)… (But of course! Otherwise everything would fall on a perfect straight line!)</li>
-</ul>
-<p>This difference between what we observe and what we predict <span class="math inline">\(y - \hat{y}\)</span> is known as a residual, <span class="math inline">\(e\)</span>.</p>
-<p>More concisely,</p>
-<p><span class="math display">\[
-e = y - \hat{y}
-\]</span></p>
-</section>
-<section id="a-residual-visualized" class="slide level2">
-<h2>A residual, visualized</h2>
-<p>Residuals are dependent on the line we draw. Visually, here is a model of the data, <span class="math inline">\(y = -5 + 0.5 ~ x\)</span> and one of the residuals is outlined in red.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" width="768" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="06-regression-one-predictor_files/figure-revealjs/unnamed-chunk-4-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure-center" width="768">
+<img data-src="10-logistic-regression-I_files/figure-revealjs/unnamed-chunk-4-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" width="768">
 </div>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="all-residuals-visualized" class="slide level2">
-<h2>All residuals, visualized</h2>
-<p>There is, in fact, a residual associated with every single point in the plot.</p>
+<section id="eda-george-is-that-you" class="slide level2">
+<h2>EDA: <code>george</code>, is that <code>you</code>?</h2>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(hp_spam, <span class="fu">aes</span>(<span class="at">x =</span> george)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_histogram</span>()</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">ggplot</span>(hp_spam, <span class="fu">aes</span>(<span class="at">x =</span> you)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" width="480">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="10-logistic-regression-I_files/figure-revealjs/unnamed-chunk-5-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" width="480">
+</div>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" width="480">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="10-logistic-regression-I_files/figure-revealjs/unnamed-chunk-5-2.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" width="480">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="logistic-regression-1" class="slide level2">
+<h2>Logistic regression</h2>
+<ul>
+<li><p>Logistic regression takes in a number of predictors and outputs the probability of a “success” (an outcome of 1) in a <strong>binary</strong> outcome variable.</p></li>
+<li><p>The probability is related to the predictors via a <strong>sigmoid link function</strong>, <span class="math display">\[
+p(y_i = 1) = \frac{1}{1+\text{exp}({- \sum \beta_i x_i })},
+\]</span>whose output is in <span class="math inline">\((0,1)\)</span> (a probability).</p></li>
+<li><p>In this modeling scheme, one typically finds <span class="math inline">\(\hat{\beta}\)</span> by maximizing the <strong>likelihood function</strong>, another objective function, different than our previous “least squares” objective.</p></li>
+</ul>
+</section>
+<section id="logistic-regression-visualized" class="slide level2">
+<h2>Logistic regression, visualized</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" width="960">
 <figure class="quarto-float quarto-float-fig">
 <div>
-<img data-src="06-regression-one-predictor_files/figure-revealjs/all-residuals-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" width="960">
+<img data-src="10-logistic-regression-I_files/figure-revealjs/unnamed-chunk-6-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" width="960">
 </div>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="minimize-residuals" class="slide level2">
-<h2>Minimize residuals</h2>
-<p>We often wish to find a line that fits the data “really well”, but what does this mean? Well, we want small residuals! So we pick an <strong>objective function</strong>. That is, a function we wish to minimize or maximize.</p>
+<section id="using-data-to-estimate-beta_i" class="slide level2">
+<h2>Using data to estimate <span class="math inline">\(\beta_i\)</span></h2>
+<p>To proceed with building our email classifier, we will, as usual, use our data (outcome <span class="math inline">\(y_i\)</span> and predictor <span class="math inline">\(x_i\)</span> pairs), to estimate <span class="math inline">\(\beta\)</span> (find <span class="math inline">\(\hat{\beta}\)</span>) and obtain the model: <span class="math display">\[
+p(y_i = 1) = \frac{1}{1+\text{exp}({- \sum  \hat{\beta}_i x_i})},
+\]</span></p>
 </section>
 <section id="application-exercise" class="slide level2">
 <h2>Application exercise</h2>
-<p>Go to Posit Cloud and start the project titled <strong>ae-06-Stocks</strong>.</p>
+<p>Go to Posit Cloud and continue the project titled ae-09-Spam.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>ICYMI</strong></p>
+</div>
+<div class="callout-content">
+<p>Today’s daily check-in access code: <code>slopes</code> (released in class) <!-- slopes --></p>
+</div>
+</div>
+</div>
 
 <p><img src="../logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
