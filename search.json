@@ -224,7 +224,139 @@
     "href": "labs/lab-5.html",
     "title": "Lab 5",
     "section": "",
-    "text": "To be posted…",
+    "text": "By the end of this lab you will create formulate and conduct hypothesis tests using randomization.\nFor all visualizations you create, be sure to include informative titles for the plot, axes, and legend!",
+    "crumbs": [
+      "Labs",
+      "Lab 5"
+    ]
+  },
+  {
+    "objectID": "labs/lab-5.html#exercise-1",
+    "href": "labs/lab-5.html#exercise-1",
+    "title": "Lab 5",
+    "section": "Exercise 1",
+    "text": "Exercise 1\n\nIMS - Chapter 11 exercises, #2: Identify the parameter, II.",
+    "crumbs": [
+      "Labs",
+      "Lab 5"
+    ]
+  },
+  {
+    "objectID": "labs/lab-5.html#exercise-2",
+    "href": "labs/lab-5.html#exercise-2",
+    "title": "Lab 5",
+    "section": "Exercise 2",
+    "text": "Exercise 2\n\nIMS - Chapter 11 exercises, #6: Identify hypotheses, II.",
+    "crumbs": [
+      "Labs",
+      "Lab 5"
+    ]
+  },
+  {
+    "objectID": "labs/lab-5.html#exercise-3",
+    "href": "labs/lab-5.html#exercise-3",
+    "title": "Lab 5",
+    "section": "Exercise 3",
+    "text": "Exercise 3\n\nIMS - Chapter 11 exercises, #8: Heart transplants.",
+    "crumbs": [
+      "Labs",
+      "Lab 5"
+    ]
+  },
+  {
+    "objectID": "labs/lab-5.html#exercise-4",
+    "href": "labs/lab-5.html#exercise-4",
+    "title": "Lab 5",
+    "section": "Exercise 4",
+    "text": "Exercise 4\n\nRecreate the stacked bar plot in Exercise 3.\n\n\n\n\n\n\n\nHint\n\n\n\nThe colors are #569BBD and #114B5F. Use scale_fill_manual() to indicate these are the colors you want to use.\n\n\n\n\n\n\n\n\nPause and render\n\n\n\nNow that you’ve completed a few exercises, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.",
+    "crumbs": [
+      "Labs",
+      "Lab 5"
+    ]
+  },
+  {
+    "objectID": "labs/lab-5.html#exercise-5",
+    "href": "labs/lab-5.html#exercise-5",
+    "title": "Lab 5",
+    "section": "Exercise 5",
+    "text": "Exercise 5\n\nCalculate the point estimate for the difference in proportions of patients who died between the treatment and control groups: \\(\\hat{p}_{treatment} - \\hat{p}_{control}\\), where \\(\\hat{p}\\) is the observed probability of dying in each group. Do this in two ways:\n\nConstruct a frequency table of survived by transplant and calculate the difference in proportions “by hand”.\nUse specify() and calculate() to calculate the difference in proportions as shown below.\n\n\nobs_diff_outcome &lt;- heart_transplant |&gt;\n  specify(response = outcome, explanatory = transplant, success = \"deceased\") |&gt;\n  calculate(stat = \"diff in props\", order = c(\"treatment\", \"control\"))\n\nThen, confirm that you obtained the same results with the two methods.",
+    "crumbs": [
+      "Labs",
+      "Lab 5"
+    ]
+  },
+  {
+    "objectID": "labs/lab-5.html#exercise-6",
+    "href": "labs/lab-5.html#exercise-6",
+    "title": "Lab 5",
+    "section": "Exercise 6",
+    "text": "Exercise 6\n\nUsing the code below, generate a null distribution for the hypothesis test for the hypothesis you formulated in Exercise 3. Use 100 resamples (reps). However, change the seed to use a different seed.\n\nset.seed(1234)\n\nnull_dist_outcome &lt;- heart_transplant |&gt;\n  specify(response = outcome, explanatory = transplant, success = \"deceased\") |&gt;\n  hypothesize(null = \"independence\") |&gt;\n  generate(reps = 100, type = \"permute\") |&gt;\n  calculate(stat = \"diff in props\", order = c(\"treatment\", \"control\"))\n\nThen, inspect the object null_dist_transplant using either glimpse() or just printing it to screen. How many rows and how many columns does it have? What does each row represent? What does each variable represent?",
+    "crumbs": [
+      "Labs",
+      "Lab 5"
+    ]
+  },
+  {
+    "objectID": "labs/lab-5.html#exercise-7",
+    "href": "labs/lab-5.html#exercise-7",
+    "title": "Lab 5",
+    "section": "Exercise 7",
+    "text": "Exercise 7\n\nVisualize the distribution of simulated differences in proportions of deceased between treatment and control groups. What is the shape of this distribution? What is the center of this distribution? Are these results expected? Explain your reasoning.\n\n\n\n\n\n\n\nHint\n\n\n\nThese simulated values are in the stat column of null_dist_transplant.",
+    "crumbs": [
+      "Labs",
+      "Lab 5"
+    ]
+  },
+  {
+    "objectID": "labs/lab-5.html#exercise-8",
+    "href": "labs/lab-5.html#exercise-8",
+    "title": "Lab 5",
+    "section": "Exercise 8",
+    "text": "Exercise 8\n\nCalculate the p-value. Do this in two ways:\n\nFilter null_dist_transplant for stat values that are at least as far away from the null value as the observed value you calculated in Exercise 4. Make sure you’re considering both directions! Note how many such values there are, and calculate the proportion out of the total number of resamples.\nUse get_p_value():\n\n\np_value_outcome &lt;- null_dist_outcome |&gt;\n  get_p_value(obs_stat = obs_diff_outcome, direction = \"two-sided\")\n\nThen, confirm that you obtained the same results with the two methods. Finally, interpret the p-value in context of the data and the research question and comment on the statistical discernability of this result using a discernability level of 5%.\n\n\n\n\n\n\n\nPause and render\n\n\n\nNow that you’ve completed a few exercises, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.",
+    "crumbs": [
+      "Labs",
+      "Lab 5"
+    ]
+  },
+  {
+    "objectID": "labs/lab-5.html#exercise-9",
+    "href": "labs/lab-5.html#exercise-9",
+    "title": "Lab 5",
+    "section": "Exercise 9",
+    "text": "Exercise 9\n\nRecreate the side-by–side box plots in Exercise 3. The variable of interest is survtime, which is the number of days patients were alive after the date they were determined to be a candidate for a heart transplant until the termination date of the study.",
+    "crumbs": [
+      "Labs",
+      "Lab 5"
+    ]
+  },
+  {
+    "objectID": "labs/lab-5.html#exercise-10",
+    "href": "labs/lab-5.html#exercise-10",
+    "title": "Lab 5",
+    "section": "Exercise 10",
+    "text": "Exercise 10\n\nDo these data provide convincing evidence of a difference between average survival times of patient who did and did not get a heart transplant?\nWrite the hypotheses for answering this question and conduct the hypothesis test using randomization. Use 1,000 resamples. In order to avoid name collision, use object names like obs_diff_survtime, null_dist_survtime, and p_value_survtime. Find and interpret the p-value in context of the data and the research question and comment on the statistical discernability of this result using a discernability level of 5%.",
+    "crumbs": [
+      "Labs",
+      "Lab 5"
+    ]
+  },
+  {
+    "objectID": "labs/lab-5.html#submitting",
+    "href": "labs/lab-5.html#submitting",
+    "title": "Lab 5",
+    "section": "Submitting",
+    "text": "Submitting\n\n\n\n\n\n\nImportant\n\n\n\nBefore you proceed, first, make sure that you have updated the document YAML with your name! Then, render your document one last time, for good measure.\n\n\nTo submit your assignment to Gradescope:\n\nGo to your Files pane and check the box next to the PDF output of your document (lab-5.pdf).\nThen, in the Files pane, go to More &gt; Export. This will download the PDF file to your computer. Save it somewhere you can easily locate, e.g., your Downloads folder or your Desktop.\nGo to the course Canvas page and click on Gradescope and then click on the assignment. You’ll be prompted to submit it.\nMark the pages associated with each exercise. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”).\n\n\n\n\n\n\n\nWarning\n\n\n\nIf you fail to mark the pages associated with an exercise, that exercise won’t be graded. This means, if you fail to mark the pages for all exercises, you will receive a 0 on the assignment. The TAs can’t mark your pages for you, and for them to be able to grade, you must mark them.",
+    "crumbs": [
+      "Labs",
+      "Lab 5"
+    ]
+  },
+  {
+    "objectID": "labs/lab-5.html#grading",
+    "href": "labs/lab-5.html#grading",
+    "title": "Lab 5",
+    "section": "Grading",
+    "text": "Grading\n\n\n\nExercise\nPoints\n\n\n\n\nExercise 1\n5\n\n\nExercise 2\n4\n\n\nExercise 3\n6\n\n\nExercise 4\n4\n\n\nExercise 5\n4\n\n\nExercise 6\n6\n\n\nExercise 7\n5\n\n\nExercise 8\n4\n\n\nExercise 9\n5\n\n\nExercise 10\n7\n\n\nTotal\n50",
     "crumbs": [
       "Labs",
       "Lab 5"

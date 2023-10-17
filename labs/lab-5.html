@@ -20,7 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -69,6 +123,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="labs.css">
 <meta property="og:title" content="STA 101 - F23 - Lab 5">
@@ -313,7 +369,37 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting started</a></li>
+  <li><a href="#part-1-ims-exercises" id="toc-part-1-ims-exercises" class="nav-link" data-scroll-target="#part-1-ims-exercises">Part 1: IMS Exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  </ul></li>
+  <li><a href="#part-2-heart-transplants---outcome" id="toc-part-2-heart-transplants---outcome" class="nav-link" data-scroll-target="#part-2-heart-transplants---outcome">Part 2: Heart transplants - <code>outcome</code></a>
+  <ul class="collapse">
+  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
+  <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
+  <li><a href="#exercise-6" id="toc-exercise-6" class="nav-link" data-scroll-target="#exercise-6">Exercise 6</a></li>
+  <li><a href="#exercise-7" id="toc-exercise-7" class="nav-link" data-scroll-target="#exercise-7">Exercise 7</a></li>
+  <li><a href="#exercise-8" id="toc-exercise-8" class="nav-link" data-scroll-target="#exercise-8">Exercise 8</a></li>
+  </ul></li>
+  <li><a href="#part-3-heart-transplants---survtime" id="toc-part-3-heart-transplants---survtime" class="nav-link" data-scroll-target="#part-3-heart-transplants---survtime">Part 3: Heart transplants - <code>survtime</code></a>
+  <ul class="collapse">
+  <li><a href="#exercise-9" id="toc-exercise-9" class="nav-link" data-scroll-target="#exercise-9">Exercise 9</a></li>
+  <li><a href="#exercise-10" id="toc-exercise-10" class="nav-link" data-scroll-target="#exercise-10">Exercise 10</a></li>
+  </ul></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap up</a>
+  <ul class="collapse">
+  <li><a href="#submitting" id="toc-submitting" class="nav-link" data-scroll-target="#submitting">Submitting</a></li>
+  <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/labs/lab-5.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -337,11 +423,344 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>To be posted…</p>
+<p>By the end of this lab you will create formulate and conduct hypothesis tests using randomization.</p>
+<p>For all visualizations you create, be sure to include informative titles for the plot, axes, and legend!</p>
+<section id="getting-started" class="level1">
+<h1>Getting started</h1>
+<ol type="1">
+<li><p>Go to <a href="https://posit.cloud/spaces/405361">Posit Cloud</a> and start the project titled <strong>lab-5 - Hypothesis testing</strong>.</p></li>
+<li><p>Under the <em>Files</em> tab on the lower right, click on <code>lab-5.qmd</code> to open the lab template.</p></li>
+<li><p>Complete the exercises in this document.</p></li>
+</ol>
+</section>
+<section id="part-1-ims-exercises" class="level1">
+<h1>Part 1: IMS Exercises</h1>
+<p>The exercises in this section do not require code. Make sure to answer the questions in full sentences.</p>
+<section id="exercise-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
+<div class="exercise">
+<p>IMS - <a href="https://openintro-ims2.netlify.app/11-foundations-randomization#chp11-exercises">Chapter 11 exercises</a>, #2: Identify the parameter, II.</p>
+</div>
+</section>
+<section id="exercise-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
+<div class="exercise">
+<p>IMS - <a href="https://openintro-ims2.netlify.app/11-foundations-randomization#chp11-exercises">Chapter 11 exercises</a>, #6: Identify hypotheses, II.</p>
+</div>
+</section>
+<section id="exercise-3" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3">Exercise 3</h2>
+<div class="exercise">
+<p>IMS - <a href="https://openintro-ims2.netlify.app/11-foundations-randomization#chp11-exercises">Chapter 11 exercises</a>, #8: Heart transplants.</p>
+</div>
+</section>
+</section>
+<section id="part-2-heart-transplants---outcome" class="level1">
+<h1>Part 2: Heart transplants - <code>outcome</code></h1>
+<p>Today, we will be working with data from The Stanford University Heart Transplant Study<span class="citation" data-cites="turnbull1974">(<a href="#ref-turnbull1974" role="doc-biblioref">Turnbull, Brown, and Hu 1974</a>)</span>.</p>
+<p>We’ll use the tidyverse and tidymodels packages for our analysis, so let’s load those first.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And then, let’s read the data and take a peak at it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>heart_transplant <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/heart-transplant.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(heart_transplant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 103
+Columns: 8
+$ id         &lt;dbl&gt; 15, 43, 61, 75, 6, 42, 54, 38, 85, 2, 103, 12, 48, 102, 35,…
+$ outcome    &lt;chr&gt; "deceased", "deceased", "deceased", "deceased", "deceased",…
+$ transplant &lt;chr&gt; "control", "control", "control", "control", "control", "con…
+$ age        &lt;dbl&gt; 53, 43, 52, 52, 54, 36, 47, 41, 47, 51, 39, 53, 56, 40, 43,…
+$ survtime   &lt;dbl&gt; 1, 2, 2, 2, 3, 3, 3, 5, 5, 6, 6, 8, 9, 11, 12, 16, 16, 16, …
+$ acceptyear &lt;dbl&gt; 68, 70, 71, 72, 68, 70, 71, 70, 73, 68, 67, 68, 71, 74, 70,…
+$ prior      &lt;chr&gt; "no", "no", "no", "no", "no", "no", "no", "no", "no", "no",…
+$ wait       &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, 5, NA, NA, NA, NA, NA, NA, NA, …</code></pre>
+</div>
+</div>
+<p>The data dictionary is as follows:</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>ID number of the patient</td>
+</tr>
+<tr class="even">
+<td>outcome</td>
+<td>Survival status with levels <code>alive</code> and <code>deceased</code></td>
+</tr>
+<tr class="odd">
+<td>transplant</td>
+<td>Transplant group with levels <code>control</code> (did not receive a transplant) and <code>treatment</code> (received a transplant)</td>
+</tr>
+<tr class="even">
+<td>age</td>
+<td>Age of the patient at the beginning of the study</td>
+</tr>
+<tr class="odd">
+<td>survtime</td>
+<td>Number of days patients were alive after the date they were determined to be a candidate for a heart transplant until the termination date of the study</td>
+</tr>
+<tr class="even">
+<td>acceptyear</td>
+<td>Year of acceptance as a heart transplant candidate</td>
+</tr>
+<tr class="odd">
+<td>prior</td>
+<td>Whether or not the patient had prior surgery with levels <code>yes</code> and <code>no</code></td>
+</tr>
+<tr class="even">
+<td>wait</td>
+<td>Waiting time for transplant</td>
+</tr>
+</tbody>
+</table>
+<section id="exercise-4" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4">Exercise 4</h2>
+<div class="exercise">
+<p>Recreate the stacked bar plot in Exercise 3.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The colors are <code>#569BBD</code> and <code>#114B5F</code>. Use <code>scale_fill_manual()</code> to indicate these are the colors you want to use.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pause and render
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Now that you’ve completed a few exercises, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.</p>
+</div>
+</div>
+</section>
+<section id="exercise-5" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5">Exercise 5</h2>
+<div class="exercise">
+<p>Calculate the point estimate for the difference in proportions of patients who died between the treatment and control groups: <span class="math inline">\(\hat{p}_{treatment} - \hat{p}_{control}\)</span>, where <span class="math inline">\(\hat{p}\)</span> is the observed probability of dying in each group. Do this in two ways:</p>
+<ol type="1">
+<li>Construct a frequency table of <code>survived</code> by <code>transplant</code> and calculate the difference in proportions “by hand”.</li>
+<li>Use <code>specify()</code> and <code>calculate()</code> to calculate the difference in proportions as shown below.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>obs_diff_outcome <span class="ot">&lt;-</span> heart_transplant <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> outcome, <span class="at">explanatory =</span> transplant, <span class="at">success =</span> <span class="st">"deceased"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in props"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"treatment"</span>, <span class="st">"control"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, confirm that you obtained the same results with the two methods.</p>
+</div>
+</section>
+<section id="exercise-6" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-6">Exercise 6</h2>
+<div class="exercise">
+<p>Using the code below, generate a null distribution for the hypothesis test for the hypothesis you formulated in Exercise 3. Use 100 resamples (<code>reps</code>). However, change the seed to use a different seed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>null_dist_outcome <span class="ot">&lt;-</span> heart_transplant <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> outcome, <span class="at">explanatory =</span> transplant, <span class="at">success =</span> <span class="st">"deceased"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">100</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in props"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"treatment"</span>, <span class="st">"control"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, inspect the object <code>null_dist_transplant</code> using either <code>glimpse()</code> or just printing it to screen. How many rows and how many columns does it have? What does each row represent? What does each variable represent?</p>
+</div>
+</section>
+<section id="exercise-7" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-7">Exercise 7</h2>
+<div class="exercise">
+<p>Visualize the distribution of simulated differences in proportions of deceased between treatment and control groups. What is the shape of this distribution? What is the center of this distribution? Are these results expected? Explain your reasoning.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These simulated values are in the <code>stat</code> column of <code>null_dist_transplant</code>.</p>
+</div>
+</div>
+</section>
+<section id="exercise-8" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-8">Exercise 8</h2>
+<div class="exercise">
+<p>Calculate the p-value. Do this in two ways:</p>
+<ol type="1">
+<li>Filter <code>null_dist_transplant</code> for <code>stat</code> values that are at least as far away from the null value as the observed value you calculated in Exercise 4. Make sure you’re considering both directions! Note how many such values there are, and calculate the proportion out of the total number of resamples.</li>
+<li>Use <code>get_p_value()</code>:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p_value_outcome <span class="ot">&lt;-</span> null_dist_outcome <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> obs_diff_outcome, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, confirm that you obtained the same results with the two methods. Finally, interpret the p-value in context of the data and the research question and comment on the statistical discernability of this result using a discernability level of 5%.</p>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pause and render
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Now that you’ve completed a few exercises, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="part-3-heart-transplants---survtime" class="level1">
+<h1>Part 3: Heart transplants - <code>survtime</code></h1>
+<section id="exercise-9" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-9">Exercise 9</h2>
+<div class="exercise">
+<p>Recreate the side-by–side box plots in Exercise 3. The variable of interest is <code>survtime</code>, which is the number of days patients were alive after the date they were determined to be a candidate for a heart transplant until the termination date of the study.</p>
+</div>
+</section>
+<section id="exercise-10" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-10">Exercise 10</h2>
+<div class="exercise">
+<p>Do these data provide convincing evidence of a difference between average survival times of patient who did and did not get a heart transplant?</p>
+<p>Write the hypotheses for answering this question and conduct the hypothesis test using randomization. Use 1,000 resamples. In order to avoid name collision, use object names like <code>obs_diff_survtime</code>, <code>null_dist_survtime</code>, and <code>p_value_survtime</code>. Find and interpret the p-value in context of the data and the research question and comment on the statistical discernability of this result using a discernability level of 5%.</p>
+</div>
+</section>
+</section>
+<section id="wrap-up" class="level1">
+<h1>Wrap up</h1>
+<section id="submitting" class="level2">
+<h2 class="anchored" data-anchor-id="submitting">Submitting</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before you proceed, first, make sure that you have updated the document YAML with your name! Then, render your document one last time, for good measure.</p>
+</div>
+</div>
+<p>To submit your assignment to Gradescope:</p>
+<ul>
+<li><p>Go to your Files pane and check the box next to the PDF output of your document (<code>lab-5.pdf</code>).</p></li>
+<li><p>Then, in the Files pane, go to More &gt; Export. This will download the PDF file to your computer. Save it somewhere you can easily locate, e.g., your Downloads folder or your Desktop.</p></li>
+<li><p>Go to the course Canvas page and click on Gradescope and then click on the assignment. You’ll be prompted to submit it.</p></li>
+<li><p>Mark the pages associated with each exercise. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”).</p></li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you fail to mark the pages associated with an exercise, that exercise won’t be graded. This means, if you fail to mark the pages for all exercises, you will receive a 0 on the assignment. The TAs can’t mark your pages for you, and for them to be able to grade, you must mark them.</p>
+</div>
+</div>
+</section>
+<section id="grading" class="level2">
+<h2 class="anchored" data-anchor-id="grading">Grading</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Exercise</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exercise 1</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Exercise 2</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>Exercise 3</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>Exercise 4</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>Exercise 5</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>Exercise 6</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>Exercise 7</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Exercise 8</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>Exercise 9</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Exercise 10</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td>50</td>
+</tr>
+</tbody>
+</table>
 
 
 
-</main> <!-- /main -->
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-turnbull1974" class="csl-entry" role="listitem">
+Turnbull, Bruce W., Byron Wm. Brown, and Marie Hu. 1974. <span>“Survivorship Analysis of Heart Transplant Data.”</span> <em>Journal of the American Statistical Association</em> 69 (345): 74–80. <a href="https://doi.org/10.1080/01621459.1974.10480130">https://doi.org/10.1080/01621459.1974.10480130</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -896,7 +1315,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/labs/lab-5.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    </div>
     <div class="nav-footer-right">
 <p>This page is built with 🤍 and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
