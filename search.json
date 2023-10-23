@@ -1202,7 +1202,7 @@
     "href": "labs/lab-5.html#exercise-6",
     "title": "Lab 5",
     "section": "Exercise 6",
-    "text": "Exercise 6\n\nUsing the code below, generate a null distribution for the hypothesis test for the hypothesis you formulated in Exercise 3. Use 100 resamples (reps). However, change the seed to use a different seed.\n\nset.seed(1234)\n\nnull_dist_outcome &lt;- heart_transplant |&gt;\n  specify(response = outcome, explanatory = transplant, success = \"deceased\") |&gt;\n  hypothesize(null = \"independence\") |&gt;\n  generate(reps = 100, type = \"permute\") |&gt;\n  calculate(stat = \"diff in props\", order = c(\"treatment\", \"control\"))\n\nThen, inspect the object null_dist_transplant using either glimpse() or just printing it to screen. How many rows and how many columns does it have? What does each row represent? What does each variable represent?",
+    "text": "Exercise 6\n\nUsing the code below, generate a null distribution for the hypothesis test for the hypothesis you formulated in Exercise 3. Use 100 resamples (reps). However, change the seed to use a different seed.\n\nset.seed(1234)\n\nnull_dist_outcome &lt;- heart_transplant |&gt;\n  specify(response = outcome, explanatory = transplant, success = \"deceased\") |&gt;\n  hypothesize(null = \"independence\") |&gt;\n  generate(reps = 100, type = \"permute\") |&gt;\n  calculate(stat = \"diff in props\", order = c(\"treatment\", \"control\"))\n\nThen, inspect the object null_dist_outcome using either glimpse() or just printing it to screen. How many rows and how many columns does it have? What does each row represent? What does each variable represent?",
     "crumbs": [
       "Labs",
       "Lab 5"
