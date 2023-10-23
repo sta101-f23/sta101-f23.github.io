@@ -388,7 +388,7 @@
     }
   </style>
 <meta property="og:title" content="STA 101 - F23 - Hypothesis testing with randomization">
-<meta property="og:description" content="Lecture 12">
+<meta property="og:description" content="Lecture 13">
 <meta property="og:site_name" content="STA 101 - F23">
 </head>
 <body class="quarto-light">
@@ -397,7 +397,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Hypothesis testing with randomization</h1>
-  <p class="subtitle">Lecture 12</p>
+  <p class="subtitle">Lecture 13</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -419,256 +419,27 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="announcements" class="slide level2">
 <h2>Announcements</h2>
 <ul>
-<li><p>Midterm grades posted on DukeHub for everyone</p></li>
-<li><p>My office hours this week by appointment, next week 10-11 am on Zoom and by appointment (no Tuesday office hours for me either week)</p></li>
-<li><p>Readings and tutorials posted for the next batch of lessons</p></li>
+<li><p>Guest lecture on Wednesday with <a href="http://www.yue-jiang.com/">Dr.&nbsp;Yue Jiang</a> – make sure to do the reading before class!</p></li>
+<li><p>Shopping carts for Spring 2024 open today. If interested in more StatSci courses, I shared info on advising sessions on #random on course Slack.</p></li>
 </ul>
-</section></section>
-<section>
-<section id="hypothesis-testing" class="title-slide slide level1 center">
-<h1>Hypothesis testing</h1>
-
-</section>
-<section id="hypothesis-testing-1" class="slide level2">
-<h2>Hypothesis testing</h2>
-<p>A hypothesis test is a statistical technique used to evaluate <em>competing claims</em> using data.</p>
-<ul>
-<li><p><strong>Null hypothesis,</strong> <span class="math inline">\(H_o\)</span>: An assumption about the population. “There is nothing going on.”</p></li>
-<li><p><strong>Alternative hypothesis,</strong> <span class="math inline">\(H_A\)</span>: A research question about the population. “There is something going on”.</p></li>
-</ul>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>Hypotheses are always at the population level!</p>
-</div>
-</div>
-</div>
-</section>
-<section id="populations-vs.-samples" class="slide level2">
-<h2>Populations vs.&nbsp;samples</h2>
-<p>Suppose you’re cooking a pot of soup:</p>
-<div>
-<ul>
-<li class="fragment"><p>Taste a spoonful and decide if that spoonful has enough salt <span class="math inline">\(\rightarrow\)</span> exploratory data analysis of the sample</p></li>
-<li class="fragment"><p>Decide the pot of soup must also have enough salt since the spoonful does <span class="math inline">\(\rightarrow\)</span> inference</p></li>
-<li class="fragment"><p>Mixing the soup in the pot before taking a spoonful <span class="math inline">\(\rightarrow\)</span> randomizing</p></li>
-<li class="fragment"><p>Taking a spoonful with the intention of making an inference about the pot <span class="math inline">\(\rightarrow\)</span> sampling</p></li>
-</ul>
-</div>
 </section>
 <section id="packages" class="slide level2">
 <h2>Packages</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(openintro)  <span class="co"># for data for case study 2: yawn</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(openintro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
+<section id="from-last-time" class="title-slide slide level1 center">
+<h1>From last time…</h1>
+
+</section>
+
 <section>
 <section id="case-study-1-donors" class="title-slide slide level1 center">
 <h1>Case study 1: Donors</h1>
 
-</section>
-<section id="organ-donors" class="slide level2">
-<h2>Organ donors</h2>
-<p>People providing an organ for donation sometimes seek the help of a special “medical consultant”. These consultants assist the patient in all aspects of the surgery, with the goal of reducing the possibility of complications during the medical procedure and recovery. Patients might choose a consultant based in part on the historical complication rate of the consultant’s clients.</p>
-<p>One consultant tried to attract patients by noting that the average complication rate for liver donor surgeries in the US is about 10%, but her clients have only had 3 complications in the 62 liver donor surgeries she has facilitated. She claims this is strong evidence that her work meaningfully contributes to reducing complications (and therefore she should be hired!).</p>
-</section>
-<section id="data" class="slide level2">
-<h2>Data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>organ_donor <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/organ-donor.csv"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>organ_donor <span class="sc">|&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">count</span>(outcome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  outcome             n
-  &lt;chr&gt;           &lt;int&gt;
-1 complication        3
-2 no complication    59</code></pre>
-</div>
-</div>
-</section>
-<section id="parameter-vs.-statistic" class="slide level2">
-<h2>Parameter vs.&nbsp;statistic</h2>
-<p>A <strong>parameter</strong> for a hypothesis test is the “true” value of interest. We typically estimate the parameter using a <strong>sample statistic</strong> as a <strong>point estimate</strong>.</p>
-<p><span class="math inline">\(p~\)</span>: true rate of complication</p>
-<p><span class="math inline">\(\hat{p}~\)</span>: rate of complication in the sample = <span class="math inline">\(\frac{3}{62}\)</span> = 0.048</p>
-</section>
-<section id="correlation-vs.-causation" class="slide level2">
-<h2>Correlation vs.&nbsp;causation</h2>
-<div class="task">
-<p>Is it possible to assess the consultant’s claim using the data?</p>
-</div>
-<div class="fragment">
-<p>No.&nbsp;The claim is that there is a causal connection, but the data are observational. For example, maybe patients who can afford a medical consultant can afford better medical care, which can also lead to a lower complication rate.</p>
-<p>While it is not possible to assess the causal claim, it is still possible to test for an <em>association</em> using these data. For this question we ask, could the low complication rate of <span class="math inline">\(\hat{p}\)</span> = 0.048 be due to chance?</p>
-</div>
-</section>
-<section id="two-claims" class="slide level2">
-<h2>Two claims</h2>
-<ul>
-<li><strong>Null hypothesis:</strong> “There is nothing going on”</li>
-</ul>
-<p>Complication rate for this consultant is no different than the US average of 10%</p>
-<div class="fragment">
-<ul>
-<li><strong>Alternative hypothesis:</strong> “There is something going on”</li>
-</ul>
-<p>Complication rate for this consultant is <strong>different</strong> than the US average of 10%</p>
-</div>
-</section>
-<section id="hypothesis-testing-as-a-court-trial" class="slide level2">
-<h2>Hypothesis testing as a court trial</h2>
-<ul>
-<li><p><strong>Hypotheses:</strong></p>
-<ul>
-<li><p><strong>Null hypothesis</strong>, <span class="math inline">\(H_0\)</span>: Defendant is innocent</p></li>
-<li><p><strong>Alternative hypothesis</strong>, <span class="math inline">\(H_A\)</span>: Defendant is guilty</p></li>
-</ul></li>
-</ul>
-<div class="fragment">
-<ul>
-<li><strong>Present the evidence:</strong> Collect data</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li><strong>Judge the evidence:</strong> “Could these data plausibly have happened by chance if the null hypothesis were true?”
-<ul>
-<li>Yes: Fail to reject <span class="math inline">\(H_0\)</span></li>
-<li>No: Reject <span class="math inline">\(H_0\)</span></li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="hypothesis-testing-framework" class="slide level2">
-<h2>Hypothesis testing framework</h2>
-<div>
-<ul>
-<li class="fragment">Start with a null hypothesis, <span class="math inline">\(H_0\)</span>, that represents the status quo</li>
-<li class="fragment">Set an alternative hypothesis, <span class="math inline">\(H_A\)</span>, that represents the research question, i.e.&nbsp;what we’re testing for</li>
-<li class="fragment">Conduct a hypothesis test under the assumption that the null hypothesis is true and calculate a <strong>p-value</strong> (probability of observed or more extreme outcome given that the null hypothesis is true)
-<ul>
-<li class="fragment">if the test results suggest that the data do not provide convincing evidence for the alternative hypothesis, stick with the null hypothesis</li>
-<li class="fragment">if they do, then reject the null hypothesis in favor of the alternative</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="setting-the-hypotheses" class="slide level2 smaller">
-<h2>Setting the hypotheses</h2>
-<div class="task">
-<p>Which of the following is the correct set of hypotheses for evaluating whether the consultant’s complication rate is different than the US average of 10%?</p>
-</div>
-<ol type="a">
-<li><span class="math inline">\(H_0: p = 0.10\)</span>; <span class="math inline">\(H_A: p \ne 0.10\)</span></li>
-<li><span class="math inline">\(H_0: p = 0.10\)</span>; <span class="math inline">\(H_A: p &gt; 0.10\)</span></li>
-<li><span class="math inline">\(H_0: p = 0.10\)</span>; <span class="math inline">\(H_A: p &lt; 0.10\)</span></li>
-<li><span class="math inline">\(H_0: \hat{p} = 0.10\)</span>; <span class="math inline">\(H_A: \hat{p} \ne 0.10\)</span></li>
-<li><span class="math inline">\(H_0: \hat{p} = 0.10\)</span>; <span class="math inline">\(H_A: \hat{p} &gt; 0.10\)</span></li>
-<li><span class="math inline">\(H_0: \hat{p} = 0.10\)</span>; <span class="math inline">\(H_A: \hat{p} &lt; 0.10\)</span></li>
-</ol>
-<div class="callout callout-tip no-icon callout-style-simple">
-<div class="callout-body">
-<div class="callout-content">
-<p>Go to Canvas and open today’s “quiz” titled <code>2023-10-18 Check-in</code> to vote. Access code: <code>hypothesis</code> (released in class)</p>
-</div>
-</div>
-</div>
-</section>
-<section id="simulating-the-null-distribution" class="slide level2">
-<h2>Simulating the null distribution</h2>
-<p>Since <span class="math inline">\(H_0: p = 0.10\)</span>, we need to simulate a null distribution where the probability of success (complication) for each trial (patient) is 0.10.</p>
-<div class="fragment">
-<p><br></p>
-<div class="task">
-<p>Describe how you would simulate the null distribution for this study using a bag of chips. How many chips? What colors? What do the colors indicate? How many draws? <strong>With replacement</strong> or <strong>without replacement</strong>?</p>
-</div>
-</div>
-</section>
-<section id="what-do-we-expect" class="slide level2">
-<h2>What do we expect?</h2>
-<div class="task">
-<p>When sampling from the null distribution, what is the expected proportion of success (complications)?</p>
-</div>
-</section>
-<section id="simulation-1" class="slide level2">
-<h2>Simulation #1</h2>
-<div class="cell" data-fig.asp="0.5">
-<div class="cell-output cell-output-stdout">
-<pre><code>sim1
-   complication no complication 
-              7              55 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1129032</code></pre>
-</div>
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" width="768">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="12-hypothesis-testing-randomization_files/figure-revealjs/unnamed-chunk-3-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" width="768">
-</div>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="simulation-2" class="slide level2">
-<h2>Simulation #2</h2>
-<div class="cell" data-fig.asp="0.5">
-<div class="cell-output cell-output-stdout">
-<pre><code>sim2
-   complication no complication 
-             10              52 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1612903</code></pre>
-</div>
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" width="768">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="12-hypothesis-testing-randomization_files/figure-revealjs/unnamed-chunk-4-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" width="768">
-</div>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="simulation-3" class="slide level2">
-<h2>Simulation #3</h2>
-<div class="cell" data-fig.asp="0.5">
-<div class="cell-output cell-output-stdout">
-<pre><code>sim3
-   complication no complication 
-              5              57 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.08064516</code></pre>
-</div>
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" width="768">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="12-hypothesis-testing-randomization_files/figure-revealjs/unnamed-chunk-5-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" width="768">
-</div>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="this-is-getting-boring" class="slide level2">
-<h2>This is getting boring…</h2>
-<p>We need a way to automate this process!</p>
 </section>
 <section id="application-exercise" class="slide level2">
 <h2>Application exercise</h2>
@@ -686,18 +457,18 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </div>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" alt="Only Charlie Brown yawning" data-fig-align="center">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" data-fig-align="center" alt="Only Charlie Brown yawning">
 <figure class="quarto-float quarto-float-fig">
 <div>
-<img data-src="images/yawn1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure-center" alt="Only Charlie Brown yawning">
+<img data-src="images/yawn1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure-center" alt="Only Charlie Brown yawning">
 </div>
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center" alt="Both Charlie Brown and Lucy van Pelt yawning" data-fig-align="center">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" data-fig-align="center" alt="Both Charlie Brown and Lucy van Pelt yawning">
 <figure class="quarto-float quarto-float-fig">
 <div>
-<img data-src="images/yawn2.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure-center" alt="Both Charlie Brown and Lucy van Pelt yawning">
+<img data-src="images/yawn2.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure-center" alt="Both Charlie Brown and Lucy van Pelt yawning">
 </div>
 </figure>
 </div>
@@ -714,8 +485,8 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <p>In this study 50 people were randomly assigned to two groups: 34 to a group where a person near them yawned (treatment) and 16 to a control group where they didn’t see someone yawn (control).</p>
 <p>The data are in the <strong>openintro</strong> package: <code>yawn</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>yawn <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">count</span>(group, result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>yawn <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">count</span>(group, result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   group result       n
@@ -731,10 +502,10 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <h2>Proportion of yawners</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>yawn <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">count</span>(group, result) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">mutate</span>(<span class="at">p_hat =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>yawn <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">count</span>(group, result) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">mutate</span>(<span class="at">p_hat =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 4
@@ -748,12 +519,14 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </div>
 </div>
 </div>
+<div class="fragment">
 <ul>
 <li>Proportion of yawners in the treatment group: <span class="math inline">\(\frac{10}{34} = 0.2941\)</span></li>
 <li>Proportion of yawners in the control group: <span class="math inline">\(\frac{4}{16} = 0.25\)</span></li>
 <li>Difference: <span class="math inline">\(0.2941 - 0.25 = 0.0441\)</span></li>
 <li>Our results match the ones calculated on the MythBusters episode.</li>
 </ul>
+</div>
 </section>
 <section id="independence" class="slide level2">
 <h2>Independence?</h2>
@@ -815,8 +588,8 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li><p>Shuffle the 50 cards at least 7 times<sup>1</sup> to ensure that the cards counted out are from a random process.</p></li>
 <li><p>Count out the top 16 cards and set them aside. These cards represent the people in the control group.</p></li>
 <li><p>Out of the remaining 34 cards (treatment group) count the <strong>number of face cards</strong> (the number of people who yawned in the treatment group).</p></li>
-<li><p>Calculate the difference in proportions of yawners (treatment - control), and plot it on the board.</p></li>
-<li><p>Mark the difference you find on the dot plot on the board.</p></li>
+<li><p>Calculate the difference in proportions of yawners (treatment - control), and record that value.</p></li>
+<li><p>Repeat steps 1-4 many times (100, 1000, 15000, …) to build the null distribution of differences in proportions of yawners.</p></li>
 </ol>
 
 <aside><div>
@@ -831,7 +604,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <h1>Recap</h1>
 
 </section>
-<section id="types-of-alternative-hypotheses" class="slide level2">
+<section id="types-of-alternative-hypotheses" class="slide level2 smaller">
 <h2>Types of alternative hypotheses</h2>
 <ul>
 <li>One-sided (one-tailed) alternatives: The parameter is hypothesized to be less than or greater than the null value, &lt; or &gt;</li>
@@ -872,6 +645,202 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li><p>Goal: Pin down the random generation so that the same random generation happens each time a document is rendered (by you or by someone else wanting to replicate your results)</p></li>
 <li><p>When: Set a seed each time right before <code>generate()</code>ing new resamples. Setting a seed once in a document would also work for re-rendering the document, but considering we often run the code chunk interactively, it’s best to set the seed again in each code chunk that does random generation.</p></li>
 </ul>
+</section></section>
+<section>
+<section id="confidence-intervals" class="title-slide slide level1 center">
+<h1>Confidence intervals</h1>
+
+</section>
+<section id="case-study-3-airbnb-in-asheville-nc" class="slide level2">
+<h2>Case study 3: Airbnb in Asheville, NC</h2>
+<p>We have data on the price per guest (ppg) for a random sample of 50 Airbnb listings in 2020 for Asheville, NC. We are going to use these data to investigate what we would of expected to pay for an Airbnb in in Asheville, NC in June 2020.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>abb <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/asheville.csv"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">glimpse</span>(abb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 50
+Columns: 1
+$ ppg &lt;dbl&gt; 48.00000, 40.00000, 99.00000, 13.00000, 55.00000, 75.00000, 74.000…</code></pre>
+</div>
+</div>
+</section>
+<section id="terminology" class="slide level2">
+<h2>Terminology</h2>
+<ul>
+<li><p><strong>Population parameter</strong> - What we are interested in. Statistical measure that describes an entire population.</p></li>
+<li><p><strong>Sample statistic (point estimate)</strong> - describes a sample. A piece of information you get from a fraction of the population.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>abb <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">summarize</span>(<span class="at">ppg.mean =</span> <span class="fu">mean</span>(ppg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  ppg.mean
+     &lt;dbl&gt;
+1     76.6</code></pre>
+</div>
+</div>
+</section>
+<section id="catching-a-fish" class="slide level2">
+<h2>Catching a fish</h2>
+<div class="task">
+<p>Suppose you’re fishing in a murky lake. Are you more likely to catch a fish using a spear or a net?</p>
+</div>
+<div class="fragment">
+<ul>
+<li>Spear <span class="math inline">\(\rightarrow\)</span> point estimate</li>
+<li>Net <span class="math inline">\(\rightarrow\)</span> interval estimate</li>
+</ul>
+</div>
+</section>
+<section id="constructing-confidence-intervals" class="slide level2">
+<h2>Constructing confidence intervals</h2>
+<p>Quantifying the variability of the sample statistics to help calculate a range of plausible values for the population parameter of interest:</p>
+<ul>
+<li><p>Via simulation <span class="math inline">\(\rightarrow\)</span> using bootstrapping – using a statistical procedure that re samples a single data set to create many simulated samples.</p></li>
+<li><p>Via mathematical formulas <span class="math inline">\(\rightarrow\)</span> using the Central Limit Theorem</p></li>
+</ul>
+</section>
+<section id="bootstrapping-what" class="slide level2">
+<h2>Bootstrapping, what?</h2>
+<ul>
+<li><p>The term bootstrapping comes from the phrase “pulling oneself up by one’s bootstraps”, which is a metaphor for accomplishing an impossible task without any outside help.</p></li>
+<li><p>Impossible task: estimating a population parameter using data from only the given sample.</p></li>
+</ul>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Note: This notion of saying something about a population parameter using only information from an observed sample is the crux of statistical inference, it is not limited to bootstrapping.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="bootstrapping-how" class="slide level2">
+<h2>Bootstrapping, how?</h2>
+<ul>
+<li>Resample with replacement from our data n times, where n is the sample size</li>
+<li>Calculate the sample statistic of interest of the new, resampled (bootstrapped) sample and record the value</li>
+<li>Do this entire process many many times to build the <strong>bootstrap distribution</strong></li>
+</ul>
+</section>
+<section id="bootstrapping-airbnb-rentals" class="slide level2">
+<h2>Bootstrapping Airbnb rentals</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">set.seed</span>(<span class="dv">25</span>) </span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>boot_dist_abb <span class="ot">&lt;-</span> abb <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ppg) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">100</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="the-bootstrap-distribution" class="slide level2">
+<h2>The bootstrap distribution</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">glimpse</span>(boot_dist_abb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 100
+Columns: 2
+$ replicate &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
+$ stat      &lt;dbl&gt; 73.11500, 78.78333, 80.19333, 83.42000, 70.15000, 73.03667, …</code></pre>
+</div>
+</div>
+</section>
+<section id="visualzing-the-bootstrap-distribution" class="slide level2">
+<h2>Visualzing the bootstrap distribution</h2>
+<div class="task">
+<p>What do you expect the center of the bootstrap distribution to be? Why? Check your guess by visualizing the distribution.</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggplot</span>(boot_dist_abb, <span class="fu">aes</span>(<span class="at">x =</span> stat)) <span class="sc">+</span> </span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" width="576">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="13-confidence-intervals-bootstrapping_files/figure-revealjs/boot-dist-abb-plot-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" width="576">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculating-the-bootstrap-distribution" class="slide level2">
+<h2>Calculating the bootstrap distribution</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>boot_dist_abb <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb15-3"><a href="#cb15-3"></a>    <span class="at">lower =</span> <span class="fu">quantile</span>(stat, <span class="fl">0.025</span>),</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="at">upper =</span> <span class="fu">quantile</span>(stat, <span class="fl">0.975</span>)</span>
+<span id="cb15-5"><a href="#cb15-5"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  lower upper
+  &lt;dbl&gt; &lt;dbl&gt;
+1  64.7  89.6</code></pre>
+</div>
+</div>
+</section>
+<section id="interpretation" class="slide level2 smaller">
+<h2>Interpretation</h2>
+<div class="task">
+<p>Which of the following is the correct interpretation of the bootstrap interval?</p>
+<p>Reply on Canvas in “2023-10-23 Check-in” with access code <code>___</code>.</p>
+</div>
+<ol type="a">
+<li><p>There is a 95% probability the true mean price per night for an Airbnb in Asheville is between $64.7 and $89.6.</p></li>
+<li><p>There is a 95% probability the price per night for an Airbnb in Asheville is between $64.7 and $89.6.</p></li>
+<li><p>We are 95% confident the true mean price per night for Airbnbs in Asheville is between $64.7 and $89.6.</p></li>
+<li><p>We are 95% confident the price per night for an Airbnb in Asheville is between $64.7 and $89.6.</p></li>
+</ol>
+</section>
+<section id="leveraging-tidymodels-tools-further" class="slide level2">
+<h2>Leveraging tidymodels tools further</h2>
+<p>Calculating the observed sample statistic:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>obs_stat_abb <span class="ot">&lt;-</span> abb <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ppg) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="leveraging-tidymodels-tools-further-1" class="slide level2">
+<h2>Leveraging tidymodels tools further</h2>
+<p>Calculating the interval:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>ci_95_abb <span class="ot">&lt;-</span> boot_dist_abb <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">get_confidence_interval</span>(</span>
+<span id="cb18-3"><a href="#cb18-3"></a>    <span class="at">point_estimate =</span> obs_stat_abb, </span>
+<span id="cb18-4"><a href="#cb18-4"></a>    <span class="at">level =</span> <span class="fl">0.95</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="leveraging-tidymodels-tools-further-2" class="slide level2">
+<h2>Leveraging tidymodels tools further</h2>
+<p>Visualizing the interval:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">visualize</span>(boot_dist_abb) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">shade_confidence_interval</span>(ci_95_abb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" width="576">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="13-confidence-intervals-bootstrapping_files/figure-revealjs/ci-95-abb-viz-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" width="576">
+</div>
+</figure>
+</div>
+</div>
+</div>
 
 <p><img src="../logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
