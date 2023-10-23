@@ -969,217 +969,217 @@
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#announcements",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#announcements",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Announcements",
     "text": "Announcements\n\nGuest lecture on Wednesday with Dr. Yue Jiang – make sure to do the reading before class!\nShopping carts for Spring 2024 open today. If interested in more StatSci courses, I shared info on advising sessions on #random on course Slack."
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#packages",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#packages",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Packages",
     "text": "Packages\n\nlibrary(tidyverse)\nlibrary(tidymodels)\nlibrary(openintro)"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#application-exercise",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#application-exercise",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Application exercise",
     "text": "Application exercise\nGo to Posit Cloud and continue the project titled ae-10-Donor Yawner."
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#is-yawning-contagious",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#is-yawning-contagious",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Is yawning contagious?",
     "text": "Is yawning contagious?\n\nDo you think yawning is contagious?"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#is-yawning-contagious-1",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#is-yawning-contagious-1",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Is yawning contagious?",
     "text": "Is yawning contagious?\nAn experiment conducted by the MythBusters tested if a person can be subconsciously influenced into yawning if another person near them yawns.\nIf you’re interested, you can watch the full episode at https://www.dailymotion.com/video/x7ydkt2."
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#study-description",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#study-description",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Study description",
     "text": "Study description\nIn this study 50 people were randomly assigned to two groups: 34 to a group where a person near them yawned (treatment) and 16 to a control group where they didn’t see someone yawn (control).\nThe data are in the openintro package: yawn\n\nyawn |&gt;\n  count(group, result)\n\n# A tibble: 4 × 3\n  group result       n\n  &lt;fct&gt; &lt;fct&gt;    &lt;int&gt;\n1 ctrl  not yawn    12\n2 ctrl  yawn         4\n3 trmt  not yawn    24\n4 trmt  yawn        10"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#proportion-of-yawners",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#proportion-of-yawners",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Proportion of yawners",
     "text": "Proportion of yawners\n\n\nyawn |&gt;\n  count(group, result) |&gt;\n  group_by(group) |&gt;\n  mutate(p_hat = n / sum(n))\n\n\n# A tibble: 4 × 4\n# Groups:   group [2]\n  group result       n p_hat\n  &lt;fct&gt; &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;\n1 ctrl  not yawn    12 0.75 \n2 ctrl  yawn         4 0.25 \n3 trmt  not yawn    24 0.706\n4 trmt  yawn        10 0.294\n\n\n\n\n\nProportion of yawners in the treatment group: \\(\\frac{10}{34} = 0.2941\\)\nProportion of yawners in the control group: \\(\\frac{4}{16} = 0.25\\)\nDifference: \\(0.2941 - 0.25 = 0.0441\\)\nOur results match the ones calculated on the MythBusters episode."
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#independence",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#independence",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Independence?",
     "text": "Independence?\n\nBased on the proportions we calculated, do you think yawning is really contagious, i.e. are seeing someone yawn and yawning dependent?\n\n\n\n# A tibble: 4 × 4\n# Groups:   group [2]\n  group result       n p_hat\n  &lt;fct&gt; &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;\n1 ctrl  not yawn    12 0.75 \n2 ctrl  yawn         4 0.25 \n3 trmt  not yawn    24 0.706\n4 trmt  yawn        10 0.294"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#dependence-or-another-possible-explanation",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#dependence-or-another-possible-explanation",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Dependence, or another possible explanation?",
     "text": "Dependence, or another possible explanation?\n\n\nThe observed differences might suggest that yawning is contagious, i.e. seeing someone yawn and yawning are dependent.\nBut the differences are small enough that we might wonder if they might simple be due to chance.\nPerhaps if we were to repeat the experiment, we would see slightly different results.\nSo we will do just that - well, somewhat - and see what happens.\nInstead of actually conducting the experiment many times, we will simulate our results."
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#two-competing-claims",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#two-competing-claims",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Two competing claims",
     "text": "Two competing claims\n\n\nNull hypothesis:\n“There is nothing going on.” Yawning and seeing someone yawn are independent, yawning is not contagious, observed difference in proportions is simply due to chance.\n\nAlternative hypothesis:\n“There is something going on.” Yawning and seeing someone yawn are dependent, yawning is contagious, observed difference in proportions is not due to chance."
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#simulation-by-hand---setup",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#simulation-by-hand---setup",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Simulation by hand - setup",
     "text": "Simulation by hand - setup\n\nA regular deck of cards is comprised of 52 cards: 4 aces, 4 of numbers 2-10, 4 jacks, 4 queens, and 4 kings.\nTake out two aces from the deck of cards and set them aside.\nThe remaining 50 playing cards to represent each participant in the study:\n\n14 face cards (including the 2 aces) represent the people who yawn.\n36 non-face cards represent the people who don’t yawn."
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#simulation-by-hand---running",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#simulation-by-hand---running",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Simulation by hand - running",
     "text": "Simulation by hand - running\n\nShuffle the 50 cards at least 7 times1 to ensure that the cards counted out are from a random process.\nCount out the top 16 cards and set them aside. These cards represent the people in the control group.\nOut of the remaining 34 cards (treatment group) count the number of face cards (the number of people who yawned in the treatment group).\nCalculate the difference in proportions of yawners (treatment - control), and record that value.\nRepeat steps 1-4 many times (100, 1000, 15000, …) to build the null distribution of differences in proportions of yawners.\n\n\n\n[1] http://www.dartmouth.edu/~chance/course/topics/winning_number.html"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#simulation-by-computation",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#simulation-by-computation",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Simulation by computation",
     "text": "Simulation by computation\nGo to Posit Cloud and continue the project titled ae-10-Donor Yawner."
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#types-of-alternative-hypotheses",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#types-of-alternative-hypotheses",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Types of alternative hypotheses",
     "text": "Types of alternative hypotheses\n\nOne-sided (one-tailed) alternatives: The parameter is hypothesized to be less than or greater than the null value, &lt; or &gt;\n\n\n\nTwo-sided (two-tailed) alternatives: The parameter is hypothesized to be not equal to the null value, \\(\\ne\\)\n\nCalculated as two times the tail area beyond the observed sample statistic\nMore objective, and hence more widely preferred\n\n\n\n\n\nAverage systolic blood pressure of people with Stage 1 Hypertension is 150 mm Hg. Suppose we want to use a hypothesis test to evaluate whether a new blood pressure medication has an effect on the average blood pressure of heart patients. What are the hypotheses?"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#discernability-level",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#discernability-level",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Discernability level",
     "text": "Discernability level\nWe often use 5% as the cutoff for whether the p-value is low enough that the data are unlikely to have come from the null model. This cutoff value is called the discernability level, \\(\\alpha\\).\n\nIf p-value &lt; \\(\\alpha\\), reject \\(H_0\\) in favor of \\(H_A\\): The data provide convincing evidence for the alternative hypothesis.\nIf p-value &gt; \\(\\alpha\\), fail to reject \\(H_0\\) in favor of \\(H_A\\): The data do not provide convincing evidence for the alternative hypothesis."
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#statistically-discernable",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#statistically-discernable",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Statistically discernable",
     "text": "Statistically discernable\n\nIf you’ve taken a statistics course before, or read papers that use hypothesis testing for making a conclusion, you might have encountered the term “statistically significant” or “significance level”.\nWe will use the term “statistically discernable” or discernability level”, because “significant” has a different meaning in everyday language and this often causes misconceptions of what “statistically significant” means. It doesn’t necessarily mean a notable or important event has happened, it just means the data are unlikely to have come from the null model."
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#setting-a-seed",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#setting-a-seed",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Setting a seed",
     "text": "Setting a seed\n\nGoal: Pin down the random generation so that the same random generation happens each time a document is rendered (by you or by someone else wanting to replicate your results)\nWhen: Set a seed each time right before generate()ing new resamples. Setting a seed once in a document would also work for re-rendering the document, but considering we often run the code chunk interactively, it’s best to set the seed again in each code chunk that does random generation."
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#case-study-3-airbnb-in-asheville-nc",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#case-study-3-airbnb-in-asheville-nc",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Case study 3: Airbnb in Asheville, NC",
     "text": "Case study 3: Airbnb in Asheville, NC\nWe have data on the price per guest (ppg) for a random sample of 50 Airbnb listings in 2020 for Asheville, NC. We are going to use these data to investigate what we would of expected to pay for an Airbnb in in Asheville, NC in June 2020.\n\nabb &lt;- read_csv(\"data/asheville.csv\")\n\nglimpse(abb)\n\nRows: 50\nColumns: 1\n$ ppg &lt;dbl&gt; 48.00000, 40.00000, 99.00000, 13.00000, 55.00000, 75.00000, 74.000…"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#terminology",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#terminology",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Terminology",
     "text": "Terminology\n\nPopulation parameter - What we are interested in. Statistical measure that describes an entire population.\nSample statistic (point estimate) - describes a sample. A piece of information you get from a fraction of the population.\n\n\nabb |&gt; \n  summarize(ppg.mean = mean(ppg))\n\n# A tibble: 1 × 1\n  ppg.mean\n     &lt;dbl&gt;\n1     76.6"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#catching-a-fish",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#catching-a-fish",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Catching a fish",
     "text": "Catching a fish\n\nSuppose you’re fishing in a murky lake. Are you more likely to catch a fish using a spear or a net?\n\n\n\nSpear \\(\\rightarrow\\) point estimate\nNet \\(\\rightarrow\\) interval estimate"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#constructing-confidence-intervals",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#constructing-confidence-intervals",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Constructing confidence intervals",
     "text": "Constructing confidence intervals\nQuantifying the variability of the sample statistics to help calculate a range of plausible values for the population parameter of interest:\n\nVia simulation \\(\\rightarrow\\) using bootstrapping – using a statistical procedure that re samples a single data set to create many simulated samples.\nVia mathematical formulas \\(\\rightarrow\\) using the Central Limit Theorem"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#bootstrapping-what",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#bootstrapping-what",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Bootstrapping, what?",
     "text": "Bootstrapping, what?\n\nThe term bootstrapping comes from the phrase “pulling oneself up by one’s bootstraps”, which is a metaphor for accomplishing an impossible task without any outside help.\nImpossible task: estimating a population parameter using data from only the given sample.\n\n\n\n\n\n\n\n\nNote\n\n\nNote: This notion of saying something about a population parameter using only information from an observed sample is the crux of statistical inference, it is not limited to bootstrapping."
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#bootstrapping-how",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#bootstrapping-how",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Bootstrapping, how?",
     "text": "Bootstrapping, how?\n\nResample with replacement from our data n times, where n is the sample size\nCalculate the sample statistic of interest of the new, resampled (bootstrapped) sample and record the value\nDo this entire process many many times to build the bootstrap distribution"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#bootstrapping-airbnb-rentals",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#bootstrapping-airbnb-rentals",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Bootstrapping Airbnb rentals",
     "text": "Bootstrapping Airbnb rentals\n\nset.seed(25) \n\nboot_dist_abb &lt;- abb |&gt;\n  specify(response = ppg) |&gt;\n  generate(reps = 100, type = \"bootstrap\") |&gt;\n  calculate(stat = \"mean\")"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#the-bootstrap-distribution",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#the-bootstrap-distribution",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "The bootstrap distribution",
     "text": "The bootstrap distribution\n\nglimpse(boot_dist_abb)\n\nRows: 100\nColumns: 2\n$ replicate &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…\n$ stat      &lt;dbl&gt; 73.11500, 78.78333, 80.19333, 83.42000, 70.15000, 73.03667, …"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#visualzing-the-bootstrap-distribution",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#visualzing-the-bootstrap-distribution",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Visualzing the bootstrap distribution",
     "text": "Visualzing the bootstrap distribution\n\nWhat do you expect the center of the bootstrap distribution to be? Why? Check your guess by visualizing the distribution.\n\n\n\nggplot(boot_dist_abb, aes(x = stat)) + \n  geom_histogram()"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#calculating-the-bootstrap-distribution",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#calculating-the-bootstrap-distribution",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Calculating the bootstrap distribution",
     "text": "Calculating the bootstrap distribution\n\nboot_dist_abb |&gt;\n  summarize(\n    lower = quantile(stat, 0.025),\n    upper = quantile(stat, 0.975)\n  )\n\n# A tibble: 1 × 2\n  lower upper\n  &lt;dbl&gt; &lt;dbl&gt;\n1  64.7  89.6"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#interpretation",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#interpretation",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Interpretation",
     "text": "Interpretation\n\nWhich of the following is the correct interpretation of the bootstrap interval?\nReply on Canvas in “2023-10-23 Check-in” with access code ___.\n\n\nThere is a 95% probability the true mean price per night for an Airbnb in Asheville is between $64.7 and $89.6.\nThere is a 95% probability the price per night for an Airbnb in Asheville is between $64.7 and $89.6.\nWe are 95% confident the true mean price per night for Airbnbs in Asheville is between $64.7 and $89.6.\nWe are 95% confident the price per night for an Airbnb in Asheville is between $64.7 and $89.6."
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#leveraging-tidymodels-tools-further",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#leveraging-tidymodels-tools-further",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Leveraging tidymodels tools further",
     "text": "Leveraging tidymodels tools further\nCalculating the observed sample statistic:\n\nobs_stat_abb &lt;- abb |&gt;\n  specify(response = ppg) |&gt;\n  calculate(stat = \"mean\")"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#leveraging-tidymodels-tools-further-1",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#leveraging-tidymodels-tools-further-1",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Leveraging tidymodels tools further",
     "text": "Leveraging tidymodels tools further\nCalculating the interval:\n\nci_95_abb &lt;- boot_dist_abb |&gt;\n  get_confidence_interval(\n    point_estimate = obs_stat_abb, \n    level = 0.95\n  )"
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#leveraging-tidymodels-tools-further-2",
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#leveraging-tidymodels-tools-further-2",
-    "title": "Hypothesis testing with randomization",
+    "title": "Confidence intervals with bootstrapping",
     "section": "Leveraging tidymodels tools further",
     "text": "Leveraging tidymodels tools further\nVisualizing the interval:\n\nvisualize(boot_dist_abb) +\n  shade_confidence_interval(ci_95_abb)\n\n\n\n\n\n\n\n\n\n\n\n\n\n🔗 sta101-f23.github.io"
   },
