@@ -484,8 +484,8 @@ $ wait       &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, 5, NA, NA, NA, NA, NA, NA, 
 <p>The data dictionary is as follows:</p>
 <table class="table">
 <colgroup>
-<col style="width: 7%">
-<col style="width: 92%">
+<col style="width: 18%">
+<col style="width: 81%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -607,7 +607,7 @@ Hint
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>These simulated values are in the <code>stat</code> column of <code>null_dist_transplant</code>.</p>
+<p>These simulated values are in the <code>stat</code> column of <code>null_dist_outcome</code>.</p>
 </div>
 </div>
 </section>
@@ -616,7 +616,7 @@ Hint
 <div class="exercise">
 <p>Calculate the p-value. Do this in two ways:</p>
 <ol type="1">
-<li>Filter <code>null_dist_transplant</code> for <code>stat</code> values that are at least as far away from the null value as the observed value you calculated in Exercise 4. Make sure you’re considering both directions! Note how many such values there are, and calculate the proportion out of the total number of resamples.</li>
+<li>Filter <code>null_dist_outcome</code> for <code>stat</code> values that are at least as far away from the null value as the observed value you calculated in Exercise 4. Make sure you’re considering both directions! Note how many such values there are, and calculate the proportion out of the total number of resamples.</li>
 <li>Use <code>get_p_value()</code>:</li>
 </ol>
 <div class="cell">

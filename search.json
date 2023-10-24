@@ -1160,7 +1160,7 @@
     "href": "lectures/13/13-confidence-intervals-bootstrapping.html#interpretation",
     "title": "Confidence intervals with bootstrapping",
     "section": "Interpretation",
-    "text": "Interpretation\n\nWhich of the following is the correct interpretation of the bootstrap interval?\nReply on Canvas in “2023-10-23 Check-in” with access code ___.\n\n\nThere is a 95% probability the true mean price per night for an Airbnb in Asheville is between $64.7 and $89.6.\nThere is a 95% probability the price per night for an Airbnb in Asheville is between $64.7 and $89.6.\nWe are 95% confident the true mean price per night for Airbnbs in Asheville is between $64.7 and $89.6.\nWe are 95% confident the price per night for an Airbnb in Asheville is between $64.7 and $89.6."
+    "text": "Interpretation\n\nWhich of the following is the correct interpretation of the bootstrap interval?\nReply on Canvas in “2023-10-23 Check-in” with access code bootstrap.\n\n\nThere is a 95% probability the true mean price per night for an Airbnb in Asheville is between $64.7 and $89.6.\nThere is a 95% probability the price per night for an Airbnb in Asheville is between $64.7 and $89.6.\nWe are 95% confident the true mean price per night for Airbnbs in Asheville is between $64.7 and $89.6.\nWe are 95% confident the price per night for an Airbnb in Asheville is between $64.7 and $89.6."
   },
   {
     "objectID": "lectures/13/13-confidence-intervals-bootstrapping.html#leveraging-tidymodels-tools-further",
@@ -3429,7 +3429,7 @@
     "href": "labs/lab-5.html#exercise-7",
     "title": "Lab 5",
     "section": "Exercise 7",
-    "text": "Exercise 7\n\nVisualize the distribution of simulated differences in proportions of deceased between treatment and control groups. What is the shape of this distribution? What is the center of this distribution? Are these results expected? Explain your reasoning.\n\n\n\n\n\n\n\nHint\n\n\n\nThese simulated values are in the stat column of null_dist_transplant.",
+    "text": "Exercise 7\n\nVisualize the distribution of simulated differences in proportions of deceased between treatment and control groups. What is the shape of this distribution? What is the center of this distribution? Are these results expected? Explain your reasoning.\n\n\n\n\n\n\n\nHint\n\n\n\nThese simulated values are in the stat column of null_dist_outcome.",
     "crumbs": [
       "Labs",
       "Lab 5"
@@ -3440,7 +3440,7 @@
     "href": "labs/lab-5.html#exercise-8",
     "title": "Lab 5",
     "section": "Exercise 8",
-    "text": "Exercise 8\n\nCalculate the p-value. Do this in two ways:\n\nFilter null_dist_transplant for stat values that are at least as far away from the null value as the observed value you calculated in Exercise 4. Make sure you’re considering both directions! Note how many such values there are, and calculate the proportion out of the total number of resamples.\nUse get_p_value():\n\n\np_value_outcome &lt;- null_dist_outcome |&gt;\n  get_p_value(obs_stat = obs_diff_outcome, direction = \"two-sided\")\n\nThen, confirm that you obtained the same results with the two methods. Finally, interpret the p-value in context of the data and the research question and comment on the statistical discernability of this result using a discernability level of 5%.\n\n\n\n\n\n\n\nPause and render\n\n\n\nNow that you’ve completed a few exercises, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.",
+    "text": "Exercise 8\n\nCalculate the p-value. Do this in two ways:\n\nFilter null_dist_outcome for stat values that are at least as far away from the null value as the observed value you calculated in Exercise 4. Make sure you’re considering both directions! Note how many such values there are, and calculate the proportion out of the total number of resamples.\nUse get_p_value():\n\n\np_value_outcome &lt;- null_dist_outcome |&gt;\n  get_p_value(obs_stat = obs_diff_outcome, direction = \"two-sided\")\n\nThen, confirm that you obtained the same results with the two methods. Finally, interpret the p-value in context of the data and the research question and comment on the statistical discernability of this result using a discernability level of 5%.\n\n\n\n\n\n\n\nPause and render\n\n\n\nNow that you’ve completed a few exercises, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.",
     "crumbs": [
       "Labs",
       "Lab 5"
