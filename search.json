@@ -1094,7 +1094,7 @@
     "href": "labs/lab-6.html#exercise-1",
     "title": "Lab 6",
     "section": "Exercise 1",
-    "text": "Exercise 1\nLoad the lemurs data from your data folder and save it as lemurs. Then, report which “types” of lemurs are represented in the sample and how many of each. Note that this information is in the taxon variable. You should refer back to the linked data dictionary to understand what the different values of taxon mean.\n\n\n\n\n\n\nPause and render\n\n\n\nNow that you’ve completed your first exercise, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.",
+    "text": "Exercise 1\n\nLoad the lemurs data from your data folder and save it as lemurs. Then, report which “types” of lemurs are represented in the sample and how many of each. Note that this information is in the taxon variable. You should refer back to the linked data dictionary to understand what the different values of taxon mean.\n\n\n\n\n\n\n\nPause and render\n\n\n\nNow that you’ve completed your first exercise, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.",
     "crumbs": [
       "Labs",
       "Lab 6"
