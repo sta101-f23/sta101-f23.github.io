@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.388">
 
   <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
-  <title>STA 101 - F23 - Regression with a single predictor</title>
+  <title>STA 101 - F23 - Confidence intervals with bootstrapping</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -387,8 +387,8 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="STA 101 - F23 - Regression with a single predictor">
-<meta property="og:description" content="Lecture 6">
+<meta property="og:title" content="STA 101 - F23 - Confidence intervals with bootstrapping">
+<meta property="og:description" content="Lecture 13">
 <meta property="og:site_name" content="STA 101 - F23">
 </head>
 <body class="quarto-light">
@@ -396,8 +396,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Regression with a single predictor</h1>
-  <p class="subtitle">Lecture 6</p>
+  <h1 class="title">Confidence intervals with bootstrapping</h1>
+  <p class="subtitle">Lecture 13</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -419,178 +419,176 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="announcements" class="slide level2">
 <h2>Announcements</h2>
 <ul>
-<li>Lab 3 is due Thu, Sep 21 at 5 pm on Gradescope</li>
-<li>No class on Wednesday, catch up on readings, interactive tutorials, labs!</li>
+<li>…</li>
+</ul>
+</section>
+<section id="packages" class="slide level2">
+<h2>Packages</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ────────────────────────────────────── tidymodels 1.1.1 ──
+✔ broom        1.0.5     ✔ rsample      1.2.0
+✔ dials        1.2.0     ✔ tune         1.1.2
+✔ infer        1.0.4     ✔ workflows    1.1.3
+✔ modeldata    1.2.0     ✔ workflowsets 1.0.1
+✔ parsnip      1.1.1     ✔ yardstick    1.2.0
+✔ recipes      1.0.8     
+── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
+✖ scales::discard() masks purrr::discard()
+✖ dplyr::filter()   masks stats::filter()
+✖ recipes::fixed()  masks stringr::fixed()
+✖ dplyr::lag()      masks stats::lag()
+✖ yardstick::spec() masks readr::spec()
+✖ recipes::step()   masks stats::step()
+• Search for functions across packages at https://www.tidymodels.org/find/</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(openintro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: airports
+Loading required package: cherryblossom
+Loading required package: usdata
+
+Attaching package: 'openintro'
+
+The following object is masked from 'package:modeldata':
+
+    ames</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="inference-with-mathematical-models" class="title-slide slide level1 center">
+<h1><strong>Inference with mathematical models</strong></h1>
+
+</section>
+<section id="that-familiar-shape" class="slide level2">
+<h2>That familiar shape…</h2>
+<div class="task">
+<p>Describe the shape of the distributions.</p>
+</div>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" width="700" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/FourCaseStudies.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure-center" width="700">
+</div>
+</figure>
+</div>
+</section>
+<section id="its-not-happenstance" class="slide level2">
+<h2>It’s not happenstance!</h2>
+<p>It’s the <strong>Central Limit Theorem</strong>, which says that the distribution of the sample statistic is normal, if certain conditions are met.</p>
+<div class="fragment">
+<div class="task">
+<p>Two questions:</p>
+<ol type="1">
+<li>What do we mean by the distribution of the sample statistic?</li>
+<li>What conditions need to be met?</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="the-distribution-of-the-sample-statistic" class="slide level2">
+<h2>The distribution of the sample statistic</h2>
+<div>
+<ul>
+<li class="fragment"><p>You can build the distribution of the sample statistic by repeatedly taking samples of size n (original sample size) from the population and calculating and recording the sample statistic for each of these samples.</p></li>
+<li class="fragment"><p>But, you would never do this in reality!</p></li>
+<li class="fragment"><p>You’d either use simulation (randomization, bootstrapping, stuff we’ve done so far!) or you would leverage mathematical theory to know what to expect if we <em>had</em> taken repeated samples.</p></li>
+</ul>
+</div>
+</section>
+<section id="the-technical-conditions" class="slide level2">
+<h2>The (technical) conditions</h2>
+<ol type="1">
+<li><p><strong>Independent observations:</strong> Observations in the sample are independent. Independence is guaranteed when we take a random sample from a population. Independence can also be guaranteed if we randomly divide individuals into treatment and control groups.</p></li>
+<li><p><strong>Large enough sample:</strong> The sample size cannot be too small. What qualifies as "small" differs from one context (i.e., from sample statistic to sample statistic).</p></li>
+</ol>
+</section>
+<section id="more-to-the-clt" class="slide level2">
+<h2>More to the CLT</h2>
+<ul>
+<li><p>There is more to the CLT than just the <strong>shape</strong> of the distribution – normal.</p></li>
+<li><p>The CLT says that the <strong>center</strong> of the sampling distribution will be at the true population parameter.</p></li>
+<li><p>The CLT also says something about the <strong>spread</strong> of the sampling distribution, measured by the <strong>standard error</strong>. For each sample statistic (<span class="math inline">\(\bar{x}\)</span> – the sample mean, <span class="math inline">\(\hat{p}\)</span> – the sample proportion, <span class="math inline">\(\bar{x}_1 - \bar{x}_2\)</span> – the difference in sample means, etc.) the CLT provides a formula for its standard error.</p>
+<ul>
+<li><p>You won’t be asked to memorize these formulas.</p></li>
+<li><p>In fact, you’ll rarely use the CLT to calculate the variability of sample statistics, you’ll simulate their distributions directly.</p></li>
+</ul></li>
 </ul>
 </section></section>
 <section>
-<section id="regression-with-a-single-predictor" class="title-slide slide level1 center">
-<h1>Regression with a single predictor</h1>
+<section id="normal-distribution" class="title-slide slide level1 center">
+<h1>Normal distribution</h1>
 
 </section>
-<section id="data-and-packages" class="slide level2">
-<h2>Data and packages</h2>
-<p>We’ll work with data on Apple and Microsoft stock prices and use the <strong>tidyverse</strong> and <strong>tidymodels</strong> packages.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a>stocks <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/stocks.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="normal-distributions" class="slide level2">
+<h2>Normal distributions</h2>
+<div class="task">
+<p>How are these normal distributions similar? How are they different? Which one is <span class="math inline">\(N(\mu = 0, \sigma. 1)\)</span> and which <span class="math inline">\(N(\mu = 19, \sigma = 4)\)</span>?</p>
+</div>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" width="600" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/twoSampleNormals.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure-center" width="600">
+</div>
+</figure>
+</div>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" width="599" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/twoSampleNormalsStacked.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure-center" width="599">
+</div>
+</figure>
 </div>
 </section>
-<section id="simple-regression-model-and-notation" class="slide level2 smaller">
-<h2>Simple regression model and notation</h2>
-<p><span class="math display">\[
-y = \beta_0 + \beta_1 x + \epsilon
-\]</span></p>
+<section id="the-68-95-99.7-rule" class="slide level2">
+<h2><strong>The 68-95-99.7 rule</strong></h2>
+<p>The normal distribution is not just <em>any</em> unimodal and symmetric distribution, it follows the <strong>68-95-99.7 rule</strong>.</p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
 <div>
+<img data-src="images/er6895997.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure-center">
+</div>
+</figure>
+</div>
+</section>
+<section id="using-the-normal-distribution" class="slide level2">
+<h2>Using the normal distribution…</h2>
 <ul>
-<li class="fragment"><p><span class="math inline">\(y\)</span>: the <strong>outcome</strong> variable. Also called the “response” or “dependent variable”. In prediction problems, this is what we are interested in predicting.</p></li>
-<li class="fragment"><p><span class="math inline">\(x\)</span>: the <strong>predictor</strong>. Also commonly referred to as “regressor”, “independent variable”, “covariate”, “feature”, “the data”.</p></li>
-<li class="fragment"><p><span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span> are called “constants” or <strong>coefficients</strong>. They are fixed numbers. These are <strong>population parameters</strong>. <span class="math inline">\(\beta_0\)</span> has another special name, “the intercept”.</p></li>
-<li class="fragment"><p><span class="math inline">\(\epsilon\)</span>: the <strong>error</strong>. This quantity represents observational error, i.e.&nbsp;the difference between our observation and the true population-level expected value: <span class="math inline">\(\beta_0 + \beta_1 x\)</span>.</p></li>
+<li><p>To make decisions <span class="math inline">\(\rightarrow\)</span> hypothesis testing</p>
+<ul>
+<li>Use properties of the normal distribution to determine the probability of the observed sample statistic (or something more extreme, in the direction of the alternative hypothesis), i.e.&nbsp;the p-value</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li><p>To make estimations <span class="math inline">\(\rightarrow\)</span> confidence intervals</p>
+<ul>
+<li>Use properties of the normal distribution to calculate the bounds of the confidence interval, adding and subtracting a margin of error to the observed sample statistic</li>
+</ul></li>
 </ul>
 </div>
 <div class="fragment">
-<p>Effectively this model says our data <span class="math inline">\(y\)</span> is linearly related to <span class="math inline">\(x\)</span> but is not perfectly observed due to some error.</p>
+<p>But before then…</p>
 </div>
-</section>
-<section id="stock-prices-of-microsoft-and-apple" class="slide level2">
-<h2>Stock prices of Microsoft and Apple</h2>
-<p>Let’s examine January 2020 open prices of Microsoft and Apple stocks to illustrate some ideas.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>stocks_jan2020 <span class="ot">&lt;-</span> stocks <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">filter</span>(<span class="fu">month</span>(date) <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> <span class="fu">year</span>(date) <span class="sc">==</span> <span class="dv">2020</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">ggplot</span>(stocks_jan2020, <span class="fu">aes</span>(<span class="at">x =</span> MSFT.Open, <span class="at">y =</span> AAPL.Open)) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">labs</span>(</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="at">x =</span> <span class="st">"MSFT Open"</span>, </span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="at">y =</span> <span class="st">"AAPL Open"</span>, </span>
-<span id="cb2-9"><a href="#cb2-9"></a>    <span class="at">title =</span> <span class="st">"Open prices of MSFT and AAPL"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10"></a>    <span class="at">subtitle =</span> <span class="st">"January 2020"</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-
-</section>
-<section id="stock-prices-of-microsoft-and-apple-output" class="slide level2 output-location-slide"><h2>Stock prices of Microsoft and Apple</h2><div class="cell output-location-slide">
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" width="960">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="06-regression-one-predictor_files/figure-revealjs/stocks-jan2020-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" width="960">
-</div>
-</figure>
-</div>
-</div>
-</div></section><section id="fitting-some-model" class="slide level2">
-<h2>Fitting “some” model</h2>
-<p>Before we get to fitting the best model, let’s fit “some” model, say with slope = -5 and intercept = 0.5.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(stocks_jan2020, <span class="fu">aes</span>(<span class="at">x =</span> MSFT.Open, <span class="at">y =</span> AAPL.Open)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fl">0.5</span>, <span class="at">intercept =</span> <span class="sc">-</span><span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">labs</span>(</span>
-<span id="cb3-5"><a href="#cb3-5"></a>    <span class="at">x =</span> <span class="st">"MSFT Open"</span>, </span>
-<span id="cb3-6"><a href="#cb3-6"></a>    <span class="at">y =</span> <span class="st">"AAPL Open"</span>, </span>
-<span id="cb3-7"><a href="#cb3-7"></a>    <span class="at">title =</span> <span class="st">"Open prices of MSFT and AAPL"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8"></a>    <span class="at">subtitle =</span> <span class="st">"January 2020"</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-
-</section>
-<section id="fitting-some-model-output" class="slide level2 output-location-slide"><h2>Fitting “some” model</h2><div class="cell output-location-slide">
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" width="960">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="06-regression-one-predictor_files/figure-revealjs/stocks-jan2020-some-model-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" width="960">
-</div>
-</figure>
-</div>
-</div>
-</div></section><section id="fitting-some-model-1" class="slide level2">
-<h2>Fitting “some” model</h2>
-<p><span class="math display">\[
-\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 ~ x \\
-\hat{y} = -5 + 0.5 ~ x
-\]</span></p>
-<ul>
-<li><span class="math inline">\(\hat{y}\)</span> is the <strong>expected outcome</strong></li>
-<li><span class="math inline">\(\hat{\beta}\)</span> is the <strong>estimated</strong> or <strong>fitted</strong> coefficient</li>
-<li>There is no error term here because we do not predict error</li>
-</ul>
-</section>
-<section id="populations-vs.-samples" class="slide level2">
-<h2>Populations vs.&nbsp;samples</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>Population:</p>
-<p><span class="math display">\[
-y = \beta_0 + \beta_1 ~ x
-\]</span></p>
-</div><div class="column" style="width:50%;">
-<p>Samples: <span class="math display">\[
-\hat{y} = \hat{\beta_0} +  \hat{\beta_1} ~ x
-\]</span></p>
-</div>
-</div>
-<div>
-<ul>
-<li class="fragment">The central idea is that if we measure every <span class="math inline">\(x\)</span> and every <span class="math inline">\(y\)</span> in existence, (“the entire population”) there is some true “best” <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> that describe the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span></li>
-<li class="fragment">Since we only have a <strong>sample</strong> of the data, we estimate <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span></li>
-<li class="fragment">We call our estimates <span class="math inline">\(\hat{\beta_0}\)</span>, <span class="math inline">\(\hat{\beta_1}\)</span> “beta hat”. We never have all the data, thus we never can really know what the true <span class="math inline">\(\beta\)</span>s are</li>
-</ul>
-</div>
-</section>
-<section id="residuals" class="slide level2">
-<h2>Residuals</h2>
-<ul>
-<li>For any linear equation we write down, there will be some difference between the predicted outcome of our linear model (<span class="math inline">\(\hat{y}\)</span>) and what we observe (<span class="math inline">\(y\)</span>)… (But of course! Otherwise everything would fall on a perfect straight line!)</li>
-</ul>
-<p>This difference between what we observe and what we predict <span class="math inline">\(y - \hat{y}\)</span> is known as a residual, <span class="math inline">\(e\)</span>.</p>
-<p>More concisely,</p>
-<p><span class="math display">\[
-e = y - \hat{y}
-\]</span></p>
-</section>
-<section id="a-residual-visualized" class="slide level2">
-<h2>A residual, visualized</h2>
-<p>Residuals are dependent on the line we draw. Visually, here is a model of the data, <span class="math inline">\(y = -5 + 0.5 ~ x\)</span> and one of the residuals is outlined in red.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" data-fig-align="center" width="768">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="06-regression-one-predictor_files/figure-revealjs/unnamed-chunk-4-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure-center" width="768">
-</div>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="all-residuals-visualized" class="slide level2">
-<h2>All residuals, visualized</h2>
-<p>There is, in fact, a residual associated with every single point in the plot.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" width="960">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="06-regression-one-predictor_files/figure-revealjs/all-residuals-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" width="960">
-</div>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="minimize-residuals" class="slide level2">
-<h2>Minimize residuals</h2>
-<p>We often wish to find a line that fits the data “really well”, but what does this mean? Well, we want small residuals! So we pick an <strong>objective function</strong>. That is, a function we wish to minimize or maximize.</p>
 </section>
 <section id="application-exercise" class="slide level2">
 <h2>Application exercise</h2>
-<p>Go to Posit Cloud and start the project titled <strong>ae-06-Stocks</strong>.</p>
+<p>Go to Posit Cloud and continue the project titled <code>ae-11-Bone density</code>.</p>
 
 <p><img src="../logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
@@ -809,44 +807,6 @@ e = y - \hat{y}
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
