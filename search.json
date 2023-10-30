@@ -4048,77 +4048,77 @@
   {
     "objectID": "lectures/15/15-inference-mathematical-models.html#announcements",
     "href": "lectures/15/15-inference-mathematical-models.html#announcements",
-    "title": "Confidence intervals with bootstrapping",
+    "title": "Inference with mathematical models",
     "section": "Announcements",
-    "text": "Announcements\n\n…"
+    "text": "Announcements\n\nMy office hours by appointment this week.\nWednesday lecture on Zoom – can join from wherever, will send Zoom link by email and on Slack."
   },
   {
     "objectID": "lectures/15/15-inference-mathematical-models.html#packages",
     "href": "lectures/15/15-inference-mathematical-models.html#packages",
-    "title": "Confidence intervals with bootstrapping",
+    "title": "Inference with mathematical models",
     "section": "Packages",
-    "text": "Packages\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(tidymodels)\n\n── Attaching packages ────────────────────────────────────── tidymodels 1.1.1 ──\n✔ broom        1.0.5     ✔ rsample      1.2.0\n✔ dials        1.2.0     ✔ tune         1.1.2\n✔ infer        1.0.4     ✔ workflows    1.1.3\n✔ modeldata    1.2.0     ✔ workflowsets 1.0.1\n✔ parsnip      1.1.1     ✔ yardstick    1.2.0\n✔ recipes      1.0.8     \n── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──\n✖ scales::discard() masks purrr::discard()\n✖ dplyr::filter()   masks stats::filter()\n✖ recipes::fixed()  masks stringr::fixed()\n✖ dplyr::lag()      masks stats::lag()\n✖ yardstick::spec() masks readr::spec()\n✖ recipes::step()   masks stats::step()\n• Search for functions across packages at https://www.tidymodels.org/find/\n\nlibrary(openintro)\n\nLoading required package: airports\nLoading required package: cherryblossom\nLoading required package: usdata\n\nAttaching package: 'openintro'\n\nThe following object is masked from 'package:modeldata':\n\n    ames"
+    "text": "Packages\n\nlibrary(tidyverse)\nlibrary(tidymodels)\nlibrary(openintro)"
   },
   {
     "objectID": "lectures/15/15-inference-mathematical-models.html#that-familiar-shape",
     "href": "lectures/15/15-inference-mathematical-models.html#that-familiar-shape",
-    "title": "Confidence intervals with bootstrapping",
+    "title": "Inference with mathematical models",
     "section": "That familiar shape…",
     "text": "That familiar shape…\n\nDescribe the shape of the distributions."
   },
   {
     "objectID": "lectures/15/15-inference-mathematical-models.html#its-not-happenstance",
     "href": "lectures/15/15-inference-mathematical-models.html#its-not-happenstance",
-    "title": "Confidence intervals with bootstrapping",
+    "title": "Inference with mathematical models",
     "section": "It’s not happenstance!",
     "text": "It’s not happenstance!\nIt’s the Central Limit Theorem, which says that the distribution of the sample statistic is normal, if certain conditions are met.\n\n\nTwo questions:\n\nWhat do we mean by the distribution of the sample statistic?\nWhat conditions need to be met?"
   },
   {
     "objectID": "lectures/15/15-inference-mathematical-models.html#the-distribution-of-the-sample-statistic",
     "href": "lectures/15/15-inference-mathematical-models.html#the-distribution-of-the-sample-statistic",
-    "title": "Confidence intervals with bootstrapping",
+    "title": "Inference with mathematical models",
     "section": "The distribution of the sample statistic",
     "text": "The distribution of the sample statistic\n\n\nYou can build the distribution of the sample statistic by repeatedly taking samples of size n (original sample size) from the population and calculating and recording the sample statistic for each of these samples.\nBut, you would never do this in reality!\nYou’d either use simulation (randomization, bootstrapping, stuff we’ve done so far!) or you would leverage mathematical theory to know what to expect if we had taken repeated samples."
   },
   {
     "objectID": "lectures/15/15-inference-mathematical-models.html#the-technical-conditions",
     "href": "lectures/15/15-inference-mathematical-models.html#the-technical-conditions",
-    "title": "Confidence intervals with bootstrapping",
+    "title": "Inference with mathematical models",
     "section": "The (technical) conditions",
-    "text": "The (technical) conditions\n\nIndependent observations: Observations in the sample are independent. Independence is guaranteed when we take a random sample from a population. Independence can also be guaranteed if we randomly divide individuals into treatment and control groups.\nLarge enough sample: The sample size cannot be too small. What qualifies as \"small\" differs from one context (i.e., from sample statistic to sample statistic)."
+    "text": "The (technical) conditions\n\nIndependent observations: Observations in the sample are independent. Independence is guaranteed when we take a random sample from a population. Independence can also be guaranteed if we randomly divide individuals into treatment and control groups.\nLarge enough sample: The sample size cannot be too small. What qualifies as “small” differs from one context (i.e., from sample statistic to sample statistic)."
   },
   {
     "objectID": "lectures/15/15-inference-mathematical-models.html#more-to-the-clt",
     "href": "lectures/15/15-inference-mathematical-models.html#more-to-the-clt",
-    "title": "Confidence intervals with bootstrapping",
+    "title": "Inference with mathematical models",
     "section": "More to the CLT",
     "text": "More to the CLT\n\nThere is more to the CLT than just the shape of the distribution – normal.\nThe CLT says that the center of the sampling distribution will be at the true population parameter.\nThe CLT also says something about the spread of the sampling distribution, measured by the standard error. For each sample statistic (\\(\\bar{x}\\) – the sample mean, \\(\\hat{p}\\) – the sample proportion, \\(\\bar{x}_1 - \\bar{x}_2\\) – the difference in sample means, etc.) the CLT provides a formula for its standard error.\n\nYou won’t be asked to memorize these formulas.\nIn fact, you’ll rarely use the CLT to calculate the variability of sample statistics, you’ll simulate their distributions directly."
   },
   {
     "objectID": "lectures/15/15-inference-mathematical-models.html#normal-distributions",
     "href": "lectures/15/15-inference-mathematical-models.html#normal-distributions",
-    "title": "Confidence intervals with bootstrapping",
+    "title": "Inference with mathematical models",
     "section": "Normal distributions",
     "text": "Normal distributions\n\nHow are these normal distributions similar? How are they different? Which one is \\(N(\\mu = 0, \\sigma. 1)\\) and which \\(N(\\mu = 19, \\sigma = 4)\\)?"
   },
   {
     "objectID": "lectures/15/15-inference-mathematical-models.html#the-68-95-99.7-rule",
     "href": "lectures/15/15-inference-mathematical-models.html#the-68-95-99.7-rule",
-    "title": "Confidence intervals with bootstrapping",
+    "title": "Inference with mathematical models",
     "section": "The 68-95-99.7 rule",
     "text": "The 68-95-99.7 rule\nThe normal distribution is not just any unimodal and symmetric distribution, it follows the 68-95-99.7 rule."
   },
   {
     "objectID": "lectures/15/15-inference-mathematical-models.html#using-the-normal-distribution",
     "href": "lectures/15/15-inference-mathematical-models.html#using-the-normal-distribution",
-    "title": "Confidence intervals with bootstrapping",
+    "title": "Inference with mathematical models",
     "section": "Using the normal distribution…",
     "text": "Using the normal distribution…\n\nTo make decisions \\(\\rightarrow\\) hypothesis testing\n\nUse properties of the normal distribution to determine the probability of the observed sample statistic (or something more extreme, in the direction of the alternative hypothesis), i.e. the p-value\n\n\n\n\nTo make estimations \\(\\rightarrow\\) confidence intervals\n\nUse properties of the normal distribution to calculate the bounds of the confidence interval, adding and subtracting a margin of error to the observed sample statistic\n\n\n\n\nBut before then…"
   },
   {
     "objectID": "lectures/15/15-inference-mathematical-models.html#application-exercise",
     "href": "lectures/15/15-inference-mathematical-models.html#application-exercise",
-    "title": "Confidence intervals with bootstrapping",
+    "title": "Inference with mathematical models",
     "section": "Application exercise",
     "text": "Application exercise\nGo to Posit Cloud and continue the project titled ae-11-Bone density.\n\n\n\n🔗 sta101-f23.github.io"
   },
