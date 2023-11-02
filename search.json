@@ -1278,7 +1278,7 @@
   {
     "objectID": "labs/lab-7.html",
     "href": "labs/lab-7.html",
-    "title": "Lab 7",
+    "title": "Lab 7 - Inference for proportions and means",
     "section": "",
     "text": "By the end of this lab you will\nFor all visualizations you create, be sure to include informative titles for the plot, axes, and legend!",
     "crumbs": [
@@ -1289,9 +1289,9 @@
   {
     "objectID": "labs/lab-7.html#exercise-1",
     "href": "labs/lab-7.html#exercise-1",
-    "title": "Lab 7",
+    "title": "Lab 7 - Inference for proportions and means",
     "section": "Exercise 1",
-    "text": "Exercise 1\nStudents in large university course that is offered each semester average 32 (out of 50) on the midterm, with a standard deviation of 4. The scores are distributed normally.\n\n\nWhat is the probability a randomly selected student scored less than 28?\nWhat is the probability a randomly selected student scored higher than than 35?\n\n\n\nWhat score did only 20 percent of the class exceed?1",
+    "text": "Exercise 1\n\n\nCreate a subset of the data that only contains Yes and No answers for the harassment question. How many responses chose each of these answers?",
     "crumbs": [
       "Labs",
       "Lab 7"
@@ -1300,9 +1300,9 @@
   {
     "objectID": "labs/lab-7.html#exercise-2",
     "href": "labs/lab-7.html#exercise-2",
-    "title": "Lab 7",
+    "title": "Lab 7 - Inference for proportions and means",
     "section": "Exercise 2",
-    "text": "Exercise 2\n\nI pick 10 students at random from the class.\n\n[Without looking at the next question] How does the standard error of their average score compare to the standard deviation of the population of all STA 101 students? Explain your reasoning.\nWhat is the probability the average midterm score of these 10 students is less than 28?\nWhat is the probability the average midterm score of these 10 students is higher than 35?\nHow do the probabilities you calculated in the previous two questions (less than 28 and higher than 35) compare to the probabilities you calculated in Exercise 1? Why?\n\n\n\n\n\n\n\n\nPause and render\n\n\n\nNow that you’ve completed the first part of the exercises, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.",
+    "text": "Exercise 2\n\n\nDescribe how bootstrapping can be used to estimate the proportion of all Americans who have been harassed by their superiors or co-workers at their job.",
     "crumbs": [
       "Labs",
       "Lab 7"
@@ -1311,9 +1311,9 @@
   {
     "objectID": "labs/lab-7.html#exercise-3",
     "href": "labs/lab-7.html#exercise-3",
-    "title": "Lab 7",
+    "title": "Lab 7 - Inference for proportions and means",
     "section": "Exercise 3",
-    "text": "Exercise 3",
+    "text": "Exercise 3\n\n\nCalculate a 95% bootstrap confidence interval for the proportion of Americans who have been harassed by their superiors or co-workers at their job. Use 1,000 iterations when creating your bootstrap distribution. Set the seed to 1234. Interpret this interval in context of the data.\nWhere was your 95% confidence interval centered? Why does this make sense?\nNow, calculate 90% bootstrap confidence interval for the proportion of Americans who have been harassed by their superiors or co-workers at their job. Report the interval below. Is it wider or more narrow than the 95% confidence interval?\nNow, suppose you created a bootstrap distribution with 50,000 simulations instead of 1,000. What would you expect to change (if anything)? Center of your confidence interval? Width of your confidence interval? Do not run this simulatiob, just conceptually think about it.\n\n\n\n\n\n\n\n\nPause and render\n\n\n\nNow that you’ve completed the second part of the exercises, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.",
     "crumbs": [
       "Labs",
       "Lab 7"
@@ -1322,9 +1322,9 @@
   {
     "objectID": "labs/lab-7.html#exercise-4",
     "href": "labs/lab-7.html#exercise-4",
-    "title": "Lab 7",
+    "title": "Lab 7 - Inference for proportions and means",
     "section": "Exercise 4",
-    "text": "Exercise 4",
+    "text": "Exercise 4\n\n\nWhat is the probability a randomly selected student scored less than 28?\nWhat is the probability a randomly selected student scored higher than than 35?\nWhat score did only 20 percent of the class exceed?1",
     "crumbs": [
       "Labs",
       "Lab 7"
@@ -1333,9 +1333,9 @@
   {
     "objectID": "labs/lab-7.html#exercise-5",
     "href": "labs/lab-7.html#exercise-5",
-    "title": "Lab 7",
+    "title": "Lab 7 - Inference for proportions and means",
     "section": "Exercise 5",
-    "text": "Exercise 5\n\n\n\n\n\n\nPause and render\n\n\n\nNow that you’ve completed the second part of the exercises, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.",
+    "text": "Exercise 5\n\nI pick 10 students at random from the class.\n\n[Without looking at the next question] How does the standard error of their average score compare to the standard deviation of the population of all STA 101 students? Explain your reasoning.\nWhat is the probability the average midterm score of these 10 students is less than 28?\nWhat is the probability the average midterm score of these 10 students is higher than 35?\nHow do the probabilities you calculated in the previous two questions (less than 28 and higher than 35) compare to the probabilities you calculated in Exercise 1? Why?\n\n\n\n\n\n\n\n\nPause and render\n\n\n\nNow that you’ve completed the first part of the exercises, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.",
     "crumbs": [
       "Labs",
       "Lab 7"
@@ -1344,7 +1344,7 @@
   {
     "objectID": "labs/lab-7.html#exercise-6",
     "href": "labs/lab-7.html#exercise-6",
-    "title": "Lab 7",
+    "title": "Lab 7 - Inference for proportions and means",
     "section": "Exercise 6",
     "text": "Exercise 6\n\nIMS - Chapter 16 exercises, #2: Married at 25.",
     "crumbs": [
@@ -1355,7 +1355,7 @@
   {
     "objectID": "labs/lab-7.html#exercise-7",
     "href": "labs/lab-7.html#exercise-7",
-    "title": "Lab 7",
+    "title": "Lab 7 - Inference for proportions and means",
     "section": "Exercise 7",
     "text": "Exercise 7\n\nIMS - Chapter 16 exercises, #5: If I fits, I sits, bootstrap test.",
     "crumbs": [
@@ -1366,7 +1366,7 @@
   {
     "objectID": "labs/lab-7.html#exercise-8",
     "href": "labs/lab-7.html#exercise-8",
-    "title": "Lab 7",
+    "title": "Lab 7 - Inference for proportions and means",
     "section": "Exercise 8",
     "text": "Exercise 8\n\nIMS - Chapter 16 exercises, #6: Legalization of marijuana, bootstrap test..",
     "crumbs": [
@@ -1377,7 +1377,7 @@
   {
     "objectID": "labs/lab-7.html#exercise-9",
     "href": "labs/lab-7.html#exercise-9",
-    "title": "Lab 7",
+    "title": "Lab 7 - Inference for proportions and means",
     "section": "Exercise 9",
     "text": "Exercise 9\n\nIMS - Chapter 16 exercises, #8: Legalization of marijuana, standard errors.",
     "crumbs": [
@@ -1388,7 +1388,7 @@
   {
     "objectID": "labs/lab-7.html#exercise-10",
     "href": "labs/lab-7.html#exercise-10",
-    "title": "Lab 7",
+    "title": "Lab 7 - Inference for proportions and means",
     "section": "Exercise 10",
     "text": "Exercise 10\n\nIMS - Chapter 16 exercises, #22: Legalization of marijuana, mathematical interval.",
     "crumbs": [
@@ -1399,7 +1399,7 @@
   {
     "objectID": "labs/lab-7.html#submitting",
     "href": "labs/lab-7.html#submitting",
-    "title": "Lab 7",
+    "title": "Lab 7 - Inference for proportions and means",
     "section": "Submitting",
     "text": "Submitting\n\n\n\n\n\n\nImportant\n\n\n\nBefore you proceed, first, make sure that you have updated the document YAML with your name! Then, render your document one last time, for good measure.\n\n\nTo submit your assignment to Gradescope:\n\nGo to your Files pane and check the box next to the PDF output of your document (lab-7.pdf).\nThen, in the Files pane, go to More &gt; Export. This will download the PDF file to your computer. Save it somewhere you can easily locate, e.g., your Downloads folder or your Desktop.\nGo to the course Canvas page and click on Gradescope and then click on the assignment. You’ll be prompted to submit it.\nMark the pages associated with each exercise. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”).\n\n\n\n\n\n\n\nWarning\n\n\n\nIf you fail to mark the pages associated with an exercise, that exercise won’t be graded. This means, if you fail to mark the pages for all exercises, you will receive a 0 on the assignment. The TAs can’t mark your pages for you, and for them to be able to grade, you must mark them.",
     "crumbs": [
@@ -1410,9 +1410,9 @@
   {
     "objectID": "labs/lab-7.html#grading",
     "href": "labs/lab-7.html#grading",
-    "title": "Lab 7",
+    "title": "Lab 7 - Inference for proportions and means",
     "section": "Grading",
-    "text": "Grading\n\n\n\nExercise\nPoints\n\n\n\n\nExercise 1\nTBA\n\n\nExercise 2\nTBA\n\n\nExercise 3\nTBA\n\n\nExercise 4\nTBA\n\n\nExercise 5\nTBA\n\n\nExercise 6\nTBA\n\n\nExercise 7\nTBA\n\n\nExercise 8\nTBA\n\n\nExercise 9\nTBA\n\n\nExercise 10\nTBA\n\n\nTotal\n50",
+    "text": "Grading\nThe lab will be graded out of 50 total points.",
     "crumbs": [
       "Labs",
       "Lab 7"
