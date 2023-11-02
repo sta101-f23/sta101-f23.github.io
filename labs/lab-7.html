@@ -313,7 +313,37 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting started</a></li>
+  <li><a href="#part-1-course-scores" id="toc-part-1-course-scores" class="nav-link" data-scroll-target="#part-1-course-scores">Part 1: Course scores</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  </ul></li>
+  <li><a href="#part-2-duke-houses" id="toc-part-2-duke-houses" class="nav-link" data-scroll-target="#part-2-duke-houses">Part 2: Duke houses</a>
+  <ul class="collapse">
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
+  <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
+  </ul></li>
+  <li><a href="#part-3-ims-exercises" id="toc-part-3-ims-exercises" class="nav-link" data-scroll-target="#part-3-ims-exercises">Part 3: IMS exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-6" id="toc-exercise-6" class="nav-link" data-scroll-target="#exercise-6">Exercise 6</a></li>
+  <li><a href="#exercise-7" id="toc-exercise-7" class="nav-link" data-scroll-target="#exercise-7">Exercise 7</a></li>
+  <li><a href="#exercise-8" id="toc-exercise-8" class="nav-link" data-scroll-target="#exercise-8">Exercise 8</a></li>
+  <li><a href="#exercise-9" id="toc-exercise-9" class="nav-link" data-scroll-target="#exercise-9">Exercise 9</a></li>
+  <li><a href="#exercise-10" id="toc-exercise-10" class="nav-link" data-scroll-target="#exercise-10">Exercise 10</a></li>
+  </ul></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap up</a>
+  <ul class="collapse">
+  <li><a href="#submitting" id="toc-submitting" class="nav-link" data-scroll-target="#submitting">Submitting</a></li>
+  <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/labs/lab-7.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -337,9 +367,219 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>To be posted…</p>
+<p>By the end of this lab you will</p>
+<ul>
+<li><p>calculate probabilities under the normal distribution</p></li>
+<li><p>construct and interpret confidence intervals via bootstrapping</p></li>
+</ul>
+<p>For all visualizations you create, be sure to include informative titles for the plot, axes, and legend!</p>
+<section id="getting-started" class="level1">
+<h1>Getting started</h1>
+<ol type="1">
+<li><p>Go to <a href="https://posit.cloud/spaces/405361">Posit Cloud</a> and start the project titled <strong>lab-7 - XXX</strong>.</p></li>
+<li><p>Under the <em>Files</em> tab on the lower right, click on <code>lab-7.qmd</code> to open the lab template.</p></li>
+<li><p>Complete the exercises in this document.</p></li>
+</ol>
+</section>
+<section id="part-1-course-scores" class="level1">
+<h1>Part 1: Course scores</h1>
+<section id="exercise-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
+<p>Students in large university course that is offered each semester average 32 (out of 50) on the midterm, with a standard deviation of 4. The scores are distributed normally.</p>
+<div class="exercise">
+<ul>
+<li><p>What is the probability a randomly selected student scored less than 28?</p></li>
+<li><p>What is the probability a randomly selected student scored higher than than 35?</p></li>
+</ul>
+<!-- -->
+<ul>
+<li>What score did only 20 percent of the class exceed?1</li>
+</ul>
+</div>
+</section>
+<section id="exercise-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
+<div class="execise">
+<p>I pick 10 students at random from the class.</p>
+<ul>
+<li><p>[Without looking at the next question] How does the standard error of their average score compare to the standard deviation of the population of all STA 101 students? Explain your reasoning.</p></li>
+<li><p>What is the probability the average midterm score of these 10 students is less than 28?</p></li>
+<li><p>What is the probability the average midterm score of these 10 students is higher than 35?</p></li>
+<li><p>How do the probabilities you calculated in the previous two questions (less than 28 and higher than 35) compare to the probabilities you calculated in Exercise 1? Why?</p></li>
+</ul>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pause and render
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Now that you’ve completed the first part of the exercises, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="part-2-duke-houses" class="level1">
+<h1>Part 2: Duke houses</h1>
+<section id="exercise-3" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3">Exercise 3</h2>
+</section>
+<section id="exercise-4" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4">Exercise 4</h2>
+</section>
+<section id="exercise-5" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5">Exercise 5</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pause and render
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Now that you’ve completed the second part of the exercises, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="part-3-ims-exercises" class="level1">
+<h1>Part 3: IMS exercises</h1>
+<p>The exercises in this section do not require code. Make sure to answer the questions in full sentences.</p>
+<section id="exercise-6" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-6">Exercise 6</h2>
+<div class="exercise">
+<p>IMS - <a href="https://openintro-ims2.netlify.app/16-inference-one-prop#chp16-exercises">Chapter 16 exercises</a>, #2: Married at 25.</p>
+</div>
+</section>
+<section id="exercise-7" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-7">Exercise 7</h2>
+<div class="exercise">
+<p>IMS - <a href="https://openintro-ims2.netlify.app/16-inference-one-prop#chp16-exercises">Chapter 16 exercises</a>, #5: If I fits, I sits, bootstrap test.</p>
+</div>
+</section>
+<section id="exercise-8" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-8">Exercise 8</h2>
+<div class="exercise">
+<p>IMS - <a href="https://openintro-ims2.netlify.app/12-foundations-bootstrapping#chp12-exercises">Chapter 16 exercises</a>, #6: Legalization of marijuana, bootstrap test..</p>
+</div>
+</section>
+<section id="exercise-9" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-9">Exercise 9</h2>
+<div class="exercise">
+<p>IMS - <a href="https://openintro-ims2.netlify.app/12-foundations-bootstrapping#chp12-exercises">Chapter 16 exercises</a>, #8: Legalization of marijuana, standard errors.</p>
+</div>
+</section>
+<section id="exercise-10" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-10">Exercise 10</h2>
+<div class="exercise">
+<p>IMS - <a href="https://openintro-ims2.netlify.app/12-foundations-bootstrapping#chp12-exercises">Chapter 16 exercises</a>, #22: Legalization of marijuana, mathematical interval.</p>
+</div>
+</section>
+</section>
+<section id="wrap-up" class="level1">
+<h1>Wrap up</h1>
+<section id="submitting" class="level2">
+<h2 class="anchored" data-anchor-id="submitting">Submitting</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before you proceed, first, make sure that you have updated the document YAML with your name! Then, render your document one last time, for good measure.</p>
+</div>
+</div>
+<p>To submit your assignment to Gradescope:</p>
+<ul>
+<li><p>Go to your Files pane and check the box next to the PDF output of your document (<code>lab-7.pdf</code>).</p></li>
+<li><p>Then, in the Files pane, go to More &gt; Export. This will download the PDF file to your computer. Save it somewhere you can easily locate, e.g., your Downloads folder or your Desktop.</p></li>
+<li><p>Go to the course Canvas page and click on Gradescope and then click on the assignment. You’ll be prompted to submit it.</p></li>
+<li><p>Mark the pages associated with each exercise. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”).</p></li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you fail to mark the pages associated with an exercise, that exercise won’t be graded. This means, if you fail to mark the pages for all exercises, you will receive a 0 on the assignment. The TAs can’t mark your pages for you, and for them to be able to grade, you must mark them.</p>
+</div>
+</div>
+</section>
+<section id="grading" class="level2">
+<h2 class="anchored" data-anchor-id="grading">Grading</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Exercise</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exercise 1</td>
+<td>TBA</td>
+</tr>
+<tr class="even">
+<td>Exercise 2</td>
+<td>TBA</td>
+</tr>
+<tr class="odd">
+<td>Exercise 3</td>
+<td>TBA</td>
+</tr>
+<tr class="even">
+<td>Exercise 4</td>
+<td>TBA</td>
+</tr>
+<tr class="odd">
+<td>Exercise 5</td>
+<td>TBA</td>
+</tr>
+<tr class="even">
+<td>Exercise 6</td>
+<td>TBA</td>
+</tr>
+<tr class="odd">
+<td>Exercise 7</td>
+<td>TBA</td>
+</tr>
+<tr class="even">
+<td>Exercise 8</td>
+<td>TBA</td>
+</tr>
+<tr class="odd">
+<td>Exercise 9</td>
+<td>TBA</td>
+</tr>
+<tr class="even">
+<td>Exercise 10</td>
+<td>TBA</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td>50</td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -896,7 +1136,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/labs/lab-7.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    </div>
     <div class="nav-footer-right">
 <p>This page is built with 🤍 and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
