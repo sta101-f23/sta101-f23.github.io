@@ -1291,7 +1291,7 @@
     "href": "labs/lab-7.html#exercise-1",
     "title": "Lab 7 - Inference for proportions and means",
     "section": "Exercise 1",
-    "text": "Exercise 1\n\n\nCreate a subset of the data that only contains Yes and No answers for the harassment question. How many responses chose each of these answers?",
+    "text": "Exercise 1\n\nCreate a subset of the data that only contains Yes and No answers for the harassment question. How many responses chose each of these answers?",
     "crumbs": [
       "Labs",
       "Lab 7"
@@ -1302,7 +1302,7 @@
     "href": "labs/lab-7.html#exercise-2",
     "title": "Lab 7 - Inference for proportions and means",
     "section": "Exercise 2",
-    "text": "Exercise 2\n\n\nDescribe how bootstrapping can be used to estimate the proportion of all Americans who have been harassed by their superiors or co-workers at their job.",
+    "text": "Exercise 2\n\nDescribe how bootstrapping can be used to estimate the proportion of all Americans who have been harassed by their superiors or co-workers at their job.",
     "crumbs": [
       "Labs",
       "Lab 7"
@@ -1313,7 +1313,7 @@
     "href": "labs/lab-7.html#exercise-3",
     "title": "Lab 7 - Inference for proportions and means",
     "section": "Exercise 3",
-    "text": "Exercise 3\n\n\nCalculate a 95% bootstrap confidence interval for the proportion of Americans who have been harassed by their superiors or co-workers at their job. Use 1,000 iterations when creating your bootstrap distribution. Set the seed to 1234. Interpret this interval in context of the data.\nWhere was your 95% confidence interval centered? Why does this make sense?\nNow, calculate 90% bootstrap confidence interval for the proportion of Americans who have been harassed by their superiors or co-workers at their job. Report the interval below. Is it wider or more narrow than the 95% confidence interval?\nNow, suppose you created a bootstrap distribution with 50,000 simulations instead of 1,000. What would you expect to change (if anything)? Center of your confidence interval? Width of your confidence interval? Do not run this simulatiob, just conceptually think about it.\n\n\n\n\n\n\n\n\nPause and render\n\n\n\nNow that you’ve completed the second part of the exercises, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.",
+    "text": "Exercise 3\n\n\nCalculate a 95% bootstrap confidence interval for the proportion of Americans who have been harassed by their superiors or co-workers at their job. Use 1,000 iterations when creating your bootstrap distribution. Set the seed to 1234. Interpret this interval in context of the data. Make sure to visualize this interval as well.\nWhere was your 95% confidence interval centered? Why does this make sense?\nNow, calculate 90% bootstrap confidence interval for the proportion of Americans who have been harassed by their superiors or co-workers at their job. Interpret this interval in context of the data. Is it wider or more narrow than the 95% confidence interval? Additionally, visualize the interval by layering it on the visualization (for the 95% confidence interval) from part (a). You can do this simply by adding another shading layer where the endpoints now come from the new 90% confidence interval. Use a different pair of colors for the color and fill arguments, e.g., darkorange4 and darkorange1.\nNow, suppose you created a bootstrap distribution with 50,000 simulations instead of 1,000. What would you expect to change (if anything)? Center of your confidence interval? Width of your confidence interval? Do not run this simulation, just conceptually think about it.\n\n\n\n\n\n\n\n\nPause and render\n\n\n\nNow that you’ve completed the second part of the exercises, pause and render your document. If it renders without any issues, great! Move on to the next exercise. If it does not, debug the issue before moving on. Ask for help from your TA if you need. Do not proceed without rendering your document.",
     "crumbs": [
       "Labs",
       "Lab 7"
@@ -1324,7 +1324,7 @@
     "href": "labs/lab-7.html#exercise-4",
     "title": "Lab 7 - Inference for proportions and means",
     "section": "Exercise 4",
-    "text": "Exercise 4\n\n\nWhat is the probability a randomly selected student scored less than 28?\nWhat is the probability a randomly selected student scored higher than than 35?\nWhat score did only 20 percent of the class exceed?1",
+    "text": "Exercise 4\n\n\nWhat is the probability a randomly selected student scored less than 28?\nWhat is the probability a randomly selected student scored higher than than 35?\nWhat score did only 20 percent of the class exceed?",
     "crumbs": [
       "Labs",
       "Lab 7"
