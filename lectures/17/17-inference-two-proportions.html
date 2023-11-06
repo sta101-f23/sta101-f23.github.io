@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.388">
 
   <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
-  <title>STA 101 - F23 - Exploring categorical data</title>
+  <title>STA 101 - F23 - Inference for a proportion</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -322,8 +322,8 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="STA 101 - F23 - Exploring categorical data">
-<meta property="og:description" content="Lecture 4">
+<meta property="og:title" content="STA 101 - F23 - Inference for a proportion">
+<meta property="og:description" content="Lecture 16">
 <meta property="og:site_name" content="STA 101 - F23">
 </head>
 <body class="quarto-light">
@@ -331,8 +331,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Exploring categorical data</h1>
-  <p class="subtitle">Lecture 4</p>
+  <h1 class="title">Inference for a proportion</h1>
+  <p class="subtitle">Lecture 16</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -351,87 +351,55 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <h1>Warm up</h1>
 
 </section>
-<section id="check-in" class="slide level2">
-<h2>Check-in</h2>
-<ul>
-<li>Daily check-ins for getting you thinking at the beginning of the class and reviewing recent/important concepts</li>
-<li>Go to Canvas and open today’s “quiz” titled <code>2023-09-11 Check-in</code></li>
-<li>Access code: <code>___</code> (released in class)</li>
-<li>“Graded” for completion</li>
-</ul>
-</section>
 <section id="announcements" class="slide level2">
 <h2>Announcements</h2>
 <ul>
-<li><p>Lab 2 is due Thu, Sep 14 at 5 pm on Gradescope</p></li>
-<li><p>Mon, Sep 18 - Guest lecture on regression with Dr.&nbsp;Alex Fisher</p></li>
-<li><p>Wed, Sep 20 - Catch up day: no class, catch up with readings and interactive tutorials</p></li>
+<li>…</li>
 </ul>
-</section>
-<section id="recap-from-last-time" class="slide level2">
-<h2>Recap from last time</h2>
-<div class="task">
-<p>What is Simpson’s paradox?</p>
-</div>
 </section></section>
 <section>
-<section id="exploring-categorical-data" class="title-slide slide level1 center">
-<h1>Exploring categorical data</h1>
+<section id="inference-for-two-proportions" class="title-slide slide level1 center">
+<h1>Inference for two proportions</h1>
 
 </section>
-<section id="durham-city-and-county-resident-survey" class="slide level2">
-<h2>2020 Durham City and County Resident Survey</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" width="400" data-fig-align="center">
+<section id="nc-poll-on-equality" class="slide level2">
+<h2>NC poll on equality</h2>
+<p>A September 16-19, 2023, asked North Carolina voters, among other issues, about issues of equality and women’s progress. Specifically, one of the questions asked:</p>
+<blockquote>
+<p>Which of these two statements come closest to your own views—even if neither is exactly right?</p>
+<ul>
+<li><p>The country has made most of the changes needed to give women equal rights with men.</p></li>
+<li><p>The country needs to continue to make changes to give women equal rights to men.</p></li>
+</ul>
+</blockquote>
+</section>
+<section id="lets-hear-from-you" class="slide level2">
+<h2>Let’s hear from you</h2>
+<iframe src="https://app.sli.do/event/61VdeTA3pDq7bEGb2kruAG/embed/polls/86e56b37-7562-4a45-b51d-7c95137c9e73" width="900" height="300"></iframe>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" width="599" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div>
-<img data-src="images/durham-survey.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure-center" width="400">
+<img data-src="images/slido.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure-center" width="599">
 </div>
 </figure>
 </div>
 </section>
-<section id="sample-survey-questions---services" class="slide level2">
-<h2>Sample survey questions - services</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" width="800" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/services.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure-center" width="800">
-</div>
-</figure>
-</div>
-</section>
-<section id="sample-survey-questions---safety" class="slide level2">
-<h2>Sample survey questions - safety</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" width="800" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/safety.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure-center" width="800">
-</div>
-</figure>
-</div>
-</section>
-<section id="sample-survey-questions---demographics" class="slide level2">
-<h2>Sample survey questions - demographics</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" width="800" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/demographics.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure-center" width="800">
-</div>
-</figure>
-</div>
-</section>
-<section id="todays-focus" class="slide level2">
-<h2>Today’s focus</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center" width="800" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/demographics.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure-center" width="800">
-</div>
-</figure>
+<section id="sta-101-vs.-nc" class="slide level2">
+<h2>STA 101 vs.&nbsp;NC</h2>
+<div class="task">
+<p>Vote on Canvas under <code>2023-11-06 Check-in</code> with the access code <code>equality</code>.</p>
+<hr>
+<p>How do you think the distribution of responses from this class compares to the NC polling results?</p>
+<p>a. Similar distribution of answers between the two polls.</p>
+<p>b. Higher percentage of “The country has made most of the changes needed to give women equal rights with men” in STA 101 compared to NC poll.</p>
+<p>c. Lower percentage of “The country has made most of the changes needed to give women equal rights with men” in STA 101 compared to NC poll.</p>
 </div>
 </section>
 <section id="application-exercise" class="slide level2">
 <h2>Application exercise</h2>
-<p>Go to Posit Cloud and start the project titled <strong>ae-04-Durham</strong>.</p>
+<div class="task">
+<p>Go to Posit Cloud and continue the project titled <code>ae-14-Equality</code>.</p>
+</div>
 
 <p><img src="../logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
