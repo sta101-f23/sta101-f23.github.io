@@ -228,7 +228,7 @@
     "href": "exam-review/exam-2-review.html#question-9",
     "title": "Exam 2 Review",
     "section": "Question 9",
-    "text": "Question 9\nA bootstrap distribution with 1000 simulations is show below. Approximate the bounds of the 90% confidence interval based on this distribution."
+    "text": "Question 9\nA bootstrap distribution with 1000 simulations is show below. Approximate the bounds of the 95% confidence interval based on this distribution."
   },
   {
     "objectID": "exam-review/exam-2-review.html#question-10",
