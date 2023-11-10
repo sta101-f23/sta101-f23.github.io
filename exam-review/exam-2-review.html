@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>STA 101 - F23 - Teaching team</title>
+<title>STA 101 - F23 - Exam 2 Review</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,28 +20,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./index.html" rel="next">
-<link href="./course-support.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -69,8 +101,10 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="STA 101 - F23 - Teaching team">
+<meta property="og:title" content="STA 101 - F23 - Exam 2 Review">
 <meta property="og:description" content="Homepage for STA 101 - Data Analysis and Statistical Inference at Duke University, Fall 2023.">
 <meta property="og:site_name" content="STA 101 - F23">
 </head>
@@ -84,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./course-overview.html">Course information</a></li><li class="breadcrumb-item"><a href="./course-team.html">Teaching team</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Exam 2 Review</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -98,8 +132,8 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://posit.cloud/spaces/405361" title="Posit Cloud" class="quarto-navigation-tool px-1" aria-label="Posit Cloud"><i class="bi bi-cloud"></i></a>
@@ -138,52 +172,52 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
  <span class="menu-text">Course information</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-support.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-support.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Support</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-team.html" class="sidebar-item-text sidebar-link active">
+  <a href="../course-team.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Teaching team</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-links.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-links.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Useful links</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-faq.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-faq.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FAQ</span></a>
   </div>
 </li>
@@ -200,49 +234,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/lab-1.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/lab-1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/lab-2.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/lab-2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/lab-3.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/lab-3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/lab-4.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/lab-4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/lab-5.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/lab-5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 5</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/lab-6.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/lab-6.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 6</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/lab-7.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/lab-7.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 7</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/lab-8.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/lab-8.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 8</span></a>
   </div>
 </li>
@@ -259,13 +293,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./project/project-1.html" class="sidebar-item-text sidebar-link">
+  <a href="../project/project-1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./project/project-2.html" class="sidebar-item-text sidebar-link">
+  <a href="../project/project-2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project 2</span></a>
   </div>
 </li>
@@ -282,19 +316,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./computing/computing-access.html" class="sidebar-item-text sidebar-link">
+  <a href="../computing/computing-access.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Access</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./computing/computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
+  <a href="../computing/computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Troubleshooting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./computing/computing-cheatsheets.html" class="sidebar-item-text sidebar-link">
+  <a href="../computing/computing-cheatsheets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cheatsheets</span></a>
   </div>
 </li>
@@ -302,7 +336,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extra-credit.html" class="sidebar-item-text sidebar-link">
+  <a href="../extra-credit.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Extra credit</span></a>
   </div>
 </li>
@@ -316,17 +350,40 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructor" id="toc-instructor" class="nav-link active" data-scroll-target="#instructor">Instructor</a></li>
-  <li><a href="#teaching-assistants" id="toc-teaching-assistants" class="nav-link" data-scroll-target="#teaching-assistants">Teaching assistants</a></li>
+  <li><a href="#part-1---cheers" id="toc-part-1---cheers" class="nav-link active" data-scroll-target="#part-1---cheers">Part 1 - Cheers</a>
+  <ul class="collapse">
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
+  </ul></li>
+  <li><a href="#part-2---employment" id="toc-part-2---employment" class="nav-link" data-scroll-target="#part-2---employment">Part 2 - Employment</a>
+  <ul class="collapse">
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a></li>
+  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11">Question 11</a></li>
+  </ul></li>
+  <li><a href="#part-3---miscellaneous" id="toc-part-3---miscellaneous" class="nav-link" data-scroll-target="#part-3---miscellaneous">Part 3 - Miscellaneous</a>
+  <ul class="collapse">
+  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12">Question 12</a></li>
+  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13">Question 13</a></li>
+  <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14">Question 14</a></li>
+  <li><a href="#question-15" id="toc-question-15" class="nav-link" data-scroll-target="#question-15">Question 15</a></li>
+  <li><a href="#bonus" id="toc-bonus" class="nav-link" data-scroll-target="#bonus">Bonus</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/course-team.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/exam-review/exam-2-review.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="exam-2-review.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./course-overview.html">Course information</a></li><li class="breadcrumb-item"><a href="./course-team.html">Teaching team</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Teaching team</h1>
+<h1 class="title">Exam 2 Review</h1>
 </div>
 
 
@@ -343,121 +400,639 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="instructor" class="level2">
-<h2 class="anchored" data-anchor-id="instructor">Instructor</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center anchored" alt="Headshot of Dr. Mine Çetinkaya-Rundel" style="float:right;padding: 0 0 0 10px;" width="200">
+<section id="part-1---cheers" class="level1">
+<h1>Part 1 - Cheers</h1>
+<p>Gallup polls have consistently found large differences in alcohol consumption among education and income subgroups over time. The income and education differences in drinking are typically larger than those seen by other demographic characteristics, such as gender, age, race, region, and religion.</p>
+<p>The table below shows the distribution of data from a Gallup poll that asked respondents about their preferred alcoholic beverage (beer, wine, or liquor) and their income bracket.</p>
+<!--# The associated Gallup study can be found at http://www.gallup.com/poll/184358/drinking-highest-among-educated-upper-income-americans.aspx?g_source=CATEGORY_WELLBEING&g_medium=topic&g_campaign=tiles
+%The numbers here were made up so that the percentage of alcohol type reflected the percentages found in the study, based a total of 1009 polled Americans. However, no information was given on how many people were sampled from each income bracket/education level, so those figures were made up -->
+<div class="cell">
+<div class="cell-output-display">
+<div id="svkyyelizd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#svkyyelizd table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#svkyyelizd thead, #svkyyelizd tbody, #svkyyelizd tfoot, #svkyyelizd tr, #svkyyelizd td, #svkyyelizd th {
+  border-style: none;
+}
+
+#svkyyelizd p {
+  margin: 0;
+  padding: 0;
+}
+
+#svkyyelizd .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#svkyyelizd .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#svkyyelizd .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#svkyyelizd .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#svkyyelizd .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#svkyyelizd .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#svkyyelizd .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#svkyyelizd .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#svkyyelizd .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#svkyyelizd .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#svkyyelizd .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#svkyyelizd .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#svkyyelizd .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#svkyyelizd .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#svkyyelizd .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#svkyyelizd .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#svkyyelizd .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#svkyyelizd .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#svkyyelizd .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#svkyyelizd .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#svkyyelizd .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#svkyyelizd .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#svkyyelizd .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#svkyyelizd .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#svkyyelizd .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#svkyyelizd .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#svkyyelizd .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#svkyyelizd .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#svkyyelizd .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#svkyyelizd .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#svkyyelizd .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#svkyyelizd .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#svkyyelizd .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#svkyyelizd .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#svkyyelizd .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#svkyyelizd .gt_left {
+  text-align: left;
+}
+
+#svkyyelizd .gt_center {
+  text-align: center;
+}
+
+#svkyyelizd .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#svkyyelizd .gt_font_normal {
+  font-weight: normal;
+}
+
+#svkyyelizd .gt_font_bold {
+  font-weight: bold;
+}
+
+#svkyyelizd .gt_font_italic {
+  font-style: italic;
+}
+
+#svkyyelizd .gt_super {
+  font-size: 65%;
+}
+
+#svkyyelizd .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#svkyyelizd .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#svkyyelizd .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#svkyyelizd .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#svkyyelizd .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#svkyyelizd .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#svkyyelizd .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Income" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Income</th>
+<th id="Beer" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Beer</th>
+<th id="Wine" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Wine</th>
+<th id="Liquor" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Liquor</th>
+<th id="Total" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Total</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="income">Less than $30,000</td>
+<td class="gt_row gt_right" headers="Beer">83</td>
+<td class="gt_row gt_right" headers="Wine">67</td>
+<td class="gt_row gt_right" headers="Liquor">44</td>
+<td class="gt_row gt_right" headers="Total">194</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="income">$30,000 - $74,999</td>
+<td class="gt_row gt_right" headers="Beer">213</td>
+<td class="gt_row gt_right" headers="Wine">161</td>
+<td class="gt_row gt_right" headers="Liquor">126</td>
+<td class="gt_row gt_right" headers="Total">500</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="income">$75,000 or more</td>
+<td class="gt_row gt_right" headers="Beer">110</td>
+<td class="gt_row gt_right" headers="Wine">116</td>
+<td class="gt_row gt_right" headers="Liquor">80</td>
+<td class="gt_row gt_right" headers="Total">306</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="income">Total</td>
+<td class="gt_row gt_right" headers="Beer">406</td>
+<td class="gt_row gt_right" headers="Wine">344</td>
+<td class="gt_row gt_right" headers="Liquor">250</td>
+<td class="gt_row gt_right" headers="Total">1000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<p>In evaluating the relationship between these two variables, what is the response variable and what is the explanatory variable?</p>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<p>Which of the following are appropriate visualizations for these data? Check <strong>all</strong> that apply.</p>
+<pre><code>I.   Pie chart
+II.  Ridge plot
+III. Side-by-side box plots
+IV.  Stacked var plot</code></pre>
+<ol type="a">
+<li>I</li>
+<li>I and II</li>
+<li>I, II, and III</li>
+<li>III and IV</li>
+</ol>
+</section>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<p>What are the hypotheses for evaluating whether there is a relationship between income bracket and preferred alcoholic beverage?</p>
+</section>
+<section id="question-4" class="level2">
+<h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<p>If in fact the null hypothesis is true, how many Americans who make between <strong>$30,000 and $74,999</strong> would we expect to have <strong>liquor</strong> as their preferred alcoholic beverage?</p>
+</section>
+<section id="question-5" class="level2">
+<h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
+<p>The following plot is a histogram of the null distribution for this hypothesis test, created using the code below. The observed statistic is 4.74. Shade the area corresponding to the p-value for this test on the histogram of the null distribution below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>null_dist <span class="ot">&lt;-</span> income_alcohol <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> alcohol, <span class="at">explanatory =</span> income) <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center anchored" width="768">
 <figure class="quarto-float quarto-float-fig figure">
 <div>
-<img src="images/team/mine.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="img-fluid figure-img" style="float:right;padding: 0 0 0 10px;" alt="Headshot of Dr. Mine Çetinkaya-Rundel" width="200">
+<img src="exam-2-review_files/figure-html/null-dist-plot-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="img-fluid figure-img" width="768">
 </div>
 </figure>
 </div>
-<p><a href="http://mine-cr.com/"><strong>Dr.&nbsp;Mine Çetinkaya-Rundel</strong></a> (she/her) is Professor of the Practice and Director of Undergraduate Studies at the <a href="https://stat.duke.edu/">Department of Statistical Science</a> at Duke University and an affiliated faculty in the <a href="https://cmac.duke.edu/">Computational Media, Arts, and Cultures</a>. Mine’s work focuses on innovation in statistics and data science pedagogy, with an emphasis on computing, reproducible research, student-centered learning, and open-source education as well as pedagogical approaches for enhancing retention of women and under-represented minorities in STEM.</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Office hours</th>
-<th>Location</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Tue 3:30 - 5:30 pm</td>
-<td>Old Chem 213</td>
-</tr>
-</tbody>
-</table>
+</div>
+</div>
 </section>
-<section id="teaching-assistants" class="level2">
-<h2 class="anchored" data-anchor-id="teaching-assistants">Teaching assistants</h2>
-<table class="table">
-<thead>
-<tr class="header">
-<th></th>
-<th>Name</th>
-<th>Role</th>
-<th>Lab section</th>
-<th>Office hours</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><img src="images/team/shuo.png" class="img-fluid" width="100"></td>
-<td><a href="https://scholars.duke.edu/person/shuo.wang717">Shuo Wang</a></td>
-<td>Head + Lab TA</td>
-<td>Fri 8:30 - 9:45 am</td>
-<td>Mon 2:45 - 4:45 pm<br>
-Old Chem 203B</td>
-</tr>
-<tr class="even">
-<td><img src="images/team/sylvia.png" class="img-fluid" width="100"></td>
-<td><a href="https://www.linkedin.com/in/sylvia-vincent-57b71917a">Sylvia Vincent</a></td>
-<td>Lab TA</td>
-<td>Fri 10:05 - 11:20 am</td>
-<td>Wed 3 - 5 pm<br>
-Old Chem 025</td>
-</tr>
-<tr class="odd">
-<td><img src="images/team/john.png" class="img-fluid" width="100"></td>
-<td><a href="https://www.linkedin.com/in/john-gillen-611471229/">John Gillen</a></td>
-<td>Lab TA</td>
-<td>Fri 11:45 am - 1:00 pm</td>
-<td>Wed 10:30 am - 12:30 pm<br>
-<a href="https://canvas.duke.edu/courses/4625/pages/ta-office-hours">Zoom</a></td>
-</tr>
-<tr class="even">
-<td><img src="images/team/chris.png" class="img-fluid" width="100"></td>
-<td><a href="https://scholars.duke.edu/person/chris.oswald">Chris Oswald</a></td>
-<td>Lab TA</td>
-<td>Fri 1:25 - 2:40 pm</td>
-<td>Mon 9 - 10 am<br>
-Tue 9 - 10 am<br>
-Jones Open Lab (Bostock Library, 1st Floor)</td>
-</tr>
-<tr class="odd">
-<td><img src="images/team/minh-anh.png" class="img-fluid" width="100"></td>
-<td><a href="https://scholars.duke.edu/person/minhanh.to">Minh Anh To</a></td>
-<td>TA</td>
-<td></td>
-<td>Mon 10 am - 12 pm<br>
-Old Chem 203B</td>
-</tr>
-<tr class="even">
-<td><img src="images/team/hao.png" class="img-fluid" width="100"></td>
-<td><a href="https://scholars.duke.edu/person/hao.wang">Hao Wang</a></td>
-<td>TA</td>
-<td></td>
-<td>Tue 10 am - 12 pm<br>
-Old Chem 203B</td>
-</tr>
-<tr class="odd">
-<td><img src="images/team/noah.png" class="img-fluid" width="100"></td>
-<td><a href="https://www.linkedin.com/in/noah-obuya-5795b7228">Noah Obuya</a></td>
-<td>TA</td>
-<td></td>
-<td>Sun 12 - 2 pm<br>
-<a href="https://canvas.duke.edu/courses/4625/pages/ta-office-hours">Zoom</a></td>
-</tr>
-<tr class="even">
-<td><img src="images/team/meghna.png" class="img-fluid" width="100"></td>
-<td><a href="https://www.linkedin.com/in/meghna-katyal-90bb13202">Meghna Katyal</a></td>
-<td>TA</td>
-<td></td>
-<td>Mon 7:30 - 8:30 pm<br>
-<a href="https://canvas.duke.edu/courses/4625/pages/ta-office-hours">Zoom</a></td>
-</tr>
-<tr class="odd">
-<td><img src="images/team/avery.png" class="img-fluid" width="100"></td>
-<td><a href="https://www.linkedin.com/in/avery-hodges-26824318a">Avery Hodges</a></td>
-<td>TA</td>
-<td></td>
-<td>Mon 5 - 7 pm<br>
-<a href="https://canvas.duke.edu/courses/4625/pages/ta-office-hours">Zoom</a></td>
-</tr>
-</tbody>
-</table>
+<section id="question-6" class="level2">
+<h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
+<p>Estimate the p-value. In your answer, describe how you arrived at your answer.</p>
+</section>
+<section id="question-7" class="level2">
+<h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
+<p>Based on your answer to the previous question, what is the conclusion of the hypothesis test at the 5% discernibility level?</p>
+</section>
+</section>
+<section id="part-2---employment" class="level1">
+<h1>Part 2 - Employment</h1>
+<p>A large university knows that about 70% of the full-time students are employed at least 5 hours per week. The members of the Statistics Department wonder if the same proportion of their students work at least 5 hours per week. They randomly sample 25 majors and find that 15 of the students (60%) work 5 or more hours each week.</p>
+<section id="question-8" class="level2">
+<h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
+<p>Describe how you can set up a simulation to estimate the proportion of statistics majors who work 5 or more hours each week based on this sample.</p>
+</section>
+<section id="question-9" class="level2">
+<h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
+<p>A bootstrap distribution with 1000 simulations is show below. Approximate the bounds of the 90% confidence interval based on this distribution.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="exam-2-review_files/figure-html/unnamed-chunk-7-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="question-10" class="level2">
+<h2 class="anchored" data-anchor-id="question-10">Question 10</h2>
+<p>Suppose the lower bound of the confidence interval from the previous question is L and the upper bound is U. Which of the following is correct?</p>
+<p>a. Between L to U of statistics majors work at least 5 hours per week.</p>
+<p>b. 95% of the time the true proportion of statistics majors who work at least 5 hours per week is between L and U.</p>
+<p>c. Between L and U of random samples of 25 Americans are expected to yield confidence intervals that contain the true proportion of Americans who walk for at least 10 minutes per day.</p>
+<p>d. 95% of random samples of 23,129 Americans will yield confidence intervals between 61.1% and 62.9%.</p>
+<p>e. None of the above.</p>
+</section>
+<section id="question-11" class="level2">
+<h2 class="anchored" data-anchor-id="question-11">Question 11</h2>
+</section>
+</section>
+<section id="part-3---miscellaneous" class="level1">
+<h1>Part 3 - Miscellaneous</h1>
+<section id="question-12" class="level2">
+<h2 class="anchored" data-anchor-id="question-12">Question 12</h2>
+<p><strong>Choose the best answer.</strong></p>
+<p>A survey based on a random sample of 2,045 American teenagers found that a 95% confidence interval for the mean number of texts sent per month was (1450, 1550). A valid interpretation of this interval is</p>
+<ol type="a">
+<li>95% of all teens who text send between 1450 and 1550 text messages per month.</li>
+<li>If a new survey with the same sample size were to be taken, there is a 95% chance that the mean number of texts in the sample would be between 1450 and 1550.</li>
+<li>We are 95% confident that the mean number of texts per month of all American teens is between 1450 and 1550.</li>
+<li>We are 95% confident that, were we to repeat this survey, the mean number of texts per month of those taking part in the survey would be between 1450 and 1550.</li>
+</ol>
+</section>
+<section id="question-13" class="level2">
+<h2 class="anchored" data-anchor-id="question-13">Question 13</h2>
+<p><strong>Which is bigger?</strong></p>
+<p>A researcher is planning to conduct a test of two proportions. The null hypothesis is <span class="math inline">\(H_0: p_1 - p_2 = 0\)</span>. The researcher has found that in their data <span class="math inline">\(\hat{p}_1 - \hat{p}_2 = 0.2\)</span>.</p>
+<p>I. P-value associated if <span class="math inline">\(H_A: p_1 - p_2 \ne 0\)</span> II. P-value associated if <span class="math inline">\(H_A: p_1 - p_2 &gt; 0\)</span></p>
+<ol type="a">
+<li>I &gt; II</li>
+<li>I &lt; II</li>
+<li>I = II</li>
+</ol>
+</section>
+<section id="question-14" class="level2">
+<h2 class="anchored" data-anchor-id="question-14">Question 14</h2>
+<p><strong>Fill in the blanks.</strong></p>
+<p>a. Power of the test is the probability of ___.</p>
+<p>b. Type 1 error rate is the probability of ___.</p>
+<p>c. Type 2 error rate is the probability of ___.</p>
+<p>d. Unbeknownst to you, let’s say that the null hypothesis is actually true in the population. You plan to run a study anyway. If the level of discernibility you choose (i.e., the cutoff for your p-value) is 0.05, the probability that you will mistakenly reject the null hypothesis is ____.</p>
+</section>
+<section id="question-15" class="level2">
+<h2 class="anchored" data-anchor-id="question-15">Question 15</h2>
+<p><strong>True or false.</strong> And, if false, explain your reasoning.</p>
+<p>a. The central limit theorem tells us that the sampling distribution of a sample proportion will be centered at <span class="math inline">\(\hat{p}\)</span>.</p>
+<p>b. Increasing the number of bootstrap samples will decrease the width of the confidence interval.</p>
+<p>c. The bootstrap distribution of a sample proportion, <span class="math inline">\(\hat{p}\)</span>, will be centered at <span class="math inline">\(\hat{p}\)</span>.</p>
+</section>
+<section id="bonus" class="level2">
+<h2 class="anchored" data-anchor-id="bonus">Bonus</h2>
+<p>Pick a concept we introduced in class so far that you’ve been struggling with and explain it in your own words.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -995,18 +1570,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./course-support.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Support</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./index.html" class="pagination-link">
-        <span class="nav-page-text">Schedule</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

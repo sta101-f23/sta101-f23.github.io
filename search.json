@@ -154,121 +154,128 @@
     ]
   },
   {
-    "objectID": "exam-review/exam-1-review.html",
-    "href": "exam-review/exam-1-review.html",
-    "title": "Exam 1 Review",
+    "objectID": "exam-review/exam-2-review-sa.html",
+    "href": "exam-review/exam-2-review-sa.html",
+    "title": "Exam 2 Review",
     "section": "",
-    "text": "In 2020, employees of Blizzard Entertainment circulated a spreadsheet to anonymously share salaries and recent pay increases amidst rising tension in the video game industry over wage disparities and executive compensation. (Source: Blizzard Workers Share Salaries in Revolt Over Pay)\nThe name of the data frame used for this analysis is blizzard_salary and the relevant variables are:\nThe top six rows of blizzard_salary are shown below:\n# A tibble: 409 × 4\n   percent_incr salary_type annual_salary performance_rating\n          &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;             \n 1          1   Salaried               1  High              \n 2          1   Salaried               1  Successful        \n 3          1   Salaried               1  High              \n 4          1   Hourly             33987. Successful        \n 5         NA   Hourly             34798. High              \n 6         NA   Hourly             35360  &lt;NA&gt;              \n 7         NA   Hourly             37440  &lt;NA&gt;              \n 8          0   Hourly             37814. &lt;NA&gt;              \n 9          4   Hourly             41101. Top               \n10          1.2 Hourly             42328  &lt;NA&gt;              \n# ℹ 399 more rows"
+    "text": "explanatory: income bracket; response: preferred alcoholic beverage\nIII and IV\n\\(H_0\\): Income bracket and preference for alcoholic beverage are independent.\n\\(H_A\\): Income bracket and preference for alcoholic beverage are dependent.\n\\(E = 250 \\times \\frac{500}{1000} = 125\\)\nThe shaded area below represents the p-value.\n\n\n\n\n\n\n\n\n\n\n\n\n\nAdd up the heights of the bars that contain simulated sample statistics with a value of 4.74 or higher and divide by the number of simulations. Approximately 352 (113+76+51+36+30+19+8+6+7+2+3+0+1) simulations out of 1,000 meet this criteria, resulting in a p-value of approximately 0.352.\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe p-value is much larger than 0.05, therefore the data do not provide convincing evidence that income bracket and preference for alcoholic beverage are dependent.\nTake a random sample of size 25, with replacement, from the original sample. Calculate the proportion of students in this simulated sample who work 5 or more hours. Repeat this process 1000 times to build the bootstrap distribution. Take the middle 95% of this distribution to construct a 95% confidence interval for the true proportion of statistics majors who work 5 or more hours.\n(40%, 90%)\n..\n..\n\nWe are 95% confident that the mean number of texts per month of all American teens is between 1450 and 1550.\n\n\nI &gt; II\n\na. Power of the test is the probability of rejecting the null hypothesis when the null hypothesis is false.\nb. Type 1 error rate is the probability of rejecting the null hypothesis when the null hypothesis is true.\nc. Type 1 error rate is the probability of failing to reject the null hypothesis when the null hypothesis is false.\nd. 0.05.\na. False. It will be centered at \\(p\\), the true population proportion.\nb. False. Increasing the number of bootstrap samples does not affect the variability of the sample statistic.\nc. True."
   },
   {
-    "objectID": "exam-review/exam-1-review.html#question-1",
-    "href": "exam-review/exam-1-review.html#question-1",
-    "title": "Exam 1 Review",
-    "section": "Question 1",
-    "text": "Question 1\nHow rows observations are there in the blizzard_salary dataset and what does each row represent?"
+    "objectID": "exam-review/exam-2-review.html",
+    "href": "exam-review/exam-2-review.html",
+    "title": "Exam 2 Review",
+    "section": "",
+    "text": "Gallup polls have consistently found large differences in alcohol consumption among education and income subgroups over time. The income and education differences in drinking are typically larger than those seen by other demographic characteristics, such as gender, age, race, region, and religion.\nThe table below shows the distribution of data from a Gallup poll that asked respondents about their preferred alcoholic beverage (beer, wine, or liquor) and their income bracket.\n\n\n\n\n\n\n\n\n\nIncome\nBeer\nWine\nLiquor\nTotal\n\n\n\n\nLess than $30,000\n83\n67\n44\n194\n\n\n$30,000 - $74,999\n213\n161\n126\n500\n\n\n$75,000 or more\n110\n116\n80\n306\n\n\nTotal\n406\n344\n250\n1000\n\n\n\n\n\n\n\n\n\nIn evaluating the relationship between these two variables, what is the response variable and what is the explanatory variable?\n\n\n\nWhich of the following are appropriate visualizations for these data? Check all that apply.\nI.   Pie chart\nII.  Ridge plot\nIII. Side-by-side box plots\nIV.  Stacked var plot\n\nI\nI and II\nI, II, and III\nIII and IV\n\n\n\n\nWhat are the hypotheses for evaluating whether there is a relationship between income bracket and preferred alcoholic beverage?\n\n\n\nIf in fact the null hypothesis is true, how many Americans who make between $30,000 and $74,999 would we expect to have liquor as their preferred alcoholic beverage?\n\n\n\nThe following plot is a histogram of the null distribution for this hypothesis test, created using the code below. The observed statistic is 4.74. Shade the area corresponding to the p-value for this test on the histogram of the null distribution below.\n\nset.seed(1234)\n\nnull_dist &lt;- income_alcohol |&gt;\n  specify(response = alcohol, explanatory = income) |&gt;\n  hypothesize(null = \"independence\") |&gt;\n  generate(reps = 1000, type = \"permute\") |&gt;\n  calculate(stat = \"Chisq\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimate the p-value. In your answer, describe how you arrived at your answer.\n\n\n\nBased on your answer to the previous question, what is the conclusion of the hypothesis test at the 5% discernibility level?"
   },
   {
-    "objectID": "exam-review/exam-1-review.html#question-2",
-    "href": "exam-review/exam-1-review.html#question-2",
-    "title": "Exam 1 Review",
-    "section": "Question 2",
-    "text": "Question 2\nFigure 1 (a) and Figure 1 (b) show the distributions of annual salaries of hourly and salaried workers. The two figures show the same data, with the facets organized across rows and across columns. Which of the two figures is better for comparing the median annual salaries of hourly and salaried workers. Explain your reasoning.\n\n\n\n\n\n\n\n\n\n\n\n(a) Option 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n(b) Option 2\n\n\n\n\n\n\n\nFigure 1: Distribution of annual salaries of Blizzard employees"
+    "objectID": "exam-review/exam-2-review.html#question-1",
+    "href": "exam-review/exam-2-review.html#question-1",
+    "title": "Exam 2 Review",
+    "section": "",
+    "text": "In evaluating the relationship between these two variables, what is the response variable and what is the explanatory variable?"
   },
   {
-    "objectID": "exam-review/exam-1-review.html#question-3",
-    "href": "exam-review/exam-1-review.html#question-3",
-    "title": "Exam 1 Review",
-    "section": "Question 3",
-    "text": "Question 3\nSuppose your teammate wrote the following code as part of their analysis of the data.\nThey then printed out the results shown below. Unfortunately one of the number got erased from the printout, it’s indicated with _____ below.\n# A tibble: 2 × 3\n  salary_type mean_annual_salary median_annual_salary\n  &lt;chr&gt;                    &lt;dbl&gt;                &lt;dbl&gt;\n1 Hourly                  63003.               54246.\n2 Salaried                90183.               _____\nWhich of the following is the best estimate for that erased value?\n\n30,000\n50,000\n80,000\n100,000"
+    "objectID": "exam-review/exam-2-review.html#question-2",
+    "href": "exam-review/exam-2-review.html#question-2",
+    "title": "Exam 2 Review",
+    "section": "",
+    "text": "Which of the following are appropriate visualizations for these data? Check all that apply.\nI.   Pie chart\nII.  Ridge plot\nIII. Side-by-side box plots\nIV.  Stacked var plot\n\nI\nI and II\nI, II, and III\nIII and IV"
   },
   {
-    "objectID": "exam-review/exam-1-review.html#question-4",
-    "href": "exam-review/exam-1-review.html#question-4",
-    "title": "Exam 1 Review",
-    "section": "Question 4",
-    "text": "Question 4\nWhich distribution has a higher standard deviation?\n\nHourly workers\nSalaried workers\nRoughly the same"
+    "objectID": "exam-review/exam-2-review.html#question-3",
+    "href": "exam-review/exam-2-review.html#question-3",
+    "title": "Exam 2 Review",
+    "section": "",
+    "text": "What are the hypotheses for evaluating whether there is a relationship between income bracket and preferred alcoholic beverage?"
   },
   {
-    "objectID": "exam-review/exam-1-review.html#question-5",
-    "href": "exam-review/exam-1-review.html#question-5",
-    "title": "Exam 1 Review",
-    "section": "Question 5",
-    "text": "Question 5\nWhich of the following alternate plots would also be useful for visualizing the distributions of annual salaries of hourly and salaried workers?\nI.  Box plot\nII. Density plot\nIII. Pie chart\nIV. Waffle chart\n\nI\nI and II\nI, II, and III\nIII and IV"
+    "objectID": "exam-review/exam-2-review.html#question-4",
+    "href": "exam-review/exam-2-review.html#question-4",
+    "title": "Exam 2 Review",
+    "section": "",
+    "text": "If in fact the null hypothesis is true, how many Americans who make between $30,000 and $74,999 would we expect to have liquor as their preferred alcoholic beverage?"
   },
   {
-    "objectID": "exam-review/exam-1-review.html#question-6",
-    "href": "exam-review/exam-1-review.html#question-6",
-    "title": "Exam 1 Review",
-    "section": "Question 6",
-    "text": "Question 6\nNext, you fit a model for predicting raises (percent_incr) from salaries (annual_salary). We’ll call this model raise_1_fit. A tidy output of the model is shown below.\n\n\n# A tibble: 2 × 5\n  term           estimate  std.error statistic   p.value\n  &lt;chr&gt;             &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)   1.87      0.432           4.33 0.0000194\n2 annual_salary 0.0000155 0.00000452      3.43 0.000669 \n\n\nWhich of the following is the best interpretation of the slope coefficient?\n\nFor every additional $1,000 of annual salary, the model predicts the raise to be higher, on average, by 1.55%.\nFor every additional $1,000 of annual salary, the raise goes up by 0.0155%.\nFor every additional $1,000 of annual salary, the model predicts the raise to be higher, on average, by 0.0155%.\nFor every additional $1,000 of annual salary, the model predicts the raise to be higher, on average, by 1.87%."
+    "objectID": "exam-review/exam-2-review.html#question-5",
+    "href": "exam-review/exam-2-review.html#question-5",
+    "title": "Exam 2 Review",
+    "section": "",
+    "text": "The following plot is a histogram of the null distribution for this hypothesis test, created using the code below. The observed statistic is 4.74. Shade the area corresponding to the p-value for this test on the histogram of the null distribution below.\n\nset.seed(1234)\n\nnull_dist &lt;- income_alcohol |&gt;\n  specify(response = alcohol, explanatory = income) |&gt;\n  hypothesize(null = \"independence\") |&gt;\n  generate(reps = 1000, type = \"permute\") |&gt;\n  calculate(stat = \"Chisq\")"
   },
   {
-    "objectID": "exam-review/exam-1-review.html#question-7",
-    "href": "exam-review/exam-1-review.html#question-7",
-    "title": "Exam 1 Review",
-    "section": "Question 7",
-    "text": "Question 7\nYou then fit a model for predicting raises (percent_incr) from salaries (annual_salary) and performance ratings (performance_rating). We’ll call this model raise_2_fit. Which of the following is definitely true based on the information you have so far?\n\nIntercept of raise_2_fit is higher than intercept of raise_1_fit.\nRMSE of raise_2_fit is higher than RMSE of raise_1_fit.\nAdjusted \\(R^2\\) of raise_2_fit is higher than adjusted \\(R^2\\) of raise_1_fit.\n\\(R^2\\) of raise_2_fit is higher \\(R^2\\) of raise_1_fit."
+    "objectID": "exam-review/exam-2-review.html#question-6",
+    "href": "exam-review/exam-2-review.html#question-6",
+    "title": "Exam 2 Review",
+    "section": "",
+    "text": "Estimate the p-value. In your answer, describe how you arrived at your answer."
   },
   {
-    "objectID": "exam-review/exam-1-review.html#question-8",
-    "href": "exam-review/exam-1-review.html#question-8",
-    "title": "Exam 1 Review",
+    "objectID": "exam-review/exam-2-review.html#question-7",
+    "href": "exam-review/exam-2-review.html#question-7",
+    "title": "Exam 2 Review",
+    "section": "",
+    "text": "Based on your answer to the previous question, what is the conclusion of the hypothesis test at the 5% discernibility level?"
+  },
+  {
+    "objectID": "exam-review/exam-2-review.html#question-8",
+    "href": "exam-review/exam-2-review.html#question-8",
+    "title": "Exam 2 Review",
     "section": "Question 8",
-    "text": "Question 8\nThe tidy model output for the raise_2_fit model you fit is shown below.\n\n\n# A tibble: 5 × 5\n  term                            estimate  std.error statistic  p.value\n  &lt;chr&gt;                              &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)                   3.55       0.508           6.99 1.99e-11\n2 annual_salary                 0.00000989 0.00000436      2.27 2.42e- 2\n3 performance_ratingPoor       -4.06       1.42           -2.86 4.58e- 3\n4 performance_ratingSuccessful -2.40       0.397          -6.05 4.68e- 9\n5 performance_ratingTop         2.99       0.715           4.18 3.92e- 5\n\n\nWhen your teammate sees this model output, they remark “The coefficient for performance_ratingSuccessful is negative, that’s weird. I guess it means that people who get successful performance ratings get lower raises.” How would you respond to your teammate?"
+    "text": "Question 8\nDescribe how you can set up a simulation to estimate the proportion of statistics majors who work 5 or more hours each week based on this sample."
   },
   {
-    "objectID": "exam-review/exam-1-review.html#question-9",
-    "href": "exam-review/exam-1-review.html#question-9",
-    "title": "Exam 1 Review",
+    "objectID": "exam-review/exam-2-review.html#question-9",
+    "href": "exam-review/exam-2-review.html#question-9",
+    "title": "Exam 2 Review",
     "section": "Question 9",
-    "text": "Question 9\nUltimately, your teammate decides they don’t like the negative slope coefficients in the model output you created (not that there’s anything wrong with negative slope coefficients!), does something else, and comes up with the following model output.\n\n\n# A tibble: 5 × 5\n  term                            estimate  std.error statistic    p.value\n  &lt;chr&gt;                              &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;\n1 (Intercept)                  -0.511      1.47          -0.347 0.729     \n2 annual_salary                 0.00000989 0.00000436     2.27  0.0242    \n3 performance_ratingSuccessful  1.66       1.42           1.17  0.242     \n4 performance_ratingHigh        4.06       1.42           2.86  0.00458   \n5 performance_ratingTop         7.05       1.53           4.60  0.00000644\n\n\nUnfortunately they didn’t write their code in a Quarto document, instead just wrote some code in the Console and then lost track of their work. They remember using the fct_relevel() function and doing something like the following:\nWhat should they put in the blanks to get the same model output as above?\n\n“Poor”, “Successful”, “High”, “Top”\n“Successful”, “High”, “Top”\n“Top”, “High”, “Successful”, “Poor”\nPoor, Successful, High, Top"
+    "text": "Question 9\nA bootstrap distribution with 1000 simulations is show below. Approximate the bounds of the 90% confidence interval based on this distribution."
   },
   {
-    "objectID": "exam-review/exam-1-review.html#question-10",
-    "href": "exam-review/exam-1-review.html#question-10",
-    "title": "Exam 1 Review",
+    "objectID": "exam-review/exam-2-review.html#question-10",
+    "href": "exam-review/exam-2-review.html#question-10",
+    "title": "Exam 2 Review",
     "section": "Question 10",
-    "text": "Question 10\nFinally, your teammate creates the following two plots and ask you for help deciding which one to use in the final report for visualizing the relationship between performance rating and salary type. In 1-3 sentences, can you help them make a decision, justify your choice, and write the narrative that should go with the plot?\n\n\n\n\n\n\n\n\n\n\n\n(a) Option 1\n\n\n\n\n\n\n\n\n\n\n\n(b) Option 2\n\n\n\n\n\n\n\nFigure 2: Distribution of salary type by performance rating"
+    "text": "Question 10\nSuppose the lower bound of the confidence interval from the previous question is L and the upper bound is U. Which of the following is correct?\na. Between L to U of statistics majors work at least 5 hours per week.\nb. 95% of the time the true proportion of statistics majors who work at least 5 hours per week is between L and U.\nc. Between L and U of random samples of 25 Americans are expected to yield confidence intervals that contain the true proportion of Americans who walk for at least 10 minutes per day.\nd. 95% of random samples of 23,129 Americans will yield confidence intervals between 61.1% and 62.9%.\ne. None of the above."
   },
   {
-    "objectID": "exam-review/exam-1-review.html#question-11",
-    "href": "exam-review/exam-1-review.html#question-11",
-    "title": "Exam 1 Review",
+    "objectID": "exam-review/exam-2-review.html#question-11",
+    "href": "exam-review/exam-2-review.html#question-11",
+    "title": "Exam 2 Review",
     "section": "Question 11",
-    "text": "Question 11\nA friend with a keen eye points out that the number of observations in Figure 2 (a) seems lower than the total number of observations in blizzard_salary. What might be going on here? Explain your reasoning."
+    "text": "Question 11"
   },
   {
-    "objectID": "exam-review/exam-1-review.html#question-12",
-    "href": "exam-review/exam-1-review.html#question-12",
-    "title": "Exam 1 Review",
+    "objectID": "exam-review/exam-2-review.html#question-12",
+    "href": "exam-review/exam-2-review.html#question-12",
+    "title": "Exam 2 Review",
     "section": "Question 12",
-    "text": "Question 12\nShow the proportions of performance ratings for hourly and salaried workers in a table and ask students to place those numbers on the segments of Figure 2 (b).\n\n\n# A tibble: 4 × 3\n  performance_rating Hourly Salaried\n  &lt;fct&gt;               &lt;dbl&gt;    &lt;dbl&gt;\n1 Successful          0.686   0.521 \n2 High                0.2     0.384 \n3 Top                 0.114   0.0760\n4 Poor                0       0.0190"
+    "text": "Question 12\nChoose the best answer.\nA survey based on a random sample of 2,045 American teenagers found that a 95% confidence interval for the mean number of texts sent per month was (1450, 1550). A valid interpretation of this interval is\n\n95% of all teens who text send between 1450 and 1550 text messages per month.\nIf a new survey with the same sample size were to be taken, there is a 95% chance that the mean number of texts in the sample would be between 1450 and 1550.\nWe are 95% confident that the mean number of texts per month of all American teens is between 1450 and 1550.\nWe are 95% confident that, were we to repeat this survey, the mean number of texts per month of those taking part in the survey would be between 1450 and 1550."
   },
   {
-    "objectID": "exam-review/exam-1-review.html#question-13",
-    "href": "exam-review/exam-1-review.html#question-13",
-    "title": "Exam 1 Review",
+    "objectID": "exam-review/exam-2-review.html#question-13",
+    "href": "exam-review/exam-2-review.html#question-13",
+    "title": "Exam 2 Review",
     "section": "Question 13",
-    "text": "Question 13\nFigure 3 is yet another visualization of the relationship between salary type and performance rating. What type of plot is ths, and what does it display that Figure 2 (b) doesn’t?\n\n\n\n\n\n\n\n\nFigure 3: Another visualization of salary type by performance rating"
+    "text": "Question 13\nWhich is bigger?\nA researcher is planning to conduct a test of two proportions. The null hypothesis is \\(H_0: p_1 - p_2 = 0\\). The researcher has found that in their data \\(\\hat{p}_1 - \\hat{p}_2 = 0.2\\).\nI. P-value associated if \\(H_A: p_1 - p_2 \\ne 0\\) II. P-value associated if \\(H_A: p_1 - p_2 &gt; 0\\)\n\nI &gt; II\nI &lt; II\nI = II"
   },
   {
-    "objectID": "exam-review/exam-1-review.html#question-14",
-    "href": "exam-review/exam-1-review.html#question-14",
-    "title": "Exam 1 Review",
+    "objectID": "exam-review/exam-2-review.html#question-14",
+    "href": "exam-review/exam-2-review.html#question-14",
+    "title": "Exam 2 Review",
     "section": "Question 14",
-    "text": "Question 14\nSuppose we fit a model to predict percent_incr from annual_salary and salary_type. A tidy output of the model is shown below.\n\n\n# A tibble: 3 × 5\n  term                 estimate  std.error statistic p.value\n  &lt;chr&gt;                   &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)         1.24      0.570           2.18 0.0300 \n2 annual_salary       0.0000137 0.00000464      2.96 0.00329\n3 salary_typeSalaried 0.913     0.544           1.68 0.0938 \n\n\nWhich of the following visualizations represent this model? Explain your reasoning.\n\n\n\n\n\n\n\n\n\n\n\n(a) Option 1\n\n\n\n\n\n\n\n\n\n\n\n(b) Option 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n(c) Option 3\n\n\n\n\n\n\n\n\n\n\n\n(d) Option 4\n\n\n\n\n\n\n\nFigure 4: Visualizations of the relationship between percent increase, annual salary, and salary type"
+    "text": "Question 14\nFill in the blanks.\na. Power of the test is the probability of ___.\nb. Type 1 error rate is the probability of ___.\nc. Type 2 error rate is the probability of ___.\nd. Unbeknownst to you, let’s say that the null hypothesis is actually true in the population. You plan to run a study anyway. If the level of discernibility you choose (i.e., the cutoff for your p-value) is 0.05, the probability that you will mistakenly reject the null hypothesis is ____."
   },
   {
-    "objectID": "exam-review/exam-1-review.html#question-15",
-    "href": "exam-review/exam-1-review.html#question-15",
-    "title": "Exam 1 Review",
+    "objectID": "exam-review/exam-2-review.html#question-15",
+    "href": "exam-review/exam-2-review.html#question-15",
+    "title": "Exam 2 Review",
     "section": "Question 15",
-    "text": "Question 15\nDefine the term parsimonious model."
+    "text": "Question 15\nTrue or false. And, if false, explain your reasoning.\na. The central limit theorem tells us that the sampling distribution of a sample proportion will be centered at \\(\\hat{p}\\).\nb. Increasing the number of bootstrap samples will decrease the width of the confidence interval.\nc. The bootstrap distribution of a sample proportion, \\(\\hat{p}\\), will be centered at \\(\\hat{p}\\)."
   },
   {
-    "objectID": "exam-review/exam-1-review.html#bonus",
-    "href": "exam-review/exam-1-review.html#bonus",
-    "title": "Exam 1 Review",
+    "objectID": "exam-review/exam-2-review.html#bonus",
+    "href": "exam-review/exam-2-review.html#bonus",
+    "title": "Exam 2 Review",
     "section": "Bonus",
     "text": "Bonus\nPick a concept we introduced in class so far that you’ve been struggling with and explain it in your own words."
   },
@@ -299,7 +306,7 @@
     "href": "index.html",
     "title": "STA 101: Data Analysis and Statistical Inference",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nPREPARE\nMATERIALS\nDUE\n\n\n\n\n1\nMon, Aug 28\n\nWelcome to STA 101!\n\n\n\n\n🖥️ slides\n☁️ ae-01\n⌨️ ae-01\n\n\n\n\n\n\n\nWed, Aug 30\n\nHello data\n\n\n📖 ims: Chp 1\n💻 tutorial: 01-data-01 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-02\n⌨️ ae-02\n🗝️ ae-02-sa\n\n\n🔘 Survey: Getting to know you\n\n\n\n\n\nFri, Sep 1\n\nLab 1: Hello R!\n\n\n\n\n⌨️ lab-1\n\n\n\n\n\n2\nMon, Sep 4\n\n⚒️ Labor Day - No lecture\n\n\n\n\n\n\n\n\n\n\n\nWed, Sep 6\n\nStudy design\n\n\n📖 ims: Chp 2\n💻 tutorial: 01-data-02 |&gt; submit\n💻 tutorial: 01-data-03 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-03\n⌨️ ae-03\n🗝️ ae-03-sa\n\n\n\n\n\n\n\nThu, Sep 7\n\n\n\n\n\n\n\n✅ Lab 1 at 5 pm\n\n\n\n\n\nFri, Sep 8\n\nLab 2: Hello data!\n\n\n📖 ims: Chp 3\n💻 tutorial: 01-data-04 |&gt; submit\n\n\n⌨️ lab-2\n\n\n\n\n\n3\nMon, Sep 11\n\nExploring categorical data\n\n\n📖 ims: Chp 4\n💻 tutorial: 02-explore-01 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-04\n⌨️ ae-04\n🗝️ ae-04-sa\n\n\n\n\n\n\n\nWed, Sep 13\n\nExploring numerical data\n\n\n📖 ims: Chp 5\n💻 tutorial: 02-explore-02 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-05\n⌨️ ae-05\n🗝️ ae-05-sa\n\n\n\n\n\n\n\nThu, Sep 14\n\n\n\n\n\n\n\n✅ Lab 2 at 5 pm\n\n\n\n\n\nFri, Sep 15\n\nLab 3: Exploratory data analysis\n\n\n📖 ims: Chp 6\n💻 tutorial: 02-explore-03 |&gt; submit\n\n\n⌨️ lab-3\n\n\n\n\n\n4\nMon, Sep 18\n\nRegression with a single predictor I\nGuest Lecture: Dr. Alex Fisher\n\n\n📖 ims: Chp 7.1 - 7.2\n💻 tutorial: 03-model-01 |&gt; submit\n💻 tutorial: 03-model-02 |&gt; submit\n\n\n\n🖥️ slides\n☁️ ae-06\n⌨️ ae-06\n🗝️ ae-06-sa\n\n\n\n\n\n\n\nWed, Sep 20\n\nNo class\nCatch up with readings and interactive tutorials\n\n\n📖 ims: Chp 7.2 - 7.4\n💻 tutorial: 03-model-03 |&gt; submit\n\n\n\n\n\n\n\n\n\nThu, Sep 21\n\n\n\n\n\n\n\n✅ Lab 3 at 5 pm\n\n\n\n\n\nFri, Sep 22\n\nLab 4: Regression\n\n\n\n\n⌨️ lab-4\n\n\n\n\n\n5\nMon, Sep 25\n\nRegression with multiple predictors\n\n\n📖 ims: Chp 8.1 - 8.3\n\n\n🖥️ slides\n☁️ ae-07\n⌨️ ae-07\n🗝️ ae-07-sa\n\n\n\n\n\n\n\nWed, Sep 27\n\nModel selection\n\n\n📖 ims: Chp 8.4 - 8.5\n\n\n🖥️ slides\n☁️ ae-08\n⌨️ ae-08\n🗝️ ae-08-sa\n\n\n\n\n\n\n\nThu, Sep 28\n\n\n\n\n\n\n\n✅ Lab 4 at 5 pm\n\n\n\n\n\nFri, Sep 29\n\nExam 1 Review\n\n\n\n\n📝 er-1\n🗝️ er-1-sa\n\n\n\n\n\n6\nMon, Oct 2\n\nRegression overview\n\n\n\n\n🖥️ slides\n\n\n\n\n\n\n\nWed, Oct 4\n\nExam 1 - In class\n\n\n\n\n\n\n\n\n\n\n\nFri, Oct 6\n\nNo lab: Work on Exam 1 - Take home\n\n\n\n\n\n\nExam 1 - Take home + Tutorials at 5 pm\n\n\n\n7\nMon, Oct 9\n\nLogistic regression I\n\n\n📖 ims: Chp 9.1 - 9.2\n\n\n🖥️ slides\n☁️ ae-09\n⌨️ ae-09\n🗝️ ae-09-sa\n\n\n\n\n\n\n\nWed, Oct 11\n\nLogistic regression II\n\n\n📖 ims: Chp 9.3 - 9.5\n\n\n🖥️ slides\n\n\n\n\n\n\n\nFri, Oct 13\n\nProject 1 workday\n\n\n\n\n\n\n📄 Project 1 at 5 pm\n\n\n\n8\nMon, Oct 16\n\n🍂 Fall Break - No lecture\n\n\n\n\n\n\n\n\n\n\n\nWed, Oct 18\n\nHypothesis testing with randomization\n\n\n📖 ims: Chp 11\n💻 tutorial: 04-foundations-01 |&gt; submit\n💻 tutorial: 04-foundations-02 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-10\n⌨️ ae-10\n🗝️ ae-10\n\n\n\n\n\n\n\nFri, Oct 20\n\nLab 5: Hypothesis testing\n\n\n\n\n⌨️ lab-5\n\n\n\n\n\n9\nMon, Oct 23\n\nConfidence intervals with bootstrapping\n\n\n📖 ims: Chp 12\n💻 tutorial: 04-foundations-04 |&gt; submit\n\n\n🖥️ slides\n\n\n\n\n\n\n\nWed, Oct 25\n\nDecision errors\nGuest Lecture: Dr. Yue Jiang\n\n\n📖 ims: Chp 14\n💻 tutorial: 04-foundations-03 |&gt; submit\n\n\n🖥️ slides\n\n\n\n\n\n\n\nThu, Oct 26\n\n\n\n\n\n\n\n✅ Lab 5 at 5 pm\n\n\n\n\n\nFri, Oct 27\n\nLab 6: Foundations of inference\n\n\n\n\n⌨️ lab-6\n\n\n\n\n\n10\nMon, Oct 30\n\nInference with mathematical models\n\n\n📖 ims: Chp 13\n\n\n🖥️ slides\n☁️ ae-11\n⌨️ ae-11\n🗝️ ae-11\n\n\n\n\n\n\n\nWed, Nov 1\n\nZoom lecture:\nInference for a single proportion\n\n\n📖 ims: Chp 16\n💻 tutorial: 05-infer-01 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-12\n⌨️ ae-12\n🗝️ ae-12\n\n\n\n\n\n\n\nThu, Nov 2\n\n\n\n\n\n\n\n✅ Lab 6 at 5 pm\n\n\n\n\n\nFri, Nov 3\n\nLab 7: Inference for proportions\n\n\n\n\n⌨️ lab-7\n\n\n\n\n\n11\nMon, Nov 6\n\nInference for comparing two proportions\n\n\n📖 ims: Chp 17\n💻 tutorial: 05-infer-02 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-13\n⌨️ ae-13\n\n\n\n\n\n\n\nWed, Nov 8\n\nInference for two-way tables\n\n\n📖 ims: Chp 18\n💻 tutorial: 05-infer-03 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-14\n⌨️ ae-14\n\n\n\n\n\n\n\nThu, Nov 9\n\n\n\n\n\n\n\n✅ Lab 7 at 5 pm\n\n\n\n\n\nFri, Nov 10\n\nExam 2 Review\n\n\n💻 tutorial: 05-infer-04 |&gt; submit\n\n\n\n\n\n\n\n12\nMon, Nov 13\n\nOverview: Inference for proportions\n\n\n📖 ims: Chp 23.1\n\n\n\n\n\n\n\n\n\nWed, Nov 15\n\nExam 2 - In class\n\n\n\n\n\n\n\n\n\n\n\nFri, Nov 17\n\nNo lab: Work on Exam 2 - Take home\n\n\n\n\n\n\nExam 2 - Take home + Tutorials at 5 pm\n\n\n\n13\nMon, Nov 20\n\nInference for a single mean\n\n\n📖 ims: Chp 19\n💻 tutorial: 05-infer-05 |&gt; submit\n💻 tutorial: 05-infer-06 |&gt; submit\n\n\n\n\n\n\n\n\n\nWed, Nov 22\n\n🦃 Thanksgiving Break - No lecture\n\n\n\n\n\n\n\n\n\n\n\nFri, Nov 24\n\n🦃 Thanksgiving Break - No lab\n\n\n\n\n\n\n\n\n\n14\nMon, Nov 27\n\nInference for comparing two independent means\n\n\n📖 ims: Chp 20\n💻 tutorial: 05-infer-07 |&gt; submit\n\n\n\n\n\n\n\n\n\nWed, Nov 29\n\nInference for comparing two paired means\n\n\n📖 ims: Chp 21\n\n\n\n\n\n\n\n\n\nFri, Dec 1\n\nLab 8: Inference for means\n\n\n\n\n⌨️ lab-8\n\n\n\n\n\n15\nMon, Dec 4\n\nInference for comparing many means\n\n\n📖 ims: Chp 22\n💻 tutorial: 05-infer-08 |&gt; submit\n\n\n\n\n\n\n\n\n\nWed, Dec 6\n\nOverview: Inference for means\nTelling a (data) story\n\n\n📖 fdv: Chp 29\n\n\n\n\n\n\n\n\n\nThu, Dec 7\n\n\n\n\n\n\n\n✅ Lab 8 at 5 pm\n\n\n\n\n\nFri, Dec 8\n\nProject 2 peer review\n\n\n\n\n\n\n\n\n\n16\nThu, Dec 14\n\nProject 2 presentations (2 - 5 pm)\n\n\n\n\n\n\n📄 Project 2 at 2 pm",
+    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nPREPARE\nMATERIALS\nDUE\n\n\n\n\n1\nMon, Aug 28\n\nWelcome to STA 101!\n\n\n\n\n🖥️ slides\n☁️ ae-01\n⌨️ ae-01\n\n\n\n\n\n\n\nWed, Aug 30\n\nHello data\n\n\n📖 ims: Chp 1\n💻 tutorial: 01-data-01 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-02\n⌨️ ae-02\n🗝️ ae-02-sa\n\n\n🔘 Survey: Getting to know you\n\n\n\n\n\nFri, Sep 1\n\nLab 1: Hello R!\n\n\n\n\n⌨️ lab-1\n\n\n\n\n\n2\nMon, Sep 4\n\n⚒️ Labor Day - No lecture\n\n\n\n\n\n\n\n\n\n\n\nWed, Sep 6\n\nStudy design\n\n\n📖 ims: Chp 2\n💻 tutorial: 01-data-02 |&gt; submit\n💻 tutorial: 01-data-03 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-03\n⌨️ ae-03\n🗝️ ae-03-sa\n\n\n\n\n\n\n\nThu, Sep 7\n\n\n\n\n\n\n\n✅ Lab 1 at 5 pm\n\n\n\n\n\nFri, Sep 8\n\nLab 2: Hello data!\n\n\n📖 ims: Chp 3\n💻 tutorial: 01-data-04 |&gt; submit\n\n\n⌨️ lab-2\n\n\n\n\n\n3\nMon, Sep 11\n\nExploring categorical data\n\n\n📖 ims: Chp 4\n💻 tutorial: 02-explore-01 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-04\n⌨️ ae-04\n🗝️ ae-04-sa\n\n\n\n\n\n\n\nWed, Sep 13\n\nExploring numerical data\n\n\n📖 ims: Chp 5\n💻 tutorial: 02-explore-02 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-05\n⌨️ ae-05\n🗝️ ae-05-sa\n\n\n\n\n\n\n\nThu, Sep 14\n\n\n\n\n\n\n\n✅ Lab 2 at 5 pm\n\n\n\n\n\nFri, Sep 15\n\nLab 3: Exploratory data analysis\n\n\n📖 ims: Chp 6\n💻 tutorial: 02-explore-03 |&gt; submit\n\n\n⌨️ lab-3\n\n\n\n\n\n4\nMon, Sep 18\n\nRegression with a single predictor I\nGuest Lecture: Dr. Alex Fisher\n\n\n📖 ims: Chp 7.1 - 7.2\n💻 tutorial: 03-model-01 |&gt; submit\n💻 tutorial: 03-model-02 |&gt; submit\n\n\n\n🖥️ slides\n☁️ ae-06\n⌨️ ae-06\n🗝️ ae-06-sa\n\n\n\n\n\n\n\nWed, Sep 20\n\nNo class\nCatch up with readings and interactive tutorials\n\n\n📖 ims: Chp 7.2 - 7.4\n💻 tutorial: 03-model-03 |&gt; submit\n\n\n\n\n\n\n\n\n\nThu, Sep 21\n\n\n\n\n\n\n\n✅ Lab 3 at 5 pm\n\n\n\n\n\nFri, Sep 22\n\nLab 4: Regression\n\n\n\n\n⌨️ lab-4\n\n\n\n\n\n5\nMon, Sep 25\n\nRegression with multiple predictors\n\n\n📖 ims: Chp 8.1 - 8.3\n\n\n🖥️ slides\n☁️ ae-07\n⌨️ ae-07\n🗝️ ae-07-sa\n\n\n\n\n\n\n\nWed, Sep 27\n\nModel selection\n\n\n📖 ims: Chp 8.4 - 8.5\n\n\n🖥️ slides\n☁️ ae-08\n⌨️ ae-08\n🗝️ ae-08-sa\n\n\n\n\n\n\n\nThu, Sep 28\n\n\n\n\n\n\n\n✅ Lab 4 at 5 pm\n\n\n\n\n\nFri, Sep 29\n\nExam 1 Review\n\n\n\n\n📝 er-1\n🗝️ er-1-sa\n\n\n\n\n\n6\nMon, Oct 2\n\nRegression overview\n\n\n\n\n🖥️ slides\n\n\n\n\n\n\n\nWed, Oct 4\n\nExam 1 - In class\n\n\n\n\n\n\n\n\n\n\n\nFri, Oct 6\n\nNo lab: Work on Exam 1 - Take home\n\n\n\n\n\n\nExam 1 - Take home + Tutorials at 5 pm\n\n\n\n7\nMon, Oct 9\n\nLogistic regression I\n\n\n📖 ims: Chp 9.1 - 9.2\n\n\n🖥️ slides\n☁️ ae-09\n⌨️ ae-09\n🗝️ ae-09-sa\n\n\n\n\n\n\n\nWed, Oct 11\n\nLogistic regression II\n\n\n📖 ims: Chp 9.3 - 9.5\n\n\n🖥️ slides\n\n\n\n\n\n\n\nFri, Oct 13\n\nProject 1 workday\n\n\n\n\n\n\n📄 Project 1 at 5 pm\n\n\n\n8\nMon, Oct 16\n\n🍂 Fall Break - No lecture\n\n\n\n\n\n\n\n\n\n\n\nWed, Oct 18\n\nHypothesis testing with randomization\n\n\n📖 ims: Chp 11\n💻 tutorial: 04-foundations-01 |&gt; submit\n💻 tutorial: 04-foundations-02 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-10\n⌨️ ae-10\n🗝️ ae-10\n\n\n\n\n\n\n\nFri, Oct 20\n\nLab 5: Hypothesis testing\n\n\n\n\n⌨️ lab-5\n\n\n\n\n\n9\nMon, Oct 23\n\nConfidence intervals with bootstrapping\n\n\n📖 ims: Chp 12\n💻 tutorial: 04-foundations-04 |&gt; submit\n\n\n🖥️ slides\n\n\n\n\n\n\n\nWed, Oct 25\n\nDecision errors\nGuest Lecture: Dr. Yue Jiang\n\n\n📖 ims: Chp 14\n💻 tutorial: 04-foundations-03 |&gt; submit\n\n\n🖥️ slides\n\n\n\n\n\n\n\nThu, Oct 26\n\n\n\n\n\n\n\n✅ Lab 5 at 5 pm\n\n\n\n\n\nFri, Oct 27\n\nLab 6: Foundations of inference\n\n\n\n\n⌨️ lab-6\n\n\n\n\n\n10\nMon, Oct 30\n\nInference with mathematical models\n\n\n📖 ims: Chp 13\n\n\n🖥️ slides\n☁️ ae-11\n⌨️ ae-11\n🗝️ ae-11\n\n\n\n\n\n\n\nWed, Nov 1\n\nZoom lecture:\nInference for a single proportion\n\n\n📖 ims: Chp 16\n💻 tutorial: 05-infer-01 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-12\n⌨️ ae-12\n🗝️ ae-12\n\n\n\n\n\n\n\nThu, Nov 2\n\n\n\n\n\n\n\n✅ Lab 6 at 5 pm\n\n\n\n\n\nFri, Nov 3\n\nLab 7: Inference for proportions\n\n\n\n\n⌨️ lab-7\n\n\n\n\n\n11\nMon, Nov 6\n\nInference for comparing two proportions\n\n\n📖 ims: Chp 17\n💻 tutorial: 05-infer-02 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-13\n⌨️ ae-13\n\n\n\n\n\n\n\nWed, Nov 8\n\nInference for two-way tables\n\n\n📖 ims: Chp 18\n💻 tutorial: 05-infer-03 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-14\n⌨️ ae-14\n\n\n\n\n\n\n\nThu, Nov 9\n\n\n\n\n\n\n\n✅ Lab 7 at 5 pm\n\n\n\n\n\nFri, Nov 10\n\nExam 2 Review\n\n\n💻 tutorial: 05-infer-04 |&gt; submit\n\n\n📝 er-2\n🗝️ er-2-sa\n\n\n\n\n\n12\nMon, Nov 13\n\nOverview: Inference for proportions\n\n\n📖 ims: Chp 23.1\n\n\n\n\n\n\n\n\n\nWed, Nov 15\n\nExam 2 - In class\n\n\n\n\n\n\n\n\n\n\n\nFri, Nov 17\n\nNo lab: Work on Exam 2 - Take home\n\n\n\n\n\n\nExam 2 - Take home + Tutorials at 5 pm\n\n\n\n13\nMon, Nov 20\n\nInference for a single mean\n\n\n📖 ims: Chp 19\n💻 tutorial: 05-infer-05 |&gt; submit\n💻 tutorial: 05-infer-06 |&gt; submit\n\n\n\n\n\n\n\n\n\nWed, Nov 22\n\n🦃 Thanksgiving Break - No lecture\n\n\n\n\n\n\n\n\n\n\n\nFri, Nov 24\n\n🦃 Thanksgiving Break - No lab\n\n\n\n\n\n\n\n\n\n14\nMon, Nov 27\n\nInference for comparing two independent means\n\n\n📖 ims: Chp 20\n💻 tutorial: 05-infer-07 |&gt; submit\n\n\n\n\n\n\n\n\n\nWed, Nov 29\n\nInference for comparing two paired means\n\n\n📖 ims: Chp 21\n\n\n\n\n\n\n\n\n\nFri, Dec 1\n\nLab 8: Inference for means\n\n\n\n\n⌨️ lab-8\n\n\n\n\n\n15\nMon, Dec 4\n\nInference for comparing many means\n\n\n📖 ims: Chp 22\n💻 tutorial: 05-infer-08 |&gt; submit\n\n\n\n\n\n\n\n\n\nWed, Dec 6\n\nOverview: Inference for means\nTelling a (data) story\n\n\n📖 fdv: Chp 29\n\n\n\n\n\n\n\n\n\nThu, Dec 7\n\n\n\n\n\n\n\n✅ Lab 8 at 5 pm\n\n\n\n\n\nFri, Dec 8\n\nProject 2 peer review\n\n\n\n\n\n\n\n\n\n16\nThu, Dec 14\n\nProject 2 presentations (2 - 5 pm)\n\n\n\n\n\n\n📄 Project 2 at 2 pm",
     "crumbs": [
       "Course information",
       "Schedule"
@@ -5201,6 +5208,125 @@
     "title": "Exam 1 Review",
     "section": "",
     "text": "There are 409 rows in the blizzard_salary dataset. Each row represents a Blizzard Entertainment worker who filled out the spreadsheet.\na - Figure 1 - A shared x-axis makes it easier to compare summary statistics for the variable on the x-axis.\nc - It’s a value higher than the median for hourly but lower than the mean for salaried.\nb - There is more variability around the mean compared to the hourly distribution.\nb - Pie charts and waffle charts are for categorical data only.\nc - For every additional $1,000 of annual salary, the model predicts the raise to be higher, on average, by 0.0155%.\nd - \\(R^2\\) of raise_2_fit is higher than \\(R^2\\) of raise_1_fit since raise_2_fit has one more predictor and \\(R^2\\) always goes up with the addition of a predictor.\nThe reference level of performance_rating is High, since it’s the first level alphabetically. Therefore, the coefficient -2.40% is the predicted difference in raise comparing High to Successful. In this context a negative coefficient makes sense since we would expect those with High performance rating to get higher raises than those with Successful performance.\na - “Poor”, “Successful”, “High”, “Top”\nChoose Option 2 since it shows the proportions of employees with top, high, successful, and poor performance within each salary type, and is not affected by there being much fewer hourly paid employees. Proportions of employees with top and successful performance ratings are higher for employees paid hourly than salaried.\nThere may be some NAs in these two variables that are not visible in the plot.\nThe proportions under Hourly would go in the Hourly bar, and those under Salaried would go in the Salaried bar.\nThis is a mosaic plot. It shows the marginal distribution of salary type (proportion of hourly and salaried employees), which is not displayed in the previous plot.\nc - Option 3. Parallel lines and salaried line has a higher intercept since Hourly is the reference level in raise_3_fit and the slope for salary_typeSalaried is positive.\nA parsimonious model is the simplest model with the best predictive performance."
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html",
+    "href": "exam-review/exam-1-review.html",
+    "title": "Exam 1 Review",
+    "section": "",
+    "text": "In 2020, employees of Blizzard Entertainment circulated a spreadsheet to anonymously share salaries and recent pay increases amidst rising tension in the video game industry over wage disparities and executive compensation. (Source: Blizzard Workers Share Salaries in Revolt Over Pay)\nThe name of the data frame used for this analysis is blizzard_salary and the relevant variables are:\nThe top six rows of blizzard_salary are shown below:\n# A tibble: 409 × 4\n   percent_incr salary_type annual_salary performance_rating\n          &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;             \n 1          1   Salaried               1  High              \n 2          1   Salaried               1  Successful        \n 3          1   Salaried               1  High              \n 4          1   Hourly             33987. Successful        \n 5         NA   Hourly             34798. High              \n 6         NA   Hourly             35360  &lt;NA&gt;              \n 7         NA   Hourly             37440  &lt;NA&gt;              \n 8          0   Hourly             37814. &lt;NA&gt;              \n 9          4   Hourly             41101. Top               \n10          1.2 Hourly             42328  &lt;NA&gt;              \n# ℹ 399 more rows"
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#question-1",
+    "href": "exam-review/exam-1-review.html#question-1",
+    "title": "Exam 1 Review",
+    "section": "Question 1",
+    "text": "Question 1\nHow rows observations are there in the blizzard_salary dataset and what does each row represent?"
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#question-2",
+    "href": "exam-review/exam-1-review.html#question-2",
+    "title": "Exam 1 Review",
+    "section": "Question 2",
+    "text": "Question 2\nFigure 1 (a) and Figure 1 (b) show the distributions of annual salaries of hourly and salaried workers. The two figures show the same data, with the facets organized across rows and across columns. Which of the two figures is better for comparing the median annual salaries of hourly and salaried workers. Explain your reasoning.\n\n\n\n\n\n\n\n\n\n\n\n(a) Option 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n(b) Option 2\n\n\n\n\n\n\n\nFigure 1: Distribution of annual salaries of Blizzard employees"
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#question-3",
+    "href": "exam-review/exam-1-review.html#question-3",
+    "title": "Exam 1 Review",
+    "section": "Question 3",
+    "text": "Question 3\nSuppose your teammate wrote the following code as part of their analysis of the data.\nThey then printed out the results shown below. Unfortunately one of the number got erased from the printout, it’s indicated with _____ below.\n# A tibble: 2 × 3\n  salary_type mean_annual_salary median_annual_salary\n  &lt;chr&gt;                    &lt;dbl&gt;                &lt;dbl&gt;\n1 Hourly                  63003.               54246.\n2 Salaried                90183.               _____\nWhich of the following is the best estimate for that erased value?\n\n30,000\n50,000\n80,000\n100,000"
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#question-4",
+    "href": "exam-review/exam-1-review.html#question-4",
+    "title": "Exam 1 Review",
+    "section": "Question 4",
+    "text": "Question 4\nWhich distribution has a higher standard deviation?\n\nHourly workers\nSalaried workers\nRoughly the same"
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#question-5",
+    "href": "exam-review/exam-1-review.html#question-5",
+    "title": "Exam 1 Review",
+    "section": "Question 5",
+    "text": "Question 5\nWhich of the following alternate plots would also be useful for visualizing the distributions of annual salaries of hourly and salaried workers?\nI.  Box plot\nII. Density plot\nIII. Pie chart\nIV. Waffle chart\n\nI\nI and II\nI, II, and III\nIII and IV"
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#question-6",
+    "href": "exam-review/exam-1-review.html#question-6",
+    "title": "Exam 1 Review",
+    "section": "Question 6",
+    "text": "Question 6\nNext, you fit a model for predicting raises (percent_incr) from salaries (annual_salary). We’ll call this model raise_1_fit. A tidy output of the model is shown below.\n\n\n# A tibble: 2 × 5\n  term           estimate  std.error statistic   p.value\n  &lt;chr&gt;             &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)   1.87      0.432           4.33 0.0000194\n2 annual_salary 0.0000155 0.00000452      3.43 0.000669 \n\n\nWhich of the following is the best interpretation of the slope coefficient?\n\nFor every additional $1,000 of annual salary, the model predicts the raise to be higher, on average, by 1.55%.\nFor every additional $1,000 of annual salary, the raise goes up by 0.0155%.\nFor every additional $1,000 of annual salary, the model predicts the raise to be higher, on average, by 0.0155%.\nFor every additional $1,000 of annual salary, the model predicts the raise to be higher, on average, by 1.87%."
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#question-7",
+    "href": "exam-review/exam-1-review.html#question-7",
+    "title": "Exam 1 Review",
+    "section": "Question 7",
+    "text": "Question 7\nYou then fit a model for predicting raises (percent_incr) from salaries (annual_salary) and performance ratings (performance_rating). We’ll call this model raise_2_fit. Which of the following is definitely true based on the information you have so far?\n\nIntercept of raise_2_fit is higher than intercept of raise_1_fit.\nRMSE of raise_2_fit is higher than RMSE of raise_1_fit.\nAdjusted \\(R^2\\) of raise_2_fit is higher than adjusted \\(R^2\\) of raise_1_fit.\n\\(R^2\\) of raise_2_fit is higher \\(R^2\\) of raise_1_fit."
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#question-8",
+    "href": "exam-review/exam-1-review.html#question-8",
+    "title": "Exam 1 Review",
+    "section": "Question 8",
+    "text": "Question 8\nThe tidy model output for the raise_2_fit model you fit is shown below.\n\n\n# A tibble: 5 × 5\n  term                            estimate  std.error statistic  p.value\n  &lt;chr&gt;                              &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)                   3.55       0.508           6.99 1.99e-11\n2 annual_salary                 0.00000989 0.00000436      2.27 2.42e- 2\n3 performance_ratingPoor       -4.06       1.42           -2.86 4.58e- 3\n4 performance_ratingSuccessful -2.40       0.397          -6.05 4.68e- 9\n5 performance_ratingTop         2.99       0.715           4.18 3.92e- 5\n\n\nWhen your teammate sees this model output, they remark “The coefficient for performance_ratingSuccessful is negative, that’s weird. I guess it means that people who get successful performance ratings get lower raises.” How would you respond to your teammate?"
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#question-9",
+    "href": "exam-review/exam-1-review.html#question-9",
+    "title": "Exam 1 Review",
+    "section": "Question 9",
+    "text": "Question 9\nUltimately, your teammate decides they don’t like the negative slope coefficients in the model output you created (not that there’s anything wrong with negative slope coefficients!), does something else, and comes up with the following model output.\n\n\n# A tibble: 5 × 5\n  term                            estimate  std.error statistic    p.value\n  &lt;chr&gt;                              &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;\n1 (Intercept)                  -0.511      1.47          -0.347 0.729     \n2 annual_salary                 0.00000989 0.00000436     2.27  0.0242    \n3 performance_ratingSuccessful  1.66       1.42           1.17  0.242     \n4 performance_ratingHigh        4.06       1.42           2.86  0.00458   \n5 performance_ratingTop         7.05       1.53           4.60  0.00000644\n\n\nUnfortunately they didn’t write their code in a Quarto document, instead just wrote some code in the Console and then lost track of their work. They remember using the fct_relevel() function and doing something like the following:\nWhat should they put in the blanks to get the same model output as above?\n\n“Poor”, “Successful”, “High”, “Top”\n“Successful”, “High”, “Top”\n“Top”, “High”, “Successful”, “Poor”\nPoor, Successful, High, Top"
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#question-10",
+    "href": "exam-review/exam-1-review.html#question-10",
+    "title": "Exam 1 Review",
+    "section": "Question 10",
+    "text": "Question 10\nFinally, your teammate creates the following two plots and ask you for help deciding which one to use in the final report for visualizing the relationship between performance rating and salary type. In 1-3 sentences, can you help them make a decision, justify your choice, and write the narrative that should go with the plot?\n\n\n\n\n\n\n\n\n\n\n\n(a) Option 1\n\n\n\n\n\n\n\n\n\n\n\n(b) Option 2\n\n\n\n\n\n\n\nFigure 2: Distribution of salary type by performance rating"
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#question-11",
+    "href": "exam-review/exam-1-review.html#question-11",
+    "title": "Exam 1 Review",
+    "section": "Question 11",
+    "text": "Question 11\nA friend with a keen eye points out that the number of observations in Figure 2 (a) seems lower than the total number of observations in blizzard_salary. What might be going on here? Explain your reasoning."
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#question-12",
+    "href": "exam-review/exam-1-review.html#question-12",
+    "title": "Exam 1 Review",
+    "section": "Question 12",
+    "text": "Question 12\nShow the proportions of performance ratings for hourly and salaried workers in a table and ask students to place those numbers on the segments of Figure 2 (b).\n\n\n# A tibble: 4 × 3\n  performance_rating Hourly Salaried\n  &lt;fct&gt;               &lt;dbl&gt;    &lt;dbl&gt;\n1 Successful          0.686   0.521 \n2 High                0.2     0.384 \n3 Top                 0.114   0.0760\n4 Poor                0       0.0190"
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#question-13",
+    "href": "exam-review/exam-1-review.html#question-13",
+    "title": "Exam 1 Review",
+    "section": "Question 13",
+    "text": "Question 13\nFigure 3 is yet another visualization of the relationship between salary type and performance rating. What type of plot is ths, and what does it display that Figure 2 (b) doesn’t?\n\n\n\n\n\n\n\n\nFigure 3: Another visualization of salary type by performance rating"
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#question-14",
+    "href": "exam-review/exam-1-review.html#question-14",
+    "title": "Exam 1 Review",
+    "section": "Question 14",
+    "text": "Question 14\nSuppose we fit a model to predict percent_incr from annual_salary and salary_type. A tidy output of the model is shown below.\n\n\n# A tibble: 3 × 5\n  term                 estimate  std.error statistic p.value\n  &lt;chr&gt;                   &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)         1.24      0.570           2.18 0.0300 \n2 annual_salary       0.0000137 0.00000464      2.96 0.00329\n3 salary_typeSalaried 0.913     0.544           1.68 0.0938 \n\n\nWhich of the following visualizations represent this model? Explain your reasoning.\n\n\n\n\n\n\n\n\n\n\n\n(a) Option 1\n\n\n\n\n\n\n\n\n\n\n\n(b) Option 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n(c) Option 3\n\n\n\n\n\n\n\n\n\n\n\n(d) Option 4\n\n\n\n\n\n\n\nFigure 4: Visualizations of the relationship between percent increase, annual salary, and salary type"
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#question-15",
+    "href": "exam-review/exam-1-review.html#question-15",
+    "title": "Exam 1 Review",
+    "section": "Question 15",
+    "text": "Question 15\nDefine the term parsimonious model."
+  },
+  {
+    "objectID": "exam-review/exam-1-review.html#bonus",
+    "href": "exam-review/exam-1-review.html#bonus",
+    "title": "Exam 1 Review",
+    "section": "Bonus",
+    "text": "Bonus\nPick a concept we introduced in class so far that you’ve been struggling with and explain it in your own words."
   },
   {
     "objectID": "computing/computing-cheatsheets.html",
