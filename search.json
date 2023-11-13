@@ -2076,11 +2076,18 @@
     "text": "Application exercise\nGo to Posit Cloud and start the project titled ae-08-Tips.\n\n\n\n\n\n\nICYMI\n\n\nToday’s daily check-in access code: parsimonious (released in class)\n\n\n\n\n\n\n🔗 sta101-f23.github.io"
   },
   {
-    "objectID": "lectures/19/19-overview-inf-props.html#announcements-exam-2",
-    "href": "lectures/19/19-overview-inf-props.html#announcements-exam-2",
+    "objectID": "lectures/19/19-overview-inf-props.html#exam-2",
+    "href": "lectures/19/19-overview-inf-props.html#exam-2",
     "title": "Overview: Inference for proportions",
-    "section": "Announcements – Exam 2",
-    "text": "Announcements – Exam 2\n\nClassroom: You should have received your exam location assignment this morning. Reach out to me ASAP if you haven’t received it.\nIn-class: On Wednesday\n\n1 page, both sides notes (“cheat sheet”)\nNothing else\n\nTake-home: Wednesday - Friday\n\nOpen everything except for other humans, except for me :)"
+    "section": "Exam 2",
+    "text": "Exam 2\n\nClassroom: You should have received your exam location assignment last night. Reach out to me ASAP if you haven’t received it.\nIn-class: On Wednesday\n\n1 page, both sides notes (“cheat sheet”)\nNothing else\n\nTake-home: Wednesday - Friday\n\nOpen everything except for other humans, except for me :)"
+  },
+  {
+    "objectID": "lectures/19/19-overview-inf-props.html#office-hours-this-week",
+    "href": "lectures/19/19-overview-inf-props.html#office-hours-this-week",
+    "title": "Overview: Inference for proportions",
+    "section": "Office hours this week",
+    "text": "Office hours this week\n\nMy office hours:\n\nTuesday, 10-11am (Old Chem 213)\nTuesday, 4:30-5:30pm (Old Chem 213)\n\nTA office hours: https://sta101-f23.github.io/course-team.html\nNo office hours Wed 12:30pm to Fri 5pm"
   },
   {
     "objectID": "lectures/19/19-overview-inf-props.html#inference-for-two-way-proportions",
@@ -2088,6 +2095,90 @@
     "title": "Overview: Inference for proportions",
     "section": "Inference for two-way proportions",
     "text": "Inference for two-way proportions\nFirst:\n\nVote on Canvas under 2023-11-13 Check-in with the access code twoway.\n\n\nThen:\n\nGo to Posit Cloud and continue the project titled ae-14 - Candidate talk."
+  },
+  {
+    "objectID": "lectures/19/19-overview-inf-props.html#married-at-25",
+    "href": "lectures/19/19-overview-inf-props.html#married-at-25",
+    "title": "Overview: Inference for proportions",
+    "section": "Married at 25",
+    "text": "Married at 25\n\nA study suggests that the 25% of 25 year olds have gotten married. You believe that this is incorrect and decide to collect your own sample for a hypothesis test. From a random sample of 25 year olds in census data with size 776, you find that 24% of them are married.\nWhat is 776? What is 24%?"
+  },
+  {
+    "objectID": "lectures/19/19-overview-inf-props.html#married-at-25-1",
+    "href": "lectures/19/19-overview-inf-props.html#married-at-25-1",
+    "title": "Overview: Inference for proportions",
+    "section": "Married at 25",
+    "text": "Married at 25\n\nA study suggests that the 25% of 25 year olds have gotten married. You believe that this is incorrect and decide to collect your own sample for a hypothesis test. From a random sample of 25 year olds in census data with size 776, you find that 24% of them are married. A friend of yours offers to help you with setting up the hypothesis test and comes up with the following hypotheses. Indicate any errors you see.\n\\[\n\\begin{aligned}\nH_0: \\hat{p} = 0.24 \\\\\nH_A: \\hat{p} \\ne 0.24\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "lectures/19/19-overview-inf-props.html#if-i-fits-i-sits",
+    "href": "lectures/19/19-overview-inf-props.html#if-i-fits-i-sits",
+    "title": "Overview: Inference for proportions",
+    "section": "If I fits, I sits",
+    "text": "If I fits, I sits\n\nA citizen science project on which type of enclosed spaces cats are most likely to sit in compared (among other options) two different spaces taped to the ground. The first was a square, and the second was a shape known as Kanizsa square illusion. When comparing the two options given to 7 cats, 5 chose the square, and 2 chose the Kanizsa square illusion. We are interested to know whether these data provide convincing evidence that cats prefer one of the shapes over the other.\nWhat are the null and alternative hypotheses for evaluating whether these data provide convincing evidence that cats have preference for one of the shapes."
+  },
+  {
+    "objectID": "lectures/19/19-overview-inf-props.html#if-i-fits-i-sits-1",
+    "href": "lectures/19/19-overview-inf-props.html#if-i-fits-i-sits-1",
+    "title": "Overview: Inference for proportions",
+    "section": "If I fits, I sits",
+    "text": "If I fits, I sits\n\nA parametric bootstrap simulation (with 1,000 bootstrap samples) was run and the resulting null distribution is displayed in the histogram below. Find the p-value using this distribution and conclude the hypothesis test in the context of the problem."
+  },
+  {
+    "objectID": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana",
+    "href": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana",
+    "title": "Overview: Inference for proportions",
+    "section": "Legalization of marijuana",
+    "text": "Legalization of marijuana\n\nThe 2018 General Social Survey asked a random sample of 1,563 US adults: “Do you think the use of marijuana should be made legal, or not?” 60% of the respondents said it should be made legal. Consider a scenario where, in order to become legal, 55% (or more) of voters must approve.\nWhat are the null and alternative hypotheses for evaluating whether these data provide convincing evidence that, if voted on, marijuana would be legalized in the US."
+  },
+  {
+    "objectID": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana-1",
+    "href": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana-1",
+    "title": "Overview: Inference for proportions",
+    "section": "Legalization of marijuana",
+    "text": "Legalization of marijuana\n\nA parametric bootstrap simulation (with 1,000 bootstrap samples) was run and the resulting null distribution is displayed in the histogram below. Find the p-value using this distribution and conclude the hypothesis test in the context of the problem."
+  },
+  {
+    "objectID": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana---se-calculate",
+    "href": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana---se-calculate",
+    "title": "Overview: Inference for proportions",
+    "section": "Legalization of marijuana - SE calculate",
+    "text": "Legalization of marijuana - SE calculate\n\nAccording to the 2018 General Social Survey, in a random sample of 1,563 US adults, 60% think marijuana should be made legal. Consider a scenario where, in order to become legal, 55% (or more) of voters must approve.\nCalculate the standard error of the sample proportion using the mathematical model.\n\n\n\n\n\n\n\n\nNote\n\n\nThe standard error of the sample proportion is \\(\\sqrt{\\frac{p(1-p)}{n}}\\), however since we don’t know \\(p\\) and, in the context of a confidence interval, don’t have a null hypothesis governing what we should assume for the value of \\(p\\), we estimate it with the sample proportion, yielding:\n\\[\nSE_{\\hat{p}} = \\sqrt{ \\frac{\\hat{p}(1 - \\hat{p})}{n} }\n\\]"
+  },
+  {
+    "objectID": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana---se-estimate",
+    "href": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana---se-estimate",
+    "title": "Overview: Inference for proportions",
+    "section": "Legalization of marijuana - SE estimate",
+    "text": "Legalization of marijuana - SE estimate\n\nA parametric bootstrap simulation (with 1,000 bootstrap samples) was run and the resulting null distribution is displayed in the histogram below. This distribution shows the variability of the sample proportion in samples of size 1,563 when 55% of voters approve legalizing marijuana. What is the approximate standard error of the sample proportion based on this distribution?"
+  },
+  {
+    "objectID": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana---compare-ses",
+    "href": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana---compare-ses",
+    "title": "Overview: Inference for proportions",
+    "section": "Legalization of marijuana - compare SEs",
+    "text": "Legalization of marijuana - compare SEs\n\nDo the mathematical model and parametric bootstrap give similar standard errors?"
+  },
+  {
+    "objectID": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana---compare-methods",
+    "href": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana---compare-methods",
+    "title": "Overview: Inference for proportions",
+    "section": "Legalization of marijuana - compare methods",
+    "text": "Legalization of marijuana - compare methods\n\nIn this setting (to test whether the true underlying population proportion is greater than 0.55), would there be a strong reason to choose the mathematical model over the parametric bootstrap (or vice versa)?\n\n\n\n\n\n\n\n\nNote\n\n\nTechnical conditions for constructing a confindence interval for a proportion:\n\nIndependence: The observations in the sample must be independent of each other with respect to the response variable.\nLarge enough sample: Number of observed successes and failures must be at least 10."
+  },
+  {
+    "objectID": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana---compare-methods-1",
+    "href": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana---compare-methods-1",
+    "title": "Overview: Inference for proportions",
+    "section": "Legalization of marijuana - compare methods",
+    "text": "Legalization of marijuana - compare methods\n\nThe General Social Survey asked a random sample of 1,563 US adults: “Do you think the use of marijuana should be made legal, or not?” 60% of the respondents said it should be made legal."
+  },
+  {
+    "objectID": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana---mathematical-interval",
+    "href": "lectures/19/19-overview-inf-props.html#legalization-of-marijuana---mathematical-interval",
+    "title": "Overview: Inference for proportions",
+    "section": "Legalization of marijuana - mathematical interval",
+    "text": "Legalization of marijuana - mathematical interval\n\nThe General Social Survey asked a random sample of 1,563 US adults: “Do you think the use of marijuana should be made legal, or not?” 60% of the respondents said it should be made legal.\n\nIs 60% a sample statistic or a population parameter? Explain.\nUsing a mathematical model, construct a 95% confidence interval for the proportion of US adults who think marijuana should be made legal, and interpret it.\nA critic points out that this 95% confidence interval is only accurate if the statistic follows a normal distribution, or if the normal model is a good approximation. Is this true for these data? Explain.\nA news piece on this survey’s findings states, “Majority of US adults think marijuana should be legalized.” Based on your confidence interval, is this statement justified?\n\n\n\n\n\n🔗 sta101-f23.github.io"
   },
   {
     "objectID": "lectures/09/09-regression-overview.html#check-in",
