@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.388">
 
   <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
-  <title>STA 101 - F23 - Exploring categorical data</title>
+  <title>STA 101 - F23 - Overview: Inference for proportions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -322,8 +322,8 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="STA 101 - F23 - Exploring categorical data">
-<meta property="og:description" content="Lecture 4">
+<meta property="og:title" content="STA 101 - F23 - Overview: Inference for proportions">
+<meta property="og:description" content="Lecture 19">
 <meta property="og:site_name" content="STA 101 - F23">
 </head>
 <body class="quarto-light">
@@ -331,8 +331,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Exploring categorical data</h1>
-  <p class="subtitle">Lecture 4</p>
+  <h1 class="title">Overview: Inference for proportions</h1>
+  <p class="subtitle">Lecture 19</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -351,93 +351,52 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <h1>Warm up</h1>
 
 </section>
-<section id="check-in" class="slide level2">
-<h2>Check-in</h2>
+<section id="announcements-exam-2" class="slide level2">
+<h2>Announcements – Exam 2</h2>
 <ul>
-<li>Daily check-ins for getting you thinking at the beginning of the class and reviewing recent/important concepts</li>
-<li>Go to Canvas and open today’s “quiz” titled <code>2023-09-11 Check-in</code></li>
-<li>Access code: <code>___</code> (released in class)</li>
-<li>“Graded” for completion</li>
-</ul>
-</section>
-<section id="announcements" class="slide level2">
-<h2>Announcements</h2>
+<li>Classroom: You should have received your exam location assignment this morning. Reach out to me ASAP if you haven’t received it.</li>
+<li>In-class: On Wednesday
 <ul>
-<li><p>Lab 2 is due Thu, Sep 14 at 5 pm on Gradescope</p></li>
-<li><p>Mon, Sep 18 - Guest lecture on regression with Dr.&nbsp;Alex Fisher</p></li>
-<li><p>Wed, Sep 20 - Catch up day: no class, catch up with readings and interactive tutorials</p></li>
+<li>1 page, both sides notes (“cheat sheet”)</li>
+<li>Nothing else</li>
+</ul></li>
+<li>Take-home: Wednesday - Friday
+<ul>
+<li>Open everything except for other humans, except for me :)</li>
+</ul></li>
 </ul>
-</section>
-<section id="recap-from-last-time" class="slide level2">
-<h2>Recap from last time</h2>
-<div class="task">
-<p>What is Simpson’s paradox?</p>
-</div>
 </section></section>
 <section>
-<section id="exploring-categorical-data" class="title-slide slide level1 center">
-<h1>Exploring categorical data</h1>
+<section id="from-last-time" class="title-slide slide level1 center">
+<h1>From last time</h1>
 
 </section>
-<section id="durham-city-and-county-resident-survey" class="slide level2">
-<h2>2020 Durham City and County Resident Survey</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" data-fig-align="center" width="400">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/durham-survey.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure-center" width="400">
+<section id="inference-for-two-way-proportions" class="slide level2">
+<h2>Inference for two-way proportions</h2>
+<p>First:</p>
+<div class="task">
+<p>Vote on Canvas under <code>2023-11-13 Check-in</code> with the access code <code>twoway</code>.</p>
 </div>
-</figure>
+<div class="fragment">
+<p>Then:</p>
+<div class="task">
+<p>Go to Posit Cloud and continue the project titled <code>ae-14 - Candidate talk</code>.</p>
 </div>
+</div>
+</section></section>
+<section id="overview" class="title-slide slide level1 center">
+<h1>Overview</h1>
+
 </section>
-<section id="sample-survey-questions---services" class="slide level2">
-<h2>Sample survey questions - services</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" data-fig-align="center" width="800">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/services.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure-center" width="800">
-</div>
-</figure>
-</div>
-</section>
-<section id="sample-survey-questions---safety" class="slide level2">
-<h2>Sample survey questions - safety</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" data-fig-align="center" width="800">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/safety.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure-center" width="800">
-</div>
-</figure>
-</div>
-</section>
-<section id="sample-survey-questions---demographics" class="slide level2">
-<h2>Sample survey questions - demographics</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" data-fig-align="center" width="800">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/demographics.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure-center" width="800">
-</div>
-</figure>
-</div>
-</section>
-<section id="todays-focus" class="slide level2">
-<h2>Today’s focus</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center" data-fig-align="center" width="800">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/demographics.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure-center" width="800">
-</div>
-</figure>
-</div>
-</section>
-<section id="application-exercise" class="slide level2">
-<h2>Application exercise</h2>
-<p>Go to Posit Cloud and start the project titled <strong>ae-04-Durham</strong>.</p>
+
+<section id="some-slides-for-review" class="title-slide slide level1 center">
+<h1>Some slides for review…</h1>
 
 <p><img src="../logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="https://sta101-f23.github.io/">🔗 sta101-f23.github.io</a></p>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
