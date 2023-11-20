@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.388">
 
   <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
-  <title>STA 101 - F23 - Exploring categorical data</title>
+  <title>STA 101 - F23 - Inference one mean</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -322,8 +387,8 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="STA 101 - F23 - Exploring categorical data">
-<meta property="og:description" content="Lecture 4">
+<meta property="og:title" content="STA 101 - F23 - Inference one mean">
+<meta property="og:description" content="Lecture 20">
 <meta property="og:site_name" content="STA 101 - F23">
 </head>
 <body class="quarto-light">
@@ -331,8 +396,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Exploring categorical data</h1>
-  <p class="subtitle">Lecture 4</p>
+  <h1 class="title">Inference one mean</h1>
+  <p class="subtitle">Lecture 20</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -351,87 +416,185 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <h1>Warm up</h1>
 
 </section>
-<section id="check-in" class="slide level2">
-<h2>Check-in</h2>
-<ul>
-<li>Daily check-ins for getting you thinking at the beginning of the class and reviewing recent/important concepts</li>
-<li>Go to Canvas and open today’s “quiz” titled <code>2023-09-11 Check-in</code></li>
-<li>Access code: <code>___</code> (released in class)</li>
-<li>“Graded” for completion</li>
-</ul>
-</section>
 <section id="announcements" class="slide level2">
 <h2>Announcements</h2>
 <ul>
-<li><p>Lab 2 is due Thu, Sep 14 at 5 pm on Gradescope</p></li>
-<li><p>Mon, Sep 18 - Guest lecture on regression with Dr.&nbsp;Alex Fisher</p></li>
-<li><p>Wed, Sep 20 - Catch up day: no class, catch up with readings and interactive tutorials</p></li>
+<li>…</li>
 </ul>
-</section>
-<section id="recap-from-last-time" class="slide level2">
-<h2>Recap from last time</h2>
-<div class="task">
-<p>What is Simpson’s paradox?</p>
-</div>
 </section></section>
 <section>
-<section id="exploring-categorical-data" class="title-slide slide level1 center">
-<h1>Exploring categorical data</h1>
+<section id="inference-for-one-mean" class="title-slide slide level1 center">
+<h1>Inference for one mean</h1>
 
-</section>
-<section id="durham-city-and-county-resident-survey" class="slide level2">
-<h2>2020 Durham City and County Resident Survey</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" data-fig-align="center" width="400">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/durham-survey.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure-center" width="400">
-</div>
-</figure>
-</div>
-</section>
-<section id="sample-survey-questions---services" class="slide level2">
-<h2>Sample survey questions - services</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" data-fig-align="center" width="800">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/services.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure-center" width="800">
-</div>
-</figure>
-</div>
-</section>
-<section id="sample-survey-questions---safety" class="slide level2">
-<h2>Sample survey questions - safety</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" data-fig-align="center" width="800">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/safety.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure-center" width="800">
-</div>
-</figure>
-</div>
-</section>
-<section id="sample-survey-questions---demographics" class="slide level2">
-<h2>Sample survey questions - demographics</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" data-fig-align="center" width="800">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/demographics.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure-center" width="800">
-</div>
-</figure>
-</div>
 </section>
 <section id="todays-focus" class="slide level2">
 <h2>Today’s focus</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center" data-fig-align="center" width="800">
+<ul>
+<li><p>Inference for a population mean</p></li>
+<li><p>Specifically, estimating a population mean via a confidence interval</p></li>
+<li><p>And generally, <strong>what in the world is a confidence interval?!</strong></p>
+<ul>
+<li><p>Why is it constructed?</p></li>
+<li><p>How is it constructed?</p></li>
+<li><p>What do the bounds of a confidence interval mean?</p></li>
+<li><p>What does the confidence level mean?</p></li>
+<li><p>What is the margin of error?</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="setup" class="slide level2">
+<h2>Setup</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(openintro)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="bootstrap-confidence-interval-for-the-mean" class="slide level2 smaller">
+<h2>Bootstrap confidence interval for the mean</h2>
+<div>
+<ol type="1">
+<li class="fragment"><p>Take a bootstrap sample (sample with replacement) of size n (the original sample size) from the original sample</p></li>
+<li class="fragment"><p>Record the mean</p></li>
+<li class="fragment"><p>Repeat steps 1 and 2 many times to build the bootstrap distribution</p></li>
+<li class="fragment"><p>Find the bootstrap confidence interval using one of two methods:</p>
+<ul>
+<li class="fragment"><p>Percentile method: The bounds of the middle X% of the bootstrap distribution comprise the X% bootstrap interval.</p></li>
+<li class="fragment"><p>Standard error method:</p>
+<ul>
+<li class="fragment"><p>Calculate the standard error for the bootstrap distribution</p></li>
+<li class="fragment"><p>Find the critical value associated with the X% confidence interval</p></li>
+<li class="fragment"><p>Calculate the <strong>margin of error</strong> (ME) as the critical value <span class="math inline">\(\times\)</span> standard error</p></li>
+<li class="fragment"><p>Construct the confidence interval a the original sample mean <span class="math inline">\(\pm\)</span> ME</p></li>
+</ul></li>
+</ul></li>
+</ol>
+</div>
+</section>
+<section id="case-study-length-of-gestation" class="slide level2 smaller">
+<h2>Case study: Length of gestation</h2>
+<div class="task">
+<p>Every year, the United States Department of Health and Human Services releases to the public a large dataset containing information on births recorded in the country. This dataset has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children. In this case study we work with a random sample of 1,000 cases from the dataset released in 2014. The length of pregnancy, measured in weeks, is commonly referred to as gestation. The histogram below shows the distribution of lengths of gestation from the random sample of 1,000 births.</p>
+</div>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  openintro<span class="sc">::</span>births14, </span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> weeks)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="at">x =</span> <span class="st">"Gestation (weeks)"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="at">title =</span> <span class="st">"Random sample of 1,000 births"</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" width="960">
 <figure class="quarto-float quarto-float-fig">
 <div>
-<img data-src="images/demographics.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure-center" width="800">
+<img data-src="20-inference-one-mean_files/figure-revealjs/unnamed-chunk-2-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" width="960">
 </div>
 </figure>
 </div>
+</div>
+</div>
+</div>
+</section>
+<section id="cs-length-of-gestation---boot_dist" class="slide level2">
+<h2>CS: Length of gestation - <code>boot_dist</code></h2>
+<div class="task">
+<p>The distribution of bootstrapped means of gestation from 1,500 different bootstrap samples.</p>
+</div>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>boot_dist <span class="ot">&lt;-</span> births14 <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">specify</span>(<span class="at">response =</span> weeks) <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">generate</span>(</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="at">reps =</span> <span class="dv">1000</span>, </span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="at">type =</span> <span class="st">"bootstrap"</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="fu">visualize</span>(boot_dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" width="960">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="20-inference-one-mean_files/figure-revealjs/unnamed-chunk-3-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" width="960">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="cs-length-of-gestation---percentile-interval" class="slide level2">
+<h2>CS: Length of gestation - percentile interval</h2>
+<div class="task">
+<p>What does the following code do? How do you adjust it to change the confidence level?</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>boot_dist <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">get_ci</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  lower_ci upper_ci
+     &lt;dbl&gt;    &lt;dbl&gt;
+1     38.5     38.8</code></pre>
+</div>
+</div>
+</section>
+<section id="cs-length-of-gestation---standard-error-interval" class="slide level2 smaller">
+<h2>CS: Length of gestation - standard error interval</h2>
+<div class="task">
+<p>What does the following code do? Why do we need to provide <code>point_estimate</code>?</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>obs_stat <span class="ot">&lt;-</span> births14 <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">specify</span>(<span class="at">response =</span> weeks) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a>obs_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Response: weeks (numeric)
+# A tibble: 1 × 1
+   stat
+  &lt;dbl&gt;
+1  38.7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>boot_dist <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">get_ci</span>(</span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="at">type =</span> <span class="st">"se"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="at">point_estimate =</span> obs_stat</span>
+<span id="cb8-5"><a href="#cb8-5"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  lower_ci upper_ci
+     &lt;dbl&gt;    &lt;dbl&gt;
+1     38.5     38.8</code></pre>
+</div>
+</div>
+</section>
+<section id="interpretations" class="slide level2">
+<h2>Interpretations</h2>
+<ul>
+<li><p>The interval:</p>
+<blockquote>
+<p>We are X% confident that the true population mean is within out confidence interval.</p>
+</blockquote></li>
+<li><p>The confidence level:</p>
+<div class="task">
+<p>What does 95% confidence interval mean?</p>
+</div></li>
+</ul>
 </section>
 <section id="application-exercise" class="slide level2">
 <h2>Application exercise</h2>
-<p>Go to Posit Cloud and start the project titled <strong>ae-04-Durham</strong>.</p>
+<p>Go to Posit Cloud and continue the project titled <code>ae-15-Gestation</code>.</p>
 
 <p><img src="../logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
@@ -650,6 +813,44 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
