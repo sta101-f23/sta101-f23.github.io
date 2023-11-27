@@ -76,186 +76,193 @@
     "text": "Exercise 7\nWhat is the conclusion of the hypothesis test?\nAdd response here."
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html",
-    "href": "ae/ae-04-durham-sa.html",
+    "objectID": "ae/ae-05-durham.html",
+    "href": "ae/ae-05-durham.html",
     "title": "2020 Durham City and County Resident Survey",
     "section": "",
-    "text": "Important\n\n\n\nThese are suggested answers for the application exercise. They’re not necessarily complete or 100% accurate, they’re roughly what we develop in class while going through the exercises.\nThe main question we’ll explore today is “What are the demographics and priorities of City of Durham residents?”"
+    "text": "The main questions we’ll explore today are:"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-1",
-    "href": "ae/ae-04-durham-sa.html#exercise-1",
+    "objectID": "ae/ae-05-durham.html#exercise-1",
+    "href": "ae/ae-05-durham.html#exercise-1",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 1",
-    "text": "Exercise 1\nHow many rows and columns are in this dataset? Answer in a full sentence using inline code. What does each row represent and what does each column represent?\nAdd your answer here."
+    "text": "Exercise 1\nVisualize and describe the relationship between income and home ownership of Durham residents.\nStretch goal: Customize the colors using named colors from http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf.\nAdd your answer here.\n\n# add code here"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-2",
-    "href": "ae/ae-04-durham-sa.html#exercise-2",
+    "objectID": "ae/ae-05-durham.html#exercise-2",
+    "href": "ae/ae-05-durham.html#exercise-2",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 2",
-    "text": "Exercise 2\nThe variables we’ll use in this analysis are as follows. Rename the variables to the updated names shown below.\n\n\n\nOriginal name\nUpdated name\n\n\n\n\nprimary_language\nprimary_language\n\n\ndo_you_own_or_rent_your_current_resi_31\nown_rent\n\n\nwould_you_say_your_total_annual_hous_35\nincome\n\n\n\n\ndurham &lt;- durham |&gt;\n  rename(\n    own_rent = do_you_own_or_rent_your_current_resi_31,\n    income = would_you_say_your_total_annual_hous_35\n  )"
+    "text": "Exercise 2\nCalculate the proportions of home owners for each category of Durham residents. Describe the relationship between these two variables, this time with the actual values from the conditional distribution of home ownership based on income level.\nAdd your answer here.\n\n# add code here"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-3",
-    "href": "ae/ae-04-durham-sa.html#exercise-3",
+    "objectID": "ae/ae-05-durham.html#exercise-3",
+    "href": "ae/ae-05-durham.html#exercise-3",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 3",
-    "text": "Exercise 3\nWhat language do Durham residents speak: primary_language?\n\nWhat is the primary language used in your household?\n\nAdd your answer here.\n\nggplot(durham, aes(x = primary_language)) +\n  geom_bar()"
+    "text": "Exercise 3\nRecode the levels of these two variables to be more informatively labeled and calculate the proportions from the previous exercise again.\n\n# add code here"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-4",
-    "href": "ae/ae-04-durham-sa.html#exercise-4",
+    "objectID": "ae/ae-05-durham.html#exercise-4",
+    "href": "ae/ae-05-durham.html#exercise-4",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 4",
-    "text": "Exercise 4\nMake similar bar plots of own_rent and income. What distinct values do these variables take?\n\nggplot(durham, aes(x = own_rent)) +\n  geom_bar()\n\nWarning: Removed 2 rows containing non-finite values (`stat_count()`).\n\n\n\n\n\n\n\n\n\n\nggplot(durham, aes(x = income)) +\n  geom_bar()\n\nWarning: Removed 110 rows containing non-finite values (`stat_count()`)."
+    "text": "Exercise 4\nOne of the questions on the survey is “How satisfied are you with the overall quality of services provided by the city?” A response of 1 indicates Very Dissatisfied and a response of 5 indicates Very Satisfied. The responses for this question are in the variable qos_city. This could be considered an ordinal, categorical variable but can also be treated as a numerical variable in an analysis. Let’s do the latter!\nVisualize and describe the distribution of qos_city. If you get a warning with your visualization, comment on what it means.\nAdd your response here.\n\n# add code here"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-5",
-    "href": "ae/ae-04-durham-sa.html#exercise-5",
+    "objectID": "ae/ae-05-durham.html#exercise-5",
+    "href": "ae/ae-05-durham.html#exercise-5",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 5",
-    "text": "Exercise 5\nThe variables own_rent and income are both categorical, but they’re stored as numbers. In R, categorical data are called factors. Recode these variables as factors with the as_factor() function.\n\ndurham &lt;- durham |&gt;\n  mutate(\n    income = as_factor(income),\n    own_rent = as_factor(own_rent)\n    )"
+    "text": "Exercise 5\nCalculate the mean and median of the distribution of qos_city. If these values are not exactly the same, can you explain what the difference might be attributed to?\nAdd your response here.\n\n# add code here"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-6",
-    "href": "ae/ae-04-durham-sa.html#exercise-6",
+    "objectID": "ae/ae-05-durham.html#exercise-6",
+    "href": "ae/ae-05-durham.html#exercise-6",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 6",
-    "text": "Exercise 6\nRecreate the visualization from the previous exerciseincome` barplot, improving it for both visual appeal and better communication of findings.\nAdd your answer here.\n\ndurham |&gt;\n  ggplot(aes(y = income, fill = income)) +\n  geom_bar(show.legend = FALSE) +\n  scale_fill_viridis_d(na.value = \"darkgray\") +\n  scale_y_discrete(\n    labels = c(\n      \"1\" = \"Under $30,000\",\n      \"2\" = \"$30,000-$59,999\",\n      \"3\" = \"$60,000-$99,999\",\n      \"4\" = \"$100,000 or more\"\n    )\n  ) +\n  labs(\n    x = \"Count\",\n    y = NULL,\n    title = \"Would you say your total annual household income is...\"\n  )"
+    "text": "Exercise 6\nBased on the shape of the distribution of qos_city, which measure of spread (variability) is more appropriate? Calculate that value and interpret it in context of the data.\n\n# add code here"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-7",
-    "href": "ae/ae-04-durham-sa.html#exercise-7",
+    "objectID": "ae/ae-05-durham.html#exercise-7",
+    "href": "ae/ae-05-durham.html#exercise-7",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 7",
-    "text": "Exercise 7\nRecreate the visualization from the previous exercise, but first calculate relative frequencies (proportions) of income (the marginal distribution) and plot the proportions instead of counts.\n\ndurham |&gt;\n  count(income) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  ggplot(aes(y = income, x = prop, fill = income)) +\n  geom_col(show.legend = FALSE) +\n  scale_fill_viridis_d(na.value = \"gray\") +\n  scale_y_discrete(\n    labels = c(\n      \"1\" = \"Under $30,000\",\n      \"2\" = \"$30,000-$59,999\",\n      \"3\" = \"$60,000-$99,999\",\n      \"4\" = \"$100,000 or more\"\n    )\n  ) +\n  labs(\n    x = \"Proportion\",\n    y = NULL,\n    title = \"Would you say your total annual household income is...\"\n  )"
+    "text": "Exercise 7\nMake a box plot of qos_city and comment on how the values you calculated map on to the box plot.\n\n# add code here"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-8",
-    "href": "ae/ae-04-durham-sa.html#exercise-8",
+    "objectID": "ae/ae-05-durham.html#exercise-8",
+    "href": "ae/ae-05-durham.html#exercise-8",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 8",
-    "text": "Exercise 8\nVisualize and describe the relationship between income and home ownership of Durham residents.\nStretch goal: Customize the colors using named colors from http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf.\nAdd your answer here.\n\ndurham |&gt;\n  select(income, own_rent) |&gt;\n  drop_na() |&gt;\n  ggplot(aes(y = income, fill = own_rent)) +\n  geom_bar(position = \"fill\") +\n  scale_y_discrete(\n    labels = c(\n      \"1\" = \"Under $30,000\",\n      \"2\" = \"$30,000-$59,999\",\n      \"3\" = \"$60,000-$99,999\",\n      \"4\" = \"$100,000 or more\"\n    )\n  ) +\n  scale_fill_manual(\n    values = c(\"1\" = \"cadetblue\", \"2\" = \"coral\"),\n    labels = c(\"1\" = \"Own\", \"2\" = \"Rent\")\n  ) +\n  labs(\n    x = \"Proportion\",\n    y = \"Would you say your total\\nannual household income is...\",\n    fill = \"Do you own\\nor rent\\nyour current\\nresidence?\",\n    title = \"Income vs. home ownership of Durham residents\"\n  )"
+    "text": "Exercise 8\nHow the average level of happiness with quality of services provided by the city vary by income group?\nStretch goal: Visualize mean qos_city by income group.\nAdd your response here.\n\n# add code here"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-9",
-    "href": "ae/ae-04-durham-sa.html#exercise-9",
-    "title": "2020 Durham City and County Resident Survey",
-    "section": "Exercise 9",
-    "text": "Exercise 9\nCalculate the proportions of home owners for each category of Durham residents. Describe the relationship between these two variables, this time with the actual values from the conditional distribution of home ownership based on income level.\nAdd your answer here.\n\ndurham |&gt;\n  select(income, own_rent) |&gt;\n  drop_na() |&gt;\n  count(income, own_rent) |&gt;\n  group_by(income) |&gt;\n  mutate(prop = n / sum(n))\n\n# A tibble: 8 × 4\n# Groups:   income [4]\n  income own_rent     n   prop\n  &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;  &lt;dbl&gt;\n1 1      1           51 0.362 \n2 1      2           90 0.638 \n3 2      1          105 0.565 \n4 2      2           81 0.435 \n5 3      1          107 0.552 \n6 3      2           87 0.448 \n7 4      1          160 0.930 \n8 4      2           12 0.0698"
-  },
-  {
-    "objectID": "ae/ae-04-durham-sa.html#exercise-10",
-    "href": "ae/ae-04-durham-sa.html#exercise-10",
-    "title": "2020 Durham City and County Resident Survey",
-    "section": "Exercise 10",
-    "text": "Exercise 10\nStretch goal: Recode the levels of these two variables to be more informatively labeled.\n\ndurham &lt;- durham |&gt;\n  mutate(\n    income = case_when(\n      income == \"1\" ~ \"Under $30,000\",\n      income == \"2\" ~ \"$30,000-$59,999\",\n      income == \"3\" ~ \"$60,000-$99,999\",\n      income == \"4\" ~ \"$100,000 or more\"      \n    ),\n    own_rent = if_else(own_rent == 1, \"Own\", \"Rent\")\n  )\n\ndurham |&gt;\n  select(income, own_rent) |&gt;\n  drop_na() |&gt;\n  count(income, own_rent) |&gt;\n  group_by(income) |&gt;\n  mutate(prop = n / sum(n))\n\n# A tibble: 8 × 4\n# Groups:   income [4]\n  income           own_rent     n   prop\n  &lt;chr&gt;            &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;\n1 $100,000 or more Own        160 0.930 \n2 $100,000 or more Rent        12 0.0698\n3 $30,000-$59,999  Own        105 0.565 \n4 $30,000-$59,999  Rent        81 0.435 \n5 $60,000-$99,999  Own        107 0.552 \n6 $60,000-$99,999  Rent        87 0.448 \n7 Under $30,000    Own         51 0.362 \n8 Under $30,000    Rent        90 0.638"
-  },
-  {
-    "objectID": "ae/ae-04-durham-sa.html#conceptual",
-    "href": "ae/ae-04-durham-sa.html#conceptual",
+    "objectID": "ae/ae-05-durham.html#conceptual",
+    "href": "ae/ae-05-durham.html#conceptual",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Conceptual",
     "text": "Conceptual\nSome of the terms we introduced are:\n\nMarginal distribution: Distribution of a single variable.\nConditional distribution: Distribution of a variable conditioned on the values (or levels, in the context of categorical data) of another."
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#r",
-    "href": "ae/ae-04-durham-sa.html#r",
+    "objectID": "ae/ae-05-durham.html#r",
+    "href": "ae/ae-05-durham.html#r",
     "title": "2020 Durham City and County Resident Survey",
     "section": "R",
-    "text": "R\nIn this application exercise we:\n\nDefined factors – the data type that R uses for categorical variables, i.e., variables that can take on values from a finite set of levels.\n\n\n\nReviewed data imports, visualization, and wrangling functions encountered before:\n\nImport: read_csv(): Read data from a CSV (comma separated values) file\nVisualization:\n\nggplot(): Create a plot using the ggplot2 package\naes(): Map variables from the data to aesthetic elements of the plot, generally passed as an argument to ggplot() or to geom_*() functions (define only x or y aesthetic)\ngeom_bar(): Represent data with bars, after calculating heights of bars under the hood\nlabs(): Label x axis, y axis, legend for color of plot, title` of plot, etc.\n\nWrangling:\n\nmutate(): Mutate the data frame by creating a new column or overwriting one of the existing columns\ncount(): Count the number of observations for each level of a categorical variable (factor) or each distinct value of any other type of variable\ngroup_by(): Perform each subsequent action once per each group of the variable, where groups can be defined based on the levels of one or more variables\n\n\nIntroduced new data wrangling functions:\n\nrename(): Rename columns in a data frame\nas_factor(): Convert a variable to a factor\ndrop_na(): Drop rows that have NA in one ore more specified variables\nif_else(): Write logic for what happens if a condition is true and what happens if it’s not\ncase_when(): Write a generalized if_else() logic for more than one codition\n\nIntroduced new data visualization functions:\n\ngeom_col(): Represent data with bars (columns), for heights that have already been calculated (must define x and y aesthetics)\nscale_fill_viridis_d(): Customize the discrete fill scale, using a color-blind friendly, ordinal discrete color scale\nscale_y_discrete(): Customize the discrete y scale\nscale_fill_manual(): Customize the fill scale by manually adjusting values for colors"
+    "text": "R\nIn this application exercise we:\n\nDefined factors – the data type that R uses for categorical variables, i.e., variables that can take on values from a finite set of levels.\nReviewed data imports, visualization, and wrangling functions encountered before:\n\nImport: read_csv(): Read data from a CSV (comma separated values) file\nVisualization:\n\nggplot(): Create a plot using the ggplot2 package\naes(): Map variables from the data to aesthetic elements of the plot, generally passed as an argument to ggplot() or to geom_*() functions (define only x or y aesthetic)\ngeom_bar(): Represent data with bars, after calculating heights of bars under the hood\ngeom_histogram(): Represent data with a histogram\ngeom_boxplot(): Represent data with a box plot\ngeom_point(): Represent data with points\nlabs(): Label x axis, y axis, legend for color of plot, title` of plot, etc.\n\nWrangling:\n\nmutate(): Mutate the data frame by creating a new column or overwriting one of the existing columns\ncount(): Count the number of observations for each level of a categorical variable (factor) or each distinct value of any other type of variable\ngroup_by(): Perform each subsequent action once per each group of the variable, where groups can be defined based on the levels of one or more variables\nsummarize(): Calculate summary statistics\n\n\nIntroduced new data wrangling functions:\n\nrename(): Rename columns in a data frame\nas_factor(): Convert a variable to a factor\ndrop_na(): Drop rows that have NA in one ore more specified variables\nif_else(): Write logic for what happens if a condition is true and what happens if it’s not\ncase_when(): Write a generalized if_else() logic for more than one condition\nfct_relevel: Change the order of levels in a factor\n\nIntroduced new data visualization functions:\n\ngeom_col(): Represent data with bars (columns), for heights that have already been calculated (must define x and y aesthetics)\nscale_fill_viridis_d(): Customize the discrete fill scale, using a color-blind friendly, ordinal discrete color scale\nscale_y_discrete(): Customize the discrete y scale\nscale_fill_manual(): Customize the fill scale by manually adjusting values for colors"
   },
   {
-    "objectID": "ae/ae-04-durham-sa.html#quarto",
-    "href": "ae/ae-04-durham-sa.html#quarto",
+    "objectID": "ae/ae-05-durham.html#quarto",
+    "href": "ae/ae-05-durham.html#quarto",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Quarto",
     "text": "Quarto\nWe also introduced chunk options for managing figure sizes:\n\nfig-width: Width of figure\nfig-asp: Aspect ratio of figure (height / width)\nfig-height: Height of figure – but I recommend using fig-width and fig-asp, instead of fig-width and fig-height"
   },
   {
-    "objectID": "ae/ae-07-books-sa.html",
-    "href": "ae/ae-07-books-sa.html",
-    "title": "Weights of books",
+    "objectID": "ae/ae-15-gestation-sa.html",
+    "href": "ae/ae-15-gestation-sa.html",
+    "title": "Length of gestation",
     "section": "",
-    "text": "Important\n\n\n\nThese are suggested answers for the application exercise. They’re not necessarily complete or 100% accurate, they’re roughly what we develop in class while going through the exercises.\nToday we’ll explore the question “How do volume and weights books relate?” and “How, if at all, does that change when we take whether the book is hardback or paperback into consideration?”"
+    "text": "In this application exercise, we’ll do inference for a single mean, using simulation-based and mathematical models."
   },
   {
-    "objectID": "ae/ae-07-books-sa.html#exercise-1",
-    "href": "ae/ae-07-books-sa.html#exercise-1",
-    "title": "Weights of books",
+    "objectID": "ae/ae-15-gestation-sa.html#exercise-1",
+    "href": "ae/ae-15-gestation-sa.html#exercise-1",
+    "title": "Length of gestation",
     "section": "Exercise 1",
-    "text": "Exercise 1\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis). Overlay the line of best fit. Describe the relationship between these variables.\n\nggplot(allbacks, aes(x = volume, y = weight)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(\n    x = \"Volume (cubic centimeters)\",\n    y = \"Weight (grams)\"\n  )\n\n`geom_smooth()` using formula = 'y ~ x'"
+    "text": "Exercise 1\nConstruct and interpret a 95% confidence interval, using the standard error method with the get_ci() function, for the average length of gestation.\n\nset.seed(12345)\n\nboot_dist &lt;- births14 |&gt;\n  specify(response = weeks) |&gt;\n  generate(reps = 1000, type = \"bootstrap\") |&gt;\n  calculate(stat = \"mean\")\n\nobs_stat &lt;- births14 |&gt;\n  specify(response = weeks) |&gt;\n  calculate(stat = \"mean\")\n\nboot_dist |&gt;\n  get_ci(\n    type = \"se\",\n    point_estimate = obs_stat\n  )\n\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     &lt;dbl&gt;    &lt;dbl&gt;\n1     38.5     38.8\n\n\nAdd response here."
   },
   {
-    "objectID": "ae/ae-07-books-sa.html#exercise-2",
-    "href": "ae/ae-07-books-sa.html#exercise-2",
-    "title": "Weights of books",
+    "objectID": "ae/ae-15-gestation-sa.html#exercise-2",
+    "href": "ae/ae-15-gestation-sa.html#exercise-2",
+    "title": "Length of gestation",
     "section": "Exercise 2",
-    "text": "Exercise 2\nFit a model predicting weight from volume for these books and save it as weight_fit. Display a tidy output of the model.\n\nweight_fit &lt;- linear_reg() |&gt;\n  fit(weight ~ volume, data = allbacks)\n\ntidy(weight_fit)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic    p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;\n1 (Intercept)  108.      88.4         1.22 0.245     \n2 volume         0.709    0.0975      7.27 0.00000626"
+    "text": "Exercise 2\nConstruct the interval without using the get_ci() (or get_confidence_interval()) function.\n\nsample mean \\(\\pm\\) ME\n= sample mean \\(\\pm\\) critical value \\(\\times\\) SE of the sample mean\n= sample mean \\(\\pm\\) 2 \\(\\times\\) SE of the sample mean\n= sample mean \\(\\pm\\) 2 \\(\\times\\) SD of the bootstrap distribution\n\n\nse &lt;- boot_dist |&gt;\n  summarize(se = sd(stat)) |&gt;\n  pull(se)\nobs_stat |&gt;\n  mutate(\n    lower = stat - 2*se,\n    upper = stat + 2*se\n  )\n\nResponse: weeks (numeric)\n# A tibble: 1 × 3\n   stat lower upper\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1  38.7  38.5  38.8"
   },
   {
-    "objectID": "ae/ae-07-books-sa.html#exercise-3",
-    "href": "ae/ae-07-books-sa.html#exercise-3",
-    "title": "Weights of books",
+    "objectID": "ae/ae-15-gestation-sa.html#exercise-3",
+    "href": "ae/ae-15-gestation-sa.html#exercise-3",
+    "title": "Length of gestation",
     "section": "Exercise 3",
-    "text": "Exercise 3\nInterpret the slope and the intercept in context of the data.\n\n\nIntercept: Books with 0 volume are expected, on average, to weigh approximately 107.68 grams. This doesn’t make sense in the context of the data, and the intercept is only there to adjust the height of the line on the y-axis.\nSlope: For each additional cubic centimeter the book’s volume is larger, we expect the weight to be higher, on average, by 0.71 grams."
+    "text": "Exercise 3\nWould you expect a 90% confidence interval for the average length of gestation to be wider or narrower? Explain your reasoning.\nNarrower."
   },
   {
-    "objectID": "ae/ae-07-books-sa.html#exercise-4",
-    "href": "ae/ae-07-books-sa.html#exercise-4",
-    "title": "Weights of books",
+    "objectID": "ae/ae-15-gestation-sa.html#exercise-4",
+    "href": "ae/ae-15-gestation-sa.html#exercise-4",
+    "title": "Length of gestation",
     "section": "Exercise 4",
-    "text": "Exercise 4\nCalculate the \\(R^2\\) of this model and interpret it in context of the data.\n\nglance(weight_fit)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic    p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     0.803         0.787  124.      52.9 0.00000626     1  -92.5  191.  193.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\nVolume explains approximately 80% of the variability in book weights."
+    "text": "Exercise 4\nNow construct a 90% confidence interval for the average length of gestation and confirm your answer from the previous exercise. Repeat as little of your code as possible.\n\n#obs_stat |&gt;\n#  mutate(\n#    lower = stat - 1.64*se,\n#    upper = stat + 1.64*se\n#  )\n\nboot_dist |&gt;\n  get_ci(\n    level = 0.90,\n    type = \"se\",\n    point_estimate = obs_stat\n  )\n\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     &lt;dbl&gt;    &lt;dbl&gt;\n1     38.5     38.8"
   },
   {
-    "objectID": "ae/ae-07-books-sa.html#exercise-5",
-    "href": "ae/ae-07-books-sa.html#exercise-5",
-    "title": "Weights of books",
+    "objectID": "ae/ae-15-gestation-sa.html#confidence-intervals-with-mathematical-models",
+    "href": "ae/ae-15-gestation-sa.html#confidence-intervals-with-mathematical-models",
+    "title": "Length of gestation",
+    "section": "Confidence intervals with mathematical models",
+    "text": "Confidence intervals with mathematical models\nIf technical conditions are satisfied, the distribution of the sampling mean (i.e., the sampling distribution) follows the t-distribution with n - 1 degrees of freedom, where n is the sample size.\n\nsampling_dist &lt;- births14 |&gt;\n  specify(response = weeks) |&gt;\n  assume(distribution = \"t\")\n\nsampling_dist\n\nA T distribution with 999 degrees of freedom.\n\nvisualize(sampling_dist)"
+  },
+  {
+    "objectID": "ae/ae-15-gestation-sa.html#exercise-5",
+    "href": "ae/ae-15-gestation-sa.html#exercise-5",
+    "title": "Length of gestation",
     "section": "Exercise 5",
-    "text": "Exercise 5\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis), taking into consideration the cover type of the book. Use different colors and shapes for hardback and paperback books. Also use different colors for lines of best fit for the two types of books. In addition, add the overall line of best fit (from Exercise 1) as a gray dashed line so that you can see the difference between the lines when considering and not considering cover type.\n\nggplot(allbacks, aes(x = volume, y = weight)) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"gray\", linetype = \"dashed\") +\n  geom_point(aes(color = cover, shape = cover)) +\n  geom_smooth(aes(color = cover), method = \"lm\", se = FALSE) +\n  labs(\n    x = \"Volume (cubic centimeters)\",\n    y = \"Weight (grams)\",\n    shape = \"Cover\", color = \"Cover\"\n  )\n\n`geom_smooth()` using formula = 'y ~ x'\n`geom_smooth()` using formula = 'y ~ x'"
+    "text": "Exercise 5\nConstruct and visualize a confidence interval using mathematical models for the average length of gestation.\n\n# option 1 - using infer pipelines: ci using mathematical models\nbirths14 |&gt;\n  specify(response = weeks) |&gt;\n  assume(distribution = \"t\") |&gt;\n  get_ci(point_estimate = obs_stat, type = \"se\")\n\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     &lt;dbl&gt;    &lt;dbl&gt;\n1     38.5     38.8\n\n# option 2 - by hand:\n## se using mathematical models\ns &lt;- births14 |&gt;\n  summarize(s = sd(weeks)) |&gt;\n  pull(s)\nn &lt;- nrow(births14)\n\nse &lt;- s / sqrt(n)\nse\n\n[1] 0.08111118\n\n## me using mathematical models\nme &lt;- 2 * se\n\n## ci using mathematical models\nxbar &lt;- obs_stat |&gt;\n  pull(stat)\nxbar + c(-1, 1) * me\n\n[1] 38.50378 38.82822"
   },
   {
-    "objectID": "ae/ae-07-books-sa.html#exercise-6",
-    "href": "ae/ae-07-books-sa.html#exercise-6",
-    "title": "Weights of books",
+    "objectID": "ae/ae-10-donor-yawner-sa.html",
+    "href": "ae/ae-10-donor-yawner-sa.html",
+    "title": "Donors and yawners",
+    "section": "",
+    "text": "In this application exercise, we’ll introduce pipelines for conducting hypothesis tests with randomization."
+  },
+  {
+    "objectID": "ae/ae-10-donor-yawner-sa.html#exercise-1",
+    "href": "ae/ae-10-donor-yawner-sa.html#exercise-1",
+    "title": "Donors and yawners",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nConstruct the null distribution with 100 resamples. Name it null_dist_donor. How many rows does null_dist_donor have? How many columns? What does each row and each column represent?\n\nset.seed(25)\n\nnull_dist_donor &lt;- organ_donor |&gt;\n  specify(response = outcome, success = \"complication\") |&gt;\n  hypothesize(null = \"point\", p = 0.10) |&gt; \n  generate(reps = 100, type = \"draw\") |&gt; \n  calculate(stat = \"prop\")\n\nnull_dist_donor\n\nResponse: outcome (factor)\nNull Hypothesis: point\n# A tibble: 100 × 2\n   replicate   stat\n   &lt;fct&gt;      &lt;dbl&gt;\n 1 1         0.0645\n 2 2         0.0484\n 3 3         0.113 \n 4 4         0.0806\n 5 5         0.145 \n 6 6         0.145 \n 7 7         0.113 \n 8 8         0.0806\n 9 9         0.113 \n10 10        0.145 \n# ℹ 90 more rows\n\n\n\nnull_dist_donor has 100 rows and 2 columns. Each row is a replicate, and replicate column indicates the replicate number and stat is the simulated proportion, \\(\\hat{p}\\)."
+  },
+  {
+    "objectID": "ae/ae-10-donor-yawner-sa.html#exercise-2",
+    "href": "ae/ae-10-donor-yawner-sa.html#exercise-2",
+    "title": "Donors and yawners",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nWhere do you expect the center of the null distribution to be? Visualize it to confirm.\n\n# option 1\nggplot(null_dist_donor, aes(x = stat)) +\n  geom_histogram(bins = 15, color = \"white\")\n\n\n\n\n\n\n\n\n\n# option 2\nvisualize(null_dist_donor)"
+  },
+  {
+    "objectID": "ae/ae-10-donor-yawner-sa.html#exercise-2-1",
+    "href": "ae/ae-10-donor-yawner-sa.html#exercise-2-1",
+    "title": "Donors and yawners",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nCalculate the observed complication rate of this consultant. Name it obs_stat_donor.\n\nobs_stat_donor &lt;- organ_donor |&gt;\n  specify(response = outcome, success = \"complication\") |&gt;\n  calculate(stat = \"prop\")\n\nobs_stat_donor\n\nResponse: outcome (factor)\n# A tibble: 1 × 1\n    stat\n   &lt;dbl&gt;\n1 0.0484"
+  },
+  {
+    "objectID": "ae/ae-10-donor-yawner-sa.html#exercise-3",
+    "href": "ae/ae-10-donor-yawner-sa.html#exercise-3",
+    "title": "Donors and yawners",
+    "section": "Exercise 3",
+    "text": "Exercise 3\nOverlay the observed statistic on the null distribution and comment on whether an observed outcome as extreme as the observed statistic, or lower, is a likely or unlikely outcome, if in fact the null hypothesis is true.\n\n# option 1\nggplot(null_dist_donor, aes(x = stat)) +\n  geom_histogram(bins = 15, color = \"white\") +\n  geom_vline(xintercept = obs_stat_donor |&gt; pull(stat), color = \"red\", linewidth = 2)\n\n\n\n\n\n\n\n\n\n# option 2\nvisualize(null_dist_donor) +\n  shade_p_value(obs_stat = obs_stat_donor, direction = \"two-sided\")"
+  },
+  {
+    "objectID": "ae/ae-10-donor-yawner-sa.html#exercise-4",
+    "href": "ae/ae-10-donor-yawner-sa.html#exercise-4",
+    "title": "Donors and yawners",
+    "section": "Exercise 4",
+    "text": "Exercise 4\nCalculate the p-value and comment on whether it provides convincing evidence that this consultant incurs a lower complication rate than 10% (overall US complication rate).\n\nSince the p-value is greater than the discernability level, we fail to reject the null hypothesis. These data do not provide convincing evidence that this consultant incurs a lower complication rate than 10% (overall US complication rate).\n\n\n# option 1\nnull_dist_donor |&gt;\n  filter(stat &lt;= obs_stat_donor |&gt; pull(stat)) |&gt;\n  nrow()*2 / 100\n\n[1] 0.3\n\n# option 2\nnull_dist_donor |&gt;\n  get_p_value(obs_stat = obs_stat_donor, direction = \"two-sided\")\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1     0.3"
+  },
+  {
+    "objectID": "ae/ae-10-donor-yawner-sa.html#exercise-5",
+    "href": "ae/ae-10-donor-yawner-sa.html#exercise-5",
+    "title": "Donors and yawners",
+    "section": "Exercise 5",
+    "text": "Exercise 5\nLet’s get real! Redo the test with 15,000 simulations. Note: This can take some time to run.\n\nset.seed(25)\n\nnull_dist_donor &lt;- organ_donor |&gt;\n  specify(response = outcome, success = \"complication\") |&gt;\n  hypothesize(null = \"point\", p = 0.10) |&gt; \n  generate(reps = 15000, type = \"draw\") |&gt; \n  calculate(stat = \"prop\")\n\nnull_dist_donor |&gt;\n  visualize() +\n  shade_p_value(obs_stat = obs_stat_donor, direction = \"two-sided\")\n\n\n\n\n\n\n\n\n\nnull_dist_donor |&gt;\n  get_p_value(obs_stat = obs_stat_donor, direction = \"two-sided\")\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1   0.241"
+  },
+  {
+    "objectID": "ae/ae-10-donor-yawner-sa.html#exercise-6",
+    "href": "ae/ae-10-donor-yawner-sa.html#exercise-6",
+    "title": "Donors and yawners",
     "section": "Exercise 6",
-    "text": "Exercise 6\nFit a model predicting weight from volume for these books and save it as weight_cover_fit. Display a tidy output of the model.\n\nweight_cover_fit &lt;- linear_reg() |&gt;\n  fit(weight ~ volume + cover, data = allbacks)\n\ntidy(weight_cover_fit)\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic      p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;\n1 (Intercept)  198.      59.2         3.34 0.00584     \n2 volume         0.718    0.0615     11.7  0.0000000660\n3 coverpb     -184.      40.5        -4.55 0.000672"
-  },
-  {
-    "objectID": "ae/ae-07-books-sa.html#exercise-7",
-    "href": "ae/ae-07-books-sa.html#exercise-7",
-    "title": "Weights of books",
-    "section": "Exercise 7",
-    "text": "Exercise 7\nIn the model output we have a variable coverpb. Why is only the pb (paperback) level of the cover variable shown? What happened to the hb (hardback) level?\n\nHardback is the reference level, therefore doesn’t show up in the model output."
-  },
-  {
-    "objectID": "ae/ae-07-books-sa.html#exercise-8",
-    "href": "ae/ae-07-books-sa.html#exercise-8",
-    "title": "Weights of books",
-    "section": "Exercise 8",
-    "text": "Exercise 8\nInterpret the slopes and the intercept in context of the data.\n\n\nIntercept: Books with 0 volume and that are hardback are expected, on average, to weigh approximately 197.96 grams. This doesn’t make sense in the context of the data, and the intercept is only there to adjust the height of the line on the y-axis.\nSlope - volume: All else held constant, for each additional cubic centimeter the book’s volume is larger, we expect the weight to be higher, on average, by 0.72 grams.\nSlope - cover: All else held constant, paperback books weigh, on average, 184.05 grams lower than harback books."
-  },
-  {
-    "objectID": "ae/ae-07-books-sa.html#exercise-9",
-    "href": "ae/ae-07-books-sa.html#exercise-9",
-    "title": "Weights of books",
-    "section": "Exercise 9",
-    "text": "Exercise 9\nFirst, guess whether the \\(R^2\\) of this model will be greater than, less than, or the same as the previous model, or whether we can’t tell. Then, calculate the \\(R^2\\) of this model to confirm your guess, and then interpret it in context of the data.\n\nglance(weight_cover_fit)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic     p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     0.927         0.915  78.2      76.7 0.000000145     2  -85.0  178.  181.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\n\\(R^2\\) of this model will be higher since it has an additional predictor.\nVolume and cover type explain approximately 93% of the variability in book weights."
-  },
-  {
-    "objectID": "ae/ae-07-books-sa.html#exercise-10",
-    "href": "ae/ae-07-books-sa.html#exercise-10",
-    "title": "Weights of books",
-    "section": "Exercise 10",
-    "text": "Exercise 10\nWhich model is preferred for predicting book weights and why?\n\nThe second model, since it has a higher adjusted \\(R^2\\)."
-  },
-  {
-    "objectID": "ae/ae-07-books-sa.html#exercise-11",
-    "href": "ae/ae-07-books-sa.html#exercise-11",
-    "title": "Weights of books",
-    "section": "Exercise 11",
-    "text": "Exercise 11\nUsing the model you chose, predict the weight of a hardcover book that is 1000 cubic centimeters (that is, roughly 25 centimeters in length, 20 centimeters in width, and 2 centimeters in height/thickness).\n\nnew_book &lt;- tibble(\n  cover = \"hb\",\n  volume = 1000\n)\n\npredict(weight_cover_fit, new_data = new_book)\n\n# A tibble: 1 × 1\n  .pred\n  &lt;dbl&gt;\n1  916."
+    "text": "Exercise 6\nUsing the yawn dataset in the openintro package, conduct a hypothesis test for evaluating whether yawning is contagious. First, set the hypotheses. Then, conduct a randomization test using 1000 simulations. Visualize and calculate the p-value and use it to make a conclusion about the statistical discernability of the difference in proportions of yawners in the two groups. Then, comment on whether you “buy” this conclusion.\n\nNull hypothesis: Yawning is not contagious; \\(p_{trmt} = p_{ctrl}\\) Alternative hypothesis: Yawning is contagious; \\(p_{trmt} &gt; p_{ctrl}\\) With a p-value 0.522, which is much larger than the discernability level of 0.05, we fail to reject the null hypothesis. These data do not provide convincing evidence that yawning is contagious. Frankly, I don’t buy this statement. I think yawning is contagious. This could be an example of a hypothesis testing error where we fail to reject the null hypothesis when we should have, i.e., a Type II error.\n\n\nset.seed(25)\n\nnull_dist_yawner &lt;- yawn |&gt;\n  specify(response = result, explanatory = group, success = \"yawn\") |&gt;\n  hypothesize(null = \"independence\") |&gt;\n  generate(reps = 1000, type = \"permute\") |&gt;\n  calculate(stat = \"diff in props\", order = c(\"trmt\", \"ctrl\"))\n\nobs_stat_yawner &lt;- yawn |&gt;\n  specify(response = result, explanatory = group, success = \"yawn\") |&gt;\n  calculate(stat = \"diff in props\", order = c(\"trmt\", \"ctrl\"))\n\nnull_dist_yawner |&gt;\n  visualize() +\n  shade_p_value(obs_stat = obs_stat_yawner, direction = \"greater\")\n\n\n\n\n\n\n\n\n\nnull_dist_yawner |&gt;\n  get_p_value(obs_stat = obs_stat_yawner, direction = \"greater\")\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1   0.522"
   },
   {
     "objectID": "ae/ae-01-unvotes.html",
@@ -2696,112 +2703,276 @@
     "text": "Leveraging tidymodels tools further\nVisualizing the interval:\n\nvisualize(boot_dist_abb) +\n  shade_confidence_interval(ci_95_abb)\n\n\n\n\n\n\n\n\n\n\n\n\n\n🔗 sta101-f23.github.io"
   },
   {
-    "objectID": "lectures/02/02-hello-data.html#from-canvas",
-    "href": "lectures/02/02-hello-data.html#from-canvas",
-    "title": "Hello data",
-    "section": "From Canvas",
-    "text": "From Canvas\n\nCourse recordings have been set up. Link has also been added to the course website. Remember that the videos are for “make up”, not a replacement for class attendance.\nTA office hours are updated with minor changes on the course website and Zoom links for virtual office hours are also included.\nIf you haven’t yet done so, please:\n\ncomplete the Getting to know you survey\nread through the syllabus (and follow the prompts)"
+    "objectID": "lectures/05/05-explore-numerical.html#check-in",
+    "href": "lectures/05/05-explore-numerical.html#check-in",
+    "title": "Exploring numerical data",
+    "section": "Check-in",
+    "text": "Check-in\n\nDaily check-ins for getting you thinking at the beginning of the class and reviewing recent/important concepts\nGo to Canvas and open today’s “quiz” titled 2023-09-13 Check-in\nAccess code: ___ (released in class)\n“Graded” for completion"
   },
   {
-    "objectID": "lectures/02/02-hello-data.html#concerns",
-    "href": "lectures/02/02-hello-data.html#concerns",
-    "title": "Hello data",
-    "section": "Concerns",
-    "text": "Concerns\nd |&gt;\n  unnest_tokens(word, concerns) |&gt; \n  anti_join(stop_words) |&gt; \n  count(word, sort = TRUE)\n## Joining with `by = join_by(word)`\n## # A tibble: 227 × 2\n##    word            n\n##    &lt;chr&gt;       &lt;int&gt;\n##  1 coding         34\n##  2 class          12\n##  3 concerned      11\n##  4 nervous        10\n##  5 programming     9\n##  6 math            8\n##  7 understand      8\n##  8 bit             7\n##  9 experience      7\n## 10 learning        6\n## # ℹ 217 more rows"
-  },
-  {
-    "objectID": "lectures/02/02-hello-data.html#stats-and-coding-before",
-    "href": "lectures/02/02-hello-data.html#stats-and-coding-before",
-    "title": "Hello data",
-    "section": "Stats and coding before",
-    "text": "Stats and coding before\n75% so far no stats and no coding background/experience!"
-  },
-  {
-    "objectID": "lectures/02/02-hello-data.html#application-exercise",
-    "href": "lectures/02/02-hello-data.html#application-exercise",
-    "title": "Hello data",
-    "section": "Application exercise",
-    "text": "Application exercise\nGo to Posit Cloud and start the project titled ae-02-Flint.\n\n\n\n🔗 sta101-f23.github.io"
-  },
-  {
-    "objectID": "lectures/20/20-inference-one-mean.html#announcements",
-    "href": "lectures/20/20-inference-one-mean.html#announcements",
-    "title": "Inference one mean",
+    "objectID": "lectures/05/05-explore-numerical.html#announcements",
+    "href": "lectures/05/05-explore-numerical.html#announcements",
+    "title": "Exploring numerical data",
     "section": "Announcements",
-    "text": "Announcements\n\nSlight change of plans on materials post-Thanksgiving\nExam 2 to be returned Monday after Thanksgiving"
+    "text": "Announcements\n\nLab 2 is due Thu, Sep 14 at 5 pm on Gradescope"
   },
   {
-    "objectID": "lectures/20/20-inference-one-mean.html#todays-focus",
-    "href": "lectures/20/20-inference-one-mean.html#todays-focus",
-    "title": "Inference one mean",
-    "section": "Today’s focus",
-    "text": "Today’s focus\n\nInference for a population mean\nSpecifically, estimating a population mean via a confidence interval\nAnd generally, what in the world is a confidence interval?!\n\nWhy is it constructed?\nHow is it constructed?\nWhat do the bounds of a confidence interval mean?\nWhat does the confidence level mean?\nWhat is the margin of error?"
+    "objectID": "lectures/05/05-explore-numerical.html#recap-from-last-time",
+    "href": "lectures/05/05-explore-numerical.html#recap-from-last-time",
+    "title": "Exploring numerical data",
+    "section": "Recap from last time",
+    "text": "Recap from last time\n\nSuppose you have a data frame called df and a single variable in it called x. How many variables will df have after running the following code?\n\ndf |&gt;\n  mutate(y = x + 2)\n\n\n\n\nSuppose you have a data frame called df and a single variable in it called x. How many variables will df have after running the following code?\n\ndf &lt;- df |&gt;\n  mutate(y = x + 2)\n\n\n\n\n\nWhat is the &lt;- operator called and what does it do?"
   },
   {
-    "objectID": "lectures/20/20-inference-one-mean.html#setup",
-    "href": "lectures/20/20-inference-one-mean.html#setup",
-    "title": "Inference one mean",
-    "section": "Setup",
-    "text": "Setup\n\nlibrary(tidyverse)\nlibrary(openintro)\nlibrary(tidymodels)"
+    "objectID": "lectures/05/05-explore-numerical.html#durham-city-and-county-resident-survey",
+    "href": "lectures/05/05-explore-numerical.html#durham-city-and-county-resident-survey",
+    "title": "Exploring numerical data",
+    "section": "2020 Durham City and County Resident Survey",
+    "text": "2020 Durham City and County Resident Survey\nWe’ll continue working with this dataset."
   },
   {
-    "objectID": "lectures/20/20-inference-one-mean.html#bootstrap-confidence-interval-for-the-mean",
-    "href": "lectures/20/20-inference-one-mean.html#bootstrap-confidence-interval-for-the-mean",
-    "title": "Inference one mean",
-    "section": "Bootstrap confidence interval for the mean",
-    "text": "Bootstrap confidence interval for the mean\n\n\nTake a bootstrap sample (sample with replacement) of size n (the original sample size) from the original sample\nRecord the mean\nRepeat steps 1 and 2 many times to build the bootstrap distribution\nFind the bootstrap confidence interval using one of two methods:\n\nPercentile method: The bounds of the middle X% of the bootstrap distribution comprise the X% bootstrap interval.\nStandard error method:\n\nCalculate the standard error for the bootstrap distribution\nFind the critical value associated with the X% confidence interval\nCalculate the margin of error (ME) as the critical value \\(\\times\\) standard error\nConstruct the confidence interval a the original sample mean \\(\\pm\\) ME"
+    "objectID": "lectures/05/05-explore-numerical.html#services",
+    "href": "lectures/05/05-explore-numerical.html#services",
+    "title": "Exploring numerical data",
+    "section": "Services",
+    "text": "Services"
   },
   {
-    "objectID": "lectures/20/20-inference-one-mean.html#case-study-length-of-gestation",
-    "href": "lectures/20/20-inference-one-mean.html#case-study-length-of-gestation",
-    "title": "Inference one mean",
-    "section": "Case study: Length of gestation",
-    "text": "Case study: Length of gestation\n\nEvery year, the United States Department of Health and Human Services releases to the public a large dataset containing information on births recorded in the country. This dataset has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children. In this case study we work with a random sample of 1,000 cases from the dataset released in 2014. The length of pregnancy, measured in weeks, is commonly referred to as gestation. The histogram below shows the distribution of lengths of gestation from the random sample of 1,000 births.\n\n\n\nggplot(\n  openintro::births14, \n  aes(x = weeks)\n  ) +\n  geom_histogram(binwidth = 1) +\n  labs(\n    x = \"Gestation (weeks)\",\n    y = \"Count\",\n    title = \"Random sample of 1,000 births\"\n  )"
+    "objectID": "lectures/05/05-explore-numerical.html#demographics",
+    "href": "lectures/05/05-explore-numerical.html#demographics",
+    "title": "Exploring numerical data",
+    "section": "Demographics",
+    "text": "Demographics"
   },
   {
-    "objectID": "lectures/20/20-inference-one-mean.html#cs-length-of-gestation---boot_dist",
-    "href": "lectures/20/20-inference-one-mean.html#cs-length-of-gestation---boot_dist",
-    "title": "Inference one mean",
-    "section": "CS: Length of gestation - boot_dist",
-    "text": "CS: Length of gestation - boot_dist\n\nThe distribution of bootstrapped means of gestation from 1,500 different bootstrap samples.\n\n\n\nset.seed(1234)\n\nboot_dist &lt;- births14 |&gt;\n  specify(response = weeks) |&gt;\n  generate(\n    reps = 1000, \n    type = \"bootstrap\"\n  ) |&gt;\n  calculate(stat = \"mean\")\n\nvisualize(boot_dist)"
-  },
-  {
-    "objectID": "lectures/20/20-inference-one-mean.html#cs-length-of-gestation---percentile-interval",
-    "href": "lectures/20/20-inference-one-mean.html#cs-length-of-gestation---percentile-interval",
-    "title": "Inference one mean",
-    "section": "CS: Length of gestation - percentile interval",
-    "text": "CS: Length of gestation - percentile interval\n\nWhat does the following code do? How do you adjust it to change the confidence level?\n\n\nboot_dist |&gt;\n  get_ci()\n\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     &lt;dbl&gt;    &lt;dbl&gt;\n1     38.5     38.8"
-  },
-  {
-    "objectID": "lectures/20/20-inference-one-mean.html#cs-length-of-gestation---standard-error-interval",
-    "href": "lectures/20/20-inference-one-mean.html#cs-length-of-gestation---standard-error-interval",
-    "title": "Inference one mean",
-    "section": "CS: Length of gestation - standard error interval",
-    "text": "CS: Length of gestation - standard error interval\n\nWhat does the following code do? Why do we need to provide point_estimate?\n\n\nobs_stat &lt;- births14 |&gt;\n  specify(response = weeks) |&gt;\n  calculate(stat = \"mean\")\n\nobs_stat\n\nResponse: weeks (numeric)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1  38.7\n\nboot_dist |&gt;\n  get_ci(\n    type = \"se\",\n    point_estimate = obs_stat\n  )\n\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     &lt;dbl&gt;    &lt;dbl&gt;\n1     38.5     38.8"
-  },
-  {
-    "objectID": "lectures/20/20-inference-one-mean.html#interpretations",
-    "href": "lectures/20/20-inference-one-mean.html#interpretations",
-    "title": "Inference one mean",
-    "section": "Interpretations",
-    "text": "Interpretations\n\nThe interval:\n\nWe are X% confident that the true population mean is within our confidence interval.\n\nThe confidence level:\n\nWhat does 95% confidence interval mean?"
-  },
-  {
-    "objectID": "lectures/20/20-inference-one-mean.html#application-exercise",
-    "href": "lectures/20/20-inference-one-mean.html#application-exercise",
-    "title": "Inference one mean",
+    "objectID": "lectures/05/05-explore-numerical.html#application-exercise",
+    "href": "lectures/05/05-explore-numerical.html#application-exercise",
+    "title": "Exploring numerical data",
     "section": "Application exercise",
-    "text": "Application exercise\nGo to Posit Cloud and continue the project titled ae-15-Gestation.\n\n\n\n🔗 sta101-f23.github.io"
+    "text": "Application exercise\nGo to Posit Cloud and start the project titled ae-05-Durham.\n\n\n\n🔗 sta101-f23.github.io"
   },
   {
-    "objectID": "course-links.html",
-    "href": "course-links.html",
-    "title": "Useful links",
+    "objectID": "lectures/09/09-regression-overview.html#check-in",
+    "href": "lectures/09/09-regression-overview.html#check-in",
+    "title": "Regression overview",
+    "section": "Check-in",
+    "text": "Check-in\n\nDaily check-ins for getting you thinking at the beginning of the class and reviewing recent/important concepts\nGo to Canvas and open today’s “quiz” titled 2023-10-02 Check-in\nAccess code: ___ (released in class) \n“Graded” for completion"
+  },
+  {
+    "objectID": "lectures/09/09-regression-overview.html#exam-1",
+    "href": "lectures/09/09-regression-overview.html#exam-1",
+    "title": "Regression overview",
+    "section": "Exam 1",
+    "text": "Exam 1\n\nClassroom: You should have received your exam location assignment this morning. Reach out to me ASAP if you haven’t received it.\nIn-class: On Wednesday\n\n1 page, both sides notes (“cheat sheet”)\nNothing else\n\nTake-home: Wednesday - Friday\n\nOpen everything except for other humans, except for me :)"
+  },
+  {
+    "objectID": "lectures/09/09-regression-overview.html#class-check-ins-so-far",
+    "href": "lectures/09/09-regression-overview.html#class-check-ins-so-far",
+    "title": "Regression overview",
+    "section": "Class check-ins so far",
+    "text": "Class check-ins so far\n\n# load packages\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(wordcloud)\n\n# set a seed for reproducible random number generation\n# used in placement of words in word clouds\nset.seed(102)"
+  },
+  {
+    "objectID": "lectures/09/09-regression-overview.html#confounding-variable",
+    "href": "lectures/09/09-regression-overview.html#confounding-variable",
+    "title": "Regression overview",
+    "section": "Confounding variable",
+    "text": "Confounding variable\n\nA confounding variable is a third variable that influences both the independent and dependent variables.\n\n\n\ncheckin_9_11 &lt;- read_csv(\"data/2023-09-11 Check-in Survey Student Analysis Report.csv\") |&gt;\n  select(contains(\"Define\"))\nnames(checkin_9_11) &lt;- \"definition\"\n\ncheckin_9_11 |&gt;\n  unnest_tokens(word, definition) |&gt;\n  anti_join(stop_words) |&gt;\n  filter(!(word %in% c(\"confounding\", \"variable\", \"variables\"))) |&gt;\n  count(word) |&gt;\n  with(wordcloud(word, n, max.words = 100))"
+  },
+  {
+    "objectID": "lectures/09/09-regression-overview.html#ridge-plot",
+    "href": "lectures/09/09-regression-overview.html#ridge-plot",
+    "title": "Regression overview",
+    "section": "Ridge plot",
+    "text": "Ridge plot\n\nA ridge plot is type of data visualization that plots density curves for various groups on the same scale in a single plot. It’s used for comparing the distribution of a numerical variable across the levels of a categorical variable, as an alternative to side-by-side box plots.\n\n\n\ncheckin_9_13 &lt;- read_csv(\"data/2023-09-13 Check-in Survey Student Analysis Report.csv\") |&gt;\n  select(contains(\"Define\"))\nnames(checkin_9_13) &lt;- \"definition\"\n\ncheckin_9_13 |&gt;\n  unnest_tokens(word, definition) |&gt;\n  anti_join(stop_words) |&gt;\n  filter(!(word %in% c(\"ridge\", \"plot\", \"plots\"))) |&gt;\n  count(word) |&gt;\n  with(wordcloud(word, n, max.words = 100))"
+  },
+  {
+    "objectID": "lectures/09/09-regression-overview.html#influential-point",
+    "href": "lectures/09/09-regression-overview.html#influential-point",
+    "title": "Regression overview",
+    "section": "Influential point",
+    "text": "Influential point\n\nAn influential point is a point with high leverage (away from the rest of the points in the x-direction) that influences the slope of the least squares line, i.e., if this point is removed, the slope of the line would change discernebly.\n\n\n\ncheckin_9_25 &lt;- read_csv(\"data/2023-09-25 Check-in Survey Student Analysis Report.csv\") |&gt;\n  select(contains(\"Define\"))\nnames(checkin_9_25) &lt;- \"definition\"\n\ncheckin_9_25 |&gt;\n  unnest_tokens(word, definition) |&gt;\n  anti_join(stop_words) |&gt;\n  filter(!(word %in% c(\"influential\"))) |&gt;\n  count(word) |&gt;\n  with(wordcloud(word, n, max.words = 100))"
+  },
+  {
+    "objectID": "lectures/09/09-regression-overview.html#parsimonious",
+    "href": "lectures/09/09-regression-overview.html#parsimonious",
+    "title": "Regression overview",
+    "section": "Parsimonious",
+    "text": "Parsimonious\n\nA parsimonious model is one that omits predictors that are found to be less important according to various model selection criteria, e.g., adjusted \\(R^2\\). It’s the simplest, most predictive model.\n\n\n\ncheckin_9_27 &lt;- read_csv(\"data/2023-09-27 Check-in Survey Student Analysis Report.csv\") |&gt;\n  select(contains(\"Define\"))\nnames(checkin_9_27) &lt;- \"definition\"\n\ncheckin_9_27 |&gt;\n  unnest_tokens(word, definition) |&gt;\n  anti_join(stop_words) |&gt;\n  filter(!(word %in% c(\"parsimonious\"))) |&gt;\n  count(word) |&gt;\n  with(wordcloud(word, n, max.words = 100))"
+  },
+  {
+    "objectID": "lectures/09/09-regression-overview.html#parsimonious-money",
+    "href": "lectures/09/09-regression-overview.html#parsimonious-money",
+    "title": "Regression overview",
+    "section": "Parsimonious / money?!",
+    "text": "Parsimonious / money?!\n\ncheckin_9_27 |&gt;\n  filter(str_detect(definition, \"money\")) |&gt;\n  pull(definition)\n\n[1] \"It means unwilling to spend money or resources.\"                                                                                                                                                                                                            \n[2] \"unwilling to spend money, stingy\"                                                                                                                                                                                                                           \n[3] \"It means to be unwilling in spending money.\"                                                                                                                                                                                                                \n[4] \"\\\"Parsimonious\\\" is an adjective that describes an individual or behavior characterized by extreme frugality, unwillingness to spend unnecessary money or resources, or simplicity in the use of resources. It implies being economical and avoiding waste.\"\n[5] \"unwilling to spend money\""
+  },
+  {
+    "objectID": "lectures/09/09-regression-overview.html#application-exercise",
+    "href": "lectures/09/09-regression-overview.html#application-exercise",
+    "title": "Regression overview",
+    "section": "Application exercise",
+    "text": "Application exercise\nGo to Posit Cloud and continue the project titled ae-08-Tips.\n\n\n\n\n\n\nICYMI\n\n\nToday’s daily check-in access code: ___ (released in class)"
+  },
+  {
+    "objectID": "lectures/09/09-regression-overview.html#questions-from-anything-so-far",
+    "href": "lectures/09/09-regression-overview.html#questions-from-anything-so-far",
+    "title": "Regression overview",
+    "section": "Questions from anything so far?",
+    "text": "Questions from anything so far?\n\n\n\n🔗 sta101-f23.github.io"
+  },
+  {
+    "objectID": "lectures/15/15-inference-mathematical-models.html#announcements",
+    "href": "lectures/15/15-inference-mathematical-models.html#announcements",
+    "title": "Inference with mathematical models",
+    "section": "Announcements",
+    "text": "Announcements\n\nMy office hours by appointment this week.\nWednesday lecture on Zoom – can join from wherever, will send Zoom link by email and on Slack."
+  },
+  {
+    "objectID": "lectures/15/15-inference-mathematical-models.html#packages",
+    "href": "lectures/15/15-inference-mathematical-models.html#packages",
+    "title": "Inference with mathematical models",
+    "section": "Packages",
+    "text": "Packages\n\nlibrary(tidyverse)\nlibrary(tidymodels)\nlibrary(openintro)"
+  },
+  {
+    "objectID": "lectures/15/15-inference-mathematical-models.html#that-familiar-shape",
+    "href": "lectures/15/15-inference-mathematical-models.html#that-familiar-shape",
+    "title": "Inference with mathematical models",
+    "section": "That familiar shape…",
+    "text": "That familiar shape…\n\nDescribe the shape of the distributions."
+  },
+  {
+    "objectID": "lectures/15/15-inference-mathematical-models.html#its-not-happenstance",
+    "href": "lectures/15/15-inference-mathematical-models.html#its-not-happenstance",
+    "title": "Inference with mathematical models",
+    "section": "It’s not happenstance!",
+    "text": "It’s not happenstance!\nIt’s the Central Limit Theorem, which says that the distribution of the sample statistic is normal, if certain conditions are met.\n\n\nTwo questions:\n\nWhat do we mean by the distribution of the sample statistic?\nWhat conditions need to be met?"
+  },
+  {
+    "objectID": "lectures/15/15-inference-mathematical-models.html#the-distribution-of-the-sample-statistic",
+    "href": "lectures/15/15-inference-mathematical-models.html#the-distribution-of-the-sample-statistic",
+    "title": "Inference with mathematical models",
+    "section": "The distribution of the sample statistic",
+    "text": "The distribution of the sample statistic\n\n\nYou can build the distribution of the sample statistic by repeatedly taking samples of size n (original sample size) from the population and calculating and recording the sample statistic for each of these samples.\nBut, you would never do this in reality!\nYou’d either use simulation (randomization, bootstrapping, stuff we’ve done so far!) or you would leverage mathematical theory to know what to expect if we had taken repeated samples."
+  },
+  {
+    "objectID": "lectures/15/15-inference-mathematical-models.html#the-technical-conditions",
+    "href": "lectures/15/15-inference-mathematical-models.html#the-technical-conditions",
+    "title": "Inference with mathematical models",
+    "section": "The (technical) conditions",
+    "text": "The (technical) conditions\n\nIndependent observations: Observations in the sample are independent. Independence is guaranteed when we take a random sample from a population. Independence can also be guaranteed if we randomly divide individuals into treatment and control groups.\nLarge enough sample: The sample size cannot be too small. What qualifies as “small” differs from one context (i.e., from sample statistic to sample statistic)."
+  },
+  {
+    "objectID": "lectures/15/15-inference-mathematical-models.html#more-to-the-clt",
+    "href": "lectures/15/15-inference-mathematical-models.html#more-to-the-clt",
+    "title": "Inference with mathematical models",
+    "section": "More to the CLT",
+    "text": "More to the CLT\n\nThere is more to the CLT than just the shape of the distribution – normal.\nThe CLT says that the center of the sampling distribution will be at the true population parameter.\nThe CLT also says something about the spread of the sampling distribution, measured by the standard error. For each sample statistic (\\(\\bar{x}\\) – the sample mean, \\(\\hat{p}\\) – the sample proportion, \\(\\bar{x}_1 - \\bar{x}_2\\) – the difference in sample means, etc.) the CLT provides a formula for its standard error.\n\nYou won’t be asked to memorize these formulas.\nIn fact, you’ll rarely use the CLT to calculate the variability of sample statistics, you’ll simulate their distributions directly."
+  },
+  {
+    "objectID": "lectures/15/15-inference-mathematical-models.html#normal-distributions",
+    "href": "lectures/15/15-inference-mathematical-models.html#normal-distributions",
+    "title": "Inference with mathematical models",
+    "section": "Normal distributions",
+    "text": "Normal distributions\n\nHow are these normal distributions similar? How are they different? Which one is \\(N(\\mu = 0, \\sigma. 1)\\) and which \\(N(\\mu = 19, \\sigma = 4)\\)?"
+  },
+  {
+    "objectID": "lectures/15/15-inference-mathematical-models.html#the-68-95-99.7-rule",
+    "href": "lectures/15/15-inference-mathematical-models.html#the-68-95-99.7-rule",
+    "title": "Inference with mathematical models",
+    "section": "The 68-95-99.7 rule",
+    "text": "The 68-95-99.7 rule\nThe normal distribution is not just any unimodal and symmetric distribution, it follows the 68-95-99.7 rule."
+  },
+  {
+    "objectID": "lectures/15/15-inference-mathematical-models.html#using-the-normal-distribution",
+    "href": "lectures/15/15-inference-mathematical-models.html#using-the-normal-distribution",
+    "title": "Inference with mathematical models",
+    "section": "Using the normal distribution…",
+    "text": "Using the normal distribution…\n\nTo make decisions \\(\\rightarrow\\) hypothesis testing\n\nUse properties of the normal distribution to determine the probability of the observed sample statistic (or something more extreme, in the direction of the alternative hypothesis), i.e. the p-value\n\n\n\n\nTo make estimations \\(\\rightarrow\\) confidence intervals\n\nUse properties of the normal distribution to calculate the bounds of the confidence interval, adding and subtracting a margin of error to the observed sample statistic\n\n\n\n\nBut before then…"
+  },
+  {
+    "objectID": "lectures/15/15-inference-mathematical-models.html#application-exercise",
+    "href": "lectures/15/15-inference-mathematical-models.html#application-exercise",
+    "title": "Inference with mathematical models",
+    "section": "Application exercise",
+    "text": "Application exercise\nGo to Posit Cloud and continue the project titled ae-11-Bone density.\n\n\n\n🔗 sta101-f23.github.io"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "STA 101: Data Analysis and Statistical Inference",
     "section": "",
-    "text": "Posit Cloud\n🔗 Posit Cloud\n\n\nLecture recordings\n🔗 Panopto\n\n\nSlack\n🔗 Slack\n\n\nGradebook\n🔗 on Canvas\n\n\nAnnouncements\n🔗 on Canvas\n\n\nTutorial submission\n🔗 on Canvas\n\n\nTextbooks\n🔗 Introduction to Modern Statistics, 2nd Edition\n🔗 R for Data Science, 2nd Edition\n\n\nPackage documentation\n🔗 tidyverse: tidyverse.org\n🔗 tidymodels: tidymodels.org",
+    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nPREPARE\nMATERIALS\nDUE\n\n\n\n\n1\nMon, Aug 28\n\nWelcome to STA 101!\n\n\n\n\n🖥️ slides\n☁️ ae-01\n⌨️ ae-01\n\n\n\n\n\n\n\nWed, Aug 30\n\nHello data\n\n\n📖 ims: Chp 1\n💻 tutorial: 01-data-01 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-02\n⌨️ ae-02\n🗝️ ae-02-sa\n\n\n🔘 Survey: Getting to know you\n\n\n\n\n\nFri, Sep 1\n\nLab 1: Hello R!\n\n\n\n\n⌨️ lab-1\n\n\n\n\n\n2\nMon, Sep 4\n\n⚒️ Labor Day - No lecture\n\n\n\n\n\n\n\n\n\n\n\nWed, Sep 6\n\nStudy design\n\n\n📖 ims: Chp 2\n💻 tutorial: 01-data-02 |&gt; submit\n💻 tutorial: 01-data-03 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-03\n⌨️ ae-03\n🗝️ ae-03-sa\n\n\n\n\n\n\n\nThu, Sep 7\n\n\n\n\n\n\n\n✅ Lab 1 at 5 pm\n\n\n\n\n\nFri, Sep 8\n\nLab 2: Hello data!\n\n\n📖 ims: Chp 3\n💻 tutorial: 01-data-04 |&gt; submit\n\n\n⌨️ lab-2\n\n\n\n\n\n3\nMon, Sep 11\n\nExploring categorical data\n\n\n📖 ims: Chp 4\n💻 tutorial: 02-explore-01 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-04\n⌨️ ae-04\n🗝️ ae-04-sa\n\n\n\n\n\n\n\nWed, Sep 13\n\nExploring numerical data\n\n\n📖 ims: Chp 5\n💻 tutorial: 02-explore-02 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-05\n⌨️ ae-05\n🗝️ ae-05-sa\n\n\n\n\n\n\n\nThu, Sep 14\n\n\n\n\n\n\n\n✅ Lab 2 at 5 pm\n\n\n\n\n\nFri, Sep 15\n\nLab 3: Exploratory data analysis\n\n\n📖 ims: Chp 6\n💻 tutorial: 02-explore-03 |&gt; submit\n\n\n⌨️ lab-3\n\n\n\n\n\n4\nMon, Sep 18\n\nRegression with a single predictor I\nGuest Lecture: Dr. Alex Fisher\n\n\n📖 ims: Chp 7.1 - 7.2\n💻 tutorial: 03-model-01 |&gt; submit\n💻 tutorial: 03-model-02 |&gt; submit\n\n\n\n🖥️ slides\n☁️ ae-06\n⌨️ ae-06\n🗝️ ae-06-sa\n\n\n\n\n\n\n\nWed, Sep 20\n\nNo class\nCatch up with readings and interactive tutorials\n\n\n📖 ims: Chp 7.2 - 7.4\n💻 tutorial: 03-model-03 |&gt; submit\n\n\n\n\n\n\n\n\n\nThu, Sep 21\n\n\n\n\n\n\n\n✅ Lab 3 at 5 pm\n\n\n\n\n\nFri, Sep 22\n\nLab 4: Regression\n\n\n\n\n⌨️ lab-4\n\n\n\n\n\n5\nMon, Sep 25\n\nRegression with multiple predictors\n\n\n📖 ims: Chp 8.1 - 8.3\n\n\n🖥️ slides\n☁️ ae-07\n⌨️ ae-07\n🗝️ ae-07-sa\n\n\n\n\n\n\n\nWed, Sep 27\n\nModel selection\n\n\n📖 ims: Chp 8.4 - 8.5\n\n\n🖥️ slides\n☁️ ae-08\n⌨️ ae-08\n🗝️ ae-08-sa\n\n\n\n\n\n\n\nThu, Sep 28\n\n\n\n\n\n\n\n✅ Lab 4 at 5 pm\n\n\n\n\n\nFri, Sep 29\n\nExam 1 Review\n\n\n\n\n📝 er-1\n🗝️ er-1-sa\n\n\n\n\n\n6\nMon, Oct 2\n\nRegression overview\n\n\n\n\n🖥️ slides\n\n\n\n\n\n\n\nWed, Oct 4\n\nExam 1 - In class\n\n\n\n\n\n\n\n\n\n\n\nFri, Oct 6\n\nNo lab: Work on Exam 1 - Take home\n\n\n\n\n\n\nExam 1 - Take home + Tutorials at 5 pm\n\n\n\n7\nMon, Oct 9\n\nLogistic regression I\n\n\n📖 ims: Chp 9.1 - 9.2\n\n\n🖥️ slides\n☁️ ae-09\n⌨️ ae-09\n🗝️ ae-09-sa\n\n\n\n\n\n\n\nWed, Oct 11\n\nLogistic regression II\n\n\n📖 ims: Chp 9.3 - 9.5\n\n\n🖥️ slides\n\n\n\n\n\n\n\nFri, Oct 13\n\nProject 1 workday\n\n\n\n\n\n\n📄 Project 1 at 5 pm\n\n\n\n8\nMon, Oct 16\n\n🍂 Fall Break - No lecture\n\n\n\n\n\n\n\n\n\n\n\nWed, Oct 18\n\nHypothesis testing with randomization\n\n\n📖 ims: Chp 11\n💻 tutorial: 04-foundations-01 |&gt; submit\n💻 tutorial: 04-foundations-02 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-10\n⌨️ ae-10\n🗝️ ae-10\n\n\n\n\n\n\n\nFri, Oct 20\n\nLab 5: Hypothesis testing\n\n\n\n\n⌨️ lab-5\n\n\n\n\n\n9\nMon, Oct 23\n\nConfidence intervals with bootstrapping\n\n\n📖 ims: Chp 12\n💻 tutorial: 04-foundations-04 |&gt; submit\n\n\n🖥️ slides\n\n\n\n\n\n\n\nWed, Oct 25\n\nDecision errors\nGuest Lecture: Dr. Yue Jiang\n\n\n📖 ims: Chp 14\n💻 tutorial: 04-foundations-03 |&gt; submit\n\n\n🖥️ slides\n\n\n\n\n\n\n\nThu, Oct 26\n\n\n\n\n\n\n\n✅ Lab 5 at 5 pm\n\n\n\n\n\nFri, Oct 27\n\nLab 6: Foundations of inference\n\n\n\n\n⌨️ lab-6\n\n\n\n\n\n10\nMon, Oct 30\n\nInference with mathematical models\n\n\n📖 ims: Chp 13\n\n\n🖥️ slides\n☁️ ae-11\n⌨️ ae-11\n🗝️ ae-11\n\n\n\n\n\n\n\nWed, Nov 1\n\nZoom lecture:\nInference for a single proportion\n\n\n📖 ims: Chp 16\n💻 tutorial: 05-infer-01 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-12\n⌨️ ae-12\n🗝️ ae-12\n\n\n\n\n\n\n\nThu, Nov 2\n\n\n\n\n\n\n\n✅ Lab 6 at 5 pm\n\n\n\n\n\nFri, Nov 3\n\nLab 7: Inference for proportions\n\n\n\n\n⌨️ lab-7\n\n\n\n\n\n11\nMon, Nov 6\n\nInference for comparing two proportions\n\n\n📖 ims: Chp 17\n💻 tutorial: 05-infer-02 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-13\n⌨️ ae-13\n🗝️ ae-13\n\n\n\n\n\n\n\nWed, Nov 8\n\nInference for two-way tables\n\n\n📖 ims: Chp 18\n💻 tutorial: 05-infer-03 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-14\n⌨️ ae-14\n🗝️ ae-14\n\n\n\n\n\n\n\nThu, Nov 9\n\n\n\n\n\n\n\n✅ Lab 7 at 5 pm\n\n\n\n\n\nFri, Nov 10\n\nExam 2 Review\n\n\n💻 tutorial: 05-infer-04 |&gt; submit\n\n\n📝 er-2\n🗝️ er-2-sa\n\n\n\n\n\n12\nMon, Nov 13\n\nOverview: Inference for proportions\n\n\n📖 ims: Chp 23.1\n\n\n🖥️ slides\n\n\n\n\n\n\n\nWed, Nov 15\n\nExam 2 - In class\n\n\n\n\n\n\n\n\n\n\n\nFri, Nov 17\n\nNo lab: Work on Exam 2 - Take home\n\n\n\n\n\n\nExam 2 - Take home + Tutorials at 5 pm\n\n\n\n13\nMon, Nov 20\n\nInference for a single mean\n\n\n📖 ims: Chp 19\n💻 tutorial: 05-infer-05 |&gt; submit\n💻 tutorial: 05-infer-06 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-15\n⌨️ ae-15\n🗝️ ae-15\n\n\n\n\n\n\n\nWed, Nov 22\n\n🦃 Thanksgiving Break - No lecture\n\n\n\n\n\n\n\n\n\n\n\nFri, Nov 24\n\n🦃 Thanksgiving Break - No lab\n\n\n\n\n\n\n\n\n\n14\nMon, Nov 27\n\nInference for comparing two independent means\n\n\n📖 ims: Chp 20\n💻 tutorial: 05-infer-07 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-16\n⌨️ ae-16\n\n\n\n\n\n\n\nWed, Nov 29\n\nInference for comparing two paired + more means\n\n\n📖 ims: Chp 21\n\n\n\n\n\n\n\n\n\nFri, Dec 1\n\nProject proposal conversation\nLab 8: Inference for means\n\n\n\n\n⌨️ lab-8 [Optional]\n\n\n📄 Project 2 proposal conversation\n\n\n\n15\nMon, Dec 4\n\nEthics\n\n\n🎥 Data privacy\n🎥 Misrepresentation\n🎥 Algorithmic bias\n🎥 Joy Buolamwini - How I’m fighting bias in algorithms\n🎥 Cathy O’Neil - Weapons of Math Destruction\n🎥 Safiya Umoja Noble - Imagining a Future Free from the Algorithms of Oppression\n\n\n\n\n\n\n\n\n\nWed, Dec 6\n\nOverview: Inference for means\nTelling a (data) story\n\n\n📖 fdv: Chp 29\n\n\n\n\n\n\n\n\n\nThu, Dec 7\n\n\n\n\n\n\n\n✅ Lab 8 at 5 pm\n\n\n\n\n\nFri, Dec 8\n\nProject 2 peer review\n\n\n\n\n\n\n📄 Project 2 peer review\n\n\n\n16\nThu, Dec 14\n\n\n\n\n\n\n\n📄 Project 2 at 2 pm",
     "crumbs": [
       "Course information",
-      "Useful links"
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "course-team.html",
+    "href": "course-team.html",
+    "title": "Teaching team",
+    "section": "",
+    "text": "Dr. Mine Çetinkaya-Rundel (she/her) is Professor of the Practice and Director of Undergraduate Studies at the Department of Statistical Science at Duke University and an affiliated faculty in the Computational Media, Arts, and Cultures. Mine’s work focuses on innovation in statistics and data science pedagogy, with an emphasis on computing, reproducible research, student-centered learning, and open-source education as well as pedagogical approaches for enhancing retention of women and under-represented minorities in STEM.\n\n\n\nOffice hours\nLocation\n\n\n\n\nTue 3:30 - 5:30 pm\nOld Chem 213",
+    "crumbs": [
+      "Course information",
+      "Teaching team"
+    ]
+  },
+  {
+    "objectID": "course-team.html#instructor",
+    "href": "course-team.html#instructor",
+    "title": "Teaching team",
+    "section": "",
+    "text": "Dr. Mine Çetinkaya-Rundel (she/her) is Professor of the Practice and Director of Undergraduate Studies at the Department of Statistical Science at Duke University and an affiliated faculty in the Computational Media, Arts, and Cultures. Mine’s work focuses on innovation in statistics and data science pedagogy, with an emphasis on computing, reproducible research, student-centered learning, and open-source education as well as pedagogical approaches for enhancing retention of women and under-represented minorities in STEM.\n\n\n\nOffice hours\nLocation\n\n\n\n\nTue 3:30 - 5:30 pm\nOld Chem 213",
+    "crumbs": [
+      "Course information",
+      "Teaching team"
+    ]
+  },
+  {
+    "objectID": "course-team.html#teaching-assistants",
+    "href": "course-team.html#teaching-assistants",
+    "title": "Teaching team",
+    "section": "Teaching assistants",
+    "text": "Teaching assistants\n\n\n\n\nName\nRole\nLab section\nOffice hours\n\n\n\n\n\nShuo Wang\nHead + Lab TA\nFri 8:30 - 9:45 am\nMon 2:45 - 4:45 pm\nOld Chem 203B\n\n\n\nSylvia Vincent\nLab TA\nFri 10:05 - 11:20 am\nWed 3 - 5 pm\nOld Chem 025\n\n\n\nJohn Gillen\nLab TA\nFri 11:45 am - 1:00 pm\nWed 10:30 am - 12:30 pm\nZoom\n\n\n\nChris Oswald\nLab TA\nFri 1:25 - 2:40 pm\nMon 9 - 10 am\nTue 9 - 10 am\nJones Open Lab (Bostock Library, 1st Floor)\n\n\n\nMinh Anh To\nTA\n\nMon 10 am - 12 pm\nOld Chem 203B\n\n\n\nHao Wang\nTA\n\nTue 10 am - 12 pm\nOld Chem 203B\n\n\n\nNoah Obuya\nTA\n\nSun 12 - 2 pm\nZoom\n\n\n\nMeghna Katyal\nTA\n\nMon 7:30 - 8:30 pm\nZoom\n\n\n\nAvery Hodges\nTA\n\nMon 5 - 7 pm\nZoom",
+    "crumbs": [
+      "Course information",
+      "Teaching team"
+    ]
+  },
+  {
+    "objectID": "course-overview.html",
+    "href": "course-overview.html",
+    "title": "Course overview",
+    "section": "",
+    "text": "This is the homepage for STA 101 - Data Analysis and Statistical Inference taught by Dr. Mine Çetinkaya-Rundel in Fall 2023 at Duke University. All course materials will be posted on this site.\nYou can find the course syllabus here and the course schedule here.",
+    "crumbs": [
+      "Course information",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "course-overview.html#class-meetings",
+    "href": "course-overview.html#class-meetings",
+    "title": "Course overview",
+    "section": "Class meetings",
+    "text": "Class meetings\n\n\n\n\n\n\n\n\n\nMeeting\nLocation\nTime\nInstructor / Lab leader\n\n\n\n\nLectures\nGross Hall 103\nMon & Wed 1:25 - 2:40 pm\nMine\n\n\nLab 1\nPerkins LINK 087 (Classroom 3)\nFri 8:30 - 9:45 am\nShuo\n\n\nLab 2\nPerkins LINK 087 (Classroom 3)\nFri 10:05 - 11:20 am\nSylvia\n\n\nLab 3\nPerkins LINK 087 (Classroom 3)\nFri 11:45 am - 1:00 pm\nJohn\n\n\nLab 4\nPerkins LINK 087 (Classroom 3)\nFri 1:25 - 2:40 pm\nChris",
+    "crumbs": [
+      "Course information",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "course-overview.html#license",
+    "href": "course-overview.html#license",
+    "title": "Course overview",
+    "section": "License",
+    "text": "License\n\nThis online work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International. Visit here for more information about the license.",
+    "crumbs": [
+      "Course information",
+      "Overview"
     ]
   },
   {
@@ -2904,277 +3075,155 @@
     ]
   },
   {
-    "objectID": "course-overview.html",
-    "href": "course-overview.html",
-    "title": "Course overview",
+    "objectID": "course-links.html",
+    "href": "course-links.html",
+    "title": "Useful links",
     "section": "",
-    "text": "This is the homepage for STA 101 - Data Analysis and Statistical Inference taught by Dr. Mine Çetinkaya-Rundel in Fall 2023 at Duke University. All course materials will be posted on this site.\nYou can find the course syllabus here and the course schedule here.",
+    "text": "Posit Cloud\n🔗 Posit Cloud\n\n\nLecture recordings\n🔗 Panopto\n\n\nSlack\n🔗 Slack\n\n\nGradebook\n🔗 on Canvas\n\n\nAnnouncements\n🔗 on Canvas\n\n\nTutorial submission\n🔗 on Canvas\n\n\nTextbooks\n🔗 Introduction to Modern Statistics, 2nd Edition\n🔗 R for Data Science, 2nd Edition\n\n\nPackage documentation\n🔗 tidyverse: tidyverse.org\n🔗 tidymodels: tidymodels.org",
     "crumbs": [
       "Course information",
-      "Overview"
+      "Useful links"
     ]
   },
   {
-    "objectID": "course-overview.html#class-meetings",
-    "href": "course-overview.html#class-meetings",
-    "title": "Course overview",
-    "section": "Class meetings",
-    "text": "Class meetings\n\n\n\n\n\n\n\n\n\nMeeting\nLocation\nTime\nInstructor / Lab leader\n\n\n\n\nLectures\nGross Hall 103\nMon & Wed 1:25 - 2:40 pm\nMine\n\n\nLab 1\nPerkins LINK 087 (Classroom 3)\nFri 8:30 - 9:45 am\nShuo\n\n\nLab 2\nPerkins LINK 087 (Classroom 3)\nFri 10:05 - 11:20 am\nSylvia\n\n\nLab 3\nPerkins LINK 087 (Classroom 3)\nFri 11:45 am - 1:00 pm\nJohn\n\n\nLab 4\nPerkins LINK 087 (Classroom 3)\nFri 1:25 - 2:40 pm\nChris",
-    "crumbs": [
-      "Course information",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "course-overview.html#license",
-    "href": "course-overview.html#license",
-    "title": "Course overview",
-    "section": "License",
-    "text": "License\n\nThis online work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International. Visit here for more information about the license.",
-    "crumbs": [
-      "Course information",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "course-team.html",
-    "href": "course-team.html",
-    "title": "Teaching team",
-    "section": "",
-    "text": "Dr. Mine Çetinkaya-Rundel (she/her) is Professor of the Practice and Director of Undergraduate Studies at the Department of Statistical Science at Duke University and an affiliated faculty in the Computational Media, Arts, and Cultures. Mine’s work focuses on innovation in statistics and data science pedagogy, with an emphasis on computing, reproducible research, student-centered learning, and open-source education as well as pedagogical approaches for enhancing retention of women and under-represented minorities in STEM.\n\n\n\nOffice hours\nLocation\n\n\n\n\nTue 3:30 - 5:30 pm\nOld Chem 213",
-    "crumbs": [
-      "Course information",
-      "Teaching team"
-    ]
-  },
-  {
-    "objectID": "course-team.html#instructor",
-    "href": "course-team.html#instructor",
-    "title": "Teaching team",
-    "section": "",
-    "text": "Dr. Mine Çetinkaya-Rundel (she/her) is Professor of the Practice and Director of Undergraduate Studies at the Department of Statistical Science at Duke University and an affiliated faculty in the Computational Media, Arts, and Cultures. Mine’s work focuses on innovation in statistics and data science pedagogy, with an emphasis on computing, reproducible research, student-centered learning, and open-source education as well as pedagogical approaches for enhancing retention of women and under-represented minorities in STEM.\n\n\n\nOffice hours\nLocation\n\n\n\n\nTue 3:30 - 5:30 pm\nOld Chem 213",
-    "crumbs": [
-      "Course information",
-      "Teaching team"
-    ]
-  },
-  {
-    "objectID": "course-team.html#teaching-assistants",
-    "href": "course-team.html#teaching-assistants",
-    "title": "Teaching team",
-    "section": "Teaching assistants",
-    "text": "Teaching assistants\n\n\n\n\nName\nRole\nLab section\nOffice hours\n\n\n\n\n\nShuo Wang\nHead + Lab TA\nFri 8:30 - 9:45 am\nMon 2:45 - 4:45 pm\nOld Chem 203B\n\n\n\nSylvia Vincent\nLab TA\nFri 10:05 - 11:20 am\nWed 3 - 5 pm\nOld Chem 025\n\n\n\nJohn Gillen\nLab TA\nFri 11:45 am - 1:00 pm\nWed 10:30 am - 12:30 pm\nZoom\n\n\n\nChris Oswald\nLab TA\nFri 1:25 - 2:40 pm\nMon 9 - 10 am\nTue 9 - 10 am\nJones Open Lab (Bostock Library, 1st Floor)\n\n\n\nMinh Anh To\nTA\n\nMon 10 am - 12 pm\nOld Chem 203B\n\n\n\nHao Wang\nTA\n\nTue 10 am - 12 pm\nOld Chem 203B\n\n\n\nNoah Obuya\nTA\n\nSun 12 - 2 pm\nZoom\n\n\n\nMeghna Katyal\nTA\n\nMon 7:30 - 8:30 pm\nZoom\n\n\n\nAvery Hodges\nTA\n\nMon 5 - 7 pm\nZoom",
-    "crumbs": [
-      "Course information",
-      "Teaching team"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "STA 101: Data Analysis and Statistical Inference",
-    "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nPREPARE\nMATERIALS\nDUE\n\n\n\n\n1\nMon, Aug 28\n\nWelcome to STA 101!\n\n\n\n\n🖥️ slides\n☁️ ae-01\n⌨️ ae-01\n\n\n\n\n\n\n\nWed, Aug 30\n\nHello data\n\n\n📖 ims: Chp 1\n💻 tutorial: 01-data-01 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-02\n⌨️ ae-02\n🗝️ ae-02-sa\n\n\n🔘 Survey: Getting to know you\n\n\n\n\n\nFri, Sep 1\n\nLab 1: Hello R!\n\n\n\n\n⌨️ lab-1\n\n\n\n\n\n2\nMon, Sep 4\n\n⚒️ Labor Day - No lecture\n\n\n\n\n\n\n\n\n\n\n\nWed, Sep 6\n\nStudy design\n\n\n📖 ims: Chp 2\n💻 tutorial: 01-data-02 |&gt; submit\n💻 tutorial: 01-data-03 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-03\n⌨️ ae-03\n🗝️ ae-03-sa\n\n\n\n\n\n\n\nThu, Sep 7\n\n\n\n\n\n\n\n✅ Lab 1 at 5 pm\n\n\n\n\n\nFri, Sep 8\n\nLab 2: Hello data!\n\n\n📖 ims: Chp 3\n💻 tutorial: 01-data-04 |&gt; submit\n\n\n⌨️ lab-2\n\n\n\n\n\n3\nMon, Sep 11\n\nExploring categorical data\n\n\n📖 ims: Chp 4\n💻 tutorial: 02-explore-01 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-04\n⌨️ ae-04\n🗝️ ae-04-sa\n\n\n\n\n\n\n\nWed, Sep 13\n\nExploring numerical data\n\n\n📖 ims: Chp 5\n💻 tutorial: 02-explore-02 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-05\n⌨️ ae-05\n🗝️ ae-05-sa\n\n\n\n\n\n\n\nThu, Sep 14\n\n\n\n\n\n\n\n✅ Lab 2 at 5 pm\n\n\n\n\n\nFri, Sep 15\n\nLab 3: Exploratory data analysis\n\n\n📖 ims: Chp 6\n💻 tutorial: 02-explore-03 |&gt; submit\n\n\n⌨️ lab-3\n\n\n\n\n\n4\nMon, Sep 18\n\nRegression with a single predictor I\nGuest Lecture: Dr. Alex Fisher\n\n\n📖 ims: Chp 7.1 - 7.2\n💻 tutorial: 03-model-01 |&gt; submit\n💻 tutorial: 03-model-02 |&gt; submit\n\n\n\n🖥️ slides\n☁️ ae-06\n⌨️ ae-06\n🗝️ ae-06-sa\n\n\n\n\n\n\n\nWed, Sep 20\n\nNo class\nCatch up with readings and interactive tutorials\n\n\n📖 ims: Chp 7.2 - 7.4\n💻 tutorial: 03-model-03 |&gt; submit\n\n\n\n\n\n\n\n\n\nThu, Sep 21\n\n\n\n\n\n\n\n✅ Lab 3 at 5 pm\n\n\n\n\n\nFri, Sep 22\n\nLab 4: Regression\n\n\n\n\n⌨️ lab-4\n\n\n\n\n\n5\nMon, Sep 25\n\nRegression with multiple predictors\n\n\n📖 ims: Chp 8.1 - 8.3\n\n\n🖥️ slides\n☁️ ae-07\n⌨️ ae-07\n🗝️ ae-07-sa\n\n\n\n\n\n\n\nWed, Sep 27\n\nModel selection\n\n\n📖 ims: Chp 8.4 - 8.5\n\n\n🖥️ slides\n☁️ ae-08\n⌨️ ae-08\n🗝️ ae-08-sa\n\n\n\n\n\n\n\nThu, Sep 28\n\n\n\n\n\n\n\n✅ Lab 4 at 5 pm\n\n\n\n\n\nFri, Sep 29\n\nExam 1 Review\n\n\n\n\n📝 er-1\n🗝️ er-1-sa\n\n\n\n\n\n6\nMon, Oct 2\n\nRegression overview\n\n\n\n\n🖥️ slides\n\n\n\n\n\n\n\nWed, Oct 4\n\nExam 1 - In class\n\n\n\n\n\n\n\n\n\n\n\nFri, Oct 6\n\nNo lab: Work on Exam 1 - Take home\n\n\n\n\n\n\nExam 1 - Take home + Tutorials at 5 pm\n\n\n\n7\nMon, Oct 9\n\nLogistic regression I\n\n\n📖 ims: Chp 9.1 - 9.2\n\n\n🖥️ slides\n☁️ ae-09\n⌨️ ae-09\n🗝️ ae-09-sa\n\n\n\n\n\n\n\nWed, Oct 11\n\nLogistic regression II\n\n\n📖 ims: Chp 9.3 - 9.5\n\n\n🖥️ slides\n\n\n\n\n\n\n\nFri, Oct 13\n\nProject 1 workday\n\n\n\n\n\n\n📄 Project 1 at 5 pm\n\n\n\n8\nMon, Oct 16\n\n🍂 Fall Break - No lecture\n\n\n\n\n\n\n\n\n\n\n\nWed, Oct 18\n\nHypothesis testing with randomization\n\n\n📖 ims: Chp 11\n💻 tutorial: 04-foundations-01 |&gt; submit\n💻 tutorial: 04-foundations-02 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-10\n⌨️ ae-10\n🗝️ ae-10\n\n\n\n\n\n\n\nFri, Oct 20\n\nLab 5: Hypothesis testing\n\n\n\n\n⌨️ lab-5\n\n\n\n\n\n9\nMon, Oct 23\n\nConfidence intervals with bootstrapping\n\n\n📖 ims: Chp 12\n💻 tutorial: 04-foundations-04 |&gt; submit\n\n\n🖥️ slides\n\n\n\n\n\n\n\nWed, Oct 25\n\nDecision errors\nGuest Lecture: Dr. Yue Jiang\n\n\n📖 ims: Chp 14\n💻 tutorial: 04-foundations-03 |&gt; submit\n\n\n🖥️ slides\n\n\n\n\n\n\n\nThu, Oct 26\n\n\n\n\n\n\n\n✅ Lab 5 at 5 pm\n\n\n\n\n\nFri, Oct 27\n\nLab 6: Foundations of inference\n\n\n\n\n⌨️ lab-6\n\n\n\n\n\n10\nMon, Oct 30\n\nInference with mathematical models\n\n\n📖 ims: Chp 13\n\n\n🖥️ slides\n☁️ ae-11\n⌨️ ae-11\n🗝️ ae-11\n\n\n\n\n\n\n\nWed, Nov 1\n\nZoom lecture:\nInference for a single proportion\n\n\n📖 ims: Chp 16\n💻 tutorial: 05-infer-01 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-12\n⌨️ ae-12\n🗝️ ae-12\n\n\n\n\n\n\n\nThu, Nov 2\n\n\n\n\n\n\n\n✅ Lab 6 at 5 pm\n\n\n\n\n\nFri, Nov 3\n\nLab 7: Inference for proportions\n\n\n\n\n⌨️ lab-7\n\n\n\n\n\n11\nMon, Nov 6\n\nInference for comparing two proportions\n\n\n📖 ims: Chp 17\n💻 tutorial: 05-infer-02 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-13\n⌨️ ae-13\n🗝️ ae-13\n\n\n\n\n\n\n\nWed, Nov 8\n\nInference for two-way tables\n\n\n📖 ims: Chp 18\n💻 tutorial: 05-infer-03 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-14\n⌨️ ae-14\n🗝️ ae-14\n\n\n\n\n\n\n\nThu, Nov 9\n\n\n\n\n\n\n\n✅ Lab 7 at 5 pm\n\n\n\n\n\nFri, Nov 10\n\nExam 2 Review\n\n\n💻 tutorial: 05-infer-04 |&gt; submit\n\n\n📝 er-2\n🗝️ er-2-sa\n\n\n\n\n\n12\nMon, Nov 13\n\nOverview: Inference for proportions\n\n\n📖 ims: Chp 23.1\n\n\n🖥️ slides\n\n\n\n\n\n\n\nWed, Nov 15\n\nExam 2 - In class\n\n\n\n\n\n\n\n\n\n\n\nFri, Nov 17\n\nNo lab: Work on Exam 2 - Take home\n\n\n\n\n\n\nExam 2 - Take home + Tutorials at 5 pm\n\n\n\n13\nMon, Nov 20\n\nInference for a single mean\n\n\n📖 ims: Chp 19\n💻 tutorial: 05-infer-05 |&gt; submit\n💻 tutorial: 05-infer-06 |&gt; submit\n\n\n🖥️ slides\n☁️ ae-15\n⌨️ ae-15\n🗝️ ae-15\n\n\n\n\n\n\n\nWed, Nov 22\n\n🦃 Thanksgiving Break - No lecture\n\n\n\n\n\n\n\n\n\n\n\nFri, Nov 24\n\n🦃 Thanksgiving Break - No lab\n\n\n\n\n\n\n\n\n\n14\nMon, Nov 27\n\nInference for comparing two independent means\n\n\n📖 ims: Chp 20\n💻 tutorial: 05-infer-07 |&gt; submit\n\n\n\n\n\n\n\n\n\nWed, Nov 29\n\nInference for comparing two paired + more means\n\n\n📖 ims: Chp 21\n\n\n\n\n\n\n\n\n\nFri, Dec 1\n\nProject proposal conversation\nLab 8: Inference for means\n\n\n\n\n⌨️ lab-8 [Optional]\n\n\n📄 Project 2 proposal conversation\n\n\n\n15\nMon, Dec 4\n\nEthics\n\n\n🎥 Data privacy\n🎥 Misrepresentation\n🎥 Algorithmic bias\n🎥 Joy Buolamwini - How I’m fighting bias in algorithms\n🎥 Cathy O’Neil - Weapons of Math Destruction\n🎥 Safiya Umoja Noble - Imagining a Future Free from the Algorithms of Oppression\n\n\n\n\n\n\n\n\n\nWed, Dec 6\n\nOverview: Inference for means\nTelling a (data) story\n\n\n📖 fdv: Chp 29\n\n\n\n\n\n\n\n\n\nThu, Dec 7\n\n\n\n\n\n\n\n✅ Lab 8 at 5 pm\n\n\n\n\n\nFri, Dec 8\n\nProject 2 peer review\n\n\n\n\n\n\n📄 Project 2 peer review\n\n\n\n16\nThu, Dec 14\n\n\n\n\n\n\n\n📄 Project 2 at 2 pm",
-    "crumbs": [
-      "Course information",
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "lectures/15/15-inference-mathematical-models.html#announcements",
-    "href": "lectures/15/15-inference-mathematical-models.html#announcements",
-    "title": "Inference with mathematical models",
+    "objectID": "lectures/20/20-inference-one-mean.html#announcements",
+    "href": "lectures/20/20-inference-one-mean.html#announcements",
+    "title": "Inference one mean",
     "section": "Announcements",
-    "text": "Announcements\n\nMy office hours by appointment this week.\nWednesday lecture on Zoom – can join from wherever, will send Zoom link by email and on Slack."
+    "text": "Announcements\n\nSlight change of plans on materials post-Thanksgiving\nExam 2 to be returned Monday after Thanksgiving"
   },
   {
-    "objectID": "lectures/15/15-inference-mathematical-models.html#packages",
-    "href": "lectures/15/15-inference-mathematical-models.html#packages",
-    "title": "Inference with mathematical models",
-    "section": "Packages",
-    "text": "Packages\n\nlibrary(tidyverse)\nlibrary(tidymodels)\nlibrary(openintro)"
+    "objectID": "lectures/20/20-inference-one-mean.html#todays-focus",
+    "href": "lectures/20/20-inference-one-mean.html#todays-focus",
+    "title": "Inference one mean",
+    "section": "Today’s focus",
+    "text": "Today’s focus\n\nInference for a population mean\nSpecifically, estimating a population mean via a confidence interval\nAnd generally, what in the world is a confidence interval?!\n\nWhy is it constructed?\nHow is it constructed?\nWhat do the bounds of a confidence interval mean?\nWhat does the confidence level mean?\nWhat is the margin of error?"
   },
   {
-    "objectID": "lectures/15/15-inference-mathematical-models.html#that-familiar-shape",
-    "href": "lectures/15/15-inference-mathematical-models.html#that-familiar-shape",
-    "title": "Inference with mathematical models",
-    "section": "That familiar shape…",
-    "text": "That familiar shape…\n\nDescribe the shape of the distributions."
+    "objectID": "lectures/20/20-inference-one-mean.html#setup",
+    "href": "lectures/20/20-inference-one-mean.html#setup",
+    "title": "Inference one mean",
+    "section": "Setup",
+    "text": "Setup\n\nlibrary(tidyverse)\nlibrary(openintro)\nlibrary(tidymodels)"
   },
   {
-    "objectID": "lectures/15/15-inference-mathematical-models.html#its-not-happenstance",
-    "href": "lectures/15/15-inference-mathematical-models.html#its-not-happenstance",
-    "title": "Inference with mathematical models",
-    "section": "It’s not happenstance!",
-    "text": "It’s not happenstance!\nIt’s the Central Limit Theorem, which says that the distribution of the sample statistic is normal, if certain conditions are met.\n\n\nTwo questions:\n\nWhat do we mean by the distribution of the sample statistic?\nWhat conditions need to be met?"
+    "objectID": "lectures/20/20-inference-one-mean.html#bootstrap-confidence-interval-for-the-mean",
+    "href": "lectures/20/20-inference-one-mean.html#bootstrap-confidence-interval-for-the-mean",
+    "title": "Inference one mean",
+    "section": "Bootstrap confidence interval for the mean",
+    "text": "Bootstrap confidence interval for the mean\n\n\nTake a bootstrap sample (sample with replacement) of size n (the original sample size) from the original sample\nRecord the mean\nRepeat steps 1 and 2 many times to build the bootstrap distribution\nFind the bootstrap confidence interval using one of two methods:\n\nPercentile method: The bounds of the middle X% of the bootstrap distribution comprise the X% bootstrap interval.\nStandard error method:\n\nCalculate the standard error for the bootstrap distribution\nFind the critical value associated with the X% confidence interval\nCalculate the margin of error (ME) as the critical value \\(\\times\\) standard error\nConstruct the confidence interval a the original sample mean \\(\\pm\\) ME"
   },
   {
-    "objectID": "lectures/15/15-inference-mathematical-models.html#the-distribution-of-the-sample-statistic",
-    "href": "lectures/15/15-inference-mathematical-models.html#the-distribution-of-the-sample-statistic",
-    "title": "Inference with mathematical models",
-    "section": "The distribution of the sample statistic",
-    "text": "The distribution of the sample statistic\n\n\nYou can build the distribution of the sample statistic by repeatedly taking samples of size n (original sample size) from the population and calculating and recording the sample statistic for each of these samples.\nBut, you would never do this in reality!\nYou’d either use simulation (randomization, bootstrapping, stuff we’ve done so far!) or you would leverage mathematical theory to know what to expect if we had taken repeated samples."
+    "objectID": "lectures/20/20-inference-one-mean.html#case-study-length-of-gestation",
+    "href": "lectures/20/20-inference-one-mean.html#case-study-length-of-gestation",
+    "title": "Inference one mean",
+    "section": "Case study: Length of gestation",
+    "text": "Case study: Length of gestation\n\nEvery year, the United States Department of Health and Human Services releases to the public a large dataset containing information on births recorded in the country. This dataset has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children. In this case study we work with a random sample of 1,000 cases from the dataset released in 2014. The length of pregnancy, measured in weeks, is commonly referred to as gestation. The histogram below shows the distribution of lengths of gestation from the random sample of 1,000 births.\n\n\n\nggplot(\n  openintro::births14, \n  aes(x = weeks)\n  ) +\n  geom_histogram(binwidth = 1) +\n  labs(\n    x = \"Gestation (weeks)\",\n    y = \"Count\",\n    title = \"Random sample of 1,000 births\"\n  )"
   },
   {
-    "objectID": "lectures/15/15-inference-mathematical-models.html#the-technical-conditions",
-    "href": "lectures/15/15-inference-mathematical-models.html#the-technical-conditions",
-    "title": "Inference with mathematical models",
-    "section": "The (technical) conditions",
-    "text": "The (technical) conditions\n\nIndependent observations: Observations in the sample are independent. Independence is guaranteed when we take a random sample from a population. Independence can also be guaranteed if we randomly divide individuals into treatment and control groups.\nLarge enough sample: The sample size cannot be too small. What qualifies as “small” differs from one context (i.e., from sample statistic to sample statistic)."
+    "objectID": "lectures/20/20-inference-one-mean.html#cs-length-of-gestation---boot_dist",
+    "href": "lectures/20/20-inference-one-mean.html#cs-length-of-gestation---boot_dist",
+    "title": "Inference one mean",
+    "section": "CS: Length of gestation - boot_dist",
+    "text": "CS: Length of gestation - boot_dist\n\nThe distribution of bootstrapped means of gestation from 1,500 different bootstrap samples.\n\n\n\nset.seed(1234)\n\nboot_dist &lt;- births14 |&gt;\n  specify(response = weeks) |&gt;\n  generate(\n    reps = 1000, \n    type = \"bootstrap\"\n  ) |&gt;\n  calculate(stat = \"mean\")\n\nvisualize(boot_dist)"
   },
   {
-    "objectID": "lectures/15/15-inference-mathematical-models.html#more-to-the-clt",
-    "href": "lectures/15/15-inference-mathematical-models.html#more-to-the-clt",
-    "title": "Inference with mathematical models",
-    "section": "More to the CLT",
-    "text": "More to the CLT\n\nThere is more to the CLT than just the shape of the distribution – normal.\nThe CLT says that the center of the sampling distribution will be at the true population parameter.\nThe CLT also says something about the spread of the sampling distribution, measured by the standard error. For each sample statistic (\\(\\bar{x}\\) – the sample mean, \\(\\hat{p}\\) – the sample proportion, \\(\\bar{x}_1 - \\bar{x}_2\\) – the difference in sample means, etc.) the CLT provides a formula for its standard error.\n\nYou won’t be asked to memorize these formulas.\nIn fact, you’ll rarely use the CLT to calculate the variability of sample statistics, you’ll simulate their distributions directly."
+    "objectID": "lectures/20/20-inference-one-mean.html#cs-length-of-gestation---percentile-interval",
+    "href": "lectures/20/20-inference-one-mean.html#cs-length-of-gestation---percentile-interval",
+    "title": "Inference one mean",
+    "section": "CS: Length of gestation - percentile interval",
+    "text": "CS: Length of gestation - percentile interval\n\nWhat does the following code do? How do you adjust it to change the confidence level?\n\n\nboot_dist |&gt;\n  get_ci()\n\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     &lt;dbl&gt;    &lt;dbl&gt;\n1     38.5     38.8"
   },
   {
-    "objectID": "lectures/15/15-inference-mathematical-models.html#normal-distributions",
-    "href": "lectures/15/15-inference-mathematical-models.html#normal-distributions",
-    "title": "Inference with mathematical models",
-    "section": "Normal distributions",
-    "text": "Normal distributions\n\nHow are these normal distributions similar? How are they different? Which one is \\(N(\\mu = 0, \\sigma. 1)\\) and which \\(N(\\mu = 19, \\sigma = 4)\\)?"
+    "objectID": "lectures/20/20-inference-one-mean.html#cs-length-of-gestation---standard-error-interval",
+    "href": "lectures/20/20-inference-one-mean.html#cs-length-of-gestation---standard-error-interval",
+    "title": "Inference one mean",
+    "section": "CS: Length of gestation - standard error interval",
+    "text": "CS: Length of gestation - standard error interval\n\nWhat does the following code do? Why do we need to provide point_estimate?\n\n\nobs_stat &lt;- births14 |&gt;\n  specify(response = weeks) |&gt;\n  calculate(stat = \"mean\")\n\nobs_stat\n\nResponse: weeks (numeric)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1  38.7\n\nboot_dist |&gt;\n  get_ci(\n    type = \"se\",\n    point_estimate = obs_stat\n  )\n\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     &lt;dbl&gt;    &lt;dbl&gt;\n1     38.5     38.8"
   },
   {
-    "objectID": "lectures/15/15-inference-mathematical-models.html#the-68-95-99.7-rule",
-    "href": "lectures/15/15-inference-mathematical-models.html#the-68-95-99.7-rule",
-    "title": "Inference with mathematical models",
-    "section": "The 68-95-99.7 rule",
-    "text": "The 68-95-99.7 rule\nThe normal distribution is not just any unimodal and symmetric distribution, it follows the 68-95-99.7 rule."
+    "objectID": "lectures/20/20-inference-one-mean.html#interpretations",
+    "href": "lectures/20/20-inference-one-mean.html#interpretations",
+    "title": "Inference one mean",
+    "section": "Interpretations",
+    "text": "Interpretations\n\nThe interval:\n\nWe are X% confident that the true population mean is within our confidence interval.\n\nThe confidence level:\n\nWhat does 95% confidence interval mean?"
   },
   {
-    "objectID": "lectures/15/15-inference-mathematical-models.html#using-the-normal-distribution",
-    "href": "lectures/15/15-inference-mathematical-models.html#using-the-normal-distribution",
-    "title": "Inference with mathematical models",
-    "section": "Using the normal distribution…",
-    "text": "Using the normal distribution…\n\nTo make decisions \\(\\rightarrow\\) hypothesis testing\n\nUse properties of the normal distribution to determine the probability of the observed sample statistic (or something more extreme, in the direction of the alternative hypothesis), i.e. the p-value\n\n\n\n\nTo make estimations \\(\\rightarrow\\) confidence intervals\n\nUse properties of the normal distribution to calculate the bounds of the confidence interval, adding and subtracting a margin of error to the observed sample statistic\n\n\n\n\nBut before then…"
-  },
-  {
-    "objectID": "lectures/15/15-inference-mathematical-models.html#application-exercise",
-    "href": "lectures/15/15-inference-mathematical-models.html#application-exercise",
-    "title": "Inference with mathematical models",
+    "objectID": "lectures/20/20-inference-one-mean.html#application-exercise",
+    "href": "lectures/20/20-inference-one-mean.html#application-exercise",
+    "title": "Inference one mean",
     "section": "Application exercise",
-    "text": "Application exercise\nGo to Posit Cloud and continue the project titled ae-11-Bone density.\n\n\n\n🔗 sta101-f23.github.io"
+    "text": "Application exercise\nGo to Posit Cloud and continue the project titled ae-15-Gestation.\n\n\n\n🔗 sta101-f23.github.io"
   },
   {
-    "objectID": "lectures/09/09-regression-overview.html#check-in",
-    "href": "lectures/09/09-regression-overview.html#check-in",
-    "title": "Regression overview",
-    "section": "Check-in",
-    "text": "Check-in\n\nDaily check-ins for getting you thinking at the beginning of the class and reviewing recent/important concepts\nGo to Canvas and open today’s “quiz” titled 2023-10-02 Check-in\nAccess code: ___ (released in class) \n“Graded” for completion"
+    "objectID": "lectures/02/02-hello-data.html#from-canvas",
+    "href": "lectures/02/02-hello-data.html#from-canvas",
+    "title": "Hello data",
+    "section": "From Canvas",
+    "text": "From Canvas\n\nCourse recordings have been set up. Link has also been added to the course website. Remember that the videos are for “make up”, not a replacement for class attendance.\nTA office hours are updated with minor changes on the course website and Zoom links for virtual office hours are also included.\nIf you haven’t yet done so, please:\n\ncomplete the Getting to know you survey\nread through the syllabus (and follow the prompts)"
   },
   {
-    "objectID": "lectures/09/09-regression-overview.html#exam-1",
-    "href": "lectures/09/09-regression-overview.html#exam-1",
-    "title": "Regression overview",
-    "section": "Exam 1",
-    "text": "Exam 1\n\nClassroom: You should have received your exam location assignment this morning. Reach out to me ASAP if you haven’t received it.\nIn-class: On Wednesday\n\n1 page, both sides notes (“cheat sheet”)\nNothing else\n\nTake-home: Wednesday - Friday\n\nOpen everything except for other humans, except for me :)"
+    "objectID": "lectures/02/02-hello-data.html#concerns",
+    "href": "lectures/02/02-hello-data.html#concerns",
+    "title": "Hello data",
+    "section": "Concerns",
+    "text": "Concerns\nd |&gt;\n  unnest_tokens(word, concerns) |&gt; \n  anti_join(stop_words) |&gt; \n  count(word, sort = TRUE)\n## Joining with `by = join_by(word)`\n## # A tibble: 227 × 2\n##    word            n\n##    &lt;chr&gt;       &lt;int&gt;\n##  1 coding         34\n##  2 class          12\n##  3 concerned      11\n##  4 nervous        10\n##  5 programming     9\n##  6 math            8\n##  7 understand      8\n##  8 bit             7\n##  9 experience      7\n## 10 learning        6\n## # ℹ 217 more rows"
   },
   {
-    "objectID": "lectures/09/09-regression-overview.html#class-check-ins-so-far",
-    "href": "lectures/09/09-regression-overview.html#class-check-ins-so-far",
-    "title": "Regression overview",
-    "section": "Class check-ins so far",
-    "text": "Class check-ins so far\n\n# load packages\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(wordcloud)\n\n# set a seed for reproducible random number generation\n# used in placement of words in word clouds\nset.seed(102)"
+    "objectID": "lectures/02/02-hello-data.html#stats-and-coding-before",
+    "href": "lectures/02/02-hello-data.html#stats-and-coding-before",
+    "title": "Hello data",
+    "section": "Stats and coding before",
+    "text": "Stats and coding before\n75% so far no stats and no coding background/experience!"
   },
   {
-    "objectID": "lectures/09/09-regression-overview.html#confounding-variable",
-    "href": "lectures/09/09-regression-overview.html#confounding-variable",
-    "title": "Regression overview",
-    "section": "Confounding variable",
-    "text": "Confounding variable\n\nA confounding variable is a third variable that influences both the independent and dependent variables.\n\n\n\ncheckin_9_11 &lt;- read_csv(\"data/2023-09-11 Check-in Survey Student Analysis Report.csv\") |&gt;\n  select(contains(\"Define\"))\nnames(checkin_9_11) &lt;- \"definition\"\n\ncheckin_9_11 |&gt;\n  unnest_tokens(word, definition) |&gt;\n  anti_join(stop_words) |&gt;\n  filter(!(word %in% c(\"confounding\", \"variable\", \"variables\"))) |&gt;\n  count(word) |&gt;\n  with(wordcloud(word, n, max.words = 100))"
-  },
-  {
-    "objectID": "lectures/09/09-regression-overview.html#ridge-plot",
-    "href": "lectures/09/09-regression-overview.html#ridge-plot",
-    "title": "Regression overview",
-    "section": "Ridge plot",
-    "text": "Ridge plot\n\nA ridge plot is type of data visualization that plots density curves for various groups on the same scale in a single plot. It’s used for comparing the distribution of a numerical variable across the levels of a categorical variable, as an alternative to side-by-side box plots.\n\n\n\ncheckin_9_13 &lt;- read_csv(\"data/2023-09-13 Check-in Survey Student Analysis Report.csv\") |&gt;\n  select(contains(\"Define\"))\nnames(checkin_9_13) &lt;- \"definition\"\n\ncheckin_9_13 |&gt;\n  unnest_tokens(word, definition) |&gt;\n  anti_join(stop_words) |&gt;\n  filter(!(word %in% c(\"ridge\", \"plot\", \"plots\"))) |&gt;\n  count(word) |&gt;\n  with(wordcloud(word, n, max.words = 100))"
-  },
-  {
-    "objectID": "lectures/09/09-regression-overview.html#influential-point",
-    "href": "lectures/09/09-regression-overview.html#influential-point",
-    "title": "Regression overview",
-    "section": "Influential point",
-    "text": "Influential point\n\nAn influential point is a point with high leverage (away from the rest of the points in the x-direction) that influences the slope of the least squares line, i.e., if this point is removed, the slope of the line would change discernebly.\n\n\n\ncheckin_9_25 &lt;- read_csv(\"data/2023-09-25 Check-in Survey Student Analysis Report.csv\") |&gt;\n  select(contains(\"Define\"))\nnames(checkin_9_25) &lt;- \"definition\"\n\ncheckin_9_25 |&gt;\n  unnest_tokens(word, definition) |&gt;\n  anti_join(stop_words) |&gt;\n  filter(!(word %in% c(\"influential\"))) |&gt;\n  count(word) |&gt;\n  with(wordcloud(word, n, max.words = 100))"
-  },
-  {
-    "objectID": "lectures/09/09-regression-overview.html#parsimonious",
-    "href": "lectures/09/09-regression-overview.html#parsimonious",
-    "title": "Regression overview",
-    "section": "Parsimonious",
-    "text": "Parsimonious\n\nA parsimonious model is one that omits predictors that are found to be less important according to various model selection criteria, e.g., adjusted \\(R^2\\). It’s the simplest, most predictive model.\n\n\n\ncheckin_9_27 &lt;- read_csv(\"data/2023-09-27 Check-in Survey Student Analysis Report.csv\") |&gt;\n  select(contains(\"Define\"))\nnames(checkin_9_27) &lt;- \"definition\"\n\ncheckin_9_27 |&gt;\n  unnest_tokens(word, definition) |&gt;\n  anti_join(stop_words) |&gt;\n  filter(!(word %in% c(\"parsimonious\"))) |&gt;\n  count(word) |&gt;\n  with(wordcloud(word, n, max.words = 100))"
-  },
-  {
-    "objectID": "lectures/09/09-regression-overview.html#parsimonious-money",
-    "href": "lectures/09/09-regression-overview.html#parsimonious-money",
-    "title": "Regression overview",
-    "section": "Parsimonious / money?!",
-    "text": "Parsimonious / money?!\n\ncheckin_9_27 |&gt;\n  filter(str_detect(definition, \"money\")) |&gt;\n  pull(definition)\n\n[1] \"It means unwilling to spend money or resources.\"                                                                                                                                                                                                            \n[2] \"unwilling to spend money, stingy\"                                                                                                                                                                                                                           \n[3] \"It means to be unwilling in spending money.\"                                                                                                                                                                                                                \n[4] \"\\\"Parsimonious\\\" is an adjective that describes an individual or behavior characterized by extreme frugality, unwillingness to spend unnecessary money or resources, or simplicity in the use of resources. It implies being economical and avoiding waste.\"\n[5] \"unwilling to spend money\""
-  },
-  {
-    "objectID": "lectures/09/09-regression-overview.html#application-exercise",
-    "href": "lectures/09/09-regression-overview.html#application-exercise",
-    "title": "Regression overview",
+    "objectID": "lectures/02/02-hello-data.html#application-exercise",
+    "href": "lectures/02/02-hello-data.html#application-exercise",
+    "title": "Hello data",
     "section": "Application exercise",
-    "text": "Application exercise\nGo to Posit Cloud and continue the project titled ae-08-Tips.\n\n\n\n\n\n\nICYMI\n\n\nToday’s daily check-in access code: ___ (released in class)"
+    "text": "Application exercise\nGo to Posit Cloud and start the project titled ae-02-Flint.\n\n\n\n🔗 sta101-f23.github.io"
   },
   {
-    "objectID": "lectures/09/09-regression-overview.html#questions-from-anything-so-far",
-    "href": "lectures/09/09-regression-overview.html#questions-from-anything-so-far",
-    "title": "Regression overview",
-    "section": "Questions from anything so far?",
-    "text": "Questions from anything so far?\n\n\n\n🔗 sta101-f23.github.io"
-  },
-  {
-    "objectID": "lectures/05/05-explore-numerical.html#check-in",
-    "href": "lectures/05/05-explore-numerical.html#check-in",
-    "title": "Exploring numerical data",
-    "section": "Check-in",
-    "text": "Check-in\n\nDaily check-ins for getting you thinking at the beginning of the class and reviewing recent/important concepts\nGo to Canvas and open today’s “quiz” titled 2023-09-13 Check-in\nAccess code: ___ (released in class)\n“Graded” for completion"
-  },
-  {
-    "objectID": "lectures/05/05-explore-numerical.html#announcements",
-    "href": "lectures/05/05-explore-numerical.html#announcements",
-    "title": "Exploring numerical data",
+    "objectID": "lectures/21/21-inference-two-means.html#announcements",
+    "href": "lectures/21/21-inference-two-means.html#announcements",
+    "title": "Inference two means",
     "section": "Announcements",
-    "text": "Announcements\n\nLab 2 is due Thu, Sep 14 at 5 pm on Gradescope"
+    "text": "Announcements\n\nProject 2:\n\nAssignment details + teams posted\nAll team members must be in lab on Friday for the proposal conversation with your TA (5 pts / 100 total points for the project)\nBefore Friday: Meet with your team at least once to decide on a dataset and research question\nWednesday in class: Last 20-30 minutes dedicated to project work\n\nLab 8:\n\nTo be posted by Friday\nOptional submission: If you submit, it will be considered as part of your grade. If you don’t, your HW grade will be calculated out of 7 labs. Either way, lowest score will be dropped."
   },
   {
-    "objectID": "lectures/05/05-explore-numerical.html#recap-from-last-time",
-    "href": "lectures/05/05-explore-numerical.html#recap-from-last-time",
-    "title": "Exploring numerical data",
-    "section": "Recap from last time",
-    "text": "Recap from last time\n\nSuppose you have a data frame called df and a single variable in it called x. How many variables will df have after running the following code?\n\ndf |&gt;\n  mutate(y = x + 2)\n\n\n\n\nSuppose you have a data frame called df and a single variable in it called x. How many variables will df have after running the following code?\n\ndf &lt;- df |&gt;\n  mutate(y = x + 2)\n\n\n\n\n\nWhat is the &lt;- operator called and what does it do?"
+    "objectID": "lectures/21/21-inference-two-means.html#todays-focus",
+    "href": "lectures/21/21-inference-two-means.html#todays-focus",
+    "title": "Inference two means",
+    "section": "Today’s focus",
+    "text": "Today’s focus\n\nInference for comparing two population means\nSpecifically, making decisions via hypothesis tests\nAnd generally, what in the world is a hypothesis test?!\n\nWhy is it conducted?\nHow is it conducted?\nWhat does the p-value mean?\nWhat does it mean to reject or fail to reject a null hypothesis?\nWhat are testing errors?\nWhat is the power of the test?"
   },
   {
-    "objectID": "lectures/05/05-explore-numerical.html#durham-city-and-county-resident-survey",
-    "href": "lectures/05/05-explore-numerical.html#durham-city-and-county-resident-survey",
-    "title": "Exploring numerical data",
-    "section": "2020 Durham City and County Resident Survey",
-    "text": "2020 Durham City and County Resident Survey\nWe’ll continue working with this dataset."
+    "objectID": "lectures/21/21-inference-two-means.html#setup",
+    "href": "lectures/21/21-inference-two-means.html#setup",
+    "title": "Inference two means",
+    "section": "Setup",
+    "text": "Setup\n\nlibrary(tidyverse)\nlibrary(openintro)\nlibrary(tidymodels)\nlibrary(ggthemes)"
   },
   {
-    "objectID": "lectures/05/05-explore-numerical.html#services",
-    "href": "lectures/05/05-explore-numerical.html#services",
-    "title": "Exploring numerical data",
-    "section": "Services",
-    "text": "Services"
+    "objectID": "lectures/21/21-inference-two-means.html#randomization-test-for-comparing-two-means",
+    "href": "lectures/21/21-inference-two-means.html#randomization-test-for-comparing-two-means",
+    "title": "Inference two means",
+    "section": "Randomization test for comparing two means",
+    "text": "Randomization test for comparing two means\n\n\nCombine the data from the two groups and randomly shuffle them into two groups of sizes equal to the original group sample sizes\nCalculate the means of each group and record the different\nRepeat steps 1 and 2 many times to build the null distribution\nFind the p-value as the number of simulations with simulated differences at least as extreme (in the direction of the alternative hypothesis) as the observed difference"
   },
   {
-    "objectID": "lectures/05/05-explore-numerical.html#demographics",
-    "href": "lectures/05/05-explore-numerical.html#demographics",
-    "title": "Exploring numerical data",
-    "section": "Demographics",
-    "text": "Demographics"
+    "objectID": "lectures/21/21-inference-two-means.html#case-study-birth-weights-of-babies-and-smoking",
+    "href": "lectures/21/21-inference-two-means.html#case-study-birth-weights-of-babies-and-smoking",
+    "title": "Inference two means",
+    "section": "Case study: Birth weights of babies and smoking",
+    "text": "Case study: Birth weights of babies and smoking\n\nEvery year, the United States Department of Health and Human Services releases to the public a large dataset containing information on births recorded in the country. This dataset has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children. In this case study we work with a random sample of 1,000 cases from the dataset released in 2014. The distributions of birth weights of babies, measured in pounds, by mother’s smoking habit are shown below.\n\n\n\nopenintro::births14 |&gt;\n  drop_na(habit) |&gt;\n  ggplot(aes(x = weight, color = habit, fill = habit)) +\n  geom_density(alpha = 0.5)"
   },
   {
-    "objectID": "lectures/05/05-explore-numerical.html#application-exercise",
-    "href": "lectures/05/05-explore-numerical.html#application-exercise",
-    "title": "Exploring numerical data",
+    "objectID": "lectures/21/21-inference-two-means.html#application-exercise",
+    "href": "lectures/21/21-inference-two-means.html#application-exercise",
+    "title": "Inference two means",
     "section": "Application exercise",
-    "text": "Application exercise\nGo to Posit Cloud and start the project titled ae-05-Durham.\n\n\n\n🔗 sta101-f23.github.io"
+    "text": "Application exercise\nGo to Posit Cloud and continue the project titled ae-16-Birth weights.\n\n\n\n🔗 sta101-f23.github.io"
   },
   {
     "objectID": "lectures/04/04-explore-categorical.html#check-in",
@@ -5512,193 +5561,326 @@
     "text": "Exercise 10\nFit the “best” model and interpret it.\n\ntip_fit &lt;- linear_reg() |&gt; \n  fit(tip_percentage ~ bill, data = tips)\n\ntidy(tip_fit)\n\n# A tibble: 2 × 5\n  term         estimate std.error statistic  p.value\n  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)  0.198     0.0134       14.8  2.16e-29\n2 bill        -0.000748  0.000390     -1.92 5.70e- 2\n\n\n\nAdd response here."
   },
   {
-    "objectID": "ae/ae-10-donor-yawner-sa.html",
-    "href": "ae/ae-10-donor-yawner-sa.html",
-    "title": "Donors and yawners",
+    "objectID": "ae/ae-16-birth-weight.html",
+    "href": "ae/ae-16-birth-weight.html",
+    "title": "Birth weights",
     "section": "",
-    "text": "In this application exercise, we’ll introduce pipelines for conducting hypothesis tests with randomization."
+    "text": "In this application exercise, we’ll do inference for a comparing two means, using simulation-based and mathematical models."
   },
   {
-    "objectID": "ae/ae-10-donor-yawner-sa.html#exercise-1",
-    "href": "ae/ae-10-donor-yawner-sa.html#exercise-1",
-    "title": "Donors and yawners",
+    "objectID": "ae/ae-16-birth-weight.html#sec-exercise-1",
+    "href": "ae/ae-16-birth-weight.html#sec-exercise-1",
+    "title": "Birth weights",
     "section": "Exercise 1",
-    "text": "Exercise 1\nConstruct the null distribution with 100 resamples. Name it null_dist_donor. How many rows does null_dist_donor have? How many columns? What does each row and each column represent?\n\nset.seed(25)\n\nnull_dist_donor &lt;- organ_donor |&gt;\n  specify(response = outcome, success = \"complication\") |&gt;\n  hypothesize(null = \"point\", p = 0.10) |&gt; \n  generate(reps = 100, type = \"draw\") |&gt; \n  calculate(stat = \"prop\")\n\nnull_dist_donor\n\nResponse: outcome (factor)\nNull Hypothesis: point\n# A tibble: 100 × 2\n   replicate   stat\n   &lt;fct&gt;      &lt;dbl&gt;\n 1 1         0.0645\n 2 2         0.0484\n 3 3         0.113 \n 4 4         0.0806\n 5 5         0.145 \n 6 6         0.145 \n 7 7         0.113 \n 8 8         0.0806\n 9 9         0.113 \n10 10        0.145 \n# ℹ 90 more rows\n\n\n\nnull_dist_donor has 100 rows and 2 columns. Each row is a replicate, and replicate column indicates the replicate number and stat is the simulated proportion, \\(\\hat{p}\\)."
+    "text": "Exercise 1\nSet the hypotheses for testing if there is a difference between mean birth weight of babies born to mothers who are smokers and those born to mothers who are not smokers.\nAdd answer here."
   },
   {
-    "objectID": "ae/ae-10-donor-yawner-sa.html#exercise-2",
-    "href": "ae/ae-10-donor-yawner-sa.html#exercise-2",
-    "title": "Donors and yawners",
+    "objectID": "ae/ae-16-birth-weight.html#exercise-2",
+    "href": "ae/ae-16-birth-weight.html#exercise-2",
+    "title": "Birth weights",
     "section": "Exercise 2",
-    "text": "Exercise 2\nWhere do you expect the center of the null distribution to be? Visualize it to confirm.\n\n# option 1\nggplot(null_dist_donor, aes(x = stat)) +\n  geom_histogram(bins = 15, color = \"white\")\n\n\n\n\n\n\n\n\n\n# option 2\nvisualize(null_dist_donor)"
+    "text": "Exercise 2\nCalculate the observed difference between the mean birth weight of babies born to mothers who are smokers and those born to mothers who are not smokers in this sample.\n\n# add code here"
   },
   {
-    "objectID": "ae/ae-10-donor-yawner-sa.html#exercise-2-1",
-    "href": "ae/ae-10-donor-yawner-sa.html#exercise-2-1",
-    "title": "Donors and yawners",
-    "section": "Exercise 2",
-    "text": "Exercise 2\nCalculate the observed complication rate of this consultant. Name it obs_stat_donor.\n\nobs_stat_donor &lt;- organ_donor |&gt;\n  specify(response = outcome, success = \"complication\") |&gt;\n  calculate(stat = \"prop\")\n\nobs_stat_donor\n\nResponse: outcome (factor)\n# A tibble: 1 × 1\n    stat\n   &lt;dbl&gt;\n1 0.0484"
-  },
-  {
-    "objectID": "ae/ae-10-donor-yawner-sa.html#exercise-3",
-    "href": "ae/ae-10-donor-yawner-sa.html#exercise-3",
-    "title": "Donors and yawners",
+    "objectID": "ae/ae-16-birth-weight.html#exercise-3",
+    "href": "ae/ae-16-birth-weight.html#exercise-3",
+    "title": "Birth weights",
     "section": "Exercise 3",
-    "text": "Exercise 3\nOverlay the observed statistic on the null distribution and comment on whether an observed outcome as extreme as the observed statistic, or lower, is a likely or unlikely outcome, if in fact the null hypothesis is true.\n\n# option 1\nggplot(null_dist_donor, aes(x = stat)) +\n  geom_histogram(bins = 15, color = \"white\") +\n  geom_vline(xintercept = obs_stat_donor |&gt; pull(stat), color = \"red\", linewidth = 2)\n\n\n\n\n\n\n\n\n\n# option 2\nvisualize(null_dist_donor) +\n  shade_p_value(obs_stat = obs_stat_donor, direction = \"two-sided\")"
+    "text": "Exercise 3\nSuppose the birth weights of the babies in this sample are written on pieces of paper. Explain how you would conduct the randomization test tactically. Hint: You may need to calculate some summary statistics first.\n\n# add code here\n\nAdd answer here."
   },
   {
-    "objectID": "ae/ae-10-donor-yawner-sa.html#exercise-4",
-    "href": "ae/ae-10-donor-yawner-sa.html#exercise-4",
-    "title": "Donors and yawners",
+    "objectID": "ae/ae-16-birth-weight.html#exercise-4",
+    "href": "ae/ae-16-birth-weight.html#exercise-4",
+    "title": "Birth weights",
     "section": "Exercise 4",
-    "text": "Exercise 4\nCalculate the p-value and comment on whether it provides convincing evidence that this consultant incurs a lower complication rate than 10% (overall US complication rate).\n\nSince the p-value is greater than the discernability level, we fail to reject the null hypothesis. These data do not provide convincing evidence that this consultant incurs a lower complication rate than 10% (overall US complication rate).\n\n\n# option 1\nnull_dist_donor |&gt;\n  filter(stat &lt;= obs_stat_donor |&gt; pull(stat)) |&gt;\n  nrow()*2 / 100\n\n[1] 0.3\n\n# option 2\nnull_dist_donor |&gt;\n  get_p_value(obs_stat = obs_stat_donor, direction = \"two-sided\")\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1     0.3"
+    "text": "Exercise 4\nConstruct and visualize the null distribution. Based on your visualization, speculate on whether the p-value will be small or large.\n\n# add code here\n\nAdd answer here."
   },
   {
-    "objectID": "ae/ae-10-donor-yawner-sa.html#exercise-5",
-    "href": "ae/ae-10-donor-yawner-sa.html#exercise-5",
-    "title": "Donors and yawners",
+    "objectID": "ae/ae-16-birth-weight.html#exercise-5",
+    "href": "ae/ae-16-birth-weight.html#exercise-5",
+    "title": "Birth weights",
     "section": "Exercise 5",
-    "text": "Exercise 5\nLet’s get real! Redo the test with 15,000 simulations. Note: This can take some time to run.\n\nset.seed(25)\n\nnull_dist_donor &lt;- organ_donor |&gt;\n  specify(response = outcome, success = \"complication\") |&gt;\n  hypothesize(null = \"point\", p = 0.10) |&gt; \n  generate(reps = 15000, type = \"draw\") |&gt; \n  calculate(stat = \"prop\")\n\nnull_dist_donor |&gt;\n  visualize() +\n  shade_p_value(obs_stat = obs_stat_donor, direction = \"two-sided\")\n\n\n\n\n\n\n\n\n\nnull_dist_donor |&gt;\n  get_p_value(obs_stat = obs_stat_donor, direction = \"two-sided\")\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1   0.241"
+    "text": "Exercise 5\nVisualize and calculate the p-value. At the 5% discernability level, what is the conclusion of the hypothesis test?\n\n# add code here\n\nAdd answer here."
   },
   {
-    "objectID": "ae/ae-10-donor-yawner-sa.html#exercise-6",
-    "href": "ae/ae-10-donor-yawner-sa.html#exercise-6",
-    "title": "Donors and yawners",
+    "objectID": "ae/ae-16-birth-weight.html#exercise-6",
+    "href": "ae/ae-16-birth-weight.html#exercise-6",
+    "title": "Birth weights",
     "section": "Exercise 6",
-    "text": "Exercise 6\nUsing the yawn dataset in the openintro package, conduct a hypothesis test for evaluating whether yawning is contagious. First, set the hypotheses. Then, conduct a randomization test using 1000 simulations. Visualize and calculate the p-value and use it to make a conclusion about the statistical discernability of the difference in proportions of yawners in the two groups. Then, comment on whether you “buy” this conclusion.\n\nNull hypothesis: Yawning is not contagious; \\(p_{trmt} = p_{ctrl}\\) Alternative hypothesis: Yawning is contagious; \\(p_{trmt} &gt; p_{ctrl}\\) With a p-value 0.522, which is much larger than the discernability level of 0.05, we fail to reject the null hypothesis. These data do not provide convincing evidence that yawning is contagious. Frankly, I don’t buy this statement. I think yawning is contagious. This could be an example of a hypothesis testing error where we fail to reject the null hypothesis when we should have, i.e., a Type II error.\n\n\nset.seed(25)\n\nnull_dist_yawner &lt;- yawn |&gt;\n  specify(response = result, explanatory = group, success = \"yawn\") |&gt;\n  hypothesize(null = \"independence\") |&gt;\n  generate(reps = 1000, type = \"permute\") |&gt;\n  calculate(stat = \"diff in props\", order = c(\"trmt\", \"ctrl\"))\n\nobs_stat_yawner &lt;- yawn |&gt;\n  specify(response = result, explanatory = group, success = \"yawn\") |&gt;\n  calculate(stat = \"diff in props\", order = c(\"trmt\", \"ctrl\"))\n\nnull_dist_yawner |&gt;\n  visualize() +\n  shade_p_value(obs_stat = obs_stat_yawner, direction = \"greater\")\n\n\n\n\n\n\n\n\n\nnull_dist_yawner |&gt;\n  get_p_value(obs_stat = obs_stat_yawner, direction = \"greater\")\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1   0.522"
+    "text": "Exercise 6\nConstruct and interpret confidence interval at the equivalent level as the previous hypothesis test for the difference between the mean weight of babies born to mothers who are smokers and those who are bor to mothers who are not smokers.\n\n# add code here\n\nAdd response here."
   },
   {
-    "objectID": "ae/ae-15-gestation-sa.html",
-    "href": "ae/ae-15-gestation-sa.html",
-    "title": "Length of gestation",
+    "objectID": "ae/ae-16-birth-weight.html#exercise-7",
+    "href": "ae/ae-16-birth-weight.html#exercise-7",
+    "title": "Birth weights",
+    "section": "Exercise 7",
+    "text": "Exercise 7\nCheck that the technical conditions for conducting inference using mathematical models for comparing two means are met for these data.\nAdd response here."
+  },
+  {
+    "objectID": "ae/ae-16-birth-weight.html#exercise-8",
+    "href": "ae/ae-16-birth-weight.html#exercise-8",
+    "title": "Birth weights",
+    "section": "Exercise 8",
+    "text": "Exercise 8\nConduct a hypothesis test using mathematical models for the hypotheses you set in Section 3.1.\n\n# add code here"
+  },
+  {
+    "objectID": "ae/ae-16-birth-weight.html#exercise-9",
+    "href": "ae/ae-16-birth-weight.html#exercise-9",
+    "title": "Birth weights",
+    "section": "Exercise 9",
+    "text": "Exercise 9\nImprove the density plot from the lecture slides.\n\n# add code here"
+  },
+  {
+    "objectID": "ae/ae-07-books-sa.html",
+    "href": "ae/ae-07-books-sa.html",
+    "title": "Weights of books",
     "section": "",
-    "text": "In this application exercise, we’ll do inference for a single mean, using simulation-based and mathematical models."
+    "text": "Important\n\n\n\nThese are suggested answers for the application exercise. They’re not necessarily complete or 100% accurate, they’re roughly what we develop in class while going through the exercises.\nToday we’ll explore the question “How do volume and weights books relate?” and “How, if at all, does that change when we take whether the book is hardback or paperback into consideration?”"
   },
   {
-    "objectID": "ae/ae-15-gestation-sa.html#exercise-1",
-    "href": "ae/ae-15-gestation-sa.html#exercise-1",
-    "title": "Length of gestation",
+    "objectID": "ae/ae-07-books-sa.html#exercise-1",
+    "href": "ae/ae-07-books-sa.html#exercise-1",
+    "title": "Weights of books",
     "section": "Exercise 1",
-    "text": "Exercise 1\nConstruct and interpret a 95% confidence interval, using the standard error method with the get_ci() function, for the average length of gestation.\n\nset.seed(12345)\n\nboot_dist &lt;- births14 |&gt;\n  specify(response = weeks) |&gt;\n  generate(reps = 1000, type = \"bootstrap\") |&gt;\n  calculate(stat = \"mean\")\n\nobs_stat &lt;- births14 |&gt;\n  specify(response = weeks) |&gt;\n  calculate(stat = \"mean\")\n\nboot_dist |&gt;\n  get_ci(\n    type = \"se\",\n    point_estimate = obs_stat\n  )\n\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     &lt;dbl&gt;    &lt;dbl&gt;\n1     38.5     38.8\n\n\nAdd response here."
+    "text": "Exercise 1\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis). Overlay the line of best fit. Describe the relationship between these variables.\n\nggplot(allbacks, aes(x = volume, y = weight)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(\n    x = \"Volume (cubic centimeters)\",\n    y = \"Weight (grams)\"\n  )\n\n`geom_smooth()` using formula = 'y ~ x'"
   },
   {
-    "objectID": "ae/ae-15-gestation-sa.html#exercise-2",
-    "href": "ae/ae-15-gestation-sa.html#exercise-2",
-    "title": "Length of gestation",
+    "objectID": "ae/ae-07-books-sa.html#exercise-2",
+    "href": "ae/ae-07-books-sa.html#exercise-2",
+    "title": "Weights of books",
     "section": "Exercise 2",
-    "text": "Exercise 2\nConstruct the interval without using the get_ci() (or get_confidence_interval()) function.\n\nsample mean \\(\\pm\\) ME\n= sample mean \\(\\pm\\) critical value \\(\\times\\) SE of the sample mean\n= sample mean \\(\\pm\\) 2 \\(\\times\\) SE of the sample mean\n= sample mean \\(\\pm\\) 2 \\(\\times\\) SD of the bootstrap distribution\n\n\nse &lt;- boot_dist |&gt;\n  summarize(se = sd(stat)) |&gt;\n  pull(se)\nobs_stat |&gt;\n  mutate(\n    lower = stat - 2*se,\n    upper = stat + 2*se\n  )\n\nResponse: weeks (numeric)\n# A tibble: 1 × 3\n   stat lower upper\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1  38.7  38.5  38.8"
+    "text": "Exercise 2\nFit a model predicting weight from volume for these books and save it as weight_fit. Display a tidy output of the model.\n\nweight_fit &lt;- linear_reg() |&gt;\n  fit(weight ~ volume, data = allbacks)\n\ntidy(weight_fit)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic    p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;\n1 (Intercept)  108.      88.4         1.22 0.245     \n2 volume         0.709    0.0975      7.27 0.00000626"
   },
   {
-    "objectID": "ae/ae-15-gestation-sa.html#exercise-3",
-    "href": "ae/ae-15-gestation-sa.html#exercise-3",
-    "title": "Length of gestation",
+    "objectID": "ae/ae-07-books-sa.html#exercise-3",
+    "href": "ae/ae-07-books-sa.html#exercise-3",
+    "title": "Weights of books",
     "section": "Exercise 3",
-    "text": "Exercise 3\nWould you expect a 90% confidence interval for the average length of gestation to be wider or narrower? Explain your reasoning.\nNarrower."
+    "text": "Exercise 3\nInterpret the slope and the intercept in context of the data.\n\n\nIntercept: Books with 0 volume are expected, on average, to weigh approximately 107.68 grams. This doesn’t make sense in the context of the data, and the intercept is only there to adjust the height of the line on the y-axis.\nSlope: For each additional cubic centimeter the book’s volume is larger, we expect the weight to be higher, on average, by 0.71 grams."
   },
   {
-    "objectID": "ae/ae-15-gestation-sa.html#exercise-4",
-    "href": "ae/ae-15-gestation-sa.html#exercise-4",
-    "title": "Length of gestation",
+    "objectID": "ae/ae-07-books-sa.html#exercise-4",
+    "href": "ae/ae-07-books-sa.html#exercise-4",
+    "title": "Weights of books",
     "section": "Exercise 4",
-    "text": "Exercise 4\nNow construct a 90% confidence interval for the average length of gestation and confirm your answer from the previous exercise. Repeat as little of your code as possible.\n\n#obs_stat |&gt;\n#  mutate(\n#    lower = stat - 1.64*se,\n#    upper = stat + 1.64*se\n#  )\n\nboot_dist |&gt;\n  get_ci(\n    level = 0.90,\n    type = \"se\",\n    point_estimate = obs_stat\n  )\n\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     &lt;dbl&gt;    &lt;dbl&gt;\n1     38.5     38.8"
+    "text": "Exercise 4\nCalculate the \\(R^2\\) of this model and interpret it in context of the data.\n\nglance(weight_fit)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic    p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     0.803         0.787  124.      52.9 0.00000626     1  -92.5  191.  193.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\nVolume explains approximately 80% of the variability in book weights."
   },
   {
-    "objectID": "ae/ae-15-gestation-sa.html#confidence-intervals-with-mathematical-models",
-    "href": "ae/ae-15-gestation-sa.html#confidence-intervals-with-mathematical-models",
-    "title": "Length of gestation",
-    "section": "Confidence intervals with mathematical models",
-    "text": "Confidence intervals with mathematical models\nIf technical conditions are satisfied, the distribution of the sampling mean (i.e., the sampling distribution) follows the t-distribution with n - 1 degrees of freedom, where n is the sample size.\n\nsampling_dist &lt;- births14 |&gt;\n  specify(response = weeks) |&gt;\n  assume(distribution = \"t\")\n\nsampling_dist\n\nA T distribution with 999 degrees of freedom.\n\nvisualize(sampling_dist)"
-  },
-  {
-    "objectID": "ae/ae-15-gestation-sa.html#exercise-5",
-    "href": "ae/ae-15-gestation-sa.html#exercise-5",
-    "title": "Length of gestation",
+    "objectID": "ae/ae-07-books-sa.html#exercise-5",
+    "href": "ae/ae-07-books-sa.html#exercise-5",
+    "title": "Weights of books",
     "section": "Exercise 5",
-    "text": "Exercise 5\nConstruct and visualize a confidence interval using mathematical models for the average length of gestation.\n\n# option 1 - using infer pipelines: ci using mathematical models\nbirths14 |&gt;\n  specify(response = weeks) |&gt;\n  assume(distribution = \"t\") |&gt;\n  get_ci(point_estimate = obs_stat, type = \"se\")\n\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     &lt;dbl&gt;    &lt;dbl&gt;\n1     38.5     38.8\n\n# option 2 - by hand:\n## se using mathematical models\ns &lt;- births14 |&gt;\n  summarize(s = sd(weeks)) |&gt;\n  pull(s)\nn &lt;- nrow(births14)\n\nse &lt;- s / sqrt(n)\nse\n\n[1] 0.08111118\n\n## me using mathematical models\nme &lt;- 2 * se\n\n## ci using mathematical models\nxbar &lt;- obs_stat |&gt;\n  pull(stat)\nxbar + c(-1, 1) * me\n\n[1] 38.50378 38.82822"
+    "text": "Exercise 5\nVisualize the relationship between volume (on the x-axis) and weight (on the y-axis), taking into consideration the cover type of the book. Use different colors and shapes for hardback and paperback books. Also use different colors for lines of best fit for the two types of books. In addition, add the overall line of best fit (from Exercise 1) as a gray dashed line so that you can see the difference between the lines when considering and not considering cover type.\n\nggplot(allbacks, aes(x = volume, y = weight)) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"gray\", linetype = \"dashed\") +\n  geom_point(aes(color = cover, shape = cover)) +\n  geom_smooth(aes(color = cover), method = \"lm\", se = FALSE) +\n  labs(\n    x = \"Volume (cubic centimeters)\",\n    y = \"Weight (grams)\",\n    shape = \"Cover\", color = \"Cover\"\n  )\n\n`geom_smooth()` using formula = 'y ~ x'\n`geom_smooth()` using formula = 'y ~ x'"
   },
   {
-    "objectID": "ae/ae-05-durham.html",
-    "href": "ae/ae-05-durham.html",
+    "objectID": "ae/ae-07-books-sa.html#exercise-6",
+    "href": "ae/ae-07-books-sa.html#exercise-6",
+    "title": "Weights of books",
+    "section": "Exercise 6",
+    "text": "Exercise 6\nFit a model predicting weight from volume for these books and save it as weight_cover_fit. Display a tidy output of the model.\n\nweight_cover_fit &lt;- linear_reg() |&gt;\n  fit(weight ~ volume + cover, data = allbacks)\n\ntidy(weight_cover_fit)\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic      p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;\n1 (Intercept)  198.      59.2         3.34 0.00584     \n2 volume         0.718    0.0615     11.7  0.0000000660\n3 coverpb     -184.      40.5        -4.55 0.000672"
+  },
+  {
+    "objectID": "ae/ae-07-books-sa.html#exercise-7",
+    "href": "ae/ae-07-books-sa.html#exercise-7",
+    "title": "Weights of books",
+    "section": "Exercise 7",
+    "text": "Exercise 7\nIn the model output we have a variable coverpb. Why is only the pb (paperback) level of the cover variable shown? What happened to the hb (hardback) level?\n\nHardback is the reference level, therefore doesn’t show up in the model output."
+  },
+  {
+    "objectID": "ae/ae-07-books-sa.html#exercise-8",
+    "href": "ae/ae-07-books-sa.html#exercise-8",
+    "title": "Weights of books",
+    "section": "Exercise 8",
+    "text": "Exercise 8\nInterpret the slopes and the intercept in context of the data.\n\n\nIntercept: Books with 0 volume and that are hardback are expected, on average, to weigh approximately 197.96 grams. This doesn’t make sense in the context of the data, and the intercept is only there to adjust the height of the line on the y-axis.\nSlope - volume: All else held constant, for each additional cubic centimeter the book’s volume is larger, we expect the weight to be higher, on average, by 0.72 grams.\nSlope - cover: All else held constant, paperback books weigh, on average, 184.05 grams lower than harback books."
+  },
+  {
+    "objectID": "ae/ae-07-books-sa.html#exercise-9",
+    "href": "ae/ae-07-books-sa.html#exercise-9",
+    "title": "Weights of books",
+    "section": "Exercise 9",
+    "text": "Exercise 9\nFirst, guess whether the \\(R^2\\) of this model will be greater than, less than, or the same as the previous model, or whether we can’t tell. Then, calculate the \\(R^2\\) of this model to confirm your guess, and then interpret it in context of the data.\n\nglance(weight_cover_fit)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic     p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     0.927         0.915  78.2      76.7 0.000000145     2  -85.0  178.  181.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\n\\(R^2\\) of this model will be higher since it has an additional predictor.\nVolume and cover type explain approximately 93% of the variability in book weights."
+  },
+  {
+    "objectID": "ae/ae-07-books-sa.html#exercise-10",
+    "href": "ae/ae-07-books-sa.html#exercise-10",
+    "title": "Weights of books",
+    "section": "Exercise 10",
+    "text": "Exercise 10\nWhich model is preferred for predicting book weights and why?\n\nThe second model, since it has a higher adjusted \\(R^2\\)."
+  },
+  {
+    "objectID": "ae/ae-07-books-sa.html#exercise-11",
+    "href": "ae/ae-07-books-sa.html#exercise-11",
+    "title": "Weights of books",
+    "section": "Exercise 11",
+    "text": "Exercise 11\nUsing the model you chose, predict the weight of a hardcover book that is 1000 cubic centimeters (that is, roughly 25 centimeters in length, 20 centimeters in width, and 2 centimeters in height/thickness).\n\nnew_book &lt;- tibble(\n  cover = \"hb\",\n  volume = 1000\n)\n\npredict(weight_cover_fit, new_data = new_book)\n\n# A tibble: 1 × 1\n  .pred\n  &lt;dbl&gt;\n1  916."
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html",
+    "href": "ae/ae-04-durham-sa.html",
     "title": "2020 Durham City and County Resident Survey",
     "section": "",
-    "text": "The main questions we’ll explore today are:"
+    "text": "Important\n\n\n\nThese are suggested answers for the application exercise. They’re not necessarily complete or 100% accurate, they’re roughly what we develop in class while going through the exercises.\nThe main question we’ll explore today is “What are the demographics and priorities of City of Durham residents?”"
   },
   {
-    "objectID": "ae/ae-05-durham.html#exercise-1",
-    "href": "ae/ae-05-durham.html#exercise-1",
+    "objectID": "ae/ae-04-durham-sa.html#exercise-1",
+    "href": "ae/ae-04-durham-sa.html#exercise-1",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 1",
-    "text": "Exercise 1\nVisualize and describe the relationship between income and home ownership of Durham residents.\nStretch goal: Customize the colors using named colors from http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf.\nAdd your answer here.\n\n# add code here"
+    "text": "Exercise 1\nHow many rows and columns are in this dataset? Answer in a full sentence using inline code. What does each row represent and what does each column represent?\nAdd your answer here."
   },
   {
-    "objectID": "ae/ae-05-durham.html#exercise-2",
-    "href": "ae/ae-05-durham.html#exercise-2",
+    "objectID": "ae/ae-04-durham-sa.html#exercise-2",
+    "href": "ae/ae-04-durham-sa.html#exercise-2",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 2",
-    "text": "Exercise 2\nCalculate the proportions of home owners for each category of Durham residents. Describe the relationship between these two variables, this time with the actual values from the conditional distribution of home ownership based on income level.\nAdd your answer here.\n\n# add code here"
+    "text": "Exercise 2\nThe variables we’ll use in this analysis are as follows. Rename the variables to the updated names shown below.\n\n\n\nOriginal name\nUpdated name\n\n\n\n\nprimary_language\nprimary_language\n\n\ndo_you_own_or_rent_your_current_resi_31\nown_rent\n\n\nwould_you_say_your_total_annual_hous_35\nincome\n\n\n\n\ndurham &lt;- durham |&gt;\n  rename(\n    own_rent = do_you_own_or_rent_your_current_resi_31,\n    income = would_you_say_your_total_annual_hous_35\n  )"
   },
   {
-    "objectID": "ae/ae-05-durham.html#exercise-3",
-    "href": "ae/ae-05-durham.html#exercise-3",
+    "objectID": "ae/ae-04-durham-sa.html#exercise-3",
+    "href": "ae/ae-04-durham-sa.html#exercise-3",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 3",
-    "text": "Exercise 3\nRecode the levels of these two variables to be more informatively labeled and calculate the proportions from the previous exercise again.\n\n# add code here"
+    "text": "Exercise 3\nWhat language do Durham residents speak: primary_language?\n\nWhat is the primary language used in your household?\n\nAdd your answer here.\n\nggplot(durham, aes(x = primary_language)) +\n  geom_bar()"
   },
   {
-    "objectID": "ae/ae-05-durham.html#exercise-4",
-    "href": "ae/ae-05-durham.html#exercise-4",
+    "objectID": "ae/ae-04-durham-sa.html#exercise-4",
+    "href": "ae/ae-04-durham-sa.html#exercise-4",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 4",
-    "text": "Exercise 4\nOne of the questions on the survey is “How satisfied are you with the overall quality of services provided by the city?” A response of 1 indicates Very Dissatisfied and a response of 5 indicates Very Satisfied. The responses for this question are in the variable qos_city. This could be considered an ordinal, categorical variable but can also be treated as a numerical variable in an analysis. Let’s do the latter!\nVisualize and describe the distribution of qos_city. If you get a warning with your visualization, comment on what it means.\nAdd your response here.\n\n# add code here"
+    "text": "Exercise 4\nMake similar bar plots of own_rent and income. What distinct values do these variables take?\n\nggplot(durham, aes(x = own_rent)) +\n  geom_bar()\n\nWarning: Removed 2 rows containing non-finite values (`stat_count()`).\n\n\n\n\n\n\n\n\n\n\nggplot(durham, aes(x = income)) +\n  geom_bar()\n\nWarning: Removed 110 rows containing non-finite values (`stat_count()`)."
   },
   {
-    "objectID": "ae/ae-05-durham.html#exercise-5",
-    "href": "ae/ae-05-durham.html#exercise-5",
+    "objectID": "ae/ae-04-durham-sa.html#exercise-5",
+    "href": "ae/ae-04-durham-sa.html#exercise-5",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 5",
-    "text": "Exercise 5\nCalculate the mean and median of the distribution of qos_city. If these values are not exactly the same, can you explain what the difference might be attributed to?\nAdd your response here.\n\n# add code here"
+    "text": "Exercise 5\nThe variables own_rent and income are both categorical, but they’re stored as numbers. In R, categorical data are called factors. Recode these variables as factors with the as_factor() function.\n\ndurham &lt;- durham |&gt;\n  mutate(\n    income = as_factor(income),\n    own_rent = as_factor(own_rent)\n    )"
   },
   {
-    "objectID": "ae/ae-05-durham.html#exercise-6",
-    "href": "ae/ae-05-durham.html#exercise-6",
+    "objectID": "ae/ae-04-durham-sa.html#exercise-6",
+    "href": "ae/ae-04-durham-sa.html#exercise-6",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 6",
-    "text": "Exercise 6\nBased on the shape of the distribution of qos_city, which measure of spread (variability) is more appropriate? Calculate that value and interpret it in context of the data.\n\n# add code here"
+    "text": "Exercise 6\nRecreate the visualization from the previous exerciseincome` barplot, improving it for both visual appeal and better communication of findings.\nAdd your answer here.\n\ndurham |&gt;\n  ggplot(aes(y = income, fill = income)) +\n  geom_bar(show.legend = FALSE) +\n  scale_fill_viridis_d(na.value = \"darkgray\") +\n  scale_y_discrete(\n    labels = c(\n      \"1\" = \"Under $30,000\",\n      \"2\" = \"$30,000-$59,999\",\n      \"3\" = \"$60,000-$99,999\",\n      \"4\" = \"$100,000 or more\"\n    )\n  ) +\n  labs(\n    x = \"Count\",\n    y = NULL,\n    title = \"Would you say your total annual household income is...\"\n  )"
   },
   {
-    "objectID": "ae/ae-05-durham.html#exercise-7",
-    "href": "ae/ae-05-durham.html#exercise-7",
+    "objectID": "ae/ae-04-durham-sa.html#exercise-7",
+    "href": "ae/ae-04-durham-sa.html#exercise-7",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 7",
-    "text": "Exercise 7\nMake a box plot of qos_city and comment on how the values you calculated map on to the box plot.\n\n# add code here"
+    "text": "Exercise 7\nRecreate the visualization from the previous exercise, but first calculate relative frequencies (proportions) of income (the marginal distribution) and plot the proportions instead of counts.\n\ndurham |&gt;\n  count(income) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  ggplot(aes(y = income, x = prop, fill = income)) +\n  geom_col(show.legend = FALSE) +\n  scale_fill_viridis_d(na.value = \"gray\") +\n  scale_y_discrete(\n    labels = c(\n      \"1\" = \"Under $30,000\",\n      \"2\" = \"$30,000-$59,999\",\n      \"3\" = \"$60,000-$99,999\",\n      \"4\" = \"$100,000 or more\"\n    )\n  ) +\n  labs(\n    x = \"Proportion\",\n    y = NULL,\n    title = \"Would you say your total annual household income is...\"\n  )"
   },
   {
-    "objectID": "ae/ae-05-durham.html#exercise-8",
-    "href": "ae/ae-05-durham.html#exercise-8",
+    "objectID": "ae/ae-04-durham-sa.html#exercise-8",
+    "href": "ae/ae-04-durham-sa.html#exercise-8",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Exercise 8",
-    "text": "Exercise 8\nHow the average level of happiness with quality of services provided by the city vary by income group?\nStretch goal: Visualize mean qos_city by income group.\nAdd your response here.\n\n# add code here"
+    "text": "Exercise 8\nVisualize and describe the relationship between income and home ownership of Durham residents.\nStretch goal: Customize the colors using named colors from http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf.\nAdd your answer here.\n\ndurham |&gt;\n  select(income, own_rent) |&gt;\n  drop_na() |&gt;\n  ggplot(aes(y = income, fill = own_rent)) +\n  geom_bar(position = \"fill\") +\n  scale_y_discrete(\n    labels = c(\n      \"1\" = \"Under $30,000\",\n      \"2\" = \"$30,000-$59,999\",\n      \"3\" = \"$60,000-$99,999\",\n      \"4\" = \"$100,000 or more\"\n    )\n  ) +\n  scale_fill_manual(\n    values = c(\"1\" = \"cadetblue\", \"2\" = \"coral\"),\n    labels = c(\"1\" = \"Own\", \"2\" = \"Rent\")\n  ) +\n  labs(\n    x = \"Proportion\",\n    y = \"Would you say your total\\nannual household income is...\",\n    fill = \"Do you own\\nor rent\\nyour current\\nresidence?\",\n    title = \"Income vs. home ownership of Durham residents\"\n  )"
   },
   {
-    "objectID": "ae/ae-05-durham.html#conceptual",
-    "href": "ae/ae-05-durham.html#conceptual",
+    "objectID": "ae/ae-04-durham-sa.html#exercise-9",
+    "href": "ae/ae-04-durham-sa.html#exercise-9",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "Exercise 9",
+    "text": "Exercise 9\nCalculate the proportions of home owners for each category of Durham residents. Describe the relationship between these two variables, this time with the actual values from the conditional distribution of home ownership based on income level.\nAdd your answer here.\n\ndurham |&gt;\n  select(income, own_rent) |&gt;\n  drop_na() |&gt;\n  count(income, own_rent) |&gt;\n  group_by(income) |&gt;\n  mutate(prop = n / sum(n))\n\n# A tibble: 8 × 4\n# Groups:   income [4]\n  income own_rent     n   prop\n  &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;  &lt;dbl&gt;\n1 1      1           51 0.362 \n2 1      2           90 0.638 \n3 2      1          105 0.565 \n4 2      2           81 0.435 \n5 3      1          107 0.552 \n6 3      2           87 0.448 \n7 4      1          160 0.930 \n8 4      2           12 0.0698"
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html#exercise-10",
+    "href": "ae/ae-04-durham-sa.html#exercise-10",
+    "title": "2020 Durham City and County Resident Survey",
+    "section": "Exercise 10",
+    "text": "Exercise 10\nStretch goal: Recode the levels of these two variables to be more informatively labeled.\n\ndurham &lt;- durham |&gt;\n  mutate(\n    income = case_when(\n      income == \"1\" ~ \"Under $30,000\",\n      income == \"2\" ~ \"$30,000-$59,999\",\n      income == \"3\" ~ \"$60,000-$99,999\",\n      income == \"4\" ~ \"$100,000 or more\"      \n    ),\n    own_rent = if_else(own_rent == 1, \"Own\", \"Rent\")\n  )\n\ndurham |&gt;\n  select(income, own_rent) |&gt;\n  drop_na() |&gt;\n  count(income, own_rent) |&gt;\n  group_by(income) |&gt;\n  mutate(prop = n / sum(n))\n\n# A tibble: 8 × 4\n# Groups:   income [4]\n  income           own_rent     n   prop\n  &lt;chr&gt;            &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;\n1 $100,000 or more Own        160 0.930 \n2 $100,000 or more Rent        12 0.0698\n3 $30,000-$59,999  Own        105 0.565 \n4 $30,000-$59,999  Rent        81 0.435 \n5 $60,000-$99,999  Own        107 0.552 \n6 $60,000-$99,999  Rent        87 0.448 \n7 Under $30,000    Own         51 0.362 \n8 Under $30,000    Rent        90 0.638"
+  },
+  {
+    "objectID": "ae/ae-04-durham-sa.html#conceptual",
+    "href": "ae/ae-04-durham-sa.html#conceptual",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Conceptual",
     "text": "Conceptual\nSome of the terms we introduced are:\n\nMarginal distribution: Distribution of a single variable.\nConditional distribution: Distribution of a variable conditioned on the values (or levels, in the context of categorical data) of another."
   },
   {
-    "objectID": "ae/ae-05-durham.html#r",
-    "href": "ae/ae-05-durham.html#r",
+    "objectID": "ae/ae-04-durham-sa.html#r",
+    "href": "ae/ae-04-durham-sa.html#r",
     "title": "2020 Durham City and County Resident Survey",
     "section": "R",
-    "text": "R\nIn this application exercise we:\n\nDefined factors – the data type that R uses for categorical variables, i.e., variables that can take on values from a finite set of levels.\nReviewed data imports, visualization, and wrangling functions encountered before:\n\nImport: read_csv(): Read data from a CSV (comma separated values) file\nVisualization:\n\nggplot(): Create a plot using the ggplot2 package\naes(): Map variables from the data to aesthetic elements of the plot, generally passed as an argument to ggplot() or to geom_*() functions (define only x or y aesthetic)\ngeom_bar(): Represent data with bars, after calculating heights of bars under the hood\ngeom_histogram(): Represent data with a histogram\ngeom_boxplot(): Represent data with a box plot\ngeom_point(): Represent data with points\nlabs(): Label x axis, y axis, legend for color of plot, title` of plot, etc.\n\nWrangling:\n\nmutate(): Mutate the data frame by creating a new column or overwriting one of the existing columns\ncount(): Count the number of observations for each level of a categorical variable (factor) or each distinct value of any other type of variable\ngroup_by(): Perform each subsequent action once per each group of the variable, where groups can be defined based on the levels of one or more variables\nsummarize(): Calculate summary statistics\n\n\nIntroduced new data wrangling functions:\n\nrename(): Rename columns in a data frame\nas_factor(): Convert a variable to a factor\ndrop_na(): Drop rows that have NA in one ore more specified variables\nif_else(): Write logic for what happens if a condition is true and what happens if it’s not\ncase_when(): Write a generalized if_else() logic for more than one condition\nfct_relevel: Change the order of levels in a factor\n\nIntroduced new data visualization functions:\n\ngeom_col(): Represent data with bars (columns), for heights that have already been calculated (must define x and y aesthetics)\nscale_fill_viridis_d(): Customize the discrete fill scale, using a color-blind friendly, ordinal discrete color scale\nscale_y_discrete(): Customize the discrete y scale\nscale_fill_manual(): Customize the fill scale by manually adjusting values for colors"
+    "text": "R\nIn this application exercise we:\n\nDefined factors – the data type that R uses for categorical variables, i.e., variables that can take on values from a finite set of levels.\n\n\n\nReviewed data imports, visualization, and wrangling functions encountered before:\n\nImport: read_csv(): Read data from a CSV (comma separated values) file\nVisualization:\n\nggplot(): Create a plot using the ggplot2 package\naes(): Map variables from the data to aesthetic elements of the plot, generally passed as an argument to ggplot() or to geom_*() functions (define only x or y aesthetic)\ngeom_bar(): Represent data with bars, after calculating heights of bars under the hood\nlabs(): Label x axis, y axis, legend for color of plot, title` of plot, etc.\n\nWrangling:\n\nmutate(): Mutate the data frame by creating a new column or overwriting one of the existing columns\ncount(): Count the number of observations for each level of a categorical variable (factor) or each distinct value of any other type of variable\ngroup_by(): Perform each subsequent action once per each group of the variable, where groups can be defined based on the levels of one or more variables\n\n\nIntroduced new data wrangling functions:\n\nrename(): Rename columns in a data frame\nas_factor(): Convert a variable to a factor\ndrop_na(): Drop rows that have NA in one ore more specified variables\nif_else(): Write logic for what happens if a condition is true and what happens if it’s not\ncase_when(): Write a generalized if_else() logic for more than one codition\n\nIntroduced new data visualization functions:\n\ngeom_col(): Represent data with bars (columns), for heights that have already been calculated (must define x and y aesthetics)\nscale_fill_viridis_d(): Customize the discrete fill scale, using a color-blind friendly, ordinal discrete color scale\nscale_y_discrete(): Customize the discrete y scale\nscale_fill_manual(): Customize the fill scale by manually adjusting values for colors"
   },
   {
-    "objectID": "ae/ae-05-durham.html#quarto",
-    "href": "ae/ae-05-durham.html#quarto",
+    "objectID": "ae/ae-04-durham-sa.html#quarto",
+    "href": "ae/ae-04-durham-sa.html#quarto",
     "title": "2020 Durham City and County Resident Survey",
     "section": "Quarto",
     "text": "Quarto\nWe also introduced chunk options for managing figure sizes:\n\nfig-width: Width of figure\nfig-asp: Aspect ratio of figure (height / width)\nfig-height: Height of figure – but I recommend using fig-width and fig-asp, instead of fig-width and fig-height"
+  },
+  {
+    "objectID": "ae/ae-16-birth-weight-sa.html",
+    "href": "ae/ae-16-birth-weight-sa.html",
+    "title": "Birth weights",
+    "section": "",
+    "text": "In this application exercise, we’ll do inference for a comparing two means, using simulation-based and mathematical models."
+  },
+  {
+    "objectID": "ae/ae-16-birth-weight-sa.html#sec-exercise-1",
+    "href": "ae/ae-16-birth-weight-sa.html#sec-exercise-1",
+    "title": "Birth weights",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nSet the hypotheses for testing if there is a difference between mean birth weight of babies born to mothers who are smokers and those born to mothers who are not smokers.\nAdd answer here."
+  },
+  {
+    "objectID": "ae/ae-16-birth-weight-sa.html#exercise-2",
+    "href": "ae/ae-16-birth-weight-sa.html#exercise-2",
+    "title": "Birth weights",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nCalculate the observed difference between the mean birth weight of babies born to mothers who are smokers and those born to mothers who are not smokers in this sample.\n\n# add code here"
+  },
+  {
+    "objectID": "ae/ae-16-birth-weight-sa.html#exercise-3",
+    "href": "ae/ae-16-birth-weight-sa.html#exercise-3",
+    "title": "Birth weights",
+    "section": "Exercise 3",
+    "text": "Exercise 3\nSuppose the birth weights of the babies in this sample are written on pieces of paper. Explain how you would conduct the randomization test tactically. Hint: You may need to calculate some summary statistics first.\n\n# add code here\n\nAdd answer here."
+  },
+  {
+    "objectID": "ae/ae-16-birth-weight-sa.html#exercise-4",
+    "href": "ae/ae-16-birth-weight-sa.html#exercise-4",
+    "title": "Birth weights",
+    "section": "Exercise 4",
+    "text": "Exercise 4\nConstruct and visualize the null distribution. Based on your visualization, speculate on whether the p-value will be small or large.\n\n# add code here\n\nAdd answer here."
+  },
+  {
+    "objectID": "ae/ae-16-birth-weight-sa.html#exercise-5",
+    "href": "ae/ae-16-birth-weight-sa.html#exercise-5",
+    "title": "Birth weights",
+    "section": "Exercise 5",
+    "text": "Exercise 5\nVisualize and calculate the p-value. At the 5% discernability level, what is the conclusion of the hypothesis test?\n\n# add code here\n\nAdd answer here."
+  },
+  {
+    "objectID": "ae/ae-16-birth-weight-sa.html#exercise-6",
+    "href": "ae/ae-16-birth-weight-sa.html#exercise-6",
+    "title": "Birth weights",
+    "section": "Exercise 6",
+    "text": "Exercise 6\nConstruct and interpret confidence interval at the equivalent level as the previous hypothesis test for the difference between the mean weight of babies born to mothers who are smokers and those who are bor to mothers who are not smokers.\n\n# add code here\n\nAdd response here."
+  },
+  {
+    "objectID": "ae/ae-16-birth-weight-sa.html#exercise-7",
+    "href": "ae/ae-16-birth-weight-sa.html#exercise-7",
+    "title": "Birth weights",
+    "section": "Exercise 7",
+    "text": "Exercise 7\nCheck that the technical conditions for conducting inference using mathematical models for comparing two means are met for these data.\nAdd response here."
+  },
+  {
+    "objectID": "ae/ae-16-birth-weight-sa.html#exercise-8",
+    "href": "ae/ae-16-birth-weight-sa.html#exercise-8",
+    "title": "Birth weights",
+    "section": "Exercise 8",
+    "text": "Exercise 8\nConduct a hypothesis test using mathematical models for the hypotheses you set in Section 3.1.\n\nt_hat &lt;- births14 |&gt;\n  specify(response = weight, explanatory = habit) |&gt;\n  calculate(\"t\", order = c(\"smoker\", \"nonsmoker\"))\n\nnull_dist_theory &lt;- births14 |&gt;\n  specify(response = weight, explanatory = habit) |&gt;\n  assume(\"t\")\n\nvisualize(null_dist_theory) +\n  shade_p_value(obs_stat = t_hat, direction = \"two-sided\")\n\n\n\n\n\n\n\n\n\nbirths14 |&gt;\n  specify(response = weight, explanatory = habit) |&gt;\n  assume(\"t\") |&gt;\n  get_p_value(obs_stat = t_hat, direction = \"two-sided\")\n\n# A tibble: 1 × 1\n   p_value\n     &lt;dbl&gt;\n1 0.000208"
+  },
+  {
+    "objectID": "ae/ae-16-birth-weight-sa.html#exercise-9",
+    "href": "ae/ae-16-birth-weight-sa.html#exercise-9",
+    "title": "Birth weights",
+    "section": "Exercise 9",
+    "text": "Exercise 9\nImprove the density plot from the lecture slides.\n\n# add code here"
   },
   {
     "objectID": "course-faq.html",

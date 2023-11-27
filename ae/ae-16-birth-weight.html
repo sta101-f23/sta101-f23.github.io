@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>STA 101 - F23 - Lab 1: Hello R!</title>
+<title>STA 101 - F23 - Birth weights</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -63,8 +63,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../labs/lab-2.html" rel="next">
-<link href="../course-faq.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -104,8 +102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="labs.css">
-<meta property="og:title" content="STA 101 - F23 - Lab 1: Hello R!">
+<meta property="og:title" content="STA 101 - F23 - Birth weights">
 <meta property="og:description" content="Homepage for STA 101 - Data Analysis and Statistical Inference at Duke University, Fall 2023.">
 <meta property="og:site_name" content="STA 101 - F23">
 </head>
@@ -119,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/lab-1.html">Labs</a></li><li class="breadcrumb-item"><a href="../labs/lab-1.html">Lab 1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Birth weights</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -226,16 +223,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
  <span class="menu-text">Labs</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../labs/lab-1.html" class="sidebar-item-text sidebar-link active">
+  <a href="../labs/lab-1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 1</span></a>
   </div>
 </li>
@@ -351,45 +348,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting started</a></li>
-  <li><a href="#toolkit-review" id="toc-toolkit-review" class="nav-link" data-scroll-target="#toolkit-review">Toolkit review</a>
+  <li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#randomization-test-for-comparing-two-means" id="toc-randomization-test-for-comparing-two-means" class="nav-link" data-scroll-target="#randomization-test-for-comparing-two-means">Randomization test for comparing two means</a>
   <ul class="collapse">
-  <li><a href="#yaml" id="toc-yaml" class="nav-link" data-scroll-target="#yaml">YAML</a></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
-  </ul></li>
-  <li><a href="#code-style" id="toc-code-style" class="nav-link" data-scroll-target="#code-style">Code style</a></li>
-  <li><a href="#part-1-datasaurus" id="toc-part-1-datasaurus" class="nav-link" data-scroll-target="#part-1-datasaurus">Part 1: datasauRus</a>
-  <ul class="collapse">
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  <li><a href="#sec-exercise-1" id="toc-sec-exercise-1" class="nav-link" data-scroll-target="#sec-exercise-1">Exercise 1</a></li>
   <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
   <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
   <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
   <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
+  </ul></li>
+  <li><a href="#bootstrap-interval-for-the-difference-of-two-means" id="toc-bootstrap-interval-for-the-difference-of-two-means" class="nav-link" data-scroll-target="#bootstrap-interval-for-the-difference-of-two-means">Bootstrap interval for the difference of two means</a>
+  <ul class="collapse">
   <li><a href="#exercise-6" id="toc-exercise-6" class="nav-link" data-scroll-target="#exercise-6">Exercise 6</a></li>
+  </ul></li>
+  <li><a href="#inference-using-mathematical-models-for-comparing-two-means" id="toc-inference-using-mathematical-models-for-comparing-two-means" class="nav-link" data-scroll-target="#inference-using-mathematical-models-for-comparing-two-means">Inference using mathematical models for comparing two means</a>
+  <ul class="collapse">
   <li><a href="#exercise-7" id="toc-exercise-7" class="nav-link" data-scroll-target="#exercise-7">Exercise 7</a></li>
-  </ul></li>
-  <li><a href="#part-2-ims-exercises" id="toc-part-2-ims-exercises" class="nav-link" data-scroll-target="#part-2-ims-exercises">Part 2: IMS Exercises</a>
-  <ul class="collapse">
   <li><a href="#exercise-8" id="toc-exercise-8" class="nav-link" data-scroll-target="#exercise-8">Exercise 8</a></li>
-  <li><a href="#exercise-9" id="toc-exercise-9" class="nav-link" data-scroll-target="#exercise-9">Exercise 9</a></li>
-  <li><a href="#exercise-10" id="toc-exercise-10" class="nav-link" data-scroll-target="#exercise-10">Exercise 10</a></li>
   </ul></li>
-  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap up</a>
+  <li><a href="#improving-visualizations" id="toc-improving-visualizations" class="nav-link" data-scroll-target="#improving-visualizations">Improving visualizations</a>
   <ul class="collapse">
-  <li><a href="#submitting" id="toc-submitting" class="nav-link" data-scroll-target="#submitting">Submitting</a></li>
-  <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  <li><a href="#exercise-9" id="toc-exercise-9" class="nav-link" data-scroll-target="#exercise-9">Exercise 9</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/labs/lab-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/edit/main/ae/ae-16-birth-weight.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta101-f23/sta101-f23.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/lab-1.html">Labs</a></li><li class="breadcrumb-item"><a href="../labs/lab-1.html">Lab 1</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab 1: Hello R!</h1>
-</div>
+<h1 class="title">Birth weights</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Application exercise</div>
+  </div>
+  </div>
 
 
 
@@ -405,369 +399,132 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>The goal of this lab is to acquaint you with R (the computing language), RStudio (the IDE, integrated development environment), and Posit Cloud (the browser based service we will use to access RStudio).</p>
-<section id="getting-started" class="level1">
-<h1>Getting started</h1>
-<ol type="1">
-<li><p>Go to <a href="https://posit.cloud/spaces/405361">Posit Cloud</a> and start the project titled <strong>lab-1 - Hello R!</strong>.</p></li>
-<li><p>Under the <em>Files</em> tab on the lower right, click on <code>lab-1.qmd</code> to open the lab template.</p></li>
-</ol>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center anchored" width="500" alt="Where to find the file">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="images/open-the-file.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="img-fluid figure-img" alt="Where to find the file" width="500">
-</div>
-</figure>
-</div>
-<ol start="3" type="1">
-<li>Complete the exercises in this document.</li>
-</ol>
-</section>
-<section id="toolkit-review" class="level1">
-<h1>Toolkit review</h1>
-<section id="yaml" class="level2">
-<h2 class="anchored" data-anchor-id="yaml">YAML</h2>
-<p>The top portion of your Quarto Markdown file (aka <code>.qmd</code>), you’ll find three dashed lines. Between the dashed lines is called YAML. YAML stands for “YAML Ain’t Markup Language”. It is a human friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.</p>
-<p>Change the <code>author</code> name to your name and update the <code>date</code> with today’s date. Click the <strong>Render</strong> to render the document. What do you notice?</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>To avoid issues that can occur while rendering, it is a good idea to render early and often. <strong>At least after every exercise</strong>.</p>
-</div>
-</div>
-</section>
-<section id="packages" class="level2">
-<h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<p>In this lab we will work with three packages: the <strong>tidyverse</strong> package which is a collection of packages for doing data analysis in a “tidy” way, the <strong>datasauRus</strong> package which contains the data set for the first part of your lab.</p>
+<p>In this application exercise, we’ll do inference for a comparing two means, using simulation-based and mathematical models.</p>
+<section id="packages" class="level1">
+<h1>Packages</h1>
+<p>We’ll use the <strong>tidyverse</strong>, <strong>tidymodels</strong>, <strong>openintro</strong>, and <strong>ggthemes</strong> packages.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasauRus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you are using <code>R</code> on Posit Cloud, packages we use should already be installed and only need to be <strong>loaded</strong> with the function <code>library()</code>. If you are using a local version of <code>R</code> you probably have to run the following code in the <strong>console</strong> to install the packages (one time only!)</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"datasauRus"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-</section>
-<section id="code-style" class="level1">
-<h1>Code style</h1>
-<p>For all assignments in this course there is a “code style and formatting” component to the grade. To receive full points for this component, you must:</p>
-<ol type="1">
-<li><p>There is a line break after each <code>|&gt;</code> in a pipeline or <code>+</code> in a ggplot.</p></li>
-<li><p>There are spaces around <code>=</code> signs.</p></li>
-<li><p>There is a space after each <code>,</code>.</p></li>
-<li><p>Code is properly indented.</p></li>
-<li><p>Code doesn’t exceed 80 characters in each line, longer lines of code are spread across multiple lines with appropriately placed line breaks. (In the rendered document, you shouldn’t have to scroll to see all your code.)</p></li>
-<li><p>Code chunks are labeled, informatively and without spaces.</p></li>
-</ol>
-<p>These guidelines follow the <a href="https://style.tidyverse.org/">tidyverse style guide</a>. This style guide is commonly used and will help make your code more legible.</p>
-</section>
-<section id="part-1-datasaurus" class="level1">
-<h1>Part 1: datasauRus</h1>
-<p>The data frame we will be working with for the first part of the lab is called <code>datasaurus_dozen</code> and it’s in the <code>datasauRus</code> package. Actually, this single data frame contains 13 data sets (a “baker’s dozen”), designed to show us why data visualization is important and how summary statistics alone can be misleading. The different data sets are marked by the data set variable.</p>
-<p>To find out more about the data set, type the following in your console (this will bring up the help file).</p>
+<section id="data" class="level1">
+<h1>Data</h1>
+<p>Every year, the United States Department of Health and Human Services releases to the public a large dataset containing information on births recorded in the country. This dataset has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children. In this case study we work with a random sample of 1,000 cases from the dataset released in 2014. The length of pregnancy, measured in weeks, is commonly referred to as gestation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>?datasaurus_dozen</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="exercise-1" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
-<div class="exercise">
-<p>Based on the help file, how many rows and how many columns does the <code>datasaurus_dozen</code> file have? What are the <strong>variables</strong> included in the data frame? Add your responses to your lab report under “Exercise 1”.</p>
-</div>
-<p>Let’s take a look at the names of the data sets inside of <code>datasaurus_dozen</code>. To do so this, we can make a frequency table of the “data set” variable. Run the code chunk below. Note: when you run the code chunk below, a table “prints” to the screen. In general, we say “print to screen” to mean that the output of your code should show up on your screen (when asked to ‘print to screen’ in an assignment, you should make sure the output displays in your rendered document).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>datasaurus_dozen <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(births14)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 13 × 2
-   dataset        n
-   &lt;chr&gt;      &lt;int&gt;
- 1 away         142
- 2 bullseye     142
- 3 circle       142
- 4 dino         142
- 5 dots         142
- 6 h_lines      142
- 7 high_lines   142
- 8 slant_down   142
- 9 slant_up     142
-10 star         142
-11 v_lines      142
-12 wide_lines   142
-13 x_shape      142</code></pre>
+<pre><code>Rows: 1,000
+Columns: 13
+$ fage           &lt;int&gt; 34, 36, 37, NA, 32, 32, 37, 29, 30, 29, 30, 34, 28, 28,…
+$ mage           &lt;dbl&gt; 34, 31, 36, 16, 31, 26, 36, 24, 32, 26, 34, 27, 22, 31,…
+$ mature         &lt;chr&gt; "younger mom", "younger mom", "mature mom", "younger mo…
+$ weeks          &lt;dbl&gt; 37, 41, 37, 38, 36, 39, 36, 40, 39, 39, 42, 40, 40, 39,…
+$ premie         &lt;chr&gt; "full term", "full term", "full term", "full term", "pr…
+$ visits         &lt;dbl&gt; 14, 12, 10, NA, 12, 14, 10, 13, 15, 11, 14, 16, 20, 15,…
+$ gained         &lt;dbl&gt; 28, 41, 28, 29, 48, 45, 20, 65, 25, 22, 40, 30, 31, NA,…
+$ weight         &lt;dbl&gt; 6.96, 8.86, 7.51, 6.19, 6.75, 6.69, 6.13, 6.74, 8.94, 9…
+$ lowbirthweight &lt;chr&gt; "not low", "not low", "not low", "not low", "not low", …
+$ sex            &lt;chr&gt; "male", "female", "female", "male", "female", "female",…
+$ habit          &lt;chr&gt; "nonsmoker", "nonsmoker", "nonsmoker", "nonsmoker", "no…
+$ marital        &lt;chr&gt; "married", "married", "married", "not married", "marrie…
+$ whitemom       &lt;chr&gt; "white", "white", "not white", "white", "white", "white…</code></pre>
 </div>
 </div>
-<p>The original Datasaurus (dino) data was created by Alberto Cairo. The other Dozen were generated using simulated annealing and the process is described in the paper <em>Same Stats, Different Graphs: Generating data sets with Varied Appearance and Identical Statistics through Simulated Annealing</em> by Justin Matejka and George Fitzmaurice. In the paper, the authors simulate a variety of data sets that have the same summary statistics as the original Datasaurus but have very different data.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Note that there are some <code>NA</code>s in the <code>habit</code> variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>births14 <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(habit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  habit         n
+  &lt;chr&gt;     &lt;int&gt;
+1 nonsmoker   867
+2 smoker      114
+3 &lt;NA&gt;         19</code></pre>
 </div>
-<div class="callout-title-container flex-fill">
-Note
 </div>
+<p>Let’s drop those since we can’t use those observations in our analysis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>births14 <span class="ot">&lt;-</span> births14 <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(habit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-body-container callout-body">
-<p>You can view the whole data frame by running the code <code>view(datasaurus_dozen)</code> in the console. This will open the data frame in a new tab. Try it out!</p>
-</div>
-</div>
+</section>
+<section id="randomization-test-for-comparing-two-means" class="level1">
+<h1>Randomization test for comparing two means</h1>
+<section id="sec-exercise-1" class="level2">
+<h2 class="anchored" data-anchor-id="sec-exercise-1">Exercise 1</h2>
+<p>Set the hypotheses for testing if there is a difference between mean birth weight of babies born to mothers who are smokers and those born to mothers who are not smokers.</p>
+<p><em>Add answer here.</em></p>
 </section>
 <section id="exercise-2" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
-<div class="exercise">
-<p>Plot y vs.&nbsp;x for the dino data set. Then, calculate the correlation coefficient between x and y for this data set. Make sure that this value is printed in your document.</p>
-</div>
-<p>Below is the code you will need to complete this exercise. Basically, the answer is already given, but you need to include relevant bits in your <code>.qmd</code> document and successfully render it and view the results.</p>
-<p>Start with the <code>datasaurus_dozen</code> and pipe it into the filter function to filter for observations where <code>dataset == "dino"</code>. Store the resulting filtered data frame as a new data frame called <code>dino_data</code>.</p>
+<p>Calculate the observed difference between the mean birth weight of babies born to mothers who are smokers and those born to mothers who are not smokers in this sample.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dino_data <span class="ot">&lt;-</span> datasaurus_dozen <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dataset <span class="sc">==</span> <span class="st">"dino"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>There is a lot going on here, so let’s slow down and unpack it a bit.</p>
-<p>First, the pipe operator: <code>|&gt;</code>, takes what comes before it and sends it as the first argument to what comes after it. So here, we’re saying filter the <code>datasaurus_dozen</code> data frame for observations where <code>dataset == "dino"</code>.</p>
-<p>Second, the assignment operator: <code>&lt;-</code>, assigns the name <code>dino_data</code> to the filtered data frame.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note in <code>R</code> you may use either <code>&lt;-</code> or <code>=</code> for an assignment operator. We’ll use <code>&lt;-</code> in this class as it’s the more commonly used assignment operator, but when you look for R help online, you might see <code>=</code> being used as well.</p>
-</div>
-</div>
-<p>Next, we need to visualize these data. We will use the <code>ggplot</code> function for this. Its first argument is the data you’re visualizing. Next we define the <code>aes</code>thetic mappings. In other words, the columns of the data that get mapped to certain aesthetic features of the plot, e.g.&nbsp;the x axis will represent the variable called x and the y axis will represent the variable called y. Then, we add another layer to this plot where we define which geometric shapes we want to use to represent each observation in the data. In this case we want these to be points, hence <code>geom_point</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dino_data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center anchored" width="672">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="lab-1_files/figure-html/plot-dino-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="img-fluid figure-img" width="672">
-</div>
-</figure>
-</div>
-</div>
-</div>
-<p>For the second part of this exercise, we need to calculate a summary statistic: the correlation coefficient. The correlation coefficient (<em>r</em>) measures the strength and direction of the linear association between two variables. You will see that some of the pairs of variables we plot do not have a linear relationship between them. This is exactly why we want to visualize first: visualize to assess the form of the relationship, and calculate <em>r</em> only if relevant.</p>
-<p>In this case, calculating a correlation coefficient really doesn’t make sense since the relationship between x and y is definitely not linear, but is instead more ‘dinosaur-esque’.</p>
-<p>For illustrative purposes only, let’s calculate the correlation coefficient between x and y.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dino_data <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">r =</span> <span class="fu">cor</span>(x, y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-        r
-    &lt;dbl&gt;
-1 -0.0645</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-3" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-3">Exercise 3</h2>
-<div class="exercise">
-<p>Plot y vs.&nbsp;x for the star dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between x and y for this dataset. How does this value compare to the <em>r</em> of dino?</p>
+<p>Suppose the birth weights of the babies in this sample are written on pieces of paper. Explain how you would conduct the randomization test tactically. <strong>Hint:</strong> You may need to calculate some summary statistics first.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>To begin, edit the name of the code chunks from <code>ex-3-1</code> and <code>ex-3-2</code> to something more meaningful, e.g: <code>plot-star</code> and <code>r-star</code> respectively.</p>
+<p><em>Add answer here.</em></p>
 </section>
 <section id="exercise-4" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-4">Exercise 4</h2>
-<div class="exercise">
-<p>Finally, let’s plot all datasets at once. In order to do this we will make use of faceting, given by the code below:</p>
+<p>Construct and visualize the null distribution. Based on your visualization, speculate on whether the p-value will be small or large.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datasaurus_dozen, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> dataset)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> dataset, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>And we can use the <code>group_by</code> function to generate all the summary correlation coefficients. We’ll see these functions again and again.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>datasaurus_dozen <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dataset) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">r =</span> <span class="fu">cor</span>(x, y)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<p><em>Add answer here.</em></p>
 </section>
 <section id="exercise-5" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-5">Exercise 5</h2>
-<div class="exercise">
-<p>Describe what <code>|&gt;</code> does. Hint: run the following two code chunks. What do you notice?</p>
+<p>Visualize and calculate the p-value. At the 5% discernability level, what is the conclusion of the hypothesis test?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dino_data <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu_x =</span> <span class="fu">mean</span>(x),</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu_y =</span> <span class="fu">mean</span>(y)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(dino_data, <span class="at">mu_x =</span> <span class="fu">mean</span>(x), <span class="at">mu_y =</span> <span class="fu">mean</span>(y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<p><em>Add answer here.</em></p>
 </section>
+</section>
+<section id="bootstrap-interval-for-the-difference-of-two-means" class="level1">
+<h1>Bootstrap interval for the difference of two means</h1>
 <section id="exercise-6" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-6">Exercise 6</h2>
-<div class="exercise">
-<p>In the above code chunk, identify each of the following as an argument or a function:</p>
-<ul>
-<li><p><code>summarize</code></p></li>
-<li><p><code>dino_data</code></p></li>
-<li><p><code>mean</code></p></li>
-<li><p><code>x</code></p></li>
-<li><p><code>y</code></p></li>
-<li><p><code>mu_x = mean(x)</code></p></li>
-</ul>
+<p>Construct and interpret confidence interval at the equivalent level as the previous hypothesis test for the difference between the mean weight of babies born to mothers who are smokers and those who are bor to mothers who are not smokers.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><em>Add response here.</em></p>
 </section>
+</section>
+<section id="inference-using-mathematical-models-for-comparing-two-means" class="level1">
+<h1>Inference using mathematical models for comparing two means</h1>
 <section id="exercise-7" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-7">Exercise 7</h2>
-<div class="exercise">
-<p>Combine the code from exercises 4 and 5 to compute the <code>mean(x)</code> and <code>mean(y)</code> for each data set. Print your result to the screen. What do you notice? What does this say about the importance of visualizing your data as opposed to only looking at summary statistics?</p>
-</div>
+<p>Check that the technical conditions for conducting inference using mathematical models for comparing two means are met for these data.</p>
+<p>Add response here.</p>
 </section>
-</section>
-<section id="part-2-ims-exercises" class="level1">
-<h1>Part 2: IMS Exercises</h1>
-<p>The exercises in this section do not require code. Make sure to answer the questions in full sentences.</p>
 <section id="exercise-8" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-8">Exercise 8</h2>
-<div class="exercise">
-<p>IMS - <a href="https://openintro-ims2.netlify.app/01-data-hello#chp1-exercises">Chapter 1 exercises</a>, #4: Cheaters, study components.</p>
+<p>Conduct a hypothesis test using mathematical models for the hypotheses you set in <a href="#sec-exercise-1" class="quarto-xref">Section&nbsp;3.1</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
+</section>
+<section id="improving-visualizations" class="level1">
+<h1>Improving visualizations</h1>
 <section id="exercise-9" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-9">Exercise 9</h2>
-<div class="exercise">
-<p>IMS - <a href="https://openintro-ims2.netlify.app/01-data-hello#chp1-exercises">Chapter 1 exercises</a>, #14: UN Votes.</p>
+<p>Improve the density plot from the lecture slides.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="exercise-10" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-10">Exercise 10</h2>
-<div class="exercise">
-<p>IMS - <a href="https://openintro-ims2.netlify.app/01-data-hello#chp1-exercises">Chapter 1 exercises</a>, #16: Shows on Netflix.</p>
-</div>
-</section>
-</section>
-<section id="wrap-up" class="level1">
-<h1>Wrap up</h1>
-<section id="submitting" class="level2">
-<h2 class="anchored" data-anchor-id="submitting">Submitting</h2>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Before you proceed, first, make sure that you have updated the document YAML with your name! Then, render your document one last time, for good measure.</p>
-</div>
-</div>
-<p>To submit your assignment to Gradescope:</p>
-<ul>
-<li><p>Go to your Files pane and check the box next to the PDF output of your document (<code>lab-1.pdf</code>).</p></li>
-<li><p>Then, in the Files pane, go to More &gt; Export. This will download the PDF file to your computer. Save it somewhere you can easily locate, e.g., your Downloads folder or your Desktop.</p></li>
-<li><p>Go to the course Canvas page and click on Gradescope and then click on the assignment. You’ll be prompted to submit it.</p></li>
-<li><p>Mark the pages associated with each exercise. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”).</p></li>
-</ul>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you fail to mark the pages associated with an exercise, that exercise won’t be graded. This means, if you fail to mark the pages for all exercises, you will receive a 0 on the assignment. The TAs can’t mark your pages for you, and for them to be able to grade, you must mark them.</p>
-</div>
-</div>
-</section>
-<section id="grading" class="level2">
-<h2 class="anchored" data-anchor-id="grading">Grading</h2>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Exercise</th>
-<th>Points</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Exercise 1</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>Exercise 2</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td>Exercise 3</td>
-<td>6</td>
-</tr>
-<tr class="even">
-<td>Exercise 4</td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td>Exercise 5</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>Exercise 6</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>Exercise 7</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>Exercise 8</td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td>Exercise 9</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>Exercise 10</td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td><strong>Total</strong></td>
-<td>50</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="acknowledgements" class="level2">
-<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
-<p>This assignment was adapted from a lab in <a href="https://datasciencebox.org/">Data Science in a Box</a>.</p>
 
 
 </section>
@@ -1308,18 +1065,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../course-faq.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">FAQ</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../labs/lab-2.html" class="pagination-link">
-        <span class="nav-page-text">Lab 2</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
