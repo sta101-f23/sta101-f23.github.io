@@ -4215,9 +4215,119 @@
   {
     "objectID": "labs/lab-8.html",
     "href": "labs/lab-8.html",
-    "title": "Lab 8",
+    "title": "Lab 8 - Wrap it up!",
     "section": "",
-    "text": "To be posted…",
+    "text": "By the end of this lab you will\nFor all visualizations you create, be sure to include informative titles for the plot, axes, and legend!",
+    "crumbs": [
+      "Labs",
+      "Lab 8"
+    ]
+  },
+  {
+    "objectID": "labs/lab-8.html#exercise-1",
+    "href": "labs/lab-8.html#exercise-1",
+    "title": "Lab 8 - Wrap it up!",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nFor this exercise you can do one of the following:\n\nAttend a talk related to statistics or data science. To count, the talk must be at least 30 minutes or longer.\nTalk with someone who uses statistics in their daily work. This could include a professor, professional in industry, graduate student, etc.\nListen to a statistics podcast (e.g., check out Causal Inference podcast) or watch a conference talk (e.g., a talk from rstudio::conf(2022))\n\nNext, write 4-6 sentences summarizing your experience. Include the following:\n\nCitation or link to web page for event if applicable.\nName/brief description of the event/podcast/chat.\nSomething you found new, interesting, or unexpected.\nHow the event connects to something we’ve done in class.",
+    "crumbs": [
+      "Labs",
+      "Lab 8"
+    ]
+  },
+  {
+    "objectID": "labs/lab-8.html#exercise-2",
+    "href": "labs/lab-8.html#exercise-2",
+    "title": "Lab 8 - Wrap it up!",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nFor this exercise you’re asked to read a “winning” class project from a student. Read one of the winning projects from the the Undergraduate Class Project Competition (USCLAP). You can find the winners at https://www.causeweb.org/usproc/projects/winners.\nNext, write 4-6 sentences summarizing the project you read. Include the following:\n\nLink to project.\nTitle and research question.\nDescription of dataset used.\nBrief summary of findings.\nSomething you found new, interesting, or unexpected.",
+    "crumbs": [
+      "Labs",
+      "Lab 8"
+    ]
+  },
+  {
+    "objectID": "labs/lab-8.html#exercise-3",
+    "href": "labs/lab-8.html#exercise-3",
+    "title": "Lab 8 - Wrap it up!",
+    "section": "Exercise 3",
+    "text": "Exercise 3\nA second chance for an exercise: Take one of the exercises from a previous homework assignment, ideally one you received more feedback on / lost more points on and improve it. First, write one sentence reminding us of the specific exercise and a a few sentences on why you chose this specific exercise to improve and how you plan to improve it. Some of these improvements might be “fixes” for things that were pointed out as missing or incorrect. Some of them might be things you hoped to do before the homework deadline, but didn’t get a chance to. Some notes for completing this exercise:\n\nYou will need to add your data from your the homework assignment to the data/ folder in this assignment. You do not need to also add a data dictionary.\nYou will need to copy over any code needed for cleaning / preparing your data for this specific exercise. You can reuse code from your previous assignment but note that we will re-evaluate your code as part of the grading for this exercise. This means we might catch something wrong with it that we didn’t catch before, so if you spot any errors make sure to fix them.\nDon’t worry about being critical of your own work. Even if you lost no points on the plot, if you think it can be improved, articulate how / why. We will not go back and penalize for any mistakes you might point out that we didn’t catch at the time of grading your homework assignment. There’s no risk to being critical!",
+    "crumbs": [
+      "Labs",
+      "Lab 8"
+    ]
+  },
+  {
+    "objectID": "labs/lab-8.html#exercise-4",
+    "href": "labs/lab-8.html#exercise-4",
+    "title": "Lab 8 - Wrap it up!",
+    "section": "Exercise 4",
+    "text": "Exercise 4\nA second chance for a Project 1 plot: TL;DR - Same as the previous exercise, but for a plot from Project 1.\nTake one of the visualizations from your first project, ideally one you received more feedback on / lost more points on and improve it. First, write one sentence reminding us of your project and a a few sentences on why you chose this plot and how you plan to improve it. Some of these improvements might be “fixes” for things that were pointed out as missing or incorrect. Some of them might be things you hoped to do before the project deadline, but didn’t get a chance to. And some might be things you wanted to do in your project but your teammates didn’t agree so you gave up on at the time. Some notes for completing this exercise:\n\nYou will need to add your data from your project to the data/ folder in this assignment. You do not need to also add the data dictionary.\nYou will need to copy over any code needed for cleaning / preparing your data for this plot. You can reuse code from your project but note that we will re-evaluate your code as part of the grading for this exercise. This means we might catch something wrong with it that we didn’t catch before, so if you spot any errors make sure to fix them.\nDon’t worry about being critical of your own work. Even if you lost no points on the plot, if you think it can be improved, articulate how / why. We will not go back and penalize for any mistakes you might point out that we didn’t catch at the time of grading your project. There’s no risk to being critical!",
+    "crumbs": [
+      "Labs",
+      "Lab 8"
+    ]
+  },
+  {
+    "objectID": "labs/lab-8.html#exercise-5",
+    "href": "labs/lab-8.html#exercise-5",
+    "title": "Lab 8 - Wrap it up!",
+    "section": "Exercise 5",
+    "text": "Exercise 5\n\nIMS - Chapter 19 exercises, #14: Interpreting p-values for population mean.",
+    "crumbs": [
+      "Labs",
+      "Lab 8"
+    ]
+  },
+  {
+    "objectID": "labs/lab-8.html#exercise-6",
+    "href": "labs/lab-8.html#exercise-6",
+    "title": "Lab 8 - Wrap it up!",
+    "section": "Exercise 6",
+    "text": "Exercise 6\n\nIMS - Chapter 19 exercises, #20: Possible bootstrap samples.",
+    "crumbs": [
+      "Labs",
+      "Lab 8"
+    ]
+  },
+  {
+    "objectID": "labs/lab-8.html#exercise-7",
+    "href": "labs/lab-8.html#exercise-7",
+    "title": "Lab 8 - Wrap it up!",
+    "section": "Exercise 7",
+    "text": "Exercise 7\n\nIMS - Chapter 20 exercises, #4: Lizards running, randomization test.",
+    "crumbs": [
+      "Labs",
+      "Lab 8"
+    ]
+  },
+  {
+    "objectID": "labs/lab-8.html#exercise-8",
+    "href": "labs/lab-8.html#exercise-8",
+    "title": "Lab 8 - Wrap it up!",
+    "section": "Exercise 8",
+    "text": "Exercise 8\n\nIMS - Chapter 20 exercises, #6: Lizards running, bootstrap interval.",
+    "crumbs": [
+      "Labs",
+      "Lab 8"
+    ]
+  },
+  {
+    "objectID": "labs/lab-8.html#exercise-9",
+    "href": "labs/lab-8.html#exercise-9",
+    "title": "Lab 8 - Wrap it up!",
+    "section": "Exercise 9",
+    "text": "Exercise 9\n\nIMS - Chapter 20 exercises, #10: A/B testing.",
+    "crumbs": [
+      "Labs",
+      "Lab 8"
+    ]
+  },
+  {
+    "objectID": "labs/lab-8.html#exercise-10",
+    "href": "labs/lab-8.html#exercise-10",
+    "title": "Lab 8 - Wrap it up!",
+    "section": "Exercise 10",
+    "text": "Exercise 10\n\nIMS - Chapter 21 exercises, #6: High School and Beyond, randomization test.",
     "crumbs": [
       "Labs",
       "Lab 8"
