@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.388">
 
   <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
-  <title>STA 101 - F23 - Hypothesis testing with randomization</title>
+  <title>STA 101 - F23 - Telling a data story</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -387,8 +387,8 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="STA 101 - F23 - Hypothesis testing with randomization">
-<meta property="og:description" content="Lecture 12">
+<meta property="og:title" content="STA 101 - F23 - Telling a data story">
+<meta property="og:description" content="Lecture 24">
 <meta property="og:site_name" content="STA 101 - F23">
 </head>
 <body class="quarto-light">
@@ -396,8 +396,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Hypothesis testing with randomization</h1>
-  <p class="subtitle">Lecture 12</p>
+  <h1 class="title">Telling a data story</h1>
+  <p class="subtitle">Lecture 24</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -419,459 +419,635 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="announcements" class="slide level2">
 <h2>Announcements</h2>
 <ul>
-<li><p>Midterm grades posted on DukeHub for everyone</p></li>
-<li><p>My office hours this week by appointment, next week 10-11 am on Zoom and by appointment (no Tuesday office hours for me either week)</p></li>
-<li><p>Readings and tutorials posted for the next batch of lessons</p></li>
+<li>Check grades on Canvas, if anything seems off let me know asap. Your final grade will be calculated based on what’s on Canvas. No grades will be changed after the project is due.</li>
+<li>My office hours next week by appointment.</li>
+<li>Don’t forget to fill out course and TA evaluations.</li>
 </ul>
-</section></section>
-<section>
-<section id="hypothesis-testing" class="title-slide slide level1 center">
-<h1>Hypothesis testing</h1>
-
 </section>
-<section id="hypothesis-testing-1" class="slide level2">
-<h2>Hypothesis testing</h2>
-<p>A hypothesis test is a statistical technique used to evaluate <em>competing claims</em> using data.</p>
-<ul>
-<li><p><strong>Null hypothesis,</strong> <span class="math inline">\(H_o\)</span>: An assumption about the population. “There is nothing going on.”</p></li>
-<li><p><strong>Alternative hypothesis,</strong> <span class="math inline">\(H_A\)</span>: A research question about the population. “There is something going on”.</p></li>
-</ul>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>Hypotheses are always at the population level!</p>
-</div>
-</div>
-</div>
-</section>
-<section id="populations-vs.-samples" class="slide level2">
-<h2>Populations vs.&nbsp;samples</h2>
-<p>Suppose you’re cooking a pot of soup:</p>
-<div>
-<ul>
-<li class="fragment"><p>Taste a spoonful and decide if that spoonful has enough salt <span class="math inline">\(\rightarrow\)</span> exploratory data analysis of the sample</p></li>
-<li class="fragment"><p>Decide the pot of soup must also have enough salt since the spoonful does <span class="math inline">\(\rightarrow\)</span> inference</p></li>
-<li class="fragment"><p>Mixing the soup in the pot before taking a spoonful <span class="math inline">\(\rightarrow\)</span> randomizing</p></li>
-<li class="fragment"><p>Taking a spoonful with the intention of making an inference about the pot <span class="math inline">\(\rightarrow\)</span> sampling</p></li>
-</ul>
-</div>
-</section>
-<section id="packages" class="slide level2">
-<h2>Packages</h2>
+<section id="setup" class="slide level2">
+<h2>Setup</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(openintro)  <span class="co"># for data for case study 2: yawn</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(palmerpenguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
-<section id="case-study-1-donors" class="title-slide slide level1 center">
-<h1>Case study 1: Donors</h1>
+<section id="telling-a-story" class="title-slide slide level1 center">
+<h1>Telling a story</h1>
 
 </section>
-<section id="organ-donors" class="slide level2">
-<h2>Organ donors</h2>
-<p>People providing an organ for donation sometimes seek the help of a special “medical consultant”. These consultants assist the patient in all aspects of the surgery, with the goal of reducing the possibility of complications during the medical procedure and recovery. Patients might choose a consultant based in part on the historical complication rate of the consultant’s clients.</p>
-<p>One consultant tried to attract patients by noting that the average complication rate for liver donor surgeries in the US is about 10%, but her clients have only had 3 complications in the 62 liver donor surgeries she has facilitated. She claims this is strong evidence that her work meaningfully contributes to reducing complications (and therefore she should be hired!).</p>
+<section id="multiple-ways-of-telling-a-story" class="slide level2">
+<h2>Multiple ways of telling a story</h2>
+<ul>
+<li><p>Sequential reveal: Motivation, then resolution</p></li>
+<li><p>Instant reveal: Resolution, and hidden in it motivation</p></li>
+</ul>
+</section>
+<section id="simplicity-vs.-complexity" class="slide level2 smaller">
+<h2>Simplicity vs.&nbsp;complexity</h2>
+<blockquote>
+<p>When you’re trying to show too much data at once you may end up not showing anything.</p>
+</blockquote>
+<ul>
+<li><p>Never assume your audience can rapidly process complex visual displays</p></li>
+<li><p>Don’t add variables to your plot that are tangential to your story</p></li>
+<li><p>Don’t jump straight to a highly complex figure; first show an easily digestible subset (e.g., show one facet first)</p></li>
+<li><p>Aim for memorable, but clear</p></li>
+</ul>
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><strong>Project note:</strong> Make sure to leave time to iterate on your plots after you practice your presentation. If certain plots or outputs are getting too wordy to explain, take time to simplify them!</p>
+</div>
+</div>
+</div>
+</section>
+<section id="consistency-vs.-repetitiveness" class="slide level2">
+<h2>Consistency vs.&nbsp;repetitiveness</h2>
+<blockquote>
+<p>Be consistent but don’t be repetitive.</p>
+</blockquote>
+<ul>
+<li><p>Use consistent features throughout plots (e.g., same color represents same level on all plots)</p></li>
+<li><p>Aim to use a different type of summary or visualization for each distinct analysis</p></li>
+</ul>
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><strong>Project note:</strong> If possible, ask a friend who is not in the class to listen to your presentation and then ask them what they remember. Then, ask yourself: is that what you wanted them to remember?</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="designing-effective-visualizations" class="title-slide slide level1 center">
+<h1>Designing effective visualizations</h1>
+
 </section>
 <section id="data" class="slide level2">
 <h2>Data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>organ_donor <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/organ-donor.csv"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>organ_donor <span class="sc">|&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">count</span>(outcome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  outcome             n
-  &lt;chr&gt;           &lt;int&gt;
-1 complication        3
-2 no complication    59</code></pre>
-</div>
-</div>
-</section>
-<section id="parameter-vs.-statistic" class="slide level2">
-<h2>Parameter vs.&nbsp;statistic</h2>
-<p>A <strong>parameter</strong> for a hypothesis test is the “true” value of interest. We typically estimate the parameter using a <strong>sample statistic</strong> as a <strong>point estimate</strong>.</p>
-<p><span class="math inline">\(p~\)</span>: true rate of complication</p>
-<p><span class="math inline">\(\hat{p}~\)</span>: rate of complication in the sample = <span class="math inline">\(\frac{3}{62}\)</span> = 0.048</p>
-</section>
-<section id="correlation-vs.-causation" class="slide level2">
-<h2>Correlation vs.&nbsp;causation</h2>
-<div class="task">
-<p>Is it possible to assess the consultant’s claim using the data?</p>
-</div>
-<div class="fragment">
-<p>No.&nbsp;The claim is that there is a causal connection, but the data are observational. For example, maybe patients who can afford a medical consultant can afford better medical care, which can also lead to a lower complication rate.</p>
-<p>While it is not possible to assess the causal claim, it is still possible to test for an <em>association</em> using these data. For this question we ask, could the low complication rate of <span class="math inline">\(\hat{p}\)</span> = 0.048 be due to chance?</p>
-</div>
-</section>
-<section id="two-claims" class="slide level2">
-<h2>Two claims</h2>
-<ul>
-<li><strong>Null hypothesis:</strong> “There is nothing going on”</li>
-</ul>
-<p>Complication rate for this consultant is no different than the US average of 10%</p>
-<div class="fragment">
-<ul>
-<li><strong>Alternative hypothesis:</strong> “There is something going on”</li>
-</ul>
-<p>Complication rate for this consultant is <strong>different</strong> than the US average of 10%</p>
-</div>
-</section>
-<section id="hypothesis-testing-as-a-court-trial" class="slide level2">
-<h2>Hypothesis testing as a court trial</h2>
-<ul>
-<li><p><strong>Hypotheses:</strong></p>
-<ul>
-<li><p><strong>Null hypothesis</strong>, <span class="math inline">\(H_0\)</span>: Defendant is innocent</p></li>
-<li><p><strong>Alternative hypothesis</strong>, <span class="math inline">\(H_A\)</span>: Defendant is guilty</p></li>
-</ul></li>
-</ul>
-<div class="fragment">
-<ul>
-<li><strong>Present the evidence:</strong> Collect data</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li><strong>Judge the evidence:</strong> “Could these data plausibly have happened by chance if the null hypothesis were true?”
-<ul>
-<li>Yes: Fail to reject <span class="math inline">\(H_0\)</span></li>
-<li>No: Reject <span class="math inline">\(H_0\)</span></li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="hypothesis-testing-framework" class="slide level2">
-<h2>Hypothesis testing framework</h2>
-<div>
-<ul>
-<li class="fragment">Start with a null hypothesis, <span class="math inline">\(H_0\)</span>, that represents the status quo</li>
-<li class="fragment">Set an alternative hypothesis, <span class="math inline">\(H_A\)</span>, that represents the research question, i.e.&nbsp;what we’re testing for</li>
-<li class="fragment">Conduct a hypothesis test under the assumption that the null hypothesis is true and calculate a <strong>p-value</strong> (probability of observed or more extreme outcome given that the null hypothesis is true)
-<ul>
-<li class="fragment">if the test results suggest that the data do not provide convincing evidence for the alternative hypothesis, stick with the null hypothesis</li>
-<li class="fragment">if they do, then reject the null hypothesis in favor of the alternative</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="setting-the-hypotheses" class="slide level2 smaller">
-<h2>Setting the hypotheses</h2>
-<div class="task">
-<p>Which of the following is the correct set of hypotheses for evaluating whether the consultant’s complication rate is different than the US average of 10%?</p>
-</div>
-<ol type="a">
-<li><span class="math inline">\(H_0: p = 0.10\)</span>; <span class="math inline">\(H_A: p \ne 0.10\)</span></li>
-<li><span class="math inline">\(H_0: p = 0.10\)</span>; <span class="math inline">\(H_A: p &gt; 0.10\)</span></li>
-<li><span class="math inline">\(H_0: p = 0.10\)</span>; <span class="math inline">\(H_A: p &lt; 0.10\)</span></li>
-<li><span class="math inline">\(H_0: \hat{p} = 0.10\)</span>; <span class="math inline">\(H_A: \hat{p} \ne 0.10\)</span></li>
-<li><span class="math inline">\(H_0: \hat{p} = 0.10\)</span>; <span class="math inline">\(H_A: \hat{p} &gt; 0.10\)</span></li>
-<li><span class="math inline">\(H_0: \hat{p} = 0.10\)</span>; <span class="math inline">\(H_A: \hat{p} &lt; 0.10\)</span></li>
-</ol>
-<div class="callout callout-tip no-icon callout-style-simple">
-<div class="callout-body">
-<div class="callout-content">
-<p>Go to Canvas and open today’s “quiz” titled <code>2023-10-18 Check-in</code> to vote. Access code: <code>hypothesis</code> (released in class)</p>
-</div>
-</div>
-</div>
-</section>
-<section id="simulating-the-null-distribution" class="slide level2">
-<h2>Simulating the null distribution</h2>
-<p>Since <span class="math inline">\(H_0: p = 0.10\)</span>, we need to simulate a null distribution where the probability of success (complication) for each trial (patient) is 0.10.</p>
-<div class="fragment">
-<p><br></p>
-<div class="task">
-<p>Describe how you would simulate the null distribution for this study using a bag of chips. How many chips? What colors? What do the colors indicate? How many draws? <strong>With replacement</strong> or <strong>without replacement</strong>?</p>
-</div>
-</div>
-</section>
-<section id="what-do-we-expect" class="slide level2">
-<h2>What do we expect?</h2>
-<div class="task">
-<p>When sampling from the null distribution, what is the expected proportion of success (complications)?</p>
-</div>
-</section>
-<section id="simulation-1" class="slide level2">
-<h2>Simulation #1</h2>
-<div class="cell" data-fig.asp="0.5">
-<div class="cell-output cell-output-stdout">
-<pre><code>sim1
-   complication no complication 
-              7              55 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1129032</code></pre>
-</div>
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" width="768">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="12-hypothesis-testing-randomization_files/figure-revealjs/unnamed-chunk-3-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" width="768">
-</div>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="simulation-2" class="slide level2">
-<h2>Simulation #2</h2>
-<div class="cell" data-fig.asp="0.5">
-<div class="cell-output cell-output-stdout">
-<pre><code>sim2
-   complication no complication 
-             10              52 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1612903</code></pre>
-</div>
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" width="768">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="12-hypothesis-testing-randomization_files/figure-revealjs/unnamed-chunk-4-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" width="768">
-</div>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="simulation-3" class="slide level2">
-<h2>Simulation #3</h2>
-<div class="cell" data-fig.asp="0.5">
-<div class="cell-output cell-output-stdout">
-<pre><code>sim3
-   complication no complication 
-              5              57 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.08064516</code></pre>
-</div>
-<div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" width="768">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="12-hypothesis-testing-randomization_files/figure-revealjs/unnamed-chunk-5-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" width="768">
-</div>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="this-is-getting-boring" class="slide level2">
-<h2>This is getting boring…</h2>
-<p>We need a way to automate this process!</p>
-</section>
-<section id="application-exercise" class="slide level2">
-<h2>Application exercise</h2>
-<p>Go to Posit Cloud and continue the project titled <code>ae-10-Donor Yawner</code>.</p>
-</section></section>
-<section>
-<section id="case-study-2-yawners" class="title-slide slide level1 center">
-<h1>Case study 2: Yawners</h1>
-
-</section>
-<section id="is-yawning-contagious" class="slide level2">
-<h2>Is yawning contagious?</h2>
-<div class="task">
-<p>Do you think yawning is contagious?</p>
-</div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" data-fig-align="center" alt="Only Charlie Brown yawning">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/yawn1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure-center" alt="Only Charlie Brown yawning">
-</div>
-</figure>
-</div>
-</div><div class="column" style="width:50%;">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center" data-fig-align="center" alt="Both Charlie Brown and Lucy van Pelt yawning">
-<figure class="quarto-float quarto-float-fig">
-<div>
-<img data-src="images/yawn2.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure-center" alt="Both Charlie Brown and Lucy van Pelt yawning">
-</div>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="is-yawning-contagious-1" class="slide level2">
-<h2>Is yawning contagious?</h2>
-<p>An experiment conducted by the <a href="https://en.wikipedia.org/wiki/MythBusters">MythBusters</a> tested if a person can be subconsciously influenced into yawning if another person near them yawns.</p>
-<p>If you’re interested, you can watch the full episode at <a href="https://www.dailymotion.com/video/x7ydkt2" class="uri">https://www.dailymotion.com/video/x7ydkt2</a>.</p>
-</section>
-<section id="study-description" class="slide level2">
-<h2>Study description</h2>
-<p>In this study 50 people were randomly assigned to two groups: 34 to a group where a person near them yawned (treatment) and 16 to a control group where they didn’t see someone yawn (control).</p>
-<p>The data are in the <strong>openintro</strong> package: <code>yawn</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>yawn <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">count</span>(group, result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 3
-  group result       n
-  &lt;fct&gt; &lt;fct&gt;    &lt;int&gt;
-1 ctrl  not yawn    12
-2 ctrl  yawn         4
-3 trmt  not yawn    24
-4 trmt  yawn        10</code></pre>
-</div>
-</div>
-</section>
-<section id="proportion-of-yawners" class="slide level2">
-<h2>Proportion of yawners</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>yawn <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">count</span>(group, result) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">mutate</span>(<span class="at">p_hat =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="sc">~</span>category,                     <span class="sc">~</span>value,</span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="st">"Cutting tools"</span>                , <span class="fl">0.03</span>,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="st">"Buildings and administration"</span> , <span class="fl">0.22</span>,</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="st">"Labor"</span>                        , <span class="fl">0.31</span>,</span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="st">"Machinery"</span>                    , <span class="fl">0.27</span>,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="st">"Workplace materials"</span>          , <span class="fl">0.17</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>)</span>
+<span id="cb2-9"><a href="#cb2-9"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 4
-# Groups:   group [2]
-  group result       n p_hat
-  &lt;fct&gt; &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;
-1 ctrl  not yawn    12 0.75 
-2 ctrl  yawn         4 0.25 
-3 trmt  not yawn    24 0.706
-4 trmt  yawn        10 0.294</code></pre>
+<pre><code># A tibble: 5 × 2
+  category                     value
+  &lt;chr&gt;                        &lt;dbl&gt;
+1 Cutting tools                 0.03
+2 Buildings and administration  0.22
+3 Labor                         0.31
+4 Machinery                     0.27
+5 Workplace materials           0.17</code></pre>
 </div>
-</div>
-</div>
-<ul>
-<li>Proportion of yawners in the treatment group: <span class="math inline">\(\frac{10}{34} = 0.2941\)</span></li>
-<li>Proportion of yawners in the control group: <span class="math inline">\(\frac{4}{16} = 0.25\)</span></li>
-<li>Difference: <span class="math inline">\(0.2941 - 0.25 = 0.0441\)</span></li>
-<li>Our results match the ones calculated on the MythBusters episode.</li>
-</ul>
-</section>
-<section id="independence" class="slide level2">
-<h2>Independence?</h2>
-<div class="task">
-<p>Based on the proportions we calculated, do you think yawning is really contagious, i.e.&nbsp;are seeing someone yawn and yawning dependent?</p>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 4
-# Groups:   group [2]
-  group result       n p_hat
-  &lt;fct&gt; &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;
-1 ctrl  not yawn    12 0.75 
-2 ctrl  yawn         4 0.25 
-3 trmt  not yawn    24 0.706
-4 trmt  yawn        10 0.294</code></pre>
 </div>
 </div>
 </section>
-<section id="dependence-or-another-possible-explanation" class="slide level2">
-<h2>Dependence, or another possible explanation?</h2>
+<section id="keep-it-simple" class="slide level2">
+<h2>Keep it simple</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
 <div>
-<ul>
-<li class="fragment">The observed differences might suggest that yawning is contagious, i.e.&nbsp;seeing someone yawn and yawning are dependent.</li>
-<li class="fragment">But the differences are small enough that we might wonder if they might simple be <strong>due to chance</strong>.</li>
-<li class="fragment">Perhaps if we were to repeat the experiment, we would see slightly different results.</li>
-<li class="fragment">So we will do just that - well, somewhat - and see what happens.</li>
-<li class="fragment">Instead of actually conducting the experiment many times, we will <strong>simulate</strong> our results.</li>
-</ul>
+<img data-src="images/pie.jpg" id="fig-539a35d47e664c97a50115a146a7f1bd-1">
+</div>
+</figure>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" width="100%">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="24-tell-data-story_files/figure-revealjs/unnamed-chunk-3-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" style="width:100.0%">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section>
-<section id="two-competing-claims" class="slide level2">
-<h2>Two competing claims</h2>
+<section id="judging-relative-area" class="slide level2">
+<h2>Judging relative area</h2>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" width="800" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/pie-areas.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure-center" width="800">
+</div>
+</figure>
+</div>
+<div class="fragment">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" width="800" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/bar-areas.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure-center" width="800">
+</div>
+</figure>
+</div>
+
+</div>
+<aside><div>
+<p>From Data to Viz caveat collection - <a href="https://www.data-to-viz.com/caveat/pie.html">The issue with pie chart</a></p>
+</div></aside></section>
+<section id="use-color-to-draw-attention" class="slide level2">
+<h2>Use color to draw attention</h2>
+<p><br> <br></p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>Null hypothesis:</strong></p>
-<p>“There is nothing going on.” Yawning and seeing someone yawn are <strong>independent</strong>, yawning is not contagious, observed difference in proportions is simply due to chance.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center" width="100%">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="24-tell-data-story_files/figure-revealjs/unnamed-chunk-4-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" style="width:100.0%">
+</div>
+</figure>
+</div>
+</div>
+</div>
 </div><div class="column" style="width:50%;">
-<p><strong>Alternative hypothesis:</strong></p>
-<p>“There is something going on.” Yawning and seeing someone yawn are <strong>dependent</strong>, yawning is contagious, observed difference in proportions is not due to chance.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center" width="100%">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="24-tell-data-story_files/figure-revealjs/unnamed-chunk-5-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-6" style="width:100.0%">
+</div>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
-<section id="simulation-by-hand---setup" class="slide level2">
-<h2>Simulation by hand - setup</h2>
-<ol type="1">
-<li><p>A regular deck of cards is comprised of 52 cards: 4 aces, 4 of numbers 2-10, 4 jacks, 4 queens, and 4 kings.</p></li>
-<li><p>Take out two aces from the deck of cards and set them aside.</p></li>
-<li><p>The remaining 50 playing cards to represent each participant in the study:</p>
-<ul>
-<li>14 face cards (including the 2 aces) represent the people who yawn.</li>
-<li>36 non-face cards represent the people who don’t yawn.</li>
-</ul></li>
-</ol>
+<section id="play-with-themes-for-a-non-standard-look" class="slide level2 smaller">
+<h2>Play with themes for a non-standard look</h2>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-7" class="quarto-figure quarto-figure-center" width="100%">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="24-tell-data-story_files/figure-revealjs/unnamed-chunk-6-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-7" style="width:100.0%">
+</div>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-8" class="quarto-figure quarto-figure-center" width="100%">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="24-tell-data-story_files/figure-revealjs/unnamed-chunk-6-2.png" id="fig-539a35d47e664c97a50115a146a7f1bd-8" style="width:100.0%">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-9" class="quarto-figure quarto-figure-center" width="100%">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="24-tell-data-story_files/figure-revealjs/unnamed-chunk-6-3.png" id="fig-539a35d47e664c97a50115a146a7f1bd-9" style="width:100.0%">
+</div>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-10" class="quarto-figure quarto-figure-center" width="100%">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="24-tell-data-story_files/figure-revealjs/unnamed-chunk-6-4.png" id="fig-539a35d47e664c97a50115a146a7f1bd-10" style="width:100.0%">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="simulation-by-hand---running" class="slide level2">
-<h2>Simulation by hand - running</h2>
-<ol type="1">
-<li><p>Shuffle the 50 cards at least 7 times<sup>1</sup> to ensure that the cards counted out are from a random process.</p></li>
-<li><p>Count out the top 16 cards and set them aside. These cards represent the people in the control group.</p></li>
-<li><p>Out of the remaining 34 cards (treatment group) count the <strong>number of face cards</strong> (the number of people who yawned in the treatment group).</p></li>
-<li><p>Calculate the difference in proportions of yawners (treatment - control), and plot it on the board.</p></li>
-<li><p>Mark the difference you find on the dot plot on the board.</p></li>
-</ol>
+<section id="go-beyond-ggplot2-themes-ggthemes" class="slide level2 smaller">
+<h2>Go beyond ggplot2 themes – ggthemes</h2>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-11" class="quarto-figure quarto-figure-center" width="100%">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="24-tell-data-story_files/figure-revealjs/unnamed-chunk-7-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-11" style="width:100.0%">
+</div>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-12" class="quarto-figure quarto-figure-center" width="100%">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="24-tell-data-story_files/figure-revealjs/unnamed-chunk-7-2.png" id="fig-539a35d47e664c97a50115a146a7f1bd-12" style="width:100.0%">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-13" class="quarto-figure quarto-figure-center" width="100%">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="24-tell-data-story_files/figure-revealjs/unnamed-chunk-7-3.png" id="fig-539a35d47e664c97a50115a146a7f1bd-13" style="width:100.0%">
+</div>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-14" class="quarto-figure quarto-figure-center" width="100%">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="24-tell-data-story_files/figure-revealjs/unnamed-chunk-7-4.png" id="fig-539a35d47e664c97a50115a146a7f1bd-14" style="width:100.0%">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="tell-a-story" class="slide level2">
+<h2>Tell a story</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-15" class="quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/duke-hires-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-15" class="quarto-figure-center">
+</div>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-16" class="quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/duke-hires-2.png" id="fig-539a35d47e664c97a50115a146a7f1bd-16" class="quarto-figure-center">
+</div>
+</figure>
+</div>
+</div>
+</div>
 
 <aside><div>
-<p>[1] http://www.dartmouth.edu/~chance/course/topics/winning_number.html</p>
+<p><em>Credit</em>: Angela Zoss and Eric Monson, Duke DVS</p>
 </div></aside></section>
-<section id="simulation-by-computation" class="slide level2">
-<h2>Simulation by computation</h2>
-<p>Go to Posit Cloud and continue the project titled <code>ae-10-Donor Yawner</code>.</p>
-</section></section>
+<section id="leave-out-non-story-details" class="slide level2">
+<h2>Leave out non-story details</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-17" class="quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/too-many-details.png" id="fig-539a35d47e664c97a50115a146a7f1bd-17" class="quarto-figure-center">
+</div>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-18" class="quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/fewer-details.png" id="fig-539a35d47e664c97a50115a146a7f1bd-18" class="quarto-figure-center">
+</div>
+</figure>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p><em>Credit</em>: Angela Zoss and Eric Monson, Duke DVS</p>
+</div></aside></section>
+<section id="order-matters" class="slide level2">
+<h2>Order matters</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-19" class="quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/unordered.png" id="fig-539a35d47e664c97a50115a146a7f1bd-19" class="quarto-figure-center">
+</div>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-20" class="quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/ordered.png" id="fig-539a35d47e664c97a50115a146a7f1bd-20" class="quarto-figure-center">
+</div>
+</figure>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p><em>Credit</em>: Angela Zoss and Eric Monson, Duke DVS</p>
+</div></aside></section>
+<section id="clearly-indicate-missing-data" class="slide level2">
+<h2>Clearly indicate missing data</h2>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-21" class="quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/missing-data.png" id="fig-539a35d47e664c97a50115a146a7f1bd-21" class="quarto-figure-center">
+</div>
+</figure>
+</div>
+
+<aside><div>
+<p>http://ivi.sagepub.com/content/10/4/271, Angela Zoss and Eric Monson, Duke DVS</p>
+</div></aside></section>
+<section id="reduce-cognitive-load" class="slide level2">
+<h2>Reduce cognitive load</h2>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-22" class="quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/cognitive-load.png" id="fig-539a35d47e664c97a50115a146a7f1bd-22" class="quarto-figure-center">
+</div>
+</figure>
+</div>
+
+<aside><div>
+<p>http://www.storytellingwithdata.com/2012/09/some-finer-points-of-data-visualization.html</p>
+</div></aside></section>
+<section id="use-descriptive-titles" class="slide level2">
+<h2>Use descriptive titles</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-23" class="quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/title-non-descriptive.png" id="fig-539a35d47e664c97a50115a146a7f1bd-23" class="quarto-figure-center">
+</div>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-24" class="quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/title-descriptive.png" id="fig-539a35d47e664c97a50115a146a7f1bd-24" class="quarto-figure-center">
+</div>
+</figure>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p><em>Credit</em>: Angela Zoss and Eric Monson, Duke DVS</p>
+</div></aside></section>
+<section id="annotate-figures" class="slide level2">
+<h2>Annotate figures</h2>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-25" class="quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="images/annotate.png" id="fig-539a35d47e664c97a50115a146a7f1bd-25" class="quarto-figure-center">
+</div>
+</figure>
+</div>
+
+<aside><div>
+<p>https://bl.ocks.org/susielu/23dc3082669ee026c552b85081d90976</p>
+</div></aside></section></section>
 <section>
-<section id="recap" class="title-slide slide level1 center">
-<h1>Recap</h1>
+<section id="plot-sizing-and-layout" class="title-slide slide level1 center">
+<h1>Plot sizing and layout</h1>
 
 </section>
-<section id="types-of-alternative-hypotheses" class="slide level2">
-<h2>Types of alternative hypotheses</h2>
-<ul>
-<li>One-sided (one-tailed) alternatives: The parameter is hypothesized to be less than or greater than the null value, &lt; or &gt;</li>
-</ul>
-<div class="fragment">
-<ul>
-<li>Two-sided (two-tailed) alternatives: The parameter is hypothesized to be not equal to the null value, <span class="math inline">\(\ne\)</span>
-<ul>
-<li>Calculated as two times the tail area beyond the observed sample statistic</li>
-<li>More objective, and hence more widely preferred</li>
-</ul></li>
-</ul>
+<section id="sample-plots" class="slide level2">
+<h2>Sample plots</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>p_hist <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a>p_text <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">rownames_to_column</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> disp, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> rowname)) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="fragment">
-<div class="task">
-<p>Average systolic blood pressure of people with Stage 1 Hypertension is 150 mm Hg. Suppose we want to use a hypothesis test to evaluate whether a new blood pressure medication has <b>an effect</b> on the average blood pressure of heart patients. What are the hypotheses?</p>
+</section>
+<section id="small-fig-width" class="slide level2">
+<h2>Small <code>fig-width</code></h2>
+<p>For a zoomed-in look</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="in">#| fig-width: 3</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="in">#| fig-asp: 0.618</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="in">p_hist</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-26" class="quarto-figure quarto-figure-center" width="288">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="24-tell-data-story_files/figure-revealjs/unnamed-chunk-9-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-26" width="288">
+</div>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="discernability-level" class="slide level2">
-<h2>Discernability level</h2>
-<p>We often use 5% as the cutoff for whether the p-value is low enough that the data are unlikely to have come from the null model. This cutoff value is called the <strong>discernability level</strong>, <span class="math inline">\(\alpha\)</span>.</p>
+<section id="large-fig-width" class="slide level2">
+<h2>Large <code>fig-width</code></h2>
+<p>For a zoomed-out look</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="in">#| fig-width: 6</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="in">#| fig-asp: 0.618</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="in">p_hist</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-27" class="quarto-figure quarto-figure-center" width="576">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="24-tell-data-story_files/figure-revealjs/unnamed-chunk-10-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-27" width="576">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fig-width-affects-text-size" class="slide level2">
+<h2><code>fig-width</code> affects text size</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-28" class="quarto-figure quarto-figure-center" width="480">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="24-tell-data-story_files/figure-revealjs/unnamed-chunk-11-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-28" width="480">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-29" class="quarto-figure quarto-figure-center" width="960">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="24-tell-data-story_files/figure-revealjs/unnamed-chunk-12-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-29" width="960">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="multiple-plots-on-a-slide" class="slide level2">
+<h2>Multiple plots on a slide</h2>
+<div class="callout callout-warning no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>First, ask yourself, must you include multiple plots on a slide? For example, is your narrative about comparing results from two plots?</p>
+</div>
+</div>
+</div>
 <ul>
-<li><p>If p-value &lt; <span class="math inline">\(\alpha\)</span>, reject <span class="math inline">\(H_0\)</span> in favor of <span class="math inline">\(H_A\)</span>: The data provide convincing evidence for the alternative hypothesis.</p></li>
-<li><p>If p-value &gt; <span class="math inline">\(\alpha\)</span>, fail to reject <span class="math inline">\(H_0\)</span> in favor of <span class="math inline">\(H_A\)</span>: The data do not provide convincing evidence for the alternative hypothesis.</p></li>
+<li><p>If no, then don’t! Move the second plot to to the next slide!</p></li>
+<li><p>If yes, use columns and sequential reveal.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="quarto" class="title-slide slide level1 center">
+<h1>Quarto</h1>
+
+</section>
+<section id="writing-your-project-report-with-quarto" class="slide level2">
+<h2>Writing your project report with Quarto</h2>
+<ul>
+<li><p>Figure sizing: <code>fig-width</code>, <code>fig-height</code>, etc. in code chunks.</p></li>
+<li><p>Figure layout: <code>layout-ncol</code> for placing multiple figures in a chunk.</p></li>
+<li><p>Further control over figure layout with the <strong>patchwork</strong> package.</p></li>
+<li><p>Chunk options around what makes it in your final report: <code>message</code>, <code>echo</code>, etc.</p></li>
+<li><p>Cross referencing figures and tables.</p></li>
+<li><p>Adding footnotes and citations.</p></li>
 </ul>
 </section>
-<section id="statistically-discernable" class="slide level2">
-<h2>Statistically discernable</h2>
-<ul>
-<li><p>If you’ve taken a statistics course before, or read papers that use hypothesis testing for making a conclusion, you might have encountered the term “statistically significant” or “significance level”.</p></li>
-<li><p>We will use the term “statistically discernable” or discernability level”, because “significant” has a different meaning in everyday language and this often causes misconceptions of what “statistically significant” means. It doesn’t necessarily mean a notable or important event has happened, it just means the data are unlikely to have come from the null model.</p></li>
-</ul>
+<section id="cross-referencing-figures" class="slide level2 smaller">
+<h2>Cross referencing figures</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Output</a></li><li><a href="#tabset-1-2">Input</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<p>As seen in <a href="#/cross-referencing-figures" class="quarto-xref">Figure&nbsp;1</a>, there is a positive and relatively strong relationship between body mass and flipper length of penguins.</p>
+<div class="cell" data-layout-align="left">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-penguins" class="quarto-figure quarto-figure-left" width="480" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-penguins-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="24-tell-data-story_files/figure-revealjs/fig-penguins-1.png" class="quarto-figure-left" width="480">
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-penguins-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The relationship between body mass and flipper length of penguins.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a>As seen in @fig-penguins, there is a positive and relatively strong relationship between body mass and flipper length of penguins.</span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="in">```{r}</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="in">#| label: fig-penguins</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="in">ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="in">  geom_point()</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="setting-a-seed" class="slide level2">
-<h2>Setting a seed</h2>
-<ul>
-<li><p>Goal: Pin down the random generation so that the same random generation happens each time a document is rendered (by you or by someone else wanting to replicate your results)</p></li>
-<li><p>When: Set a seed each time right before <code>generate()</code>ing new resamples. Setting a seed once in a document would also work for re-rendering the document, but considering we often run the code chunk interactively, it’s best to set the seed again in each code chunk that does random generation.</p></li>
-</ul>
+<section id="cross-referencing-tables" class="slide level2 smaller">
+<h2>Cross referencing tables</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Output</a></li><li><a href="#tabset-2-2">Input</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<p>The regression output is shown in <a href="#/cross-referencing-tables" class="quarto-xref">Table&nbsp;1</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>penguins_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">fit</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, <span class="at">data =</span> penguins)</span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="fu">tidy</span>(penguins_fit) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-penguins-lm" class="cell">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="table quarto-float-caption quarto-float-tbl" id="tbl-penguins-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: The regression output for predicting body mass from flipper length of penguins.
+</figcaption>
+<div aria-describedby="tbl-penguins-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-5780.831</td>
+<td style="text-align: right;">305.815</td>
+<td style="text-align: right;">-18.903</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">flipper_length_mm</td>
+<td style="text-align: right;">49.686</td>
+<td style="text-align: right;">1.518</td>
+<td style="text-align: right;">32.722</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1"></a>The regression output is shown in @tbl-penguins-lm.</span>
+<span id="cb10-2"><a href="#cb10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="in">```{r}</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="in">#| label: tbl-penguins-lm</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="in">#| tbl-cap: The regression output for predicting body mass from flipper length of penguins.</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="in">penguins_fit &lt;- linear_reg() |&gt;</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="in">  fit(body_mass_g ~ flipper_length_mm, data = penguins)</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="in">tidy(penguins_fit) |&gt;</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="in">  knitr::kable(digits = 3)</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 
 <p><img src="../logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
